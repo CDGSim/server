@@ -1,4 +1,5 @@
 **Pour tester :**
+
 - Installer Docker
 - Dans un terminal, aller au dossier source
 - Executer la commande :
@@ -8,11 +9,13 @@
 - Rendez-vous sur http://localhost:8080/ pour voir le résultat
 
 **Comment ça marche ?**
+
 Les routes permettent de définir ce que le serveur doit retourner lorsqu'on appelle une URL. L'essentiel du code se trouve dans le fichier Sources/App/routes.swift
 Par exemple, lorsqu'on appelle l'URL racine `/`, c'est le code de la fonction `app.get` (ligne 5) qui est executé. La fonction retourne une vue, c'est à dire du code HTML qui est généré à partir de deux éléments : le template `index.leaf`, et la struct `context` qui est construite en lisant les fichiers sur le disque.
 Lorsqu'on appelle l'URL `print/nom_du_fichier_simu`, c'est le code de la fonction `app.get("print", "**")`(ligne 101) qui est executé. La fonction retourne la vue générée à partir du template `print.leaf`.
 
 **Les templates leaf**
+
 Ce sont des fichiers contenant du code HTML, avec des balises qui permettent d'injecter le contexte qu'on leur a passé. C'est assez similaire à la facon dont fonctionnerait un script php.
 
 Pour l'URL racine, le contexte qui est passé au template est la struct suivante :
