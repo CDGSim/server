@@ -1,0 +1,15 @@
+            <div class="note">
+                <div>
+                    <ul>
+                        <li><strong>Configuration :</strong> #(log.properties.configuration)</li>
+                        <li><strong>Charge :</strong> #(log.properties.traffic_density)</li>
+                        <li><strong>Durée :</strong> #(log.properties.duration) min</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>QNH :</strong> #(log.properties.pressure)</li>
+                        <li><strong>Météo :</strong> #(log.properties.weather)</li>
+                    </ul>
+                </div>
+            </div>

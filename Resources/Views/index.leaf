@@ -1,12 +1,37 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Simulations</title>
+        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
+    </head>
 
-  <title>#(title)</title>
-</head>
+    <body>
+        <nav id="globalnav"">
+            <h1>Simulations</h1>
+        </nav>
+        
+        <main>
+            
+            <h2>Catalogue de simulations</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #for(simulation in simulations):
+                    <tr>
+                        <td>#(simulation.group)</td>
+                        <td><a href="/print/#(simulation.path)">#(simulation.name)</a></td>
+                    </tr>
+                    #endfor
+                </tbody>
+            </table>
 
-<body>
-  <h1>#(title)</h1>
-</body>
+        </main>
+
+    </body>
 </html>

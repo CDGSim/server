@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Log de simulation &mdash; #(properties.name)</title>
+        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
+    </head>
+
+    <body>
+        <div class="unit">
+                
+        
+            <div class="page-top">
+                <div><h4>ELECTRA</h4></div>
+                <div><h4>#(log.properties.name)</h4></div>
+                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+            </div>
+            
+            <div class="content">
+            
+                <div id="title">
+                    <h1>Lutin</h1>
+                </div>
+                                    
+                    <div>
+                        <h2>#(log.properties.name)</h2>
+                        #extend("simulationProperties")
+                    </div>
+                    <div>
+                        
+                        <h3>Objectifs</h3>
+                        <p>#markdown(log.properties.objectives)</p>
+                        <h3>Description</h3>
+                        <p>#markdown(log.properties.description)</p>
+                    </div>
+                
+                <h2>Déroulement</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Indicatif</th>
+                            <th>Evènement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(event in log.instructor_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td>#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                
+                <h2>Situation initiale</h2>
+                #if(log.instructor_log.setup_info):<p>#(log.instructor_log.setup_info)</p>#endif
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Indicatif</th>
+                            <th>Consignes</th>
+                        </tr>
+                    </thead>
+                    #for(pilot_log in log.pilot_logs):
+                        #if(pilot_log.role != "Adjacent"):
+                        <tbody>
+                            #for(setup in pilot_log.setup):
+                            <tr>
+                                #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
+                                <td>#(setup.callsign)</td>
+                                <td>#markdown(setup.description)</td>
+                            </tr>
+                            #endfor
+                        </tbody>
+                        #endif
+                    #endfor
+                </table>
+                
+            </div>
+            
+        </div>
+                
+        #for(pilot_log in log.pilot_logs):
+        <div class="unit">
+        
+            <div class="page-top">
+                <div><h4>ELECTRA</h4></div>
+                <div><h4>#(log.properties.name)</h4></div>
+                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+            </div>
+            
+            <div class="content">
+            
+                <div id="title">
+                    <h1>Log PER</h1>
+                    <h2>#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
+                </div>
+                
+                <div class="header">
+                    <div>
+                        <h3>#(log.properties.name)</h3>
+                        <p>#markdown(log.properties.description)</p>
+                    </div>
+                    <div>
+                        #extend("simulationProperties")
+                    </div>
+                </div>
+            
+                #if(pilot_log.directives):
+                <h2>Consignes</h2>
+                <p>#markdown(pilot_log.directives)</p>
+                #endif
+                            
+                #if(pilot_log.setup):
+                <h2>Situation initiale</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicatif</th>
+                            <th>Consignes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(setup in pilot_log.setup):
+                        <tr>
+                            <td>#(setup.callsign)</td>
+                            <td>#markdown(setup.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                #endif
+                     
+                #if(pilot_log.events):
+                <h2>Déroulement</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Indicatif</th>
+                            <th>Évènement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(event in pilot_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td>#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                #endif
+                
+            </div>
+            
+        </div>
+        #endfor
+    </body>
+</html>

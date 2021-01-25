@@ -1,0 +1,230 @@
+{
+    "properties" : {
+        "name" : "APPR_ZZ_PROC_04_EL",
+        "update_date" : "2021-01-22T13:55:17Z",
+        "configuration" : "EL",
+        "traffic_density" : "Modéré à fort",
+        "start_date": "2020-07-14T12:30:20Z",
+        "duration" : 60,
+        "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, trafics BA, LFPT sans ATS.",
+        "description" : "Régulations 09L & 08R PG, 07 PB.\nPontoise est sans ATS.\nITM sud et BA dégroupés.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
+        "pressure" : 998,
+        "weather" : "CAVOK"
+    },
+    "instructor_log": {
+        "setup_info" : "En début de simu, activer RYR2DQ sur XDIGIT pour avoir le strip.",
+        "events" : [
+            {
+                "time" : "12:32",
+                "callsign" : "RYR2DQ",
+                "description" : "Départ LGL de LFOB"
+            },
+            {
+                "time" : "12:38",
+                "callsign" : "FGHFC",
+                "description" : "Arrivée LFPT par MOPAR"
+            },
+            {
+                "time" : "12:48",
+                "callsign" : "IBK8FI",
+                "description" : "Arrivée LFPO par VEBEK"
+            },
+            {
+                "time" : "12:50",
+                "callsign" : "N50601",
+                "description" : "Arrivée LFPT par VEBEK"
+            },
+            {
+                "time" : "12:54",
+                "callsign" : "FDUDE",
+                "description" : "Départ LGL de LFPN"
+            },
+            {
+                "time" : "13:02",
+                "callsign" : "EJU74FY",
+                "description" : "Arrivée LFPO par VEBEK"
+            },
+            {
+                "time" : "13:04",
+                "callsign" : "RYR9CW",
+                "description" : "Départ LGL de LFOB"
+            },
+            {
+                "time" : "13:10",
+                "callsign" : "FHTSE",
+                "description" : "Départ nord de LFPT sans ATS. Transmettre en tant que CA les éléments du départ au COOR INI N : le pilote doit décoller à 13:10, il fera un départ omni directionnel en 05 cap nord, en montée vers 3000 ft, et contactera l'ITM Nord. Le CA lui a annoncé un guidage pour rejoindre OPALE."
+            }
+        ]
+    },
+    "pilot_logs": [
+        {
+            "role" : "Adjacent",
+            "setup" : [
+                {
+                    "callsign" : "RYR2DQ",
+                    "description" : "Beauvais a déjà coordonné le départ : départ standard à 5000 ft."
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "12:32",
+                    "callsign" : "FGHFC",
+                    "description" : "TH appelle le COOR INI N pour coordonner l'arrivée Pontoise du FGHFC. Faire préciser la fréquence pour envoyer au bon PER."
+                },
+                {
+                    "time" : "12:52",
+                    "callsign" : "IBK8FI",
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de IBK8FI, proposer : FL80, EPR, sur 123,875."
+                },
+                {
+                    "time" : "12:45",
+                    "callsign" : "N50601",
+                    "description" : "Le COOR DEP N appelle le COOR INI pour coordonner l'arrivée du N50601. Proposer 3000 ft au cap 270 sur 124.355. Envoyer le vol au PER ITM Nord lorsque le vol passe le travers nord de CDG."
+                },
+                {
+                    "time" : "12:48",
+                    "callsign" : "FDUDE",
+                    "description" : "Toussus appelle le COOR INI S pour la mise en route du FDUDE, départ non perfo vers LGL."
+                },
+                {
+                    "time" : "12:52",
+                    "callsign" : "FDUDE",
+                    "description" : "Toussus appelle le COOR INI S pour la clairance du FDUDE. Transférer le vol au PER dont la fréquence a été spécifiée par CDG. Vérifier que le départ est bien autorisé vers l'altitude demandée par CDG."
+                },
+                {
+                    "time" : "13:06",
+                    "callsign" : "EJU74FY",
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL80, EPR, sur 123,875."
+                },
+                {
+                    "time" : "13:01",
+                    "callsign" : "RYR9CW",
+                    "description" : "Beauvais appelle le COOR INI N : *Activation et clairance du RYR9CW, départ LGL dans 3 min.*"
+                }
+            ]
+        },
+        {
+            "role" : "INI Nord",
+            "frequency" : "121.155",
+            "directives" : "En début de simu, verrouiller le niveau et la vitesse de AUA4NH. Transférer AHO296Q à l'ITM BA",
+            "setup" : [
+                {
+                    "callsign" : "AUA4NH",
+                    "description" : "FL110 - 250 kts"
+                },
+                {
+                    "callsign" : "ABR1RG",
+                    "description" : "FL120 - 240 kts"
+                },
+                {
+                    "callsign" : "AFR65TV",
+                    "description" : "FL150 - 310 kts"
+                },
+                {
+                    "callsign" : "RYR2DQ",
+                    "description" : "coordonné 5000 ft sur départ standard"
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "12:38",
+                    "callsign" : "FGHFC",
+                    "description" : "**Si concerné**, FGHFC a pour intention d'effectuer une ILS z 05 à Pontoise. Il s'attend à être guidé verticale PON à 3000 ft. Le contrôle doit demander l'heure estimée d'arrivée pour le service d'alerte : donner 13:00."
+                }
+            ]
+        },
+        {
+            "role" : "ITM Nord",
+            "frequency" : "126.430",
+            "directives" : "En début de simu, verrouiller les caps, niveaux et vitesses des avions qui ne sont pas autorisés à l'ILS.",
+            "setup" : [
+                {
+                    "callsign" : "FDX5391",
+                    "description" : "avec la tour"
+                },
+                {
+                    "callsign" : "AUA4VT",
+                    "description" : "170 kts - ILS 09L"
+                },
+                {
+                    "callsign" : "AFR88KQ",
+                    "description" : "4000 ft - 220 kts - ILS 09L"
+                },
+                {
+                    "callsign" : "FDX5112",
+                    "description" : "4000 ft - 250 kts"
+                },
+                {
+                    "callsign" : "DLH39H",
+                    "description" : "4000 ft - 220 kts"
+                },
+                {
+                    "callsign" : "AFR011",
+                    "description" : "5000 ft - 230 kts"
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "12:38",
+                    "callsign" : "FGHFC",
+                    "description" : "**Si concerné**, FGHFC a pour intention d'effectuer une ILS z 05 à Pontoise. Il s'attend à être guidé verticale PON à 3000 ft. Le contrôle doit demander l'heure estimée d'arrivée pour le service d'alerte : donner 13:00."
+                },
+                {
+                    "time" : "12:51",
+                    "callsign" : "N50601",
+                    "description" : "L'adjacent doit vous envoyer l'arrivée pour Pontoise. Le pilote pour intention d'effectuer une approche RNP z 05 à Pontoise. Il s'attend à être guidé sur PT432 à 3000 ft. Le contrôle doit demander l'heure estimée d'arrivée pour le service d'alerte : donner 13:10."
+                },
+                {
+                    "time" : "13:10",
+                    "callsign" : "FHTSE",
+                    "description" : "Prendre un cap 360 après envol (départ omni de Pontoise en 05), en montée vers 3000 ft. Contacter le contrôle passant 2500 ft. Le pilote qui a téléphoné au Chef Approche avant de décoller s'attend à un guidage vers OPALE."
+                }
+            ]
+        },
+        {
+            "role" : "INI Sud",
+            "frequency" : "125.830",
+            "directives" : "En début de simu, descendre FPO704 au FL130.",
+            "setup" : [
+                {
+                    "callsign" : "FPO704",
+                    "description" : "FL130 - 250 kts"
+                },
+                {
+                    "callsign" : "AFR1677",
+                    "description" : "FL150 - 300 kts"
+                },
+                {
+                    "callsign" : "AFR53FR",
+                    "description" : "FL110 - 250 kts"
+                }
+            ]
+        },
+        {
+            "role" : "ITM S + BA",
+            "frequency" : "118.150 + 136.275",
+            "directives" : "En début de simu, demander AHO296Q au PER INI Nord, et verrouiller son cap.",
+            "setup" : [
+                {
+                    "callsign" : "AFR73TC",
+                    "description" : "vitesse libre - ILS"
+                },
+                {
+                    "callsign" : "AFR6744",
+                    "description" : "5000 ft - vitesse libre"
+                },
+                {
+                    "callsign" : "AHO296Q",
+                    "description" : "3000 ft - vitesse libre"
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "06:58",
+                    "callsign" : "FDUDE",
+                    "description" : "Demander à l'adjacent d'avoir le vol si ce n'est pas fait. Vérifier avec l'adjacent vers quelle altitude le vol est autorisé. Contacter De Gaulle Approche : *De Gaulle Approche bonjour, FDUDE établi sur le 299 de POY en montée vers 2000 ft.*"
+                }
+            ]
+        }
+    ]
+}

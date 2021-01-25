@@ -1,0 +1,178 @@
+{
+    "properties" : {
+        "name" : "APPR_ZZ_PROC_03_WL",
+        "update_date" : "2021-01-18T06:30:17Z",
+        "configuration" : "WL",
+        "traffic_density" : "Fort",
+        "start_date": "2021-01-14T08:28:00Z",
+        "duration" : 60,
+        "objectives" : "- Travailler les stratégies d'interception au Bourget\n - Gestion d'une arrivée et d'un départ Le Plessis",
+        "description" : "Régulations 27R, 26L et 27 PB.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
+        "pressure" : 1015,
+        "weather" : "BKN 3500"
+    },
+    "instructor_log": {
+        "events" : [
+            {
+                "time" : "08:34",
+                "callsign" : "EJU74FY",
+                "description" : "Arrivée LFPO par VEBEK"
+            },
+            {
+                "time" : "08:39",
+                "callsign" : "FHFPZ",
+                "description" : "Arrivée LFPP par BAVOL"
+            },
+            {
+                "time" : "08:41",
+                "callsign" : "RYR4303",
+                "description" : "Arrivée LFOB par BAVOL"
+            },
+            {
+                "time" : "08:48",
+                "callsign" : "WZZ6413",
+                "description" : "Arrivée LFOB par IPNOB"
+            },
+            {
+                "time" : "08:53",
+                "callsign" : "PGT87L",
+                "description" : "Arrivée LFPO par VEBEK"
+            },
+            {
+                "time" : "09:04",
+                "callsign" : "N313SP",
+                "description" : "Départ LFPP vers l'est. Transmettre en tant que CA les éléments du départ au COOR INI : le pilote doit décoller à 09:08, maintenir VMC jusqu'au plafond de la classe G, et contactera l'ITM Nord. Il aura un guidage pour rejoindre NIPOR."
+            },
+        ]
+    },
+    "pilot_logs": [
+        {
+            "role" : "Adjacent",
+            "directives" : "- Lorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL80, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.\n- Lorsque le COOR INI appelle Beauvais pour coordonner les **arrivées LFOB**, demander 5000 ft sur MTD.",
+            "events" : [
+                {
+                    "time" : "08:33",
+                    "callsign" : "FHFPZ",
+                    "description" : "Seine appelle le COOR INI pour coordonner FHFPZ : *J'ai l'arrivée du FHFPZ pour le Plessis, je te l'envoie 70 BAVOL et sur quelle fréquence ?*"
+                },
+                {
+                    "time" : "08:38",
+                    "callsign" : "RYR4303",
+                    "description" : "Seine appelle le COOR INI pour coordonner RYR4303 : *J'ai l'arrivée du RYR4303 pour Beauvais, je te l'envoie 80 BAVOL à cause du FHFPZ devant et sur quelle fréquence ?*"
+                },
+                {
+                    "time" : "08:44",
+                    "callsign" : "WZZ6413",
+                    "description" : "TE Lorni appelle le COOR INI pour coordonner WZZ6413 : *J'ai l'arrivée du WZZ6413 sur IPNOB, tu le veux comment ?*"
+                },
+                {
+                    "time" : "09:08",
+                    "callsign" : "N313SP",
+                    "description" : "Décollage du Plessis sous plan de vol Z. Transférer le vol au PER ITM N."
+                }
+            ]
+        },
+        {
+            "role" : "INI Nord",
+            "frequency" : "121.155",
+            "setup" : [
+                {
+                    "callsign" : "AFR61UB",
+                    "description" : "FL130 - 250 kts"
+                },
+                {
+                    "callsign" : "EIN82A",
+                    "description" : "FL120 ft - 300 kts"
+                },
+                {
+                    "callsign" : "TSC110",
+                    "description" : "FL120 - 300 kts"
+                }
+            ]
+        },
+        {
+            "role" : "ITM Nord",
+            "frequency" : "126.430",
+            "directives" : "En début de simu, verrouiller le cap, niveau et vitesse de AUA4VT.",
+            "setup" : [
+                {
+                    "callsign" : "AFR969",
+                    "description" : "avec la tour"
+                },
+                {
+                    "callsign" : "EJU78ZU",
+                    "description" : "5000 ft - 220 kts - ILS"
+                },
+                {
+                    "callsign" : "AUA4VT",
+                    "description" : "Cap 220 - FL80 - 250 kts"
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "08:39",
+                    "callsign" : "FHFPZ",
+                    "description" : "**Si concerné :** Arrivée de FHFPZ sous plan de vol Y pour Le Plessis.\nEstimée arrivée au Plessis à 08:58. Si le contrôle demande les intentions, répondre : *On annulera certainement IFR à proximité du terrain dès qu'on sera VMC.* Dans tous les cas, des que vous atteignez 2000 ft, annoncez vous VMC pour clôturer IFR.\nTuer l'avion près du terrain, ou quelques minutes après la clôture IFR."
+                },
+                {
+                    "time" : "09:08",
+                    "callsign" : "N313SP",
+                    "description" : "Décollage du Plessis sous plan de vol Z. Demander le vol à l'adjacent si vous ne l'avez pas. Bloquer l'altitude à 1500 ft. Contacter le contrôle pour demander à monter en classe A. Le vol est en VMC, s'attendre à ce que le contrôle demande à maintenir VMC, et à rappeler atteignant 2000 ft en restant VMC (alititude minimale de guidage)."
+                }
+            ]
+        },
+        {
+            "role" : "INI Sud",
+            "frequency" : "125.830",
+            "directives" : "En début de simu, verrouiller le cap, niveau et vitesse de AFR76EU.",
+            "setup" : [
+                {
+                    "callsign" : "AFR76EU",
+                    "description" : "FL70 - 220 kts"
+                },
+                {
+                    "callsign" : "FYG22T",
+                    "description" : "FL70 - 250 kts"
+                }
+            ]
+        },
+        {
+            "role" : "ITM S + BA",
+            "frequency" : "118.150 + 136.275",
+            "directives" : "Au début de la simu, bien verrouiller la vitesse de AFR459 et AFR863. Verrouiller le cap, niveau et vitesse pour les 3 derniers avions : AEA42RS, AFR1141 et AFR772L.",
+            "setup" : [
+                {
+                    "callsign" : "AFR459",
+                    "description" : "160 kts - ILS"
+                },
+                {
+                    "callsign" : "AFR863",
+                    "description" : "170 kts - ILS"
+                },
+                {
+                    "callsign" : "AEA1039",
+                    "description" : "4000ft - 220 kts"
+                },
+                {
+                    "callsign" : "AEA42RS",
+                    "description" : "FL70 - 220 kts"
+                },
+                {
+                    "callsign" : "AFR1141",
+                    "description" : "5000 ft - 250 kts"
+                },
+                {
+                    "callsign" : "AFR772L",
+                    "description" : "FL70 - 220 kts"
+                }
+            ],
+            "events" : [
+                {
+                    "time" : "08:39",
+                    "callsign" : "FHFPZ",
+                    "description" : "**Si concerné :** Arrivée de FHFPZ sous plan de vol Y pour Le Plessis.\nEstimée arrivée au Plessis à 08:51. Si le contrôle demande les intentions, répondre : *On annulera certainement IFR à proximité du terrain dès qu'on sera VMC.* Dans tous les cas, des que vous atteignez 2000 ft, annoncez vous VMC pour clôturer IFR.\nTuer l'avion près du terrain, ou quelques minutes après la clôture IFR."
+                },
+            ]
+        }
+    ]
+}
