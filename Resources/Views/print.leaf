@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Log de simulation &mdash; #(properties.name)</title>
+        <title>#(log.properties.name)</title>
         <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
     </head>
 
