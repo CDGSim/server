@@ -1,54 +1,46 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Simulations</title>
-        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
-    </head>
+#extend("master"):
+    #export("title"): #(log.properties.name) #endexport
+    #export("main"):
+#extend("simulation-properties"):
+    #export("name"): #(log.properties.name) #endexport
+#endextend
+            <div id="content">
 
-    <body>
-        <nav id="globalnav"">
-            <h1>Simulations</h1>
-        </nav>
-        
-        <main>
-            
-            <h2>#(log.properties.name)</h2>
-
-            <ul>
-            #for(pilotLog in log.pilot_logs):
-            <li><a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a></li>
-                #endfor
-            </ul>
-            
-            #if(log.properties.assignments):
-                <h3>Positions de contrôle</h3>
-            <table>
-                <tr>
-                    #for(assignment in log.properties.assignments):
-                    <td>#for(position in assignment.positions):#(position)#endfor</td>
-                    #endfor
-                </tr>
-                <tr>
-                    #for(assignment in log.properties.assignments):
-                    <td>#(assignment.controller)</td>
-                    #endfor
-                </tr>
-            </table>
-            #endif
-
-            #if(attachments):
-                #if(count(attachments) > 0):
-                <h3>Pièces jointes</h3>
                 <ul>
-                #for(attachment in attachments):
-                    <li><a href="/attachment/#(attachment.url)">#(attachment.name)</a></li>
-                #endfor
+                #for(pilotLog in log.pilot_logs):
+                <li><a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a></li>
+                    #endfor
                 </ul>
+                
+                #if(log.properties.assignments):
+                    <h3>Positions de contrôle</h3>
+                <table>
+                    <tr>
+                        #for(assignment in log.properties.assignments):
+                        <td>#for(position in assignment.positions):#(position)#endfor</td>
+                        #endfor
+                    </tr>
+                    <tr>
+                        #for(assignment in log.properties.assignments):
+                        <td>#(assignment.controller)</td>
+                        #endfor
+                    </tr>
+                </table>
                 #endif
-            #endif
 
-        </main>
-
-    </body>
-</html>
+                #if(attachments):
+                    #if(count(attachments) > 0):
+                    <h3>Pièces jointes</h3>
+                    <ul>
+                    #for(attachment in attachments):
+                        <li><a href="/attachment/#(attachment.url)">#(attachment.name)</a></li>
+                    #endfor
+                    </ul>
+                    #endif
+                #endif
+            
+                        
+        </div>
+            
+#endexport
+#endextend

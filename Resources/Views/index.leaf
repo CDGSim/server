@@ -1,18 +1,8 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Simulations</title>
-        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
-    </head>
-
-    <body>
-        <nav id="globalnav"">
-            <h1>Simulations</h1>
-        </nav>
-        
-        <main>
+#extend("master"):
+    #export("title"): Simulations #endexport
+    #export("main"):
             
+        <div id="content">
             <h2>Catalogue de simulations</h2>
             <table>
                 <thead>
@@ -30,8 +20,7 @@
                     #endfor
                 </tbody>
             </table>
-
-        </main>
-
-    </body>
-</html>
+        </div>
+            
+    #endexport
+#endextend

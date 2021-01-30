@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>#import("title")</title>
+        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
+    </head>
+
+    <body>
+        <nav id="globalnav"">
+            <h1><a href="/">Simulations</a></h1>
+        </nav>
+        
+        <main>
+                    
+            #import("main")
+
+        </main>
+
+    </body>
+</html>

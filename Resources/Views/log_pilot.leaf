@@ -1,19 +1,16 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Simulations</title>
-        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
-    </head>
-
-    <body>
-        <nav id="globalnav"">
-            <h1>Simulations</h1>
-        </nav>
+#extend("master"):
+    #export("title"): #(log.properties.name) #endexport
+    
+    
+    #export("main"):
+                            
+        #extend("simulation-properties"):
+            #export("name"): #(simulation_properties.name) #endexport
+        #endextend
         
-        <main>
-        
-            <ul>
+        <div id="content">
+    
+                    <ul>
             #for(role in roles):
             <li><a href="/pilot/#(role)/#(path)">#(role)</a></li>
                 #endfor
@@ -70,8 +67,7 @@
                     </tbody>
                 </table>
                 #endif
-
-        </main>
-
-    </body>
-</html>
+            </div>
+            
+    #endexport
+#endextend
