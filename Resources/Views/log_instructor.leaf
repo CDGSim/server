@@ -21,6 +21,17 @@
                 #endfor
             </ul>
 
+            #if(attachments):
+                #if(count(attachments) > 0):
+                <h3>Pièces jointes</h3>
+                <ul>
+                #for(attachment in attachments):
+                    <li><a href="/attachment/#(attachment.url)">#(attachment.name)</a></li>
+                #endfor
+                </ul>
+                #endif
+            #endif
+
         </main>
 
     </body>

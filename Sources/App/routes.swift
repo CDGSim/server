@@ -85,24 +85,52 @@ func registerFrontEndRoutes(_ app: Application) throws {
     // Renders a view for the instructor
     app.get("instructor", "**") { req -> EventLoopFuture<View> in
         struct Context: Encodable {
+            struct Attachment: Encodable {
+                let url:String
+                let name:String
+            }
             let path:String
             let log: Log
+            let attachments: [Attachment]?
         }
         
         let path = req.parameters.getCatchall().joined(separator: "/")
+        
+        // Check if there is an Attachments subfolder
+        var attachments: [Context.Attachment]? = nil
+        var url = URL(fileURLWithPath: "Public/logs")
+        url.appendPathComponent(path)
+        url.deleteLastPathComponent()
+        url.appendPathComponent("Attachments", isDirectory: true)
+        let enumerator = FileManager.default.enumerator(atPath: url.path)
+        if let subpaths = enumerator?.allObjects as? [String] {
+            let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
+            attachments = subpaths.map{ path in
+                Context.Attachment(url:attachmentsFolderPath + path, name:path)
+            }
+        }
         
         // Read the log file
         switch log(atPath: path) {
         case .failure(let error) :
             return renderLogErrorView(from: error, req: req)
         case .success(let log):
-            let context = Context(path: path, log: log)
+            let context = Context(path: path, log: log, attachments:attachments)
             return req.view.render("log_instructor", context)
         }
     }
     
-    // MARK: GET /pilot/log_path
-    // Renders a view for the instructor
+    // MARK: GET /attachment/attachment_path
+    // Returns the file at the specified path
+    app.get("attachment", "**") { req -> Response in
+        
+        let path = "Public/logs/" + req.parameters.getCatchall().joined(separator: "/")
+        
+        return req.fileio.streamFile(at: path)
+    }
+    
+    // MARK: GET /pilot/role/log_path
+    // Renders a view for a pilot with the specified role
     app.get("pilot", ":role", "**") { req -> EventLoopFuture<View> in
         struct Context: Encodable {
             let path:String
