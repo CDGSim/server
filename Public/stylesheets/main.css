@@ -16,15 +16,24 @@ html {
 
 body {
     margin: 0;
+    padding: 0;
 }
 
-main {
+#content {
     margin: 20px;
 }
 
 p {
     color:#484848;
     margin:0px;
+}
+
+a {
+    color:#06c;
+    text-decoration:none
+}
+a:hover {
+    text-decoration:underline
 }
 
 li {
@@ -114,14 +123,33 @@ table p {
     top: 0;
     right: 0;
     left: 0;
+    font-size:12px;
     z-index: 9999;
-    height: 52px;
-    background: rgba(0,0,0,0.8);
-    padding:10px
+    height: 44px;
+    background: rgba(240,240,240,0.8);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px)
 }
 
 #globalnav h1 {
-    color:#f5f5f7;
+    margin:0px;
+    padding:8px 18px;
+    color:#555;
+}
+#globalnav a {
+    color:#555;
+    text-decoration:none
+}
+
+#simulation-properties {
+    height:200px;
+    background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
+}
+
+#simulation-properties h1 {
+    margin:0px;
+    padding:8px 18px;
+    color:white;
 }
 
 .note {
