@@ -9,7 +9,21 @@
         "objectives" : "- trafic avec croisements\n- approches RNP\n- arrivées Le Plessis\n- arrivées Pontoise",
         "description" : "Régulations RNP 27R, ILS 26L et ILS 27 PB.\nQuelques arrivées pour Le Plessis et Pontoise.",
         "pressure" : 1015,
-        "weather" : "BKN 3000"
+        "weather" : "BKN 3000",
+        "assignments" : [
+            {
+              "controller" : "PC",
+              "positions" : [
+                "INI N"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "INI S"
+              ]
+            }
+        ],
     },
     "instructor_log": {
         "setup_info" : "RYR7KW est déjà coordonné avec l'INI Nord.",

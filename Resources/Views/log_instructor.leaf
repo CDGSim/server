@@ -20,6 +20,22 @@
             <li><a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a></li>
                 #endfor
             </ul>
+            
+            #if(log.properties.assignments):
+                <h3>Positions de contrôle</h3>
+            <table>
+                <tr>
+                    #for(assignment in log.properties.assignments):
+                    <td>#for(position in assignment.positions):#(position)#endfor</td>
+                    #endfor
+                </tr>
+                <tr>
+                    #for(assignment in log.properties.assignments):
+                    <td>#(assignment.controller)</td>
+                    #endfor
+                </tr>
+            </table>
+            #endif
 
             #if(attachments):
                 #if(count(attachments) > 0):
