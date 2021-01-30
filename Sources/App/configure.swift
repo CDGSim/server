@@ -12,7 +12,7 @@ public func configure(_ app: Application) throws {
 
     //app.http.server.configuration.hostname = "172.16.151.113"
 
-    // register routes
-    try routes(app)
+    // Register routes
     try registerFrontEndRoutes(app)
+    try registerAPIRoutes(app)
 }
