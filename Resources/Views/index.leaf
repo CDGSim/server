@@ -22,10 +22,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    #for(simulation in simulations):
+                    #for(log in logs):
                     <tr>
-                        <td>#(simulation.group)</td>
-                        <td><a href="/print/#(simulation.path)">#(simulation.name)</a></td>
+                        <td>#(log.group)</td>
+                        <td><a href="/print/#(simulation.path)">#(log.name)</a></td>
                     </tr>
                     #endfor
                 </tbody>

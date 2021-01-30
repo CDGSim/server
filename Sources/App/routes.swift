@@ -1,19 +1,23 @@
 import Vapor
 import SimlogCore
 
-func routes(_ app: Application) throws {
+
+/// Registers the routes for the web front end
+func registerFrontEndRoutes(_ app: Application) throws {
+    
+    // GET /
+    // Renders a view containing all logs listed in alphabetical order
     app.get { req -> EventLoopFuture<View> in
-        // Render a view containing all logs listed in alphabetical order
         
         // Context that will be passed to the view
-        struct IndexContext: Encodable {
-            struct SimulationIndex: Encodable {
+        struct Context: Encodable {
+            struct LogItem: Encodable {
                 let name: String
                 let group: String
                 let path: String
             }
             
-            let simulations: [SimulationIndex]
+            let logs: [LogItem]
         }
         
         // Enumerate files in the logs folder
@@ -23,26 +27,29 @@ func routes(_ app: Application) throws {
             return req.view.render("error")
         }
             
-        // Create an array of SimulationIndex values from the content of the .simlog files
-        let simulations = subpaths.compactMap { path -> String? in
+        // Create an array of LogItem values from the content of the .simlog files
+        let logs = subpaths.compactMap { path -> String? in
             // Filter files to only include .simlog files
             guard URL(fileURLWithPath: path).pathExtension == "simlog" else {
                 return nil
             }
             return path
-        }.map { path -> IndexContext.SimulationIndex in
+        }.map { path -> Context.LogItem in
             let fileNameWithoutExtension = URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
             let group = path.components(separatedBy: "/").first
-            return IndexContext.SimulationIndex(name:fileNameWithoutExtension, group:group ?? "", path:path)
+            return Context.LogItem(name:fileNameWithoutExtension, group:group ?? "", path:path)
         }.sorted { lhs, rhs -> Bool in
             // Sort by name here
             lhs.name < rhs.name
         }
         
         // Render the view index, with the context we've made
-        let context:IndexContext = .init(simulations: simulations)
+        let context:Context = .init(logs: logs)
         return req.view.render("index", context)
     }
+}
+
+func routes(_ app: Application) throws {
     
     struct LogsResponse: Content {
         struct Log: Codable {
