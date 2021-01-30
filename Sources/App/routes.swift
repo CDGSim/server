@@ -9,35 +9,46 @@ func registerFrontEndRoutes(_ app: Application) throws {
     // Renders a view containing all logs listed in alphabetical order
     app.get { req -> EventLoopFuture<View> in
         
-        // Context that will be passed to the view
+        // Context type that will be passed to the view
         struct Context: Encodable {
-            struct LogItem: Encodable {
-                let name: String
-                let group: String
-                let path: String
-            }
-            
             let logs: [LogItem]
+            
+            struct LogItem: Encodable {
+                let name: String // Simulation name
+                let course: String // Simulation course
+                let group: String? // Simulation's group within the course, this is optional
+                let path: String // Path to the log file
+            }
         }
         
         // Enumerate files in the logs folder
         let enumerator = FileManager.default.enumerator(atPath: "Public/logs")
         guard let subpaths = enumerator?.allObjects as? [String]  else {
-            // If we cannot get the subpaths, render an error
+            // If we cannot get the subpaths, render the error view
             return req.view.render("error")
         }
             
         // Create an array of LogItem values from the content of the .simlog files
         let logs = subpaths.compactMap { path -> String? in
             // Filter files to only include .simlog files
-            guard URL(fileURLWithPath: path).pathExtension == "simlog" else {
-                return nil
-            }
+            guard URL(fileURLWithPath: path).pathExtension == "simlog" else { return nil }
+            
+            // Only include files in a subfolder
+            guard path.components(separatedBy: "/").count > 1 else { return nil }
+            
             return path
-        }.map { path -> Context.LogItem in
-            let fileNameWithoutExtension = URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
-            let group = path.components(separatedBy: "/").first
-            return Context.LogItem(name:fileNameWithoutExtension, group:group ?? "", path:path)
+        }.compactMap { path -> Context.LogItem? in
+            // Read the simulation name from the log file
+            switch log(atPath: path) {
+            case .failure : return nil // If the log file cannot be read, just ignore it
+            case .success(let log):
+                var pathComponents = path.components(separatedBy: "/")
+                let name = log.properties.name
+                let course = pathComponents.removeFirst()
+                let group:String?
+                if pathComponents.count > 1 { group = pathComponents.first } else { group = nil }
+                return Context.LogItem(name:name, course:course, group: group, path:path)
+            }
         }.sorted { lhs, rhs -> Bool in
             // Sort by name here
             lhs.name < rhs.name

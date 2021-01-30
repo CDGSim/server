@@ -24,8 +24,8 @@
                 <tbody>
                     #for(log in logs):
                     <tr>
-                        <td>#(log.group)</td>
-                        <td><a href="/print/#(simulation.path)">#(log.name)</a></td>
+                        <td>#(log.course)</td>
+                        <td><a href="/print/#(log.path)">#(log.name)</a></td>
                     </tr>
                     #endfor
                 </tbody>
