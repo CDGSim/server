@@ -25,7 +25,7 @@
                     #for(log in logs):
                     <tr>
                         <td>#(log.course)</td>
-                        <td><a href="/print/#(log.path)">#(log.name)</a></td>
+                        <td><a href="/instructor/#(log.path)">#(log.name)</a> (<a href="/print/#(log.path)">Imprimer</a>)</td>
                     </tr>
                     #endfor
                 </tbody>

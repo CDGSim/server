@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Simulations</title>
+        <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
+    </head>
+
+    <body>
+        <nav id="globalnav"">
+            <h1>Simulations</h1>
+        </nav>
+        
+        <main>
+        
+            <ul>
+            #for(role in roles):
+            <li><a href="/pilot/#(role)/#(path)">#(role)</a></li>
+                #endfor
+            </ul>
+                        
+            <h1>Log PER</h1>
+            <h2>#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
+            
+            <h2>#(simulation_properties.name)</h2>
+            
+            #if(pilot_log.directives):
+                <h2>Consignes</h2>
+                <p>#markdown(pilot_log.directives)</p>
+                #endif
+                            
+                #if(pilot_log.setup):
+                <h2>Situation initiale</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Indicatif</th>
+                            <th>Consignes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(setup in pilot_log.setup):
+                        <tr>
+                            <td>#(setup.callsign)</td>
+                            <td>#markdown(setup.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                #endif
+                     
+                #if(pilot_log.events):
+                <h2>Déroulement</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Indicatif</th>
+                            <th>Évènement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(event in pilot_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td>#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                #endif
+
+        </main>
+
+    </body>
+</html>

@@ -81,6 +81,57 @@ func registerFrontEndRoutes(_ app: Application) throws {
         return req.view.render("index", context)
     }
     
+    // MARK: GET /instructor/log_path
+    // Renders a view for the instructor
+    app.get("instructor", "**") { req -> EventLoopFuture<View> in
+        struct Context: Encodable {
+            let path:String
+            let log: Log
+        }
+        
+        let path = req.parameters.getCatchall().joined(separator: "/")
+        
+        // Read the log file
+        switch log(atPath: path) {
+        case .failure(let error) :
+            return renderLogErrorView(from: error, req: req)
+        case .success(let log):
+            let context = Context(path: path, log: log)
+            return req.view.render("log_instructor", context)
+        }
+    }
+    
+    // MARK: GET /pilot/log_path
+    // Renders a view for the instructor
+    app.get("pilot", ":role", "**") { req -> EventLoopFuture<View> in
+        struct Context: Encodable {
+            let path:String
+            let pilot_log: Log.PilotLog
+            let simulation_properties: Log.Properties
+            let roles: [String]
+        }
+        
+        let path = req.parameters.getCatchall().joined(separator: "/")
+        let roleName = req.parameters.get("role")!
+        
+        // Read the log file
+        switch log(atPath: path) {
+        case .failure(let error) :
+            return renderLogErrorView(from: error, req: req)
+        case .success(let log):
+            guard let pilotLog = log.pilot_logs.first(where: { pilotLog -> Bool in
+                pilotLog.role == roleName
+            }) else {
+                return req.view.render("error", ["reason":"Role non trouvé pour ce log"])
+            }
+            print(pilotLog)
+            let context = Context(path: path, pilot_log: pilotLog, simulation_properties:log.properties, roles:log.pilot_logs.map{ pilotLog in
+                pilotLog.role
+            })
+            return req.view.render("log_pilot", context)
+        }
+    }
+    
     // MARK: GET /print/log_path
     // Renders a view to print the complete log all at once
     // Can be used to generate PDF via a web browser
