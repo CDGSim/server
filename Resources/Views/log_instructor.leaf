@@ -4,6 +4,9 @@
 #extend("simulation-properties"):
 #endextend
             <div id="content">
+                <div class="title">
+                    <h1>Log instructeur</h1>
+                </div>
 
                 <ul>
                 #for(pilotLog in log.pilot_logs):

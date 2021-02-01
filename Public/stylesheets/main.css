@@ -156,6 +156,23 @@ table p {
     color:white;
 }
 
+.title {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    align-items: baseline;
+    border-bottom:1px solid black
+}
+
+.title h1 {
+    margin:0px;
+}
+
+.title h2 {
+    margin:0px;
+    text-align:right
+}
+
 .note {
     border: 1px solid rgba(0,0,0,0.08);
     background-color: rgba(0,0,0,0.03);

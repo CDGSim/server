@@ -7,9 +7,10 @@
         #endextend
         
         <div id="content">
-                        
-            <h1>Log PER</h1>
-            <h2>#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
+            <div class="title">
+                <h1>Log PER</h1>
+                <h2>#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
+            </div>
     
             <ul>
             #for(role in roles):
