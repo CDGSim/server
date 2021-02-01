@@ -1,3 +1,15 @@
             <div id="simulation-properties">
-                <h1>#import("name")</h1>
+                <div>
+                    <h1>#(simulation_properties.name)</h1>
+                    <p>#markdown(simulation_properties.description)</p>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Configuration :</strong> #(simulation_properties.configuration)</li>
+                        <li><strong>Charge :</strong> #(simulation_properties.traffic_density)</li>
+                        <li><strong>Durée :</strong> #(simulation_properties.duration) min</li>
+                        <li><strong>QNH :</strong> #(simulation_properties.pressure)</li>
+                        <li><strong>Météo :</strong> #(simulation_properties.weather)</li>
+                    </ul>
+                </div>
             </div>

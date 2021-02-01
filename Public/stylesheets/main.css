@@ -36,10 +36,6 @@ a:hover {
     text-decoration:underline
 }
 
-li {
-    color:#484848;
-}
-
 h2 {
     margin-top: 1em;
     margin-bottom: .3em;
@@ -142,13 +138,21 @@ table p {
 }
 
 #simulation-properties {
+    padding:20px;
     height:200px;
     background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
+    color:white;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 3fr minmax(250px, 2fr);
 }
 
 #simulation-properties h1 {
     margin:0px;
-    padding:8px 18px;
+    padding:8px 0px;
+}
+
+#simulation-properties p {
     color:white;
 }
 
@@ -172,4 +176,5 @@ table p {
 
 .note li {
     line-height: 1.4;
+    color:#484848;
 }

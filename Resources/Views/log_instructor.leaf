@@ -2,7 +2,6 @@
     #export("title"): #(log.properties.name) #endexport
     #export("main"):
 #extend("simulation-properties"):
-    #export("name"): #(log.properties.name) #endexport
 #endextend
             <div id="content">
 

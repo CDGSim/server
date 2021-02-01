@@ -90,6 +90,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let name:String
             }
             let path:String
+            let simulation_properties: Log.Properties
             let log: Log
             let attachments: [Attachment]?
         }
@@ -115,7 +116,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         case .failure(let error) :
             return renderLogErrorView(from: error, req: req)
         case .success(let log):
-            let context = Context(path: path, log: log, attachments:attachments)
+            let context = Context(path: path, simulation_properties:log.properties, log: log, attachments:attachments)
             return req.view.render("log_instructor", context)
         }
     }
