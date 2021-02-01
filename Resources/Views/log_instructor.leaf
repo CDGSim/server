@@ -16,10 +16,10 @@
                 
                 #if(log.properties.assignments):
                     <h3>Positions de contrôle</h3>
-                <table>
+                <table class="assignments">
                     <tr>
                         #for(assignment in log.properties.assignments):
-                        <td>#for(position in assignment.positions):#(position)#endfor</td>
+                        <td>#for(position in assignment.positions):<strong>#(position)</strong>#endfor</td>
                         #endfor
                     </tr>
                     <tr>
