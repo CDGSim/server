@@ -15,7 +15,7 @@
                 </ul>
                 
                 #if(log.properties.assignments):
-                    <h3>Positions de contrôle</h3>
+                    <h2>Positions de contrôle</h2>
                 <table class="assignments">
                     <tr>
                         #for(assignment in log.properties.assignments):
@@ -29,6 +29,55 @@
                     </tr>
                 </table>
                 #endif
+                                            
+                <h2>Objectifs</h2>
+                #markdown(log.properties.objectives)
+                
+                <h2>Déroulement</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Heure</th>
+                            <th>Indicatif</th>
+                            <th>Evènement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(event in log.instructor_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td>#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                                            
+                <h2>Situation initiale</h2>
+                #(log.instructor_log.setup_info)
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Indicatif</th>
+                            <th>Consignes</th>
+                        </tr>
+                    </thead>
+                    #for(pilot_log in log.pilot_logs):
+                        #if(pilot_log.role != "Adjacent"):
+                        <tbody>
+                            #for(setup in pilot_log.setup):
+                            <tr>
+                                #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
+                                <td>#(setup.callsign)</td>
+                                <td>#markdown(setup.description)</td>
+                            </tr>
+                            #endfor
+                        </tbody>
+                        #endif
+                    #endfor
+                </table>
 
                 #if(attachments):
                     #if(count(attachments) > 0):
