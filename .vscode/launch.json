@@ -1,0 +1,13 @@
+{
+    "configurations": [
+    {
+        "type": "lldb",
+        "request": "launch",
+        "name": "Launch",
+        "program": "${workspaceFolder}/.build/x86_64-unknown-linux-gnu/debug/Run",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": "build"
+    }
+    ]
+}
