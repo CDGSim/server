@@ -14,13 +14,31 @@
             {
               "controller" : "PC",
               "positions" : [
+                "INI S"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "ITM S", "ITM BA"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "ITM N"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
                 "INI N"
               ]
             },
             {
               "controller" : "ST",
               "positions" : [
-                "INI S"
+                "COOR INI N", "SEQ", "COOR INI S"
               ]
             }
         ],
