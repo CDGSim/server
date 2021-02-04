@@ -9,7 +9,39 @@
         "objectives" : "- Travailler les stratégies d'interception au Bourget\n - Gestion d'une arrivée et d'un départ Le Plessis",
         "description" : "Régulations 27R, 26L et 27 PB.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
         "pressure" : 1015,
-        "weather" : "BKN 3500"
+        "weather" : "BKN 3500",
+        "assignments" : [
+            {
+              "controller" : "PC",
+              "positions" : [
+                "INI S"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "ITM S", "ITM BA"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "ITM N"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "INI N"
+              ]
+            },
+            {
+              "controller" : "ST",
+              "positions" : [
+                "COOR INI N", "SEQ", "COOR INI S"
+              ]
+            }
+        ]
     },
     "instructor_log": {
         "events" : [
