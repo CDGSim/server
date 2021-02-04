@@ -89,9 +89,16 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let url:String
                 let name:String
             }
+            // Type to replace Log.Properties.ControlPositionAssignment
+            // This type has a positionsDescription string instead of a set of positions
+            struct ControlPositionAssignment: Encodable {
+                let controller: Log.Properties.Controller
+                let positionsDescription: String
+            }
             let path:String
             let simulation_properties: Log.Properties
             let log: Log
+            let assignments: [ControlPositionAssignment]?
             let attachments: [Attachment]?
         }
         
@@ -116,7 +123,15 @@ func registerFrontEndRoutes(_ app: Application) throws {
         case .failure(let error) :
             return renderLogErrorView(from: error, req: req)
         case .success(let log):
-            let context = Context(path: path, simulation_properties:log.properties, log: log, attachments:attachments)
+            // Build up assignments
+            // We need to make the positionDescriptions string from the set of positions
+            let assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
+                let positionDescriptions = Array(assignment.positions).map { controlPosition in
+                    controlPosition.rawValue
+                }.sorted().joined(separator: " - ")
+                return .init(controller: .instructor, positionsDescription: positionDescriptions)
+            }
+            let context = Context(path: path, simulation_properties:log.properties, log: log, assignments: assignments, attachments:attachments)
             return req.view.render("log_instructor", context)
         }
     }

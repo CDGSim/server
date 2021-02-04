@@ -18,8 +18,8 @@
                     <h2>Positions de contrôle</h2>
                 <table class="assignments">
                     <tr>
-                        #for(assignment in log.properties.assignments):
-                        <td>#for(position in assignment.positions):<strong>#(position)</strong>#endfor</td>
+                        #for(assignment in assignments):
+                        <td><strong>#(assignment.positionsDescription)</strong></td>
                         #endfor
                     </tr>
                     <tr>
