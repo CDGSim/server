@@ -6,13 +6,15 @@
             <div id="content">
                 <div class="title">
                     <h1>Log instructeur</h1>
+                    <div class="dropdown">
+                          <h2 class="dropbutton" onclick="">Rôles PER</h2>
+                          <div class="dropdown-content">
+                            #for(pilotLog in log.pilot_logs):
+                            <a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a>
+                            #endfor
+                          </div>
+                    </div>
                 </div>
-
-                <ul>
-                #for(pilotLog in log.pilot_logs):
-                <li><a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a></li>
-                    #endfor
-                </ul>
                 
                 #if(log.properties.assignments):
                     <h2>Positions de contrôle</h2>
