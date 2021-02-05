@@ -34,62 +34,67 @@
     "pilot_logs": [
         {
             "role" : "Adjacent",
-            "directives" : "- Lorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO et LFPV**, les demander en standard, FL80, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.\n- Lorsque le COOR INI appelle Beauvais pour coordonner les **arrivées LFOB**, demander 5000 ft sur MTD.",
+            "directives" : "Lorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL80, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.",
             "events" : [
                 {
-                    "time" : "05:35",
-                    "callsign" : "RYR7J",
-                    "description" : "Seine appelle le COOR INI pour coordonner RYR7J : *J'ai l'arrivée du RYR7J pour Beauvais, je te l'envoie 70 BAVOL et sur quelle fréquence ?*"
+                    "time" : "15:07",
+                    "callsign" : "RYR7Z",
+                    "description" : "Beauvais appelle le COOR INI pour coordonner RYR7Z : *Activation et clairance du RYR7Z, départ sur LGL.*"
                 }
             ]
         },
         {
             "role" : "INI Nord",
             "frequency" : "121.155",
-            "directives" : "En début de simu, verrouiller cap, niveau et vitesse YUPMK. Verrouiller le niveau de AFR24PY.",
+            "directives" : "En début de simu, réduire AFR22GN et SAS69P à 250 kts. Descendre DLH89H au FL110.",
             "setup" : [
                 {
-                    "callsign" : "EZY69YQ",
-                    "description" : "FL120 - 300 kts"
+                    "callsign" : "AFR22GN",
+                    "description" : "FL110 - 250 kts"
                 },
                 {
-                    "callsign" : "AFR24PY",
-                    "description" : "FL120 - 250 kts"
+                    "callsign" : "SAS69P",
+                    "description" : "FL110 - 250 kts"
                 },
                 {
-                    "callsign" : "YUPMK",
-                    "description" : "FL110 - 240 kts"
+                    "callsign" : "DLH89H",
+                    "description" : "FL110 - 280 kts"
+                },
+                {
+                    "callsign" : "EWG64CJ",
+                    "description" : "FL150 - 280 kts"
+                },
+                {
+                    "callsign" : "AFR34QL",
+                    "description" : "FL110 - 250 kts"
+                },
+                {
+                    "callsign" : "JMP901",
+                    "description" : "FL110 - 230 kts"
+                },
+                {
+                    "callsign" : "NJE6RA",
+                    "description" : "FL70"
                 }
             ]
         },
         {
             "role" : "ITM Nord",
             "frequency" : "126.430",
-            "directives" : "En début de simu, verrouiller les caps, niveaux et vitesses des avions qui ne sont pas autorisés à l'ILS.",
+            "directives" : "En début de simu, verrouiller en cap AFR37QA.",
             "setup" : [
                 {
-                    "callsign" : "AUA4ZH",
-                    "description" : "FL 80 - 250 kts"
+                    "callsign" : "SDM6635",
+                    "description" : "170 kts - ILS 09L"
                 },
                 {
-                    "callsign" : "AFR1669",
-                    "description" : "5000 ft - 220 kts"
+                    "callsign" : "AFR37QA",
+                    "description" : "4000 ft - 250 kts"
                 },
                 {
-                    "callsign" : "VLG74L",
-                    "description" : "5000 ft - 220 kts"
-                },
-                {
-                    "callsign" : "AUA419E",
-                    "description" : "5000 ft - 170 kts - ILS 27R"
+                    "callsign" : "TAY826H",
+                    "description" : "FL80 - 250 kts"
                 }
-            ],
-            "events" : [
-                {
-                    "time" : "10:55",
-                    "callsign" : "KLIFF",
-                    "description" : "**Si concerné :** Arrivée de KLIFF sous plan de vol Y pour Le Plessis.\nEstimée arrivée au Plessis à 11:15. Si le contrôle demande les intentions, répondre : *On annulera certainement IFR à proximité du terrain dès qu'on sera VMC.* Dans tous les cas, des que vous atteignez 2000 ft, annoncez vous VMC pour clôturer IFR.\nTuer l'avion près du terrain, ou quelques minutes après la clôture IFR."
-                },
             ]
         },
         {
@@ -97,46 +102,39 @@
             "frequency" : "125.830",
             "setup" : [
                 {
-                    "callsign" : "OHY2257",
+                    "callsign" : "EJU3672",
                     "description" : "FL110 - 250 kts"
+                },
+                {
+                    "callsign" : "AMC478",
+                    "description" : "FL150 - 280 kts"
+                },
+                {
+                    "callsign" : "AFR567",
+                    "description" : "FL150 - 280 kts"
+                },
+                {
+                    "callsign" : "AFR11KN",
+                    "description" : "FL150 - 300 kts"
                 }
             ]
         },
         {
             "role" : "ITM S + BA",
             "frequency" : "118.150 + 136.275",
-            "directives" : "En début de simu, verrouiller les caps, niveaux et vitesses des avions qui ne sont pas autorisés à l'ILS.",
+            "directives" : "En début de simu, verrouiller les caps de AFR149A et FDX5036.",
             "setup" : [
                 {
-                    "callsign" : "SWR61D",
-                    "description" : "4000ft - 250 kts"
+                    "callsign" : "AFR1177",
+                    "description" : "5000ft - 220 kts - ILS08R"
                 },
                 {
-                    "callsign" : "LZB431",
-                    "description" : "4000ft - 220 kts"
+                    "callsign" : "AFR149A",
+                    "description" : "FL60 - 220 kts"
                 },
                 {
-                    "callsign" : "N145CG",
-                    "description" : "4000ft - 220 kts"
-                },
-                {
-                    "callsign" : "IBS3742",
-                    "description" : "4000ft - 220 kts - ILS"
-                },
-                {
-                    "callsign" : "AFR16DA",
-                    "description" : "4000ft - 170 kts - ILS"
-                },
-                {
-                    "callsign" : "AFR639",
-                    "description" : "4000ft - 220 kts"
-                }
-            ],
-            "events" : [
-                {
-                    "time" : "10:55",
-                    "callsign" : "KLIFF",
-                    "description" : "**Si concerné :** Arrivée de KLIFF sous plan de vol Y pour Le Plessis.\nEstimée arrivée au Plessis à 11:15. Si le contrôle demande les intentions, répondre : *On annulera certainement IFR à proximité du terrain dès qu'on sera VMC.* Dans tous les cas, des que vous atteignez 2000 ft, annoncez vous VMC pour clôturer IFR.\nTuer l'avion près du terrain, ou quelques minutes après la clôture IFR."
+                    "callsign" : "FDX5036",
+                    "description" : "Cap 050 - 5000 - 220 kts"
                 }
             ]
         }

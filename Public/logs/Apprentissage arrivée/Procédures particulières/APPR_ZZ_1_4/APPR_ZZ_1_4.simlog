@@ -12,12 +12,6 @@
         "weather" : "CAVOK",
         "assignments" : [
             {
-              "controller" : "PC",
-              "positions" : [
-                "INI S"
-              ]
-            },
-            {
               "controller" : "ST",
               "positions" : [
                 "ITM BA"
@@ -26,19 +20,13 @@
             {
               "controller" : "ST",
               "positions" : [
-                "ITM S"
-              ]
-            },
-            {
-              "controller" : "PC",
-              "positions" : [
-                "ITM N"
+                "ITM S", "ITM N"
               ]
             },
             {
               "controller" : "ST",
               "positions" : [
-                "INI N"
+                "INI N", "INI S"
               ]
             },
             {
@@ -112,12 +100,12 @@
                 {
                     "time" : "12:52",
                     "callsign" : "IBK8FI",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de IBK8FI, proposer : FL80, EPR, sur 123,875."
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de IBK8FI, proposer : FL70, EPR, sur 123,875."
                 },
                 {
                     "time" : "12:45",
                     "callsign" : "N50601",
-                    "description" : "Le COOR DEP N appelle le COOR INI pour coordonner l'arrivée du N50601. Proposer 3000 ft au cap 270 sur 124.355. Envoyer le vol au PER ITM Nord lorsque le vol passe le travers nord de CDG."
+                    "description" : "Le COOR DEP N appelle le COOR INI pour coordonner l'arrivée du N50601. Proposer 3000 ft au cap 270 sur 126.430. Envoyer le vol au PER ITM Nord lorsque le vol passe le travers nord de CDG."
                 },
                 {
                     "time" : "12:48",
@@ -132,7 +120,7 @@
                 {
                     "time" : "13:06",
                     "callsign" : "EJU74FY",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL80, EPR, sur 123,875."
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL70, EPR, sur 123,875."
                 },
                 {
                     "time" : "13:01",

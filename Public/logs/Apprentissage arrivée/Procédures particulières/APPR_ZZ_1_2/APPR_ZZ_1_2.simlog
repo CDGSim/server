@@ -14,29 +14,23 @@
             {
               "controller" : "ST",
               "positions" : [
-                "INI S"
+                "ITM BA"
               ]
             },
             {
               "controller" : "ST",
               "positions" : [
-                "ITM S", "ITM BA"
+                "ITM S", "ITM N"
               ]
             },
             {
               "controller" : "ST",
               "positions" : [
-                "ITM N"
+                "INI N", "INI S"
               ]
             },
             {
               "controller" : "ST",
-              "positions" : [
-                "INI N"
-              ]
-            },
-            {
-              "controller" : "INS",
               "positions" : [
                 "COOR INI N", "SEQ", "COOR INI S"
               ]
@@ -130,7 +124,7 @@
                 {
                     "time" : "06:40",
                     "callsign" : "SDM6637",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de SDM6637, proposer : FL80, EPR, sur 123,875."
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de SDM6637, proposer : FL70, EPR, sur 123,875."
                 },
                 {
                     "time" : "06:48",
@@ -165,7 +159,7 @@
                 {
                     "time" : "06:57",
                     "callsign" : "EJU74FY",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL80 sur la route standard, sur 123,875."
+                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL70 sur la route standard, sur 123,875."
                 }
             ]
         },
