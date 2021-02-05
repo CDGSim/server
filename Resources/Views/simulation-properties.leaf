@@ -7,6 +7,7 @@
                     <ul>
                         <li><strong>Configuration :</strong> #(simulation_properties.configuration)</li>
                         <li><strong>Charge :</strong> #(simulation_properties.traffic_density)</li>
+                        <li><strong>Heure de début :</strong> #gmtTime(simulation_properties.start_date)</li>
                         <li><strong>Durée :</strong> #(simulation_properties.duration) min</li>
                         <li><strong>QNH :</strong> #(simulation_properties.pressure)</li>
                         <li><strong>Météo :</strong> #(simulation_properties.weather)</li>

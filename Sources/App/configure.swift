@@ -9,6 +9,7 @@ public func configure(_ app: Application) throws {
 
     app.views.use(.leaf)
     app.leaf.tags["markdown"] = Markdown()
+    app.leaf.tags["gmtTime"] = GMTTimeTag()
 
     //app.http.server.configuration.hostname = "172.16.151.113"
 
@@ -16,3 +17,33 @@ public func configure(_ app: Application) throws {
     try registerFrontEndRoutes(app)
     try registerAPIRoutes(app)
 }
+
+
+private struct GMTTimeTag: LeafTag {
+
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        struct GMTTimeTagError: Error {}
+
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        switch ctx.parameters.count {
+        case 1: formatter.dateFormat = "HH:mm"
+        case 2:
+            guard let string = ctx.parameters[1].string else {
+                throw GMTTimeTagError()
+            }
+            formatter.dateFormat = string
+        default:
+            throw GMTTimeTagError()
+        }
+        
+        guard let dateAsDouble = ctx.parameters.first?.double else {
+            throw "Unable to convert parameter to double for date"
+        }
+        let date = Date(timeIntervalSince1970: dateAsDouble)
+
+        let dateAsString = formatter.string(from: date)
+        return LeafData.string(dateAsString)
+    }
+}
+
