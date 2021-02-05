@@ -128,7 +128,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
                 let positionDescriptions = Array(assignment.positions).map { controlPosition in
                     controlPosition.rawValue
-                }.sorted().joined(separator: " - ")
+                }.sorted().joined(separator: "<br />")
                 return .init(controller: .instructor, positionsDescription: positionDescriptions)
             }
             let context = Context(path: path, simulation_properties:log.properties, log: log, assignments: assignments, attachments:attachments)

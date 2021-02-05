@@ -19,11 +19,13 @@
                 #if(log.properties.assignments):
                     <h2>Positions de contrôle</h2>
                 <table class="assignments">
-                    <tr>
-                        #for(assignment in assignments):
-                        <td><strong>#(assignment.positionsDescription)</strong></td>
-                        #endfor
-                    </tr>
+                    <thead>
+                        <tr>
+                            #for(assignment in assignments):
+                            <th><strong>#(assignment.positionsDescription)</strong></th>
+                            #endfor
+                        </tr>
+                    </thead>
                     <tr>
                         #for(assignment in log.properties.assignments):
                         <td>#(assignment.controller)</td>

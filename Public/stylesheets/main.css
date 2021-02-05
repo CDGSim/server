@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
     font-family:SF Pro Text,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif ;
     font-size:14px;
@@ -23,6 +27,8 @@ body {
 #content {
     margin: 20px;
     padding-bottom: 120px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
 }
 
 p {
@@ -76,6 +82,13 @@ table p {
 .assignments {
     width:auto;
     border: .5px solid #e6e6e6;
+}
+
+.assignments th {
+    text-align:center;
+  color: #333;
+  padding: .5em 1em .5em 1em;
+  border: .5px solid #e6e6e6;
 }
 
 .assignments tr:nth-child(even) {
@@ -143,7 +156,9 @@ table p {
     align-items: baseline;
     background: rgba(240,240,240,0.8);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px)
+    backdrop-filter: saturate(180%) blur(20px);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 #globalnav h1 {
@@ -165,12 +180,14 @@ table p {
 
 #simulation-properties {
     padding:20px;
-    height:200px;
+    height:auto;
     background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
     color:white;
     display: grid;
     width: 100%;
-    grid-template-columns: 3fr minmax(250px, 2fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) ;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
 }
 
 #simulation-properties h1 {
