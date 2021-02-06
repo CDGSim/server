@@ -1,266 +1,270 @@
 {
-    "properties" : {
-        "name" : "APPR_ZZ_1_2",
-        "update_date" : "2021-01-18T06:30:17Z",
-        "configuration" : "EL",
-        "traffic_density" : "Modéré à fort",
-        "start_date": "2021-01-14T06:30:17Z",
-        "duration" : 60,
-        "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, approches RNP et trafics BA.",
-        "description" : "Régulations 09L + RNP 08R PG, RNP 07 PB.\nITM sud et BA dégroupés.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
-        "pressure" : 997,
-        "weather" : "CAVOK",
-        "assignments" : [
-            {
-              "controller" : "ST",
-              "positions" : [
-                "ITM BA"
-              ]
-            },
-            {
-              "controller" : "ST",
-              "positions" : [
-                "ITM S", "ITM N"
-              ]
-            },
-            {
-              "controller" : "ST",
-              "positions" : [
-                "INI N", "INI S"
-              ]
-            },
-            {
-              "controller" : "ST",
-              "positions" : [
-                "COOR INI N", "SEQ", "COOR INI S"
-              ]
-            }
-        ],
-    },
-    "instructor_log": {
-        "setup_info" : "En début de simu, FHPDG, départ LGL basse performance de Toussus, a été coordonné sur le 299 de POY, à 3000 ft, sur 136.275.\n Activer RYR2DQ sur XDIGIT après dégel pour imprimer le strip.",
-        "events" : [
-            {
-                "time" : "06:30",
-                "callsign" : "RYR2DQ",
-                "description" : "Départ LGL de Beauvais."
-            },
-            {
-                "time" : "06:33",
-                "callsign" : "FHPDG",
-                "description" : "Départ LGL de Toussus"
-            },
-            {
-                "time" : "06:35",
-                "callsign" : "SDM6637",
-                "description" : "Arrivée Orly par VEBEK"
-            },
-            {
-                "time" : "06:45",
-                "callsign" : "FGCAK",
-                "description" : "POGO de Pontoise vers Toussus"
-            },
-            {
-                "time" : "06:50",
-                "callsign" : "EJU74FY",
-                "description" : "Arrivée Orly par VEBEK"
-            },
-            {
-                "time" : "06:56",
-                "callsign" : "RYR2LR",
-                "description" : "Départ LGL de Beauvais"
-            },
-            {
-                "time" : "07:00",
-                "callsign" : "FGHYG",
-                "description" : "Départ sud de Pontoise performant"
-            },
-            {
-                "time" : "07:05",
-                "callsign" : "N051NS",
-                "description" : "POGO de Toussus vers Beauvais"
-            },
-        ]
-    },
-    "pilot_logs": [
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "RYR2DQ",
+        "description" : "Départ LGL de Beauvais.",
+        "time" : "06:30"
+      },
+      {
+        "callsign" : "FHPDG",
+        "description" : "Départ LGL de Toussus",
+        "time" : "06:33"
+      },
+      {
+        "callsign" : "SDM6637",
+        "description" : "Arrivée Orly par VEBEK",
+        "time" : "06:35"
+      },
+      {
+        "callsign" : "FGCAK",
+        "description" : "POGO de Pontoise vers Toussus",
+        "time" : "06:45"
+      },
+      {
+        "callsign" : "EJU74FY",
+        "description" : "Arrivée Orly par VEBEK",
+        "time" : "06:50"
+      },
+      {
+        "callsign" : "RYR2LR",
+        "description" : "Départ LGL de Beauvais",
+        "time" : "06:56"
+      },
+      {
+        "callsign" : "FGHYG",
+        "description" : "Départ sud de Pontoise performant",
+        "time" : "07:00"
+      },
+      {
+        "callsign" : "N051NS",
+        "description" : "POGO de Toussus vers Beauvais",
+        "time" : "07:05"
+      }
+    ],
+    "setup_info" : "En début de simu, FHPDG, départ LGL basse performance de Toussus, a été coordonné sur le 299 de POY, à 3000 ft, sur 136.275.\n Activer RYR2DQ sur XDIGIT après dégel pour imprimer le strip."
+  },
+  "pilot_logs" : [
+    {
+      "events" : [
         {
-            "role" : "Adjacent",
-            "setup" : [
-                {
-                    "callsign" : "RYR2DQ",
-                    "description" : "Beauvais a déjà coordonné le départ : départ standard à 5000 ft."
-                },
-                {
-                    "callsign" : "FHPDG",
-                    "description" : "Départ LGL basse performance. Toussus a déjà coordonné le vol sur le 299 de POY à 3000 ft."
-                }
-            ],
-            "events" : [
-                {
-                    "time" : "06:35",
-                    "callsign" : "FGCAK",
-                    "description" : "Pontoise appelle le COOR INI pour la mise en route du FGCAK. C'est un POGO de Pontoise vers Toussus, pour un départ prévu dans 10 minutes. Il rappellera pour la clairance."
-                },
-                {
-                    "time" : "06:35",
-                    "callsign" : "FGCAK",
-                    "description" : "Si le COOR INI appelle Orly pour la mise en route du FGCAK, accepter."
-                },
-                {
-                    "time" : "06:42",
-                    "callsign" : "FGCAK",
-                    "description" : "Pontoise appelle le COOR INI pour la clairance du FGCAK, pour un départ prévu dans 2-3 minutes."
-                },
-                {
-                    "time" : "06:45",
-                    "callsign" : "FGCAK",
-                    "description" : "Décollage de FGCAK, à transférer à la fréquence précisée lors de la clairance départ."
-                },
-                {
-                    "time" : "06:38",
-                    "callsign" : "FHPDG",
-                    "description" : "Transférer au PER ITM BRGT (136.275)."
-                },
-                {
-                    "time" : "06:40",
-                    "callsign" : "SDM6637",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de SDM6637, proposer : FL70, EPR, sur 123,875."
-                },
-                {
-                    "time" : "06:48",
-                    "callsign" : "FGHYG",
-                    "description" : "Pontoise appelle le COOR INI pour demander la mise en route du FGHYG. C'est un C680, départ dans une dizaine de minutes sur AGOPA (raccordement via un SID du Bourget)."
-                },
-                {
-                    "time" : "06:53",
-                    "callsign" : "RYR2LR",
-                    "description" : "Beauvais appelle le COOR INI pour demander l'activation et clairance du RYR2LR, départ LGL dans 3 min."
-                },
-                {
-                    "time" : "06:55",
-                    "callsign" : "N051NS",
-                    "description" : "Toussus appelle le COOR INI pour demander la mise en route du N051NS pour un départ dans 10 min. C'est un POGO de Toussus vers Beauvais. Il rappellera pour la clairance."
-                },
-                {
-                    "time" : "07:02",
-                    "callsign" : "N051NS",
-                    "description" : "Toussus appelle le COOR INI pour demander la clairance du N051NS pour un départ dans 3 min. C'est un POGO de Toussus vers Beauvais."
-                },
-                {
-                    "time" : "07:05",
-                    "callsign" : "N051NS",
-                    "description" : "Transférer le N051NS à la fréquence précisée lors de la délivrance de la clairance départ."
-                },
-                {
-                    "time" : "06:57",
-                    "callsign" : "FGHYG",
-                    "description" : "Pontoise appelle le COOR INI pour demander la clairance du FGHYG pour un départ dans 3 min. C'est un C680, départ sur AGOPA (raccordement via un SID du Bourget)."
-                },
-                {
-                    "time" : "06:57",
-                    "callsign" : "EJU74FY",
-                    "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL70 sur la route standard, sur 123,875."
-                }
-            ]
+          "callsign" : "FGCAK",
+          "description" : "Pontoise appelle le COOR INI pour la mise en route du FGCAK. C'est un POGO de Pontoise vers Toussus, pour un départ prévu dans 10 minutes. Il rappellera pour la clairance.",
+          "time" : "06:35"
         },
         {
-            "role" : "INI Nord",
-            "frequency" : "121.155",
-            "directives" : "En début de simu, verrouiller la vitesse de AHO296Q.",
-            "setup" : [
-                {
-                    "callsign" : "FDX5112",
-                    "description" : "FL110 - 250 kts"
-                },
-                {
-                    "callsign" : "AHO296Q",
-                    "description" : "3000 ft - 220 kts"
-                },
-                {
-                    "callsign" : "AFR28ZW",
-                    "description" : "FL150 - 300 kts"
-                },
-                {
-                    "callsign" : "AFR1695",
-                    "description" : "FL150 - 310 kts"
-                },
-                {
-                    "callsign" : "RYR2DQ",
-                    "description" : "coordonné 5000 ft sur départ standard"
-                }
-            ]
+          "callsign" : "FGCAK",
+          "description" : "Si le COOR INI appelle Orly pour la mise en route du FGCAK, accepter.",
+          "time" : "06:35"
         },
         {
-            "role" : "ITM Nord",
-            "frequency" : "126.430",
-            "directives" : "En début de simu, verrouiller les caps, niveaux et vitesses des avions qui ne sont pas autorisés à l'ILS.",
-            "setup" : [
-                {
-                    "callsign" : "AFR1423",
-                    "description" : "4000 ft - 250 kts"
-                },
-                {
-                    "callsign" : "NAX7022",
-                    "description" : "4000 ft - 250 kts"
-                },
-                {
-                    "callsign" : "AFR1239",
-                    "description" : "4000 ft - 250 kts"
-                },
-                {
-                    "callsign" : "KLM25P",
-                    "description" : "4000 ft - 220 kts - ILS 09L"
-                },
-                {
-                    "callsign" : "AUA41L",
-                    "description" : "4000 ft - 170 kts - ILS 09L"
-                },
-                {
-                    "callsign" : "AFR275",
-                    "description" : "avec la tour"
-                }
-            ]
+          "callsign" : "FGCAK",
+          "description" : "Pontoise appelle le COOR INI pour la clairance du FGCAK, pour un départ prévu dans 2-3 minutes.",
+          "time" : "06:42"
         },
         {
-            "role" : "INI Sud",
-            "frequency" : "125.830",
-            "directives" : "En début de simu, verrouiller les vitesses de TAY127K et AFR1677 pour éviter qu'ils ne réduisent seuls.",
-            "setup" : [
-                {
-                    "callsign" : "TAY127L",
-                    "description" : "FL150 - 300 kts"
-                },
-                {
-                    "callsign" : "AFR1677",
-                    "description" : "FL150 - 300 kts"
-                },
-                {
-                    "callsign" : "AFR995",
-                    "description" : "FL150 - 300 kts"
-                }
-            ]
+          "callsign" : "FGCAK",
+          "description" : "Décollage de FGCAK, à transférer à la fréquence précisée lors de la clairance départ.",
+          "time" : "06:45"
         },
         {
-            "role" : "ITM S + BA",
-            "frequency" : "118.150 + 136.275",
-            "directives" : "Au début de la simu, modifier la clairance d'altitude de AFR521 : FL80.",
-            "setup" : [
-                {
-                    "callsign" : "AFR32QZ",
-                    "description" : "vitesse libre - ILS"
-                },
-                {
-                    "callsign" : "AFR521",
-                    "description" : "FL80 - 220 kts - ILS"
-                }
-            ],
-            "events" : [
-                {
-                    "time" : "06:38",
-                    "callsign" : "FHPDG",
-                    "description" : "Demander à l'adjacent d'avoir le vol si ce n'est pas fait. Contacter De Gaulle Approche : \"*De Gaulle Approche bonjour, FHPDG établi sur le 299 de POY en montée vers 3000 ft.*\""
-                }
-            ]
+          "callsign" : "FHPDG",
+          "description" : "Transférer au PER ITM BRGT (136.275).",
+          "time" : "06:38"
+        },
+        {
+          "callsign" : "SDM6637",
+          "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de SDM6637, proposer : FL70, EPR, sur 123,875.",
+          "time" : "06:40"
+        },
+        {
+          "callsign" : "FGHYG",
+          "description" : "Pontoise appelle le COOR INI pour demander la mise en route du FGHYG. C'est un C680, départ dans une dizaine de minutes sur AGOPA (raccordement via un SID du Bourget).",
+          "time" : "06:48"
+        },
+        {
+          "callsign" : "RYR2LR",
+          "description" : "Beauvais appelle le COOR INI pour demander l'activation et clairance du RYR2LR, départ LGL dans 3 min.",
+          "time" : "06:53"
+        },
+        {
+          "callsign" : "N051NS",
+          "description" : "Toussus appelle le COOR INI pour demander la mise en route du N051NS pour un départ dans 10 min. C'est un POGO de Toussus vers Beauvais. Il rappellera pour la clairance.",
+          "time" : "06:55"
+        },
+        {
+          "callsign" : "N051NS",
+          "description" : "Toussus appelle le COOR INI pour demander la clairance du N051NS pour un départ dans 3 min. C'est un POGO de Toussus vers Beauvais.",
+          "time" : "07:02"
+        },
+        {
+          "callsign" : "N051NS",
+          "description" : "Transférer le N051NS à la fréquence précisée lors de la délivrance de la clairance départ.",
+          "time" : "07:05"
+        },
+        {
+          "callsign" : "FGHYG",
+          "description" : "Pontoise appelle le COOR INI pour demander la clairance du FGHYG pour un départ dans 3 min. C'est un C680, départ sur AGOPA (raccordement via un SID du Bourget).",
+          "time" : "06:57"
+        },
+        {
+          "callsign" : "EJU74FY",
+          "description" : "Lorsque le COOR INI appelle Orly pour coordonner l'arrivée de EJU74FY, proposer : FL70 sur la route standard, sur 123,875.",
+          "time" : "06:57"
         }
-    ]
+      ],
+      "role" : "Adjacent",
+      "setup" : [
+        {
+          "callsign" : "RYR2DQ",
+          "description" : "Beauvais a déjà coordonné le départ : départ standard à 5000 ft."
+        },
+        {
+          "callsign" : "FHPDG",
+          "description" : "Départ LGL basse performance. Toussus a déjà coordonné le vol sur le 299 de POY à 3000 ft."
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu, verrouiller la vitesse de AHO296Q.",
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "FDX5112",
+          "description" : "FL110 - 250 kts"
+        },
+        {
+          "callsign" : "AHO296Q",
+          "description" : "3000 ft - 220 kts"
+        },
+        {
+          "callsign" : "AFR28ZW",
+          "description" : "FL150 - 300 kts"
+        },
+        {
+          "callsign" : "AFR1695",
+          "description" : "FL150 - 310 kts"
+        },
+        {
+          "callsign" : "RYR2DQ",
+          "description" : "coordonné 5000 ft sur départ standard"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu, verrouiller les caps, niveaux et vitesses des avions qui ne sont pas autorisés à l'ILS.",
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR1423",
+          "description" : "4000 ft - 250 kts"
+        },
+        {
+          "callsign" : "NAX7022",
+          "description" : "4000 ft - 250 kts"
+        },
+        {
+          "callsign" : "AFR1239",
+          "description" : "4000 ft - 250 kts"
+        },
+        {
+          "callsign" : "KLM25P",
+          "description" : "4000 ft - 220 kts - ILS 09L"
+        },
+        {
+          "callsign" : "AUA41L",
+          "description" : "4000 ft - 170 kts - ILS 09L"
+        },
+        {
+          "callsign" : "AFR275",
+          "description" : "avec la tour"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu, verrouiller les vitesses de TAY127K et AFR1677 pour éviter qu'ils ne réduisent seuls.",
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "TAY127L",
+          "description" : "FL150 - 300 kts"
+        },
+        {
+          "callsign" : "AFR1677",
+          "description" : "FL150 - 300 kts"
+        },
+        {
+          "callsign" : "AFR995",
+          "description" : "FL150 - 300 kts"
+        }
+      ]
+    },
+    {
+      "directives" : "Au début de la simu, modifier la clairance d'altitude de AFR521 : FL80.",
+      "events" : [
+        {
+          "callsign" : "FHPDG",
+          "description" : "Demander à l'adjacent d'avoir le vol si ce n'est pas fait. Contacter De Gaulle Approche : \"*De Gaulle Approche bonjour, FHPDG établi sur le 299 de POY en montée vers 3000 ft.*\"",
+          "time" : "06:38"
+        }
+      ],
+      "frequency" : "118.150 + 136.275",
+      "role" : "ITM S + BA",
+      "setup" : [
+        {
+          "callsign" : "AFR32QZ",
+          "description" : "vitesse libre - ILS"
+        },
+        {
+          "callsign" : "AFR521",
+          "description" : "FL80 - 220 kts - ILS"
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM BA"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM S",
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI S",
+          "INI N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR INI N",
+          "SEQ",
+          "COOR INI S"
+        ]
+      }
+    ],
+    "configuration" : "EL",
+    "description" : "Régulations 09L + RNP 08R PG, RNP 07 PB.\nITM sud et BA dégroupés.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
+    "duration" : 60,
+    "name" : "APPR_ZZ_1_2",
+    "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, approches RNP et trafics BA.",
+    "pressure" : 997,
+    "start_date" : "2021-01-14T06:30:17Z",
+    "traffic_density" : "Modérée à forte",
+    "update_date" : "2021-02-06T16:44:57Z",
+    "weather" : "CAVOK"
+  }
 }
