@@ -269,7 +269,7 @@ func registerAPIRoutes(_ app: Application) throws {
             case .failure : return nil // If the log file cannot be read, just ignore it
             case .success(let log):
                 let name = log.properties.name
-                return LogsResponse.Log(id: UUID(),
+                return LogsResponse.Log(id: UUID().uuidString,
                                         path:path,
                                         name: name,
                                         configuration:log.properties.configuration,
