@@ -269,7 +269,12 @@ func registerAPIRoutes(_ app: Application) throws {
             case .failure : return nil // If the log file cannot be read, just ignore it
             case .success(let log):
                 let name = log.properties.name
-                return LogsResponse.Log(id: name, path:path, name: name, description: log.properties.description)
+                return LogsResponse.Log(id: UUID(),
+                                        path:path,
+                                        name: name,
+                                        configuration:log.properties.configuration,
+                                        duration:log.properties.duration,
+                                        description: log.properties.description)
             }
         }.sorted { lhs, rhs -> Bool in
             // Sort by name here
@@ -286,6 +291,8 @@ func registerAPIRoutes(_ app: Application) throws {
             let id: String
             let path:String
             let name: String
+            let configuration: String
+            let duration: Int
             let description: String?
         }
         let simulations: [Log]
