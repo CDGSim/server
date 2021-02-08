@@ -38,6 +38,7 @@
                 #markdown(log.properties.objectives)
                 
                 <h2>Déroulement</h2>
+                #if(log.instructor_log.events):
                 <table>
                     <thead>
                         <tr>
@@ -58,6 +59,9 @@
                         #endfor
                     </tbody>
                 </table>
+                #else:
+                Aucun évènement particulier
+                #endif
                                             
                 <h2>Situation initiale</h2>
                 #(log.instructor_log.setup_info)
