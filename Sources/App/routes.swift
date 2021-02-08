@@ -198,7 +198,31 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 atLeastOneEventContainsALocation = false
             }
             
-            let context = Context(path: path, pilot_log: pilotLog, simulation_properties:log.properties, roles:log.pilot_logs.map{ pilotLog in
+            // Sort events
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            let alternateDateFormatter = DateFormatter()
+            alternateDateFormatter.dateFormat = "HH:mm"
+            let sortedEvents = pilotLog.events?.sorted(by: { (lhs, rhs) -> Bool in
+                if let lDate = dateFormatter.date(from: lhs.time) {
+                    if let rDate = dateFormatter.date(from: rhs.time) {
+                        return lDate < rDate
+                    } else if let rDate = alternateDateFormatter.date(from: rhs.time) {
+                        return lDate < rDate
+                    }
+                } else if let lDate = alternateDateFormatter.date(from: lhs.time) {
+                    if let rDate = dateFormatter.date(from: rhs.time) {
+                        return lDate < rDate
+                    } else if let rDate = alternateDateFormatter.date(from: rhs.time) {
+                        return lDate < rDate
+                    }
+                }
+                return true
+            })
+            var pilotLogWithSortedEvents = pilotLog
+            pilotLogWithSortedEvents.events = sortedEvents
+            
+            let context = Context(path: path, pilot_log: pilotLogWithSortedEvents, simulation_properties:log.properties, roles:log.pilot_logs.map{ pilotLog in
                 pilotLog.role
             }, displayEventsLocation: atLeastOneEventContainsALocation)
             return req.view.render("log_pilot", context)
