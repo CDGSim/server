@@ -69,16 +69,18 @@
                         </tr>
                     </thead>
                     #for(pilot_log in log.pilot_logs):
-                        #if(pilot_log.role != "Adjacent"):
-                        <tbody>
-                            #for(setup in pilot_log.setup):
-                            <tr>
-                                #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
-                                <td>#(setup.callsign)</td>
-                                <td>#markdown(setup.description)</td>
-                            </tr>
-                            #endfor
-                        </tbody>
+                        #if(pilot_log.setup):
+                            #if(pilot_log.role != "Adjacent"):
+                            <tbody>
+                                #for(setup in pilot_log.setup):
+                                <tr>
+                                    #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
+                                    <td>#(setup.callsign)</td>
+                                    <td>#markdown(setup.description)</td>
+                                </tr>
+                                #endfor
+                            </tbody>
+                            #endif
                         #endif
                     #endfor
                 </table>
