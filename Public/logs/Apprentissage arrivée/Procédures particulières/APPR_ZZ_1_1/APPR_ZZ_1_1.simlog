@@ -41,7 +41,7 @@
   },
   "pilot_logs" : [
     {
-      "directives" : "- Lorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL80, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.\n- Lorsque le COOR INI appelle Beauvais pour coordonner les **arrivées LFOB**, demander FL70 sur MTD.",
+      "directives" : "Lorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL80, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.",
       "events" : [
         {
           "callsign" : "KLIFF",
@@ -57,6 +57,36 @@
           "callsign" : "FGALP",
           "description" : "Lorsque le COOR INI appelle le COOR DEP pour coordonner FGALP, le demander à un cap 270 vers 3000 ft. Guider l'avion vers PON et le tuer lorsqu'il arrive verticale.",
           "time" : "11:18"
+        },
+        {
+          "callsign" : "RYR7KW",
+          "description" : "Seine appelle le COOR INI pour coordonner RYR7KW : *J'ai le RYR7KW, je te l'envoie 70 BAVOL et sur quelle fréquence ?*",
+          "time" : "10:48"
+        },
+        {
+          "callsign" : "RYR217H",
+          "description" : "Seine appelle le COOR INI pour coordonner RYR217H : *J'ai le RYR217H, je te l'envoie 70 BAVOL et sur quelle fréquence ?*",
+          "time" : "11:13"
+        },
+        {
+          "callsign" : "RYR217H",
+          "description" : "Lorsque le COOR INI appelle Beauvais pour coordonner RYR217H demander 5000 ft sur MTD.",
+          "time" : "11:18"
+        },
+        {
+          "callsign" : "RYR7KW",
+          "description" : "Lorsque le COOR INI appelle Beauvais pour coordonner RYR7KW demander 5000 ft sur MTD.",
+          "time" : "10:53"
+        },
+        {
+          "callsign" : "MLD283",
+          "description" : "TE LORNI appelle le COOR INI pour coordonner MLD283 : *J'ai le MLD283, je te l'envoie comment ?*",
+          "time" : "11:01"
+        },
+        {
+          "callsign" : "MLD283",
+          "description" : "Lorsque le COOR INI appelle Beauvais pour coordonner MLD283 demander FL70 sur MTD.",
+          "time" : "11:05"
         }
       ],
       "role" : "Adjacent"
@@ -177,8 +207,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI S",
-          "INI N"
+          "INI N",
+          "INI S"
         ]
       },
       {
@@ -198,7 +228,7 @@
     "pressure" : 1015,
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-07T16:25:26Z",
+    "update_date" : "2021-02-08T11:07:46Z",
     "weather" : "BKN 4000"
   }
 }
