@@ -170,8 +170,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
-          "ITM N"
+          "ITM N",
+          "ITM S"
         ]
       },
       {
@@ -185,8 +185,8 @@
         "controller" : "ST",
         "positions" : [
           "SEQ",
-          "COOR INI S",
-          "COOR INI N"
+          "COOR INI N",
+          "COOR INI S"
         ]
       }
     ],
@@ -198,7 +198,7 @@
     "pressure" : 1015,
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-06T16:44:17Z",
+    "update_date" : "2021-02-07T16:25:26Z",
     "weather" : "BKN 4000"
   }
 }

@@ -1,0 +1,120 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "-",
+        "description" : "Premiers bancs de brouillard",
+        "time" : "10:05"
+      },
+      {
+        "callsign" : "-",
+        "description" : "Le CT décide de passer en pré-LVP. Allumer le « LVP » jaune sur DECOR",
+        "time" : "10:10"
+      },
+      {
+        "callsign" : "EJU7041",
+        "description" : "**26L** Remise de gaz spontannée car pas les minimas",
+        "time" : "10:17"
+      },
+      {
+        "callsign" : "EJU277C",
+        "description" : "**26L** Remise de gaz spontannée car pas les minimas",
+        "time" : "10:20"
+      },
+      {
+        "callsign" : "-",
+        "description" : "Décision du CT de passer en LVP. Allumer les barres d’arrêt, le balisage CAT III, affichier les barres d’arrêt sur l’écran tactile, passer les ILS en « verrou ».",
+        "time" : "10:21"
+      },
+      {
+        "callsign" : "-",
+        "description" : "LVP établies, cadence 150s.",
+        "time" : "10:25"
+      }
+    ],
+    "setup_info" : "Situation nominale"
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "Simuler un environnement normal :\n- le doublet nord est géré normalement\n\nRépartir les départs M sur les bretelles T11 et T12.\nTous les départs H sur T12, avec un M derrière.\nMaximum 2-3 avions au point d’arrêt.",
+      "events" : [
+        {
+          "callsign" : "-",
+          "description" : "Passage en pré-LVP",
+          "time" : "10:10"
+        },
+        {
+          "callsign" : "-",
+          "description" : "Passage en LVP. Arrêter les avions au point d’attente CAT III.",
+          "time" : "10:21"
+        }
+      ],
+      "frequency" : "120.9",
+      "role" : "Départ"
+    },
+    {
+      "directives" : "Simuler un environnement normal :\n- le doublet nord est géré normalement\n\nPassage en LVP vers 20’.",
+      "events" : [
+        {
+          "callsign" : "-",
+          "description" : "Passage en pré-LVP",
+          "time" : "10:10"
+        },
+        {
+          "callsign" : "EJU7041",
+          "description" : "**26L** Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
+          "time" : "10:16"
+        },
+        {
+          "callsign" : "EJU277C",
+          "description" : "**26L** Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
+          "time" : "10:19"
+        },
+        {
+          "callsign" : "-",
+          "description" : "Passage en LVP. Arrêter les avions au point d’attente CAT III.",
+          "time" : "10:21"
+        }
+      ],
+      "frequency" : "120.9",
+      "role" : "Arrivée"
+    },
+    {
+      "directives" : "Simuler un environnement normal :\n- le doublet nord est géré normalement\n\nUn départ tous les 2 min environ pendant le 1er quart d’heure, puis toutes les 2min30.",
+      "events" : [
+        {
+          "callsign" : "-",
+          "description" : "LVP en vigueur sur le terrain, amener les vols aux points d’attente CAT III",
+          "time" : "10:21"
+        }
+      ],
+      "role" : "Doublet Nord"
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "LOC S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR LOC S"
+        ]
+      }
+    ],
+    "configuration" : "WL",
+    "description" : "Cadence de 150 s à l’arrivée, pression au départ faible\nMétéo CAVOK au début, puis apparition des premières nappes de brouillard vers 00:05.\nPré-LVP vers 00:10, puis passage en LVP vers 00:25, avec trafic LFPB en finale.",
+    "duration" : 30,
+    "name" : "LOC_CAVOK_VERS_LVP",
+    "objectives" : "",
+    "pressure" : 1019,
+    "start_date" : "2021-02-08T07:08:08Z",
+    "traffic_density" : "Modérée",
+    "update_date" : "2021-02-08T07:28:56Z",
+    "weather" : "CAVOK vers LVP"
+  }
+}
