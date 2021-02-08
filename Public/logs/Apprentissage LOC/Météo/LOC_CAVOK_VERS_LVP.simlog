@@ -13,12 +13,14 @@
       },
       {
         "callsign" : "EJU7041",
-        "description" : "**26L** Remise de gaz spontannée car pas les minimas",
+        "location" : "26L",
+        "description" : "Remise de gaz spontannée car pas les minimas",
         "time" : "10:17"
       },
       {
         "callsign" : "EJU277C",
-        "description" : "**26L** Remise de gaz spontannée car pas les minimas",
+        "location" : "26L",
+        "description" : "Remise de gaz spontannée car pas les minimas",
         "time" : "10:20"
       },
       {
@@ -62,12 +64,14 @@
         },
         {
           "callsign" : "EJU7041",
-          "description" : "**26L** Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
+          "location" : "26L",
+          "description" : "Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
           "time" : "10:16"
         },
         {
           "callsign" : "EJU277C",
-          "description" : "**26L** Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
+          "location" : "26L",
+          "description" : "Faire remettre les gaz au vol en courte finale : *« Going arround, we don’t have the minimas »*",
           "time" : "10:19"
         },
         {

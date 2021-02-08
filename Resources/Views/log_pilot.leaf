@@ -53,6 +53,7 @@
                         <tr>
                             <th>Heure</th>
                             <th>Indicatif</th>
+                            #if(displayEventsLocation):<th>Position</th>#endif
                             <th>Évènement</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@
                         <tr>
                             <td>#(event.time)</td>
                             <td>#(event.callsign)</td>
+                            #if(displayEventsLocation):<td>#if(event.location):#markdown(event.location)#endif</td>#endif
                             <td>#markdown(event.description)</td>
                         </tr>
                         #endfor

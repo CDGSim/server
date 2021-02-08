@@ -100,6 +100,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let log: Log
             let assignments: [ControlPositionAssignment]?
             let attachments: [Attachment]?
+            let displayEventsLocation: Bool
         }
         
         let path = req.parameters.getCatchall().joined(separator: "/")
@@ -131,7 +132,21 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 }.sorted().joined(separator: "<br />")
                 return .init(controller: .instructor, positionsDescription: positionDescriptions)
             }
-            let context = Context(path: path, simulation_properties:log.properties, log: log, assignments: assignments, attachments:attachments)
+            
+            // Check if we should display the events locations
+            // Location is optional, if at least one event has a location, we should display the corresponding column
+            let atLeastOneEventContainsALocation: Bool
+            if let eventsWithLocation = log.instructorLog.events?.filter({ event in
+                if let location = event.location {
+                    return location != "-" && location.count > 0
+                } else { return false }
+            }) {
+                atLeastOneEventContainsALocation = eventsWithLocation.count > 0
+            } else {
+                atLeastOneEventContainsALocation = false
+            }
+            
+            let context = Context(path: path, simulation_properties:log.properties, log: log, assignments: assignments, attachments:attachments, displayEventsLocation: atLeastOneEventContainsALocation)
             return req.view.render("log_instructor", context)
         }
     }
@@ -153,6 +168,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let pilot_log: Log.PilotLog
             let simulation_properties: Log.Properties
             let roles: [String]
+            let displayEventsLocation: Bool
         }
         
         let path = req.parameters.getCatchall().joined(separator: "/")
@@ -168,10 +184,23 @@ func registerFrontEndRoutes(_ app: Application) throws {
             }) else {
                 return req.view.render("error", ["reason":"Role non trouvé pour ce log"])
             }
-            print(pilotLog)
+            
+            // Check if we should display the events locations
+            // Location is optional, if at least one event has a location, we should display the corresponding column
+            let atLeastOneEventContainsALocation: Bool
+            if let eventsWithLocation = pilotLog.events?.filter({ event in
+                if let location = event.location {
+                    return location != "-" && location.count > 0
+                } else { return false }
+            }) {
+                atLeastOneEventContainsALocation = eventsWithLocation.count > 0
+            } else {
+                atLeastOneEventContainsALocation = false
+            }
+            
             let context = Context(path: path, pilot_log: pilotLog, simulation_properties:log.properties, roles:log.pilot_logs.map{ pilotLog in
                 pilotLog.role
-            })
+            }, displayEventsLocation: atLeastOneEventContainsALocation)
             return req.view.render("log_pilot", context)
         }
     }
