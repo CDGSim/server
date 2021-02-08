@@ -1,0 +1,406 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "AFR3830",
+        "description" : "CTOT 09:10",
+        "location" : "SOL SW",
+        "time" : "09:05"
+      },
+      {
+        "callsign" : "ASL315",
+        "description" : "CTOT 09:20",
+        "location" : "SOL SW",
+        "time" : "09:12"
+      },
+      {
+        "callsign" : "AEA1036",
+        "description" : "CTOT 09:09",
+        "location" : "SOL SW",
+        "time" : "09:13"
+      },
+      {
+        "callsign" : "DAL615",
+        "description" : "Parking E34 en attente jusqu’à 09:23:40.",
+        "location" : "SOL SE",
+        "time" : "09:13"
+      },
+      {
+        "callsign" : "",
+        "description" : "Les instructeur relèvent les stagiaires.Ensuite, ces derniers permutent et relèvent les instructeurs.",
+        "time" : "09:20"
+      },
+      {
+        "callsign" : "AFR454",
+        "description" : "CTOT 09:30",
+        "location" : "SOL SW",
+        "time" : "09:26"
+      },
+      {
+        "callsign" : "DAL42",
+        "description" : "Parking E30 en attente jusqu’à la fin",
+        "location" : "SOL SE",
+        "time" : "09:33"
+      },
+      {
+        "callsign" : "AMC479",
+        "description" : "CTOT 09:40",
+        "location" : "SOL SW",
+        "time" : "09:33"
+      },
+      {
+        "callsign" : "AEA1008",
+        "description" : "CTOT 09:29",
+        "location" : "SOL SW",
+        "time" : "09:33:30"
+      },
+      {
+        "callsign" : "",
+        "description" : "Avant la fin, les instructeurs relèvent à nouveau les stagiaires",
+        "time" : "09:40"
+      }
+    ]
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "- Au début de la simu, les avions roulent en automatique (REU977, EZY3943, SVA126 et AAL48).\n- Faire les messages quand une bulle « Bonjour » ou « Good morning » apparait.\n\nCertains appareils ont des créneaux : AFR3830, AEA1036, ASL315, AFR454, AEA1008 et AMC479. Il est possible que l'élève donne un roulage particulier à ces vols.",
+      "events" : [
+        {
+          "callsign" : "BEE743F",
+          "description" : "*« Request start-up and pushback »*",
+          "location" : "G30",
+          "time" : "09:08"
+        },
+        {
+          "callsign" : "BEE743F",
+          "description" : "*« Request taxi »*",
+          "location" : "G30",
+          "time" : "09:10"
+        },
+        {
+          "callsign" : "BEE493K",
+          "description" : "*« Request start-up and pushback »*",
+          "location" : "G33",
+          "time" : "09:28"
+        },
+        {
+          "callsign" : "BEE493K",
+          "description" : "*« Request taxi »*",
+          "location" : "G33",
+          "time" : "09:30"
+        }
+      ],
+      "frequency" : "121.810",
+      "role" : "Sol SW"
+    },
+    {
+      "directives" : "- Au tout début de la simu, les avions roulent en automatique (AFR259M, AFR1152, AFR378, AFR20JL,    AFR888 et AFR1390)\n- Faire les messages quand une bulle \"Bonjour\" ou \"Good morning\" apparaît\n- Faire les messages par paquet dans l'ordre des traversées\n\nCertains appareils ont des créneaux : AFR3830, AEA1036, ASL315, AFR454, AEA1008 et AMC479. Il est possible que l'élève donne un roulage particulier à ces vols.\n\nPour les traversées, l'objectif est d'éviter à l'élève de gérer des priorités de roulage. **L’ordre d'appel doit donc respecter l'ordre des traversées**",
+      "events" : [
+        {
+          "callsign" : "AFR259M",
+          "description" : "Faire les messages en anglais",
+          "location" : "Stop TJ2",
+          "time" : "09:00"
+        },
+        {
+          "callsign" : "DAL615",
+          "description" : "E34 se libèrera à 09:23:40. Attente à prévoir",
+          "location" : "S6-T9",
+          "time" : "09:12:25"
+        },
+        {
+          "callsign" : "DAL42",
+          "description" : "Son parking E30 n'est pas libre. Attente à prévoir",
+          "location" : "S6-T9",
+          "time" : "09:32:45"
+        }
+      ],
+      "frequency" : "121.980",
+      "role" : "Sol SE"
+    },
+    {
+      "directives" : "- Les arrivées, après dégagement, roulent automatiquement vers les bretelles assignées. Les laisser rouler sans modifications\n- Traverser les avions par paquet, aux heures indiquées dans la timeline, **dans l'ordre des lignes**\n   de Log. Attendre que l'avion se mette en mouvement avant d'autoriser l'avion d'à côté.\n- Transférer rapidement toutes les traversées vers le PER SE avec une Stop Bar sur R\n- Décoller suffisamment pour n'avoir que 6-7 avions maximum au point d'arrêt\n- Désengorger les bretelles d'alignement les plus chargées au départ\n- Quand un parking est occupé, appeler le sol SE en tant que VT pour l'en informer",
+      "events" : [
+        {
+          "callsign" : "AZA300",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:00:10"
+        },
+        {
+          "callsign" : "AFR1785",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:00:11"
+        },
+        {
+          "callsign" : "AFR513",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:00:12"
+        },
+        {
+          "callsign" : "AFR77RT",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:03:51"
+        },
+        {
+          "callsign" : "BRU865",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:03:50"
+        },
+        {
+          "callsign" : "AFR396U",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:07:45"
+        },
+        {
+          "callsign" : "EJU191H",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:07:46"
+        },
+        {
+          "callsign" : "EJU191H",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:07:47"
+        },
+        {
+          "callsign" : "DAL615",
+          "description" : "Parking E34 occupé. Téléphoner. Faire traverser",
+          "location" : "S6",
+          "time" : "09:12:27"
+        },
+        {
+          "callsign" : "BTI8GJ",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:12:26"
+        },
+        {
+          "callsign" : "AFR861",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:12:25"
+        },
+        {
+          "callsign" : "AFR78Z",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:17:45"
+        },
+        {
+          "callsign" : "AFR385",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:17:46"
+        },
+        {
+          "callsign" : "ACA880",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:17:47"
+        },
+        {
+          "callsign" : "AFR217",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:21:45"
+        },
+        {
+          "callsign" : "AFR1655",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:21:46"
+        },
+        {
+          "callsign" : "AEA1011",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:21:47"
+        },
+        {
+          "callsign" : "AFR740J",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:25:26"
+        },
+        {
+          "callsign" : "AFR3515",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:25:25"
+        },
+        {
+          "callsign" : "AFR783L",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:28:45"
+        },
+        {
+          "callsign" : "MEA211",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:28:46"
+        },
+        {
+          "callsign" : "DAL42",
+          "description" : "Parking E30 occupé. Téléphoner. Faire traverser",
+          "location" : "S6",
+          "time" : "09:32:47"
+        },
+        {
+          "callsign" : "AFR1407",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:32:46"
+        },
+        {
+          "callsign" : "ASL314",
+          "description" : "Faire traverser",
+          "location" : "S9",
+          "time" : "09:32:45"
+        },
+        {
+          "callsign" : "AFR231R",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:36:05"
+        },
+        {
+          "callsign" : "EJU596K",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:36:06"
+        },
+        {
+          "callsign" : "AFR128U",
+          "description" : "Faire traverser",
+          "location" : "S6",
+          "time" : "09:38:45"
+        },
+        {
+          "callsign" : "BAW306",
+          "description" : "Faire traverser",
+          "location" : "S7",
+          "time" : "09:38:46"
+        }
+      ],
+      "role" : "Doublet Sud"
+    },
+    {
+      "directives" : "- Faire traverser les avions à l'arrivée dès que possible, décoller en fonction\n- Effectuer les repoussages et roulages du log en suivant le timing des BBL\n- Transférer les appareils vers les sols Sud avec des Stop Bars (Middle2 ou Middle4)",
+      "events" : [
+        {
+          "callsign" : "ADR3CG",
+          "description" : "Faire repousser",
+          "location" : "W05",
+          "time" : "09:03"
+        },
+        {
+          "callsign" : "ADR3CG",
+          "description" : "Faire rouler",
+          "location" : "W05",
+          "time" : "09:05"
+        },
+        {
+          "callsign" : "SIA333",
+          "description" : "Faire repousser",
+          "location" : "Y09",
+          "time" : "09:06"
+        },
+        {
+          "callsign" : "SIA333",
+          "description" : "Faire rouler",
+          "location" : "Y09",
+          "time" : "09:08"
+        },
+        {
+          "callsign" : "AFR84ZA",
+          "description" : "Faire repousser",
+          "location" : "H80",
+          "time" : "09:11"
+        },
+        {
+          "callsign" : "AFR84ZA",
+          "description" : "Faire repousser",
+          "location" : "H80",
+          "time" : "09:13"
+        },
+        {
+          "callsign" : "SWR65H",
+          "description" : "Faire rouler",
+          "location" : "X02",
+          "time" : "09:25"
+        },
+        {
+          "callsign" : "THA931",
+          "description" : "Faire repousser",
+          "location" : "Z09",
+          "time" : "09:25"
+        },
+        {
+          "callsign" : "THA931",
+          "description" : "Faire rouler",
+          "location" : "Z09",
+          "time" : "09:27"
+        },
+        {
+          "callsign" : "AFR581L",
+          "description" : "Faire repousser",
+          "location" : "H40",
+          "time" : "09:31"
+        },
+        {
+          "callsign" : "AFR581L",
+          "description" : "Faire rouler",
+          "location" : "H40",
+          "time" : "09:33"
+        }
+      ],
+      "role" : "Doublet Nord"
+    },
+    {
+      "directives" : "- Effectuer les repoussages et les roulages de la Vigie Trafic en suivant le timing des BBL\n- Transférer les appareils vers les sols Sud avec des Stop Bars (stops VT)\n\n**Le log ci-dessous ne liste que les actions particulières ou hors écran à effectuer**",
+      "events" : [
+        {
+          "callsign" : "DAL614",
+          "description" : "Faire repousser, et téléphoner au Sol SE  pour l'informer que E34 se libère",
+          "location" : "E34",
+          "time" : "9:23:40"
+        }
+      ],
+      "role" : "Vigie trafic"
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "SOL SE"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "SOL SW"
+        ]
+      }
+    ],
+    "configuration" : "EL",
+    "description" : " - La simu dure 40min.\n - Au bout de 20', l'instructeur relève le stagiaire\n - Les stagiaires permutent et relèvent les instructeurs\n - Avant de terminer la simulation, l'instructeur relève à nouveau le stagiaire",
+    "duration" : 40,
+    "name" : "SOL1 8.1 EL",
+    "objectives" : " - Gestion du point d'arrêt + CTOT\n - Gestion des traversées de piste\n - Gestion attente parking",
+    "pressure" : 1013,
+    "start_date" : "2021-02-08T09:00:42Z",
+    "traffic_density" : "Modérée",
+    "update_date" : "2021-02-08T10:00:22Z",
+    "weather" : "CAVOK"
+  }
+}
