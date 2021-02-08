@@ -79,6 +79,10 @@ table p {
     margin:0px
 }
 
+table em {
+    color: #2573F7;
+}
+
 .assignments {
     width:auto;
     border: .5px solid #e6e6e6;
