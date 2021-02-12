@@ -178,21 +178,21 @@
       {
         "controller" : "ST",
         "positions" : [
+          "ITM S",
           "ITM BA"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "ITM N",
-          "ITM S"
+          "ITM N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "INI S",
-          "INI N"
+          "INI N",
+          "INI S"
         ]
       },
       {
@@ -212,7 +212,7 @@
     "pressure" : 1015,
     "start_date" : "2021-01-14T08:28:00Z",
     "traffic_density" : "Forte",
-    "update_date" : "2021-02-12T10:06:15Z",
+    "update_date" : "2021-02-12T12:20:34Z",
     "weather" : "BKN 3500"
   }
 }

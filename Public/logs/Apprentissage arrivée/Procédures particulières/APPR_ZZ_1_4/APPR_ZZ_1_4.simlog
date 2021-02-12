@@ -220,21 +220,21 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM BA"
+          "ITM BA",
+          "ITM S"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
           "ITM N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "INI N",
-          "INI S"
+          "INI S",
+          "INI N"
         ]
       },
       {
@@ -254,7 +254,7 @@
     "pressure" : 998,
     "start_date" : "2020-07-14T12:30:20Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-06T16:44:54Z",
+    "update_date" : "2021-02-12T12:20:25Z",
     "weather" : "CAVOK"
   }
 }

@@ -42,7 +42,7 @@
         "time" : "07:05"
       }
     ],
-    "setup_info" : "En début de simu, FHPDG, départ LGL basse performance de Toussus, a été coordonné sur le 299 de POY, à 3000 ft, sur 136.275.\n Activer RYR2DQ sur XDIGIT après dégel pour imprimer le strip."
+    "setup_info" : "En début de simu, FHPDG, départ LGL basse performance de Toussus, a été coordonné sur le 299 de POY, à 3000 ft, sur 136.275.\nActiver RYR2DQ sur XDIGIT après dégel pour imprimer le strip."
   },
   "pilot_logs" : [
     {
@@ -230,13 +230,13 @@
       {
         "controller" : "ST",
         "positions" : [
+          "ITM S",
           "ITM BA"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
           "ITM N"
         ]
       },
@@ -250,21 +250,21 @@
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI N",
           "SEQ",
-          "COOR INI S"
+          "COOR INI S",
+          "COOR INI N"
         ]
       }
     ],
     "configuration" : "EL",
-    "description" : "Régulations 09L + RNP 08R PG, RNP 07 PB.\nITM sud et BA dégroupés.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
+    "description" : "Régulations 09L + RNP 08R PG, RNP 07 PB.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
     "duration" : 60,
     "name" : "APPR_ZZ_1_2",
     "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, approches RNP et trafics BA.",
     "pressure" : 997,
     "start_date" : "2021-01-14T06:30:17Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-06T16:44:57Z",
+    "update_date" : "2021-02-12T12:21:13Z",
     "weather" : "CAVOK"
   }
 }
