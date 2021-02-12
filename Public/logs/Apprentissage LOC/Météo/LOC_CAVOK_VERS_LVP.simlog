@@ -2,12 +2,12 @@
   "instructor_log" : {
     "events" : [
       {
-        "callsign" : "-",
+        "callsign" : "",
         "description" : "Premiers bancs de brouillard",
         "time" : "10:05"
       },
       {
-        "callsign" : "-",
+        "callsign" : "",
         "description" : "Le CT décide de passer en pré-LVP. Allumer le « LVP » jaune sur DECOR",
         "time" : "10:10"
       },
@@ -24,12 +24,12 @@
         "time" : "10:20"
       },
       {
-        "callsign" : "-",
+        "callsign" : "",
         "description" : "Décision du CT de passer en LVP. Allumer les barres d’arrêt, le balisage CAT III, affichier les barres d’arrêt sur l’écran tactile, passer les ILS en « verrou ».",
         "time" : "10:21"
       },
       {
-        "callsign" : "-",
+        "callsign" : "",
         "description" : "LVP établies, cadence 150s.",
         "time" : "10:25"
       }
@@ -118,7 +118,7 @@
     "pressure" : 1019,
     "start_date" : "2021-02-08T07:08:08Z",
     "traffic_density" : "Modérée",
-    "update_date" : "2021-02-08T08:08:38Z",
+    "update_date" : "2021-02-08T17:26:56Z",
     "weather" : "CAVOK vers LVP"
   }
 }

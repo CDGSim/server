@@ -44,8 +44,8 @@
         },
         {
           "callsign" : "RYR4303",
-          "description" : "Seine appelle le COOR INI pour coordonner RYR4303 : *J'ai l'arrivée du RYR4303 pour Beauvais, je te l'envoie 80 BAVOL à cause du FHFPZ devant et sur quelle fréquence ?*",
-          "time" : "08:38"
+          "description" : "Seine appelle le COOR INI pour coordonner RYR4303 : *J'ai l'arrivée du RYR4303 pour Beauvais, je te l'envoie comment ?* Faire préciser la fréquence et surtout le niveau. Le but est que le stagiaire voit que le FHFPZ devant est conflictuel et donne un niveau supérieur au FL 70.",
+          "time" : "08:36"
         },
         {
           "callsign" : "WZZ6413",
@@ -191,16 +191,16 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI N",
-          "INI S"
+          "INI S",
+          "INI N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "SEQ",
+          "COOR INI N",
           "COOR INI S",
-          "COOR INI N"
+          "SEQ"
         ]
       }
     ],
@@ -212,7 +212,7 @@
     "pressure" : 1015,
     "start_date" : "2021-01-14T08:28:00Z",
     "traffic_density" : "Forte",
-    "update_date" : "2021-02-08T11:00:49Z",
+    "update_date" : "2021-02-12T10:06:15Z",
     "weather" : "BKN 3500"
   }
 }
