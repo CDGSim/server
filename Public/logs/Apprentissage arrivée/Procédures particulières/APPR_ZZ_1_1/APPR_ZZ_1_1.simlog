@@ -92,7 +92,7 @@
       "role" : "Adjacent"
     },
     {
-      "directives" : "En début de simu, verrouiller cap, niveau et vitesse YUPMK. Verrouiller le niveau de AFR24PY.",
+      "directives" : "En début de simu, verrouiller cap, niveau et vitesse YUPMK. Verrouiller le niveau de AFR24PY.\nEJU74FY est déjà en contact avec Orly.",
       "frequency" : "121.155",
       "role" : "INI Nord",
       "setup" : [
@@ -132,7 +132,7 @@
         },
         {
           "callsign" : "VLG74L",
-          "description" : "5000 ft - 220 kts"
+          "description" : "5000 ft - 220 kts - ILS 27R"
         },
         {
           "callsign" : "AUA419E",
@@ -194,8 +194,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
-          "ITM BA"
+          "ITM BA",
+          "ITM S"
         ]
       },
       {
@@ -214,9 +214,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI S",
           "COOR INI N",
-          "SEQ",
-          "COOR INI S"
+          "SEQ"
         ]
       }
     ],
@@ -228,7 +228,7 @@
     "pressure" : 1015,
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-12T12:22:02Z",
+    "update_date" : "2021-02-12T13:35:19Z",
     "weather" : "BKN 4000"
   }
 }
