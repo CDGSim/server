@@ -33,11 +33,15 @@ func registerFrontEndRoutes(_ app: Application) throws {
         
         // Context type that will be passed to the view
         struct Context: Encodable {
-            let logs: [LogItem]
+            let courses: [Course]
             
-            struct LogItem: Encodable {
+            struct Course: Encodable {
+                let name: String
+                var simulations: [Simulation]
+            }
+            
+            struct Simulation: Encodable {
                 let name: String // Simulation name
-                let course: String // Simulation course
                 let group: String? // Simulation's group within the course, this is optional
                 let path: String // Path to the log file
             }
@@ -49,8 +53,15 @@ func registerFrontEndRoutes(_ app: Application) throws {
             // If we cannot get the subpaths, render the error view
             return req.view.render("error")
         }
+        
+        struct Log {
+            let name:String
+            let course:String
+            let group:String?
+            let path:String
+        }
             
-        // Create an array of LogItem values from the content of the .simlog files
+        // Create an array of logs from the content of the .simlog files
         let logs = subpaths.compactMap { path -> String? in
             // Filter files to only include .simlog files
             guard URL(fileURLWithPath: path).pathExtension == "simlog" else { return nil }
@@ -59,7 +70,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             guard path.components(separatedBy: "/").count > 1 else { return nil }
             
             return path
-        }.compactMap { path -> Context.LogItem? in
+        }.compactMap { path -> Log? in
             // Read the simulation name from the log file
             switch log(atPath: path) {
             case .failure : return nil // If the log file cannot be read, just ignore it
@@ -69,15 +80,27 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let course = pathComponents.removeFirst()
                 let group:String?
                 if pathComponents.count > 1 { group = pathComponents.first } else { group = nil }
-                return Context.LogItem(name:name, course:course, group: group, path:path)
+                return .init(name: name, course: course, group: group, path: path)
             }
-        }.sorted { lhs, rhs -> Bool in
-            // Sort by name here
+        }.sorted { (lhs, rhs) -> Bool in
+            lhs.name < rhs.name
+        }
+        
+        var courses = [Context.Course]()
+        for log in logs {
+            let simulation = Context.Simulation(name: log.name, group: log.group, path: log.path)
+            if let courseIndex = courses.firstIndex(where: { $0.name == log.course }) {
+                courses[courseIndex].simulations.append(simulation)
+            } else {
+                courses.append(.init(name: log.course, simulations: [simulation]))
+            }
+        }
+        courses.sort { (lhs, rhs) -> Bool in
             lhs.name < rhs.name
         }
         
         // Render the view index, with the context we've made
-        let context:Context = .init(logs: logs)
+        let context:Context = .init(courses: courses)
         return req.view.render("index", context)
     }
     

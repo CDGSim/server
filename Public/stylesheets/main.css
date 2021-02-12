@@ -57,6 +57,11 @@ table {
     margin:auto
 }
 
+table .grouplabel th {
+    font-size:17px;
+    padding: 2em .5em .5em 1em;
+}
+
 table thead tr th {
   font-weight:600;
   color: #333;
@@ -64,14 +69,21 @@ table thead tr th {
   border-bottom: 1px solid #333;
 }
 
-table tr:nth-child(even) {
+table:not(.simulation-index) tr:nth-child(even) {
     background-color: #f5f5f7;
 }
 
-table tr td {
+table:not(.simulation-index) tr td {
     border-bottom: .5px solid #e6e6e6;
     color: #666;
     padding: .25em 1em .25em 1em;
+    vertical-align:top
+}
+
+.simulation-index tr td {
+    border-top: .5px solid #e6e6e6;
+    color: #6f6;
+    padding: .25em 1em .25em 1.5em;
     vertical-align:top
 }
 
@@ -241,6 +253,11 @@ table em {
 .note li {
     line-height: 1.4;
     color:#484848;
+}
+
+.caption {
+    font-size:13px;
+    color:#999
 }
 
 /* Dropdown Button */

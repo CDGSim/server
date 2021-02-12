@@ -4,20 +4,17 @@
             
         <div id="content">
             <h2>Catalogue de simulations</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Stage</th>
-                        <th>Nom</th>
-                    </tr>
-                </thead>
+            <table class="simulation-index">
+                #for(course in courses):
                 <tbody>
-                    #for(log in logs):
+                    <tr class="grouplabel"><th colspan="3">#(course.name)</th></tr>
+                    #for(simulation in course.simulations):
                     <tr>
-                        <td>#(log.course)</td>
-                        <td><a href="/instructor/#(log.path)">#(log.name)</a> (<a href="/print/#(log.path)">Imprimer</a>)</td>
+                        <td><a href="/instructor/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption">#(simulation.group)</span></td>
+                        <td><a href="/print/#(simulation.path)">Version imprimable</a></td>
                     </tr>
                     #endfor
+                #endfor
                 </tbody>
             </table>
         </div>
