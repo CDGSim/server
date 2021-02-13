@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <link rel="stylesheet" media="all" href="/stylesheets/decor.css" />
+    </head>
+    <body>
+        <div id="container">
+            <div id="topbar">
+            </div>
+            <div id="rightbar">
+                <div>
+                    <div>&#10226;</div>
+                    <div>&#8598;</div>
+                    <div>&#8670;</div>
+                    <div>&#128269;</div>
+                    <div>Fin</div>
+                    <div>&#8671;</div>
+                </div>
+                <div>SYNTHESE METEO</div>
+                <div>CDG NORD</div>
+                <div>CDG SUD</div>
+                <div>SECOURS METEO</div>
+                <div>ARRIVEES</div>
+                <div>DEPARTS</div>
+                <div></div>
+                <div>POSTE POSTE</div>
+                <div>HANGAR POSTE</div>
+                <div>FL -> altit</div>
+                <div>HPa -> inch</div>
+                <div></div>
+            </div>
+            <div id="content">
+                <div id="header">
+                    <div id="confnt">
+                        <strong>#(configuration)</strong> NT: <strong>#(transitionLevel)</strong>
+                    </div>
+                    <div id="atispg">
+                        ATIS PG: <strong>#(atispg) #(startTime)</strong> QNH: <strong>#(qnh)</strong>
+                    </div>
+                    <div id="atislb">
+                        ATIS LB:<strong>#(atislb) #(startTime)</strong>
+                    </div>
+                </div>
+                <div class="runwaygroup">
+                    <div id="r09L27R" class="runway-container">
+                        <div id="hbn09" class="hbn">#(hbn09)</div>
+                        <div id="hbn27" class="hbn">#(hbn27)</div>
+                        <div class="runway-name">09L</div>
+                        <div class="runway">
+                            <div class="runwaycontent rvrs">
+                                <div>#(northRunway1RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(northRunway1RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(northRunway1RVR)</div>
+                            </div>
+                            <div class="runwaycontent rwyweather">
+                                <div>#(qfe)</div>
+                                <div class="spacer"></div>
+                                <div>#(northWind.direction) #(northWind.speed)</div>
+                                <div class="spacer"></div>
+                                <div>#(qfe)</div>
+                            </div>
+                        </div>
+                        <div class="runway-name">27R</div>
+                    </div>
+                    <div id="r09R27L" class="runway-container">
+                        <div id="hbn08" class="hbn">#(hbn08)</div>
+                        <div id="hbn26" class="hbn">#(hbn26)</div>
+                        <div class="runway-name">09R</div>
+                        <div class="runway">
+                            <div class="runwaycontent rvrs">
+                                <div>#(northRunway2RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(northRunway2RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(northRunway2RVR)</div>
+                            </div>
+                            <div class="runwaycontent rwyweather">
+                                <div>#(qfe)</div>
+                                <div class="spacer"></div>
+                                <div>#(northWind.direction) #(northWind.speed)</div>
+                                <div class="spacer"></div>
+                                <div>#(qfe)</div>
+                            </div>
+                        </div>
+                        <div class="runway-name">27L</div>
+                        <div class="#if(preLVPNorth):#if(LVPNorth):LVP#else:PRELVP#endif#else:LVPOFF#endif">LVP</div>
+                    </div>
+                </div>
+                <div id="middlegroup">
+                    <div id="QNH">
+                        QNH : <span>#(qnh)</span>
+                    </div>
+                    <div class="temperature">
+                        T&deg; : <span>#(temperature)</span>
+                    </div>
+                    <div class="temperature">
+                        DP : <span>#(dewPoint)</span>
+                    </div>
+                </div>
+                <div class="runwaygroup">
+                    <div id="r08L26R" class="runway-container">
+                        <div class="#if(preLVPSouth):#if(LVPSouth):LVP#else:PRELVP#endif#else:LVPOFF#endif">LVP</div>
+                        <div class="runway-name">08L</div>
+                        <div class="runway">
+                            <div class="runwaycontent rvrs">
+                                <div>#(southRunway1RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(southRunway1RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(southRunway1RVR)</div>
+                            </div>
+                            <div class="runwaycontent rwyweather">
+                                <div>#(qfe)</div>
+                                <div class="spacer"></div>
+                                <div>#(southWind.direction) #(southWind.speed)</div>
+                                <div class="spacer"></div>
+                                <div>#(qfe)</div>
+                            </div>
+                        </div>
+                        <div class="runway-name">26R</div>
+                    </div>
+                    <div id="r08R26L" class="runway-container">
+                        <div class="runway-name">08R</div>
+                        <div class="runway">
+                            <div class="runwaycontent rvrs">
+                                <div>#(southRunway2RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(southRunway2RVR)</div>
+                                <div class="spacer"></div>
+                                <div>#(southRunway2RVR)</div>
+                            </div>
+                            <div class="runwaycontent rwyweather">
+                                <div>#(qfe)</div>
+                                <div class="spacer"></div>
+                                <div>#(southWind.direction) #(southWind.speed)</div>
+                                <div class="spacer"></div>
+                                <div>#(qfe)</div>
+                            </div>
+                        </div>
+                        <div class="runway-name">26L</div>
+                    </div>
+                </div>
+                <div id="weathertext">
+                    <p>Obs : #(startTime) #(weather)</p>
+                    <p>Maa : </p>
+                </div>
+            </div>
+            <div id="bottombar">
+                <div>UTIL</div>
+                <div>UTIL2</div>
+                <div>METEO</div>
+                <div>FREQ</div>
+                <div>CONSIGNE</div>
+                <div>ANGLAIS</div>
+                <div>ATIS</div>
+                <div>BDP</div>
+                <div></div>
+                <div>VEILLE</div>
+            </div>
+        </div>
+    </body>
+</html>

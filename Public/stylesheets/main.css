@@ -215,6 +215,10 @@ table em {
     color:white;
 }
 
+#simulation-properties a {
+    color:white;
+}
+
 .title {
     display: grid;
     width: 100%;

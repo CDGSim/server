@@ -294,6 +294,22 @@ func registerFrontEndRoutes(_ app: Application) throws {
         }
     }
     
+    // MARK: GET /decor/log_path
+    // Renders a view representing a DECOR screen
+    // Generates values from the simulation file
+    app.get("decor", "**") { req -> EventLoopFuture<View> in
+        let path = req.parameters.getCatchall().joined(separator: "/")
+        
+        // Read the log file
+        switch log(atPath: path) {
+        case .failure(let error) :
+            return renderLogErrorView(from: error, req: req)
+        case .success(let log):
+            return DecorController.view(req: req, log: log)
+        }
+        
+    }
+    
     // Renders the error view, passing a reason string as the context
     func renderLogErrorView(from error:LogError, req:Request) -> EventLoopFuture<View> {
         struct ErrorContext: Encodable {

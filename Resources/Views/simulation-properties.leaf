@@ -10,7 +10,7 @@
                         <li><strong>Heure de début :</strong> #gmtTime(simulation_properties.start_date)</li>
                         <li><strong>Durée :</strong> #(simulation_properties.duration) min</li>
                         <li><strong>QNH :</strong> #(simulation_properties.pressure)</li>
-                        <li><strong>Météo :</strong> #(simulation_properties.weather)</li>
+                        <li><strong>Météo :</strong> <a href="/decor/#(path)">#(simulation_properties.weather)</a></li>
                     </ul>
                 </div>
             </div>
