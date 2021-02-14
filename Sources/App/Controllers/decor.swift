@@ -137,10 +137,10 @@ struct DecorController {
         let windDirection = weather.windDirection
         let windSpeed = weather.windSpeed
         
-        let northWindDirection = windDirection + Int.pseudoRandom(in: -1...3, changeEvery: 10)*5
-        let southWindDirection = windDirection - Int.pseudoRandom(in: -2...1, changeEvery: 7)*5
-        let northWindSpeed = windSpeed - Int.pseudoRandom(in: -1...3, changeEvery: 6)
-        let southWindSpeed = windSpeed + Int.pseudoRandom(in: -2...4, changeEvery: 7)
+        let northWindDirection = windDirection + Int.pseudoRandom(in: -1...3, changeEvery: 5)*5
+        let southWindDirection = windDirection - Int.pseudoRandom(in: -2...1, changeEvery: 6)*5
+        let northWindSpeed = windSpeed + Int.pseudoRandom(in: -1...8, changeEvery: 2)
+        let southWindSpeed = windSpeed + Int.pseudoRandom(in: -2...7, changeEvery: 3)
         
         let northWind = DecorContext.Wind(direction: northWindDirection, speed: northWindSpeed)
         let southWind = DecorContext.Wind(direction: southWindDirection, speed: southWindSpeed)
@@ -215,7 +215,7 @@ struct DecorController {
         pressureFormatter.minimumIntegerDigits = 4
         
         return req.view.render("decor", DecorContext(qnh: pressureFormatter.string(from: NSNumber(value: qnh)) ?? "",
-                                                     qfe: pressureFormatter.string(from: NSNumber(value: qnh - 17)) ?? "",
+                                                     qfe: pressureFormatter.string(from: NSNumber(value: qnh - 14)) ?? "",
                                                      transitionLevel: transitionLevel,
                                                      temperature: weather.temperature,
                                                      dewPoint: weather.dewPoint,
@@ -226,22 +226,22 @@ struct DecorController {
                                                      configuration: configuration,
                                                      weather:log.properties.weather,
                                                      startTime:startTime,
-                                                     northRunway1RVR:.init(start: northRunway1RVR + (1 + Int.pseudoRandom(in: -2...1, changeEvery: 6))*25,
-                                                                           mid: northRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25,
-                                                                           end: northRunway1RVR + (2 - Int.pseudoRandom(in: -1...2, changeEvery: 4))*25),
-                                                     northRunway2RVR:.init(start: northRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
-                                                                           mid: northRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
-                                                                           end: northRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
-                                                     southRunway1RVR:.init(start: southRunway1RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
-                                                                           mid: southRunway1RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
-                                                                           end: southRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
-                                                     southRunway2RVR:.init(start: southRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
-                                                                           mid: southRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
-                                                                           end: southRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
+                                                     northRunway1RVR:.init(start: northRunway1RVR + (1 + Int.pseudoRandom(in: -2...1, changeEvery: 2))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           mid: northRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           end: northRunway1RVR + (2 - Int.pseudoRandom(in: -1...2, changeEvery: 3))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
+                                                     northRunway2RVR:.init(start: northRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           mid: northRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           end: northRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
+                                                     southRunway1RVR:.init(start: southRunway1RVR + Int.pseudoRandom(in: -2...1, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           mid: southRunway1RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 2))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           end: southRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
+                                                     southRunway2RVR:.init(start: southRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           mid: southRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
+                                                                           end: southRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
                                                      hbn27:weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 2)*50,
-                                                     hbn26:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 7)*50,
-                                                     hbn09:weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 8)*50,
-                                                     hbn08:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 6)*50,
+                                                     hbn26:weather.ceiling + Int.pseudoRandom(in: -3...1, changeEvery: 3)*50,
+                                                     hbn09:weather.ceiling + Int.pseudoRandom(in: -3...2, changeEvery: 2)*50,
+                                                     hbn08:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 4)*50,
                                                      preLVPNorth: preLVPNorth,
                                                      LVPNorth: LVPNorth,
                                                      preLVPSouth: preLVPSouth,
@@ -253,17 +253,15 @@ struct DecorController {
 extension Int {
     // Returns a pseudo random integer in range
     // The integer depends on the date
-    static func pseudoRandom(in range:ClosedRange<Int>, changeEvery minutes:Int) -> Int {
-        let timeString = self.timeFormatter.string(from: Date())
-        let hourRandom = Int(timeString.prefix(2)) ?? 0 // an integer between 0 and 23
-        let minuteRandom = Int(timeString.suffix(from: timeString.index(timeString.startIndex, offsetBy: 2))) ?? 0 // an integer between 0 and 59
-        let random = hourRandom + minuteRandom/minutes // an integer between 0 and 82
-        return range.lowerBound + (range.upperBound - range.lowerBound)*random/82
+    fileprivate static func pseudoRandom(in range:ClosedRange<Int>, changeEvery minutes:Int) -> Int {
+        guard minutes != 0 else {
+            return range.lowerBound
+        }
+        // An integer between 0 and 60
+        let pseudoRandom = Int( (Date().timeIntervalSinceReferenceDate / 60).truncatingRemainder(dividingBy: 60) / Double(minutes % 60) )
+        let random = self.randomNumbers[pseudoRandom]
+        return Int(Double(range.lowerBound) + Double(range.upperBound - range.lowerBound)*Double(random)/10)
     }
     
-    static private var timeFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HHmm"
-        return dateFormatter
-    }()
+    fileprivate static let randomNumbers:[Int] = [3, 8, 0, 4, 8, 5, 3, 5, 7, 4, 2, 3, 1, 9, 6, 3, 2, 8, 1, 2, 2, 1, 1, 8, 4, 2, 4, 8, 2, 9, 8, 3, 0, 7, 5, 7, 9, 9, 5, 7, 1, 3, 5, 0, 4, 0, 5, 8, 1, 5, 0, 2, 7, 2, 2, 2, 5, 2, 1, 8, 0]
 }
