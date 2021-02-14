@@ -116,8 +116,8 @@ struct DecorController {
         
         let northWindDirection = windDirection + Int.pseudoRandom(in: -1...3, changeEvery: 5)*5
         let southWindDirection = windDirection - Int.pseudoRandom(in: -2...1, changeEvery: 6)*5
-        let northWindSpeed = windSpeed + Int.pseudoRandom(in: -1...8, changeEvery: 2)
-        let southWindSpeed = windSpeed + Int.pseudoRandom(in: -2...7, changeEvery: 3)
+        let northWindSpeed = max(windSpeed + Int.pseudoRandom(in: -1...8, changeEvery: 2), 0)
+        let southWindSpeed = max(windSpeed + Int.pseudoRandom(in: -2...7, changeEvery: 3), 0)
         
         let northWind = DecorContext.Wind(direction: northWindDirection, speed: northWindSpeed)
         let southWind = DecorContext.Wind(direction: southWindDirection, speed: southWindSpeed)
