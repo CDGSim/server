@@ -16,29 +16,6 @@ struct DecorController {
         return dateFormatter
     }()
     
-    // MARK:- Random generation
-    static private let pseudoRandomIntegerDateFormatter = DateFormatter()
-    
-    static private func pseudoRandomInteger(pattern:String, changeInterval:Int) -> Int {
-        self.pseudoRandomIntegerDateFormatter.dateFormat = pattern
-        
-        let pseudoRandomString = self.pseudoRandomIntegerDateFormatter.string(from: Date())
-        
-        self.pseudoRandomIntegerDateFormatter.dateFormat = "mm"
-        let changeIntervalFactor:Int
-        if changeInterval > 0 {
-            changeIntervalFactor = Int(self.pseudoRandomIntegerDateFormatter.string(from: Date())) ?? 0 / changeInterval
-        } else {
-            changeIntervalFactor = 0
-        }
-        
-        return changeIntervalFactor + pseudoRandomString.components(separatedBy: ".")
-            .map({ (Int($0) ?? 0) })
-            .reduce(0) { result, index -> Int in
-                result + index
-            }
-    }
-    
     // MARK:- METAR Decoding
     struct Weather {
         var qnh: Int = 0
@@ -146,11 +123,9 @@ struct DecorController {
         let southWind = DecorContext.Wind(direction: southWindDirection, speed: southWindSpeed)
         
         // ATIS Letter
-        let pgRandomIndex = Self.pseudoRandomInteger(pattern: "M.d.HH", changeInterval: 40)
-        let pbRandomIndex = Self.pseudoRandomInteger(pattern: "M.HH", changeInterval: 50)
         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let atispg = String(letters[letters.index(letters.startIndex, offsetBy: pgRandomIndex % 26)])
-        let atislb = String(letters[letters.index(letters.startIndex, offsetBy: pbRandomIndex % 26)])
+        let atispg = String(letters[letters.index(letters.startIndex, offsetBy: Int.pseudoRandom(in: 0...25, changeEvery: 40) % 26)])
+        let atislb = String(letters[letters.index(letters.startIndex, offsetBy: 5 + Int.pseudoRandom(in: 0...20, changeEvery: 50) % 26)])
         
         // Transition level
         let transitionAltitude = 5000 + 28 * (1013 - qnh)
