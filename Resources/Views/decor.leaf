@@ -56,7 +56,7 @@
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
                                 <div class="spacer"></div>
-                                <div>#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
+                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
                                 <div class="spacer"></div>
                                 <div>#(qfe)</div>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
                                 <div class="spacer"></div>
-                                <div>#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
+                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
                                 <div class="spacer"></div>
                                 <div>#(qfe)</div>
                             </div>
@@ -113,7 +113,7 @@
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
                                 <div class="spacer"></div>
-                                <div>#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
+                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
                                 <div class="spacer"></div>
                                 <div>#(qfe)</div>
                             </div>
@@ -133,7 +133,7 @@
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
                                 <div class="spacer"></div>
-                                <div>#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
+                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
                                 <div class="spacer"></div>
                                 <div>#(qfe)</div>
                             </div>
