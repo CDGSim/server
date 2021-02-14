@@ -163,16 +163,10 @@ struct DecorController {
         let startTime = Self.timeFormatter.string(from: log.properties.startDate)
         
         // RVR
-        let northRunway1RVR = weather.northRunway1RVR <= 2000 ? String(weather.northRunway1RVR) : ">>>>"
-        let northRunway2RVR = weather.northRunway2RVR <= 2000 ? String(weather.northRunway2RVR) : ">>>>"
-        let southRunway1RVR = weather.southRunway1RVR <= 2000 ? String(weather.southRunway1RVR) : ">>>>"
-        let southRunway2RVR = weather.southRunway2RVR <= 2000 ? String(weather.southRunway2RVR) : ">>>>"
-        
-        // HBN
-        let hbn27 = weather.ceiling < 1000 ? String(weather.ceiling) : ">>>>"
-        let hbn26 = weather.ceiling < 1000 ? String(weather.ceiling) : ">>>>"
-        let hbn09 = weather.ceiling < 1000 ? String(weather.ceiling) : ">>>>"
-        let hbn08 = weather.ceiling < 1000 ? String(weather.ceiling) : ">>>>"
+        let northRunway1RVR = weather.northRunway1RVR
+        let northRunway2RVR = weather.northRunway2RVR
+        let southRunway1RVR = weather.southRunway1RVR
+        let southRunway2RVR = weather.southRunway2RVR
         
         let preLVPNorth = weather.ceiling < 300 || weather.northRunway1RVR < 800 || weather.northRunway2RVR < 800
         let LVPNorth = weather.ceiling <= 200 || weather.northRunway1RVR <= 600 || weather.northRunway2RVR <= 600
@@ -183,6 +177,12 @@ struct DecorController {
             struct Wind: Encodable {
                 let direction:Int
                 let speed:Int
+            }
+            
+            struct RunwayRVR: Encodable {
+                let start:Int
+                let mid:Int
+                let end:Int
             }
             
             let qnh:String
@@ -197,14 +197,14 @@ struct DecorController {
             let configuration:String
             let weather:String
             let startTime:String
-            let northRunway1RVR:String
-            let northRunway2RVR:String
-            let southRunway1RVR:String
-            let southRunway2RVR:String
-            let hbn27:String
-            let hbn26:String
-            let hbn09:String
-            let hbn08:String
+            let northRunway1RVR:RunwayRVR
+            let northRunway2RVR:RunwayRVR
+            let southRunway1RVR:RunwayRVR
+            let southRunway2RVR:RunwayRVR
+            let hbn27:Int
+            let hbn26:Int
+            let hbn09:Int
+            let hbn08:Int
             let preLVPNorth: Bool
             let LVPNorth: Bool
             let preLVPSouth: Bool
@@ -226,14 +226,22 @@ struct DecorController {
                                                      configuration: configuration,
                                                      weather:log.properties.weather,
                                                      startTime:startTime,
-                                                     northRunway1RVR:northRunway1RVR,
-                                                     northRunway2RVR:northRunway2RVR,
-                                                     southRunway1RVR:southRunway1RVR,
-                                                     southRunway2RVR:southRunway2RVR,
-                                                     hbn27:hbn27,
-                                                     hbn26:hbn26,
-                                                     hbn09:hbn09,
-                                                     hbn08:hbn08,
+                                                     northRunway1RVR:.init(start: northRunway1RVR + (1 + Int.pseudoRandom(in: -2...1, changeEvery: 6))*25,
+                                                                           mid: northRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25,
+                                                                           end: northRunway1RVR + (2 - Int.pseudoRandom(in: -1...2, changeEvery: 4))*25),
+                                                     northRunway2RVR:.init(start: northRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
+                                                                           mid: northRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
+                                                                           end: northRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
+                                                     southRunway1RVR:.init(start: southRunway1RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
+                                                                           mid: southRunway1RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
+                                                                           end: southRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
+                                                     southRunway2RVR:.init(start: southRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 6)*25,
+                                                                           mid: southRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*25,
+                                                                           end: southRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 5)*25),
+                                                     hbn27:weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 2)*50,
+                                                     hbn26:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 7)*50,
+                                                     hbn09:weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 8)*50,
+                                                     hbn08:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 6)*50,
                                                      preLVPNorth: preLVPNorth,
                                                      LVPNorth: LVPNorth,
                                                      preLVPSouth: preLVPSouth,

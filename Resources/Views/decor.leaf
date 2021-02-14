@@ -42,16 +42,16 @@
                 </div>
                 <div class="runwaygroup">
                     <div id="r09L27R" class="runway-container">
-                        <div id="hbn09" class="hbn">#(hbn09)</div>
-                        <div id="hbn27" class="hbn">#(hbn27)</div>
+                        <div id="hbn09" class="hbn">#if(hbn09 > 5000):>>>>#else:#if(hbn09 < 50):---#else:#(hbn09)#endif#endif</div>
+                        <div id="hbn27" class="hbn">#if(hbn27 > 5000):>>>>#else:#if(hbn27 < 50):---#else:#(hbn27)#endif#endif</div>
                         <div class="runway-name">09L</div>
                         <div class="runway">
                             <div class="runwaycontent rvrs">
-                                <div>#(northRunway1RVR)</div>
+                                <div>#if(northRunway1RVR.start > 1500):>>>>#else:#(northRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(northRunway1RVR)</div>
+                                <div>#if(northRunway1RVR.mid > 1500):>>>>#else:#(northRunway1RVR.mid)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(northRunway1RVR)</div>
+                                <div>#if(northRunway1RVR.end > 1500):>>>>#else:#(northRunway1RVR.end)#endif</div>
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
@@ -64,16 +64,16 @@
                         <div class="runway-name">27R</div>
                     </div>
                     <div id="r09R27L" class="runway-container">
-                        <div id="hbn08" class="hbn">#(hbn08)</div>
-                        <div id="hbn26" class="hbn">#(hbn26)</div>
+                        <div id="hbn08" class="hbn">#if(hbn08 > 5000):>>>>#else:#if(hbn08 < 50):---#else:#(hbn08)#endif#endif</div>
+                        <div id="hbn26" class="hbn">#if(hbn26 > 5000):>>>>#else:#if(hbn26 < 50):---#else:#(hbn26)#endif#endif</div>
                         <div class="runway-name">09R</div>
                         <div class="runway">
                             <div class="runwaycontent rvrs">
-                                <div>#(northRunway2RVR)</div>
+                                <div>#if(northRunway2RVR.start > 1500):>>>>#else:#(northRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(northRunway2RVR)</div>
+                                <div>#if(northRunway2RVR.mid > 1500):>>>>#else:#(northRunway2RVR.mid)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(northRunway2RVR)</div>
+                                <div>#if(northRunway2RVR.end > 1500):>>>>#else:#(northRunway2RVR.end)#endif</div>
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
@@ -104,11 +104,11 @@
                         <div class="runway-name">08L</div>
                         <div class="runway">
                             <div class="runwaycontent rvrs">
-                                <div>#(southRunway1RVR)</div>
+                                <div>#if(southRunway1RVR.start > 1500):>>>>#else:#(southRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(southRunway1RVR)</div>
+                                <div>#if(southRunway1RVR.mid > 1500):>>>>#else:#(southRunway1RVR.mid)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(southRunway1RVR)</div>
+                                <div>#if(southRunway1RVR.end > 1500):>>>>#else:#(southRunway1RVR.end)#endif</div>
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
@@ -124,11 +124,11 @@
                         <div class="runway-name">08R</div>
                         <div class="runway">
                             <div class="runwaycontent rvrs">
-                                <div>#(southRunway2RVR)</div>
+                                <div>#if(southRunway2RVR.start > 1500):>>>>#else:#(southRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(southRunway2RVR)</div>
+                                <div>#if(southRunway2RVR.mid > 1500):>>>>#else:#(southRunway2RVR.mid)#endif</div>
                                 <div class="spacer"></div>
-                                <div>#(southRunway2RVR)</div>
+                                <div>#if(southRunway2RVR.end > 1500):>>>>#else:#(southRunway2RVR.end)#endif</div>
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div>#(qfe)</div>
