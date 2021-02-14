@@ -1,0 +1,17 @@
+#extend("master"):
+    #export("title"): Générateur écran DECOR #endexport
+    #export("main"):
+            <div id="content">
+            <form method="POST" action="/decorgenerator/">
+                <label for="configuration">Configuration :</label><br />
+                <input type="text" name="configuration"><br>
+                <label for="date">Date :</label><br />
+                <input type="text" name="date"><br>
+                <label for="weather">Météo :</label><br />
+                <textarea rows="5" cols="20" name="weather">CAVOK</textarea><br />
+                <input type="submit" value="Générer">
+            </form>
+            </div>
+            
+#endexport
+#endextend

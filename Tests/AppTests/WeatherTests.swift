@@ -7,6 +7,11 @@ final class WeatherTests: XCTestCase {
         XCTAssertEqual(weather.qnh, 1033)
     }
     
+    func testLowQNH() throws {
+        let weather = DecorController.Weather(from:"Q687")
+        XCTAssertEqual(weather.qnh, 687)
+    }
+    
     func testWind() throws {
         let weather = DecorController.Weather(from:"12017KT")
         XCTAssertEqual(weather.windDirection, 120)

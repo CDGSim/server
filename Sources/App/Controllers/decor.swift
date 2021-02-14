@@ -36,7 +36,7 @@ struct DecorController {
             
             for component in components {
                 // Decode QNH
-                if component.count == 5 && component.first == "Q" {
+                if component.first == "Q" {
                     let qnhString = component.suffix(from: component.index(component.firstIndex(of: "Q")!, offsetBy: 1))
                     qnh = Int(qnhString) ?? 1013
                 }
@@ -105,10 +105,13 @@ struct DecorController {
     
     // MARK:- View
     static func view(req:Request, log:Log) -> EventLoopFuture<View> {
-        
+        return self.view(req: req, metar: log.properties.weather, configuration: log.properties.configuration, startDate: log.properties.startDate)
+    }
+    
+    static func view(req:Request, metar:String, configuration:String, startDate:Date) -> EventLoopFuture<View> {
         // Weather
-        let weather = Weather(from: log.properties.weather)
-        let qnh: Int = weather.qnh > 0 ? weather.qnh : log.properties.pressure
+        let weather = Weather(from: metar)
+        let qnh: Int = weather.qnh
         
         // Wind
         let windDirection = weather.windDirection
@@ -132,10 +135,10 @@ struct DecorController {
         let transitionLevel = Int(ceil(Double(transitionAltitude)/1000))*10 + 10
         
         // Configuration
-        let configuration = log.properties.configuration.capitalized
+        let configuration = configuration.uppercased()
         
         // Start time        
-        let startTime = Self.timeFormatter.string(from: log.properties.startDate)
+        let startTime = Self.timeFormatter.string(from: startDate)
         
         // RVR
         let northRunway1RVR = weather.northRunway1RVR
@@ -199,7 +202,7 @@ struct DecorController {
                                                      atispg: atispg,
                                                      atislb: atislb,
                                                      configuration: configuration,
-                                                     weather:log.properties.weather,
+                                                     weather:metar,
                                                      startTime:startTime,
                                                      northRunway1RVR:.init(start: northRunway1RVR + (1 + Int.pseudoRandom(in: -2...1, changeEvery: 2))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
                                                                            mid: northRunway1RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,

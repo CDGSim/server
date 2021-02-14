@@ -310,6 +310,25 @@ func registerFrontEndRoutes(_ app: Application) throws {
         
     }
     
+    // MARK: GET /decorgenerator/
+    app.get("decorgenerator") { req -> EventLoopFuture<View> in
+        return req.view.render("decorgenerator")
+    }
+    
+    // MARK: POST /decorgenerator/
+    app.post("decorgenerator") { req -> EventLoopFuture<View> in
+        struct FormContent: Content {
+            var weather: String
+            var configuration: String
+            var date: String
+        }
+        let content = try req.content.decode(FormContent.self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date = dateFormatter.date(from: content.date) ?? Date()
+        return DecorController.view(req: req, metar: content.weather, configuration: content.configuration, startDate: date)
+    }
+    
     // Renders the error view, passing a reason string as the context
     func renderLogErrorView(from error:LogError, req:Request) -> EventLoopFuture<View> {
         struct ErrorContext: Encodable {
