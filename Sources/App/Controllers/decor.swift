@@ -136,8 +136,14 @@ struct DecorController {
         // Wind
         let windDirection = weather.windDirection
         let windSpeed = weather.windSpeed
-        let northWind = DecorContext.Wind(direction: windDirection, speed: windSpeed)
-        let southWind = DecorContext.Wind(direction: windDirection, speed: windSpeed)
+        
+        let northWindDirection = windDirection + Int.pseudoRandom(in: -1...3, changeEvery: 10)*5
+        let southWindDirection = windDirection - Int.pseudoRandom(in: -2...1, changeEvery: 7)*5
+        let northWindSpeed = windSpeed - Int.pseudoRandom(in: -1...3, changeEvery: 6)
+        let southWindSpeed = windSpeed + Int.pseudoRandom(in: -2...4, changeEvery: 7)
+        
+        let northWind = DecorContext.Wind(direction: northWindDirection, speed: northWindSpeed)
+        let southWind = DecorContext.Wind(direction: southWindDirection, speed: southWindSpeed)
         
         // ATIS Letter
         let pgRandomIndex = Self.pseudoRandomInteger(pattern: "M.d.HH", changeInterval: 40)
@@ -234,4 +240,22 @@ struct DecorController {
                                                      LVPSouth: LVPSouth
                                                      ))
     }
+}
+
+extension Int {
+    // Returns a pseudo random integer in range
+    // The integer depends on the date
+    static func pseudoRandom(in range:ClosedRange<Int>, changeEvery minutes:Int) -> Int {
+        let timeString = self.timeFormatter.string(from: Date())
+        let hourRandom = Int(timeString.prefix(2)) ?? 0 // an integer between 0 and 23
+        let minuteRandom = Int(timeString.suffix(from: timeString.index(timeString.startIndex, offsetBy: 2))) ?? 0 // an integer between 0 and 59
+        let random = hourRandom + minuteRandom/minutes // an integer between 0 and 82
+        return range.lowerBound + (range.upperBound - range.lowerBound)*random/82
+    }
+    
+    static private var timeFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HHmm"
+        return dateFormatter
+    }()
 }
