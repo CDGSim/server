@@ -1,6 +1,14 @@
+@media print {
+  #container {
+    transform: rotate(270deg) translate(-360mm, 0);
+    transform-origin: 0 0;
+  }
+}
+
 body {
     font-family: Sans-Serif;
     -webkit-print-color-adjust: exact;
+    margin: 0;
 }
 
 #container {
