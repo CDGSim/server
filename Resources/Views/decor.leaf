@@ -41,7 +41,7 @@
                         QNH: <strong>#(qnh)</strong>
                     </div>
                     <div id="atislb">
-                        ATIS OL:<strong>#(atislb) #(startTime)</strong>
+                        ATIS OL:<strong>#(atisol) #(startTime)</strong>
                         <span class="spacer"></span>
                         ATIS LB:<strong>#(atislb) #(startTime)</strong>
                     </div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
-                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
+                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)#if(northWind.gust > 0): - #(northWind.gust)#endif</div>
                                 <div class="spacer"></div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
-                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)</div>
+                                <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)#if(northWind.gust > 0): - #(northWind.gust)#endif</div>
                                 <div class="spacer"></div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
-                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
+                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)#if(southWind.gust > 0): - #(southWind.gust)#endif</div>
                                 <div class="spacer"></div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
-                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)</div>
+                                <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)#if(southWind.gust > 0): - #(southWind.gust)#endif</div>
                                 <div class="spacer"></div>
                             </div>
                         </div>
