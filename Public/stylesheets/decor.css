@@ -69,6 +69,10 @@ body {
     justify-content:center;
 }
 
+#rightbar > *:nth-child(2) {
+    background-color:limegreen;
+}
+
 #rightbar > *:last-child {
     height:57px;
 }
@@ -95,6 +99,7 @@ body {
 }
 
 #bottombar > *:last-child {
+    background-color:limegreen;
     width:148px
 }
 
@@ -108,32 +113,36 @@ body {
 
 #header > * {
     display: flex;
-    align-items:center;
+    align-items:baseline;
     justify-content:center;
+    padding:6px;
+    font-size:22px;
+    font-weight:bold
 }
 
 #header > * > * {
     margin: 12px;
+    font-size:29px
 }
 
 #confnt {
     float:left;
-    height:64px;
-    width:256px;
+    height:52px;
+    width:180px;
     background-color:#FFFFA4;
 }
 
 #atispg {
     float:left;
-    height:64px;
-    width:500px;
+    height:52px;
+    width:382px;
     background-color:#FFBFBF;
 }
 
 #atislb {
     float:left;
-    height:64px;
-    width:342px;
+    height:52px;
+    width:500px;
     background-color:#80BFFF;
 }
 
@@ -194,26 +203,8 @@ body {
 
 .rwyweather > * {
     background-color:white;
-}
-
-.rwyweather > *:first-child {
-    flex-grow:0;
-    width:65px;
-    background-color:#80FFFF;
-}
-
-.rwyweather > *:last-child {
-    flex-grow:0;
-    width:65px;
-    background-color:#80FFFF;
-}
-
-.runwaycontent > *:first-child {
+    width:140px;
     text-align:left
-}
-
-.runwaycontent > *:last-child {
-    text-align:right
 }
 
 .LVPOFF {
