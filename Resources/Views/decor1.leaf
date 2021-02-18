@@ -1,0 +1,21 @@
+#extend("master"):
+    #export("title"): Générateur écran DECOR #endexport
+    #export("main"):
+            <div id="content">
+            <form method="POST" action="/decor1/">
+                <p><label for="configuration">Configuration :</label>
+                <select name="configuration">
+                    <option value="wl">WL</option>
+                    <option value="wi">WI</option>
+                    <option value="el">EL</option>
+                    <option value="ei">EI</option>
+                </select></p>
+                <label for="weather">Météo :</label><br />
+                <textarea rows="5" cols="20" name="metar">13014KT CAVOK M01/M11 Q1033</textarea><br />
+                <p>Insérer du texte au format METAR.</p>
+                <input type="submit" value="Envoyer">
+            </form>
+            </div>
+            
+#endexport
+#endextend

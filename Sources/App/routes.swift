@@ -4,7 +4,7 @@ import SimlogCore
 // MARK: Log file reading
 
 // Possible errors when trying to read a log file
-private enum LogError: Error {
+fileprivate enum LogError: Error {
     case notFound, couldNotDecode
 }
 
@@ -293,57 +293,6 @@ func registerFrontEndRoutes(_ app: Application) throws {
             return req.view.render("print", context)
         }
     }
-    
-    // MARK: GET /decor/log_path
-    // Renders a view representing a DECOR screen
-    // Generates values from the simulation file
-    app.get("decor", "**") { req -> EventLoopFuture<View> in
-        let path = req.parameters.getCatchall().joined(separator: "/")
-        
-        // Read the log file
-        switch log(atPath: path) {
-        case .failure(let error) :
-            return renderLogErrorView(from: error, req: req)
-        case .success(let log):
-            return DecorController.view(req: req, log: log)
-        }
-        
-    }
-    
-    // MARK: GET /decorgenerator/
-    app.get("decorgenerator") { req -> EventLoopFuture<View> in
-        return req.view.render("decorgenerator")
-    }
-    
-    // MARK: POST /decorgenerator/
-    app.post("decorgenerator") { req -> EventLoopFuture<View> in
-        struct FormContent: Content {
-            var weather: String
-            var configuration: String
-            var date: String
-        }
-        let content = try req.content.decode(FormContent.self)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let date = dateFormatter.date(from: content.date) ?? Date()
-        return DecorController.view(req: req, metar: content.weather, configuration: content.configuration, startDate: date)
-    }
-    
-    // Renders the error view, passing a reason string as the context
-    func renderLogErrorView(from error:LogError, req:Request) -> EventLoopFuture<View> {
-        struct ErrorContext: Encodable {
-            let reason: String
-        }
-        
-        let reason: String
-        switch error {
-        case .notFound:
-            reason = "Log introuvable"
-        case .couldNotDecode:
-            reason = "Impossible de lire le log"
-        }
-        return req.view.render("error", reason)
-    }
 }
 
 
@@ -425,3 +374,84 @@ func registerAPIRoutes(_ app: Application) throws {
 
 // Make Log conform to Content protocol so that when can return a Log as a response
 extension Log: Content { }
+
+private struct DecorData {
+    static var decor1: String = "??"
+    static var configuration1: String = "??"
+}
+
+func registerDecorRoutes(_ app: Application) throws {
+    // MARK: GET /decor1/
+    app.get("decor1") { req -> EventLoopFuture<View> in
+        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: Date())
+    }
+    
+    // MARK: GET /decor1/setup
+    app.get("decor1", "setup") { req -> EventLoopFuture<View> in
+        return req.view.render("decor1")
+    }
+    
+    // MARK: POST /decor1/
+    app.post("decor1") { req -> EventLoopFuture<View> in
+        struct Post: Content {
+            var metar: String
+            var configuration: String
+        }
+        let content = try req.content.decode(Post.self)
+        DecorData.decor1 = content.metar
+        DecorData.configuration1 = content.configuration
+        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: Date())
+    }
+    
+    // MARK: GET /decor/log_path
+    // Renders a view representing a DECOR screen
+    // Generates values from the simulation file
+    app.get("decor", "**") { req -> EventLoopFuture<View> in
+        let path = req.parameters.getCatchall().joined(separator: "/")
+        
+        // Read the log file
+        switch log(atPath: path) {
+        case .failure(let error) :
+            return renderLogErrorView(from: error, req: req)
+        case .success(let log):
+            return DecorController.view(req: req, log: log)
+        }
+        
+    }
+    
+    // MARK: GET /decorgenerator/
+    app.get("decorgenerator") { req -> EventLoopFuture<View> in
+        return req.view.render("decorgenerator")
+    }
+    
+    // MARK: POST /decorgenerator/
+    app.post("decorgenerator") { req -> EventLoopFuture<View> in
+        struct FormContent: Content {
+            var weather: String
+            var configuration: String
+            var date: String
+        }
+        let content = try req.content.decode(FormContent.self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let date = dateFormatter.date(from: content.date) ?? Date()
+        return DecorController.view(req: req, metar: content.weather, configuration: content.configuration, startDate: date)
+    }
+}
+
+
+// Renders the error view, passing a reason string as the context
+fileprivate func renderLogErrorView(from error:LogError, req:Request) -> EventLoopFuture<View> {
+    struct ErrorContext: Encodable {
+        let reason: String
+    }
+    
+    let reason: String
+    switch error {
+    case .notFound:
+        reason = "Log introuvable"
+    case .couldNotDecode:
+        reason = "Impossible de lire le log"
+    }
+    return req.view.render("error", reason)
+}

@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" media="all" href="/stylesheets/decor.css" />
+        <meta http-equiv="refresh" content="20" >
     </head>
     <body>
         <div id="container">

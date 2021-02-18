@@ -16,6 +16,7 @@ public func configure(_ app: Application) throws {
     // Register routes
     try registerFrontEndRoutes(app)
     try registerAPIRoutes(app)
+    try registerDecorRoutes(app)
 }
 
 
