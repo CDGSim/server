@@ -59,7 +59,7 @@ h3 {
 table {
     border-collapse: collapse;
     text-align: left;
-    width:90%;
+    width:100%;
     border: 1px solid black;
     margin:14px auto
 }
@@ -73,6 +73,10 @@ table thead tr th {
 
 table:not(.assignments) thead tr th {
   background-color: #aaa;
+}
+
+.assignments {
+    width:auto;
 }
 
 table:not(.properties) tr:nth-child(even) {
