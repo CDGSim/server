@@ -82,9 +82,12 @@ table:not(.simulation-index) tr td {
 
 .simulation-index tr td {
     border-top: .5px solid #e6e6e6;
-    color: #6f6;
     padding: .25em 1em .25em 1.5em;
     vertical-align:top
+}
+
+.simulation-index tr td:first-child {
+    width:75%
 }
 
 table p {

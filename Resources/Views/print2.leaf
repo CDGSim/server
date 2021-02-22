@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>#(log.properties.name)</title>
+        <link rel="stylesheet" media="all" href="/stylesheets/print.css" />
+    </head>
+
+    <body>
+        <div class="unit">
+                
+        
+            <div class="page-top">
+                <div><h4>ELECTRA</h4></div>
+                <div><h4>#(log.properties.name)</h4></div>
+                <div>MAJ : #date(log.properties.update_date, "dd/MM/YYYY")</div>
+            </div>
+            
+            <div class="content">
+            
+            <table class="properties">
+            <tr>
+            <td>NOM</td>
+            <td>CONFIGURATION</td>
+            <td>CHARGE</td>
+            <td>DUREE</td>
+            </tr>
+            <tr>
+            <td style="color:red">#(log.properties.name)</td>
+            <td>#(log.properties.configuration)</td>
+            <td>#(log.properties.traffic_density)</td>
+            <td>#(log.properties.duration) min</td>
+            </tr>
+            </table>
+            <table class="properties properties2">
+            <tr>
+            <td>QNH</td>
+            <td>METEO</td>
+            </tr>
+            <tr>
+            <td>#(log.properties.pressure)</td>
+            <td>#(log.properties.weather)</td>
+            </tr>
+            </table>
+            
+             #if(log.properties.assignments):
+                <table class="assignments">
+                    <thead>
+                        <tr>
+                            #for(assignment in assignments):
+                            <th><strong>#(assignment.positionsDescription)</strong></th>
+                            #endfor
+                        </tr>
+                    </thead>
+                    <tr>
+                        #for(assignment in log.properties.assignments):
+                        <td>#(assignment.controller)</td>
+                        #endfor
+                    </tr>
+                </table>
+            #endif
+                    
+                    <div>
+                        
+                        <h3>OBJECTIFS :</h3>
+                        <p>#markdown(log.properties.objectives)</p>
+                        <h3>DEROULEMENT :</h3>
+                        <p>#markdown(log.properties.description)</p>
+                    </div>
+                                    
+                #if(log.instructor_log.events):
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HEURE</th>
+                            <th>INDICATIF</th>
+                            <th>ÉVÈNEMENT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(event in log.instructor_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td style="text-align:left">#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                #endif
+                        
+        </div>
+        </div>
+        <div class="unit">
+        
+            <div class="page-top">
+                <div><h4>ELECTRA</h4></div>
+                <div><h4>#(log.properties.name)</h4></div>
+                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+            </div>
+            <div class="content">
+                
+                <div id="setup">SITUATION INITIALE</div>
+                #if(log.instructor_log.setup_info):<p>#markdown(log.instructor_log.setup_info)</p>#endif
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Indicatif</th>
+                            <th>Consignes</th>
+                        </tr>
+                    </thead>
+                    #for(pilot_log in log.pilot_logs):
+                        #if(pilot_log.role != "Adjacent"):
+                        #if(pilot_log.role != "Adjacent Nord"):
+                        #if(pilot_log.role != "Adjacent Sud"):
+                        #if(pilot_log.setup):
+                        <tbody>
+                            #for(setup in pilot_log.setup):
+                            <tr>
+                                #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
+                                <td>#(setup.callsign)</td>
+                                <td>#markdown(setup.description)</td>
+                            </tr>
+                            #endfor
+                        </tbody>
+                        #endif
+                        #endif
+                        #endif
+                        #endif
+                    #endfor
+                </table>
+                
+            </div>
+            
+        </div>
+                
+        #for(pilot_log in log.pilot_logs):
+        <div class="unit">
+        
+            <div class="page-top">
+                <div><h4>ELECTRA</h4></div>
+                <div><h4>#(log.properties.name)</h4></div>
+                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+            </div>
+            
+            <div class="content">
+                        
+            <table class="properties">
+            <tr>
+            <td>NOM</td>
+            <td>CONFIGURATION</td>
+            <td>CHARGE</td>
+            <td>DUREE</td>
+            </tr>
+            <tr>
+            <td style="color:red">#(log.properties.name)</td>
+            <td>#(log.properties.configuration)</td>
+            <td>#(log.properties.traffic_density)</td>
+            <td>#(log.properties.duration) min</td>
+            </tr>
+            </table>
+            <table class="properties properties2">
+            <tr>
+            <td>QNH</td>
+            <td>METEO</td>
+            </tr>
+            <tr>
+            <td>#(log.properties.pressure)</td>
+            <td>#(log.properties.weather)</td>
+            </tr>
+            </table>
+                
+                <div class="role">
+                    <div>
+                        <h3>Rôle / Fréquence</h3>
+                    </div>
+                    <div class="spacer">
+                    </div>
+                    <div class="role_name">
+                         #(pilot_log.role)
+                    </div>
+                    <div class="spacer">
+                    </div>
+                    <div class="role_freq">
+                         #if(pilot_log.frequency): #(pilot_log.frequency)#else: - #endif
+                    </div>
+                </div>
+                
+                <h2>Scénario / Déroulement :</h2>
+                <p>#markdown(log.properties.description)</p>
+            
+                #if(pilot_log.directives):
+                <h2>Consignes</h2>
+                <p>#markdown(pilot_log.directives)</p>
+                #endif
+                                            
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HEURE</th>
+                            <th>INDICATIF</th>
+                            <th>SITUATION INITIALE / ÉVÈNEMENTS</th>
+                        </tr>
+                    </thead>
+                    #if(pilot_log.setup):
+                    <tbody>
+                        #for(setup in pilot_log.setup):
+                        <tr>
+                            #if(index == 0):<td rowspan="#count(pilot_log.setup)">Avant dégel</td>#endif
+                            <td>#(setup.callsign)</td>
+                            <td>#markdown(setup.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                    #endif
+                    #if(pilot_log.events):
+                    <tbody>
+                        #for(event in pilot_log.events):
+                        <tr>
+                            <td>#(event.time)</td>
+                            <td>#(event.callsign)</td>
+                            <td style="text-align:left">#markdown(event.description)</td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                    #endif
+                </table>
+                
+            </div>
+            
+        </div>
+        #endfor
+    </body>
+</html>

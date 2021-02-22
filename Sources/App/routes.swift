@@ -255,6 +255,64 @@ func registerFrontEndRoutes(_ app: Application) throws {
     // MARK: GET /print/log_path
     // Renders a view to print the complete log all at once
     // Can be used to generate PDF via a web browser
+    app.get("print2", "**") { req -> EventLoopFuture<View> in
+        struct Context: Encodable {
+            // Type to replace Log.Properties.ControlPositionAssignment
+            // This type has a positionsDescription string instead of a set of positions
+            struct ControlPositionAssignment: Encodable {
+                let controller: Log.Properties.Controller
+                let positionsDescription: String
+            }
+            let path:String
+            let log: Log
+            let assignments: [ControlPositionAssignment]?
+            
+            init(path:String, log:Log) {
+                self.path = path
+                
+                // Edit the log to sort events for the pilots by date
+                var editedLog = log
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                editedLog.pilot_logs = editedLog.pilot_logs.map({ pilotLog in
+                    var log = pilotLog
+                    log.events = pilotLog.events?.sorted(by: { (eventA, eventB) -> Bool in
+                        guard let dateA = dateFormatter.date(from: eventA.time), let dateB = dateFormatter.date(from: eventB.time) else {
+                            return true
+                        }
+                        return dateA < dateB
+                    })
+                    return log
+                })
+                self.log = editedLog
+                
+                // Build up assignments
+                // We need to make the positionDescriptions string from the set of positions
+                self.assignments = editedLog.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
+                    let positionDescriptions = Array(assignment.positions).map { controlPosition in
+                        controlPosition.rawValue
+                    }.sorted().joined(separator: "<br />")
+                    return .init(controller: .instructor, positionsDescription: positionDescriptions)
+                }
+            }
+        }
+        
+        let path = req.parameters.getCatchall().joined(separator: "/")
+        
+        // Read the log file
+        switch log(atPath: path) {
+        case .failure(let error) :
+            return renderLogErrorView(from: error, req: req)
+        case .success(let log):
+            let context = Context(path: path, log: log)
+            return req.view.render("print2", context)
+        }
+    }
+    
+    // MARK: GET /print/log_path
+    // Renders a view to print the complete log all at once
+    // Can be used to generate PDF via a web browser
     app.get("print", "**") { req -> EventLoopFuture<View> in
         struct Context: Encodable {
             let path:String

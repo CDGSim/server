@@ -11,7 +11,7 @@
                     #for(simulation in course.simulations):
                     <tr>
                         <td><a href="/instructor/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption">#(simulation.group)</span></td>
-                        <td><a href="/print/#(simulation.path)">Version imprimable</a></td>
+                        <td>Version imprimable<br /><a href="/print/#(simulation.path)">Alternative</a> - <a href="/print2/#(simulation.path)">Classique</a></td>
                     </tr>
                     #endfor
                 #endfor

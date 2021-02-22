@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+    font-family:Trebuchet MS,sans-serif ;
+    font-size:14px;
+    line-height:1.5;
+    height:100%;
+    -webkit-print-color-adjust: exact;
+}
+
+@media print {
+    html {
+       font-size:12px;
+    }
+    table {
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color:#1d1d1f;
+}
+
+#content {
+    margin: 20px;
+    padding-bottom: 120px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+}
+
+p {
+    color:black;
+}
+
+a {
+    color:#06c;
+    text-decoration:none
+}
+
+a:hover {
+    text-decoration:underline
+}
+
+h2 {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-weight: 700;
+    font-size:14px;
+    text-decoration: underline
+}
+
+h3 {
+    text-decoration: underline
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    width:90%;
+    border: 1px solid black;
+    margin:14px auto
+}
+
+table thead tr th {
+    border: 1px solid black;
+  font-weight:600;
+  padding: .1em 1em .1em 1em;
+  text-align:center;
+}
+
+table:not(.assignments) thead tr th {
+  background-color: #aaa;
+}
+
+table:not(.properties) tr:nth-child(even) {
+    background-color: #D9D9D9;
+}
+
+table tr td {
+    border: 1px solid black;
+    font-weight:bold;
+    padding: .1em 1em .1em 1em;
+    vertical-align:top;
+    text-align:center;
+}
+
+table p {
+    margin:0px
+}
+
+table em {
+    color: #00B0F0;
+}
+
+.properties {
+    table-layout: fixed;
+    width:600px;
+    margin:2em auto
+}
+
+.properties tr:nth-child(odd) {
+    background-color: #FFC000;
+}
+
+.properties tr:nth-child(even)>td {
+    padding:10px
+}
+
+.properties td {
+    width:25%
+}
+
+.properties2 tr td:first-child {
+    width:25%
+}
+
+.properties2 tr td:last-child {
+    width:75%
+}
+
+@media print {
+    .unit {
+        page-break-after: always;
+    }
+}
+
+.page-top {
+    display: flex;
+    justify-content:space-between;
+    padding:.3em
+}
+
+.page-top h4 {
+    margin:0px
+}
+
+.content {
+    margin:0px 2em 0px 2em
+}
+
+/* New below */
+
+.role {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 200px auto 200px auto 170px ;
+    align-items: baseline;
+}
+
+.role_name {
+    background:#FFC000;
+    text-align:center;
+    padding:6px;
+    font-size:16pt;
+    font-weight:bold;
+    border:1px solid black
+}
+
+.role_freq {
+    text-align:center;
+    padding:11px;
+    font-size:12pt;
+    font-weight:bold;
+    border:1px solid black
+}
+
+#setup {
+    background:#FFC000;
+    text-align:center;
+    padding:4px;
+    width:300px;
+    margin:auto;
+    margin-top:1em;
+    font-size:20pt;
+    font-weight:bold;
+    border:1px solid black
+}
