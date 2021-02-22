@@ -1,0 +1,304 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "YUTBA",
+        "description" : "Décollage du Bourget avec problème de report d’altitude. Paris refuse le vol. Décollage de la PO pour interception possible (décollage de Saint Dizier en attente côté PER)",
+        "time" : "08:50"
+      }
+    ],
+    "setup_info" : "Au DEP : \n- EJU69TL est déjà coordonné avec Orly : FL80 sur la standard\n\nA l’INI Nord :\n- RYR2RX est déjà coordonné avec Beauvais : FL70 sur MTD\n\nConfigurer AMAN en Est Inverse.\n\nCertains avions sont re-routés en début de simu (AEE61CG et ABR1256). Le reste de la simu est en anti-crossing mais le COOR INI peut parfaitement rerouter."
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "En cours de simu, un décollage du Bourget a une panne de mode C.\nLa PO peut éventuellement décoller pour intercepter l’appareil. Le décollage du MAGMA01 doit être bloqué en début de simu pour éventuellement le faire partir plus tard. Dans le cas, il faudra le guider vers l’appareil intercepté.",
+      "events" : [
+        {
+          "callsign" : "YUTBA",
+          "description" : "Si le départ appelle Paris : refuser le vol. Ce vol a un problème d’altitcodeur, et Paris ne peut pas l’accepter.",
+          "time" : "08:55"
+        },
+        {
+          "callsign" : "RYR53JX",
+          "description" : "Beauvais appelle le COOR INI N : *Départ du RYR53JX sur LGL dans 3 min, pour activation et clairance.*",
+          "time" : "08:55"
+        },
+        {
+          "callsign" : "RYR901",
+          "description" : "Beauvais appelle le COOR DEP N : *Départ du RYR901 sur BUBLI dans 3 min, pour activation et clairance.*",
+          "time" : "09:09"
+        },
+        {
+          "callsign" : "RYR8PV",
+          "description" : "Beauvais appelle le COOR DEP N : *Départ du RYR8PV sur ERIXU dans 3 min, pour activation et clairance.*",
+          "time" : "09:17"
+        },
+        {
+          "callsign" : "RYR349",
+          "description" : "Beauvais appelle le COOR INI N : *Départ du RYR349 sur LGL dans 3 min, pour activation et clairance.*",
+          "time" : "09:25"
+        },
+        {
+          "callsign" : "RYR3094",
+          "description" : "Beauvais appelle le COOR DEP N : *Départ du RYR3094 sur LANVI dans 3 min, pour activation et clairance.*",
+          "time" : "09:40"
+        },
+        {
+          "callsign" : "RYR217H",
+          "description" : "Lorsque CDG appelle Beauvais pour coordonner le RYR271H, demander FL70 sur MTD.",
+          "time" : "09:55"
+        },
+        {
+          "callsign" : "OEIMI",
+          "description" : "Le Bourget TWR appelle le COOR DEP N : *Départ du OEIMI, est-ce que c’est bon pour toi ?*",
+          "time" : "09:00"
+        }
+      ],
+      "role" : "Adjacent Nord",
+      "setup" : [
+        {
+          "callsign" : "RYR2RX",
+          "description" : "Déjà coordonné avec Beauvais : FL70 sur MTD"
+        },
+        {
+          "callsign" : "MAGMA01",
+          "description" : "Stopper le décollage de LFSI pour le mettre en stand-by"
+        }
+      ]
+    },
+    {
+      "events" : [
+        {
+          "callsign" : "SVW25DA",
+          "description" : "Le Bourget TWR appelle le COOR DEP S : *Départ du SVW25DA, est-ce que c’est bon pour toi ?*",
+          "time" : "08:52"
+        },
+        {
+          "callsign" : "VJT492",
+          "description" : "Le Bourget TWR appelle le COOR DEP S : *Départ du VJT492, est-ce que c’est bon pour toi ?*",
+          "time" : "09:08"
+        },
+        {
+          "callsign" : "KAY51",
+          "description" : "Le Bourget TWR appelle le COOR DEP S : *Départ du KAY51, est-ce que c’est bon pour toi ?*",
+          "time" : "09:18"
+        },
+        {
+          "callsign" : "FHRSC",
+          "description" : "Le Bourget TWR appelle le COOR DEP S : *Départ du FHRSC, est-ce que c’est bon pour toi ?*",
+          "time" : "09:38"
+        },
+        {
+          "callsign" : "FHALG",
+          "description" : "Le Bourget TWR appelle le COOR DEP S : *Départ du FHALG, suivi du VJT582, est-ce que c’est bon pour toi ?*",
+          "time" : "09:47"
+        }
+      ],
+      "role" : "Adjacent Sud",
+      "setup" : [
+        {
+          "callsign" : "EJU69TL",
+          "description" : "Déjà coordonné avec Orly : FL80 standard"
+        }
+      ]
+    },
+    {
+      "directives" : "Le vent est arrière à l’interception, puis a une composante de face en courte finale.",
+      "frequency" : "118.150 - 136.275",
+      "role" : "ITM Sud + BA",
+      "setup" : [
+        {
+          "callsign" : "XLF035",
+          "description" : "ILS 08R"
+        },
+        {
+          "callsign" : "AFR083",
+          "description" : "5000ft - ILS 08R - 220 kts"
+        },
+        {
+          "callsign" : "AFR459",
+          "description" : "5000ft - ILS 08R - 220 kts"
+        }
+      ]
+    },
+    {
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "AFR53R",
+          "description" : "FL110 - 250 kts"
+        },
+        {
+          "callsign" : "AFR29YK",
+          "description" : "FL150 - 280kts"
+        },
+        {
+          "callsign" : "AEE61CG",
+          "description" : "FL110 - 250 kts"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu :\n- récupérer EJU69TL auprès du PER INI Nord\n- **stopper AFR194 FL100**\n- autoriser NJE9CF au FL120",
+      "events" : [
+        {
+          "callsign" : "YUTBA",
+          "description" : "Décollage du Bourget avec problème de report d’altitude : bloquer le départ à 1500 ft mais s’annoncer stable à 3000 ft au premier contact.\nLe contrôleur est susceptible de faire couper le mode C.",
+          "time" : "08:50"
+        },
+        {
+          "callsign" : "YUTBA",
+          "description" : "Lorsque le controle vous informe que Paris ne peut accepter votre vol, annoncer que vous souhaitez retourner au Bourget.",
+          "time" : "08:55"
+        }
+      ],
+      "frequency" : "124.355 - 133.380",
+      "role" : "DEP Nord + Sud",
+      "setup" : [
+        {
+          "callsign" : "DAL35",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "AFR636",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "AFR066",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "DLH2J",
+          "description" : "Avec PARIS"
+        },
+        {
+          "callsign" : "AFR1752",
+          "description" : "Avec PARIS"
+        },
+        {
+          "callsign" : "AFR194",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "NJE9CF",
+          "description" : "FL120"
+        },
+        {
+          "callsign" : "KLM38P",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "BAW307",
+          "description" : "n'a pas encore appelé"
+        },
+        {
+          "callsign" : "EJU69TL",
+          "description" : "FL110"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu :\n- transférer EJU69TL au PER DEP Nord + Sud\n- descendre AFR355 au FL 60\n- verrouiller le niveau de AAL44\n- descendre AFR138E et AFR1423 au FL110",
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR138E",
+          "description" : "FL110 - 280kts"
+        },
+        {
+          "callsign" : "ABR1256",
+          "description" : "FL70 - 250kts"
+        },
+        {
+          "callsign" : "AFR355",
+          "description" : "FL100 - 250kts"
+        },
+        {
+          "callsign" : "AAL44",
+          "description" : "FL110 - 250kts"
+        },
+        {
+          "callsign" : "AFR1423",
+          "description" : "FL110 - 280kts"
+        }
+      ]
+    },
+    {
+      "directives" : "Le vent est arrière à l’interception, puis a une composante de face en courte finale.\n\nEn début de simu, réduire NAX1494 à 180 kts pour éviter une trop forte compression.\n\n",
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR38BY",
+          "description" : "4000ft - ILS 09L"
+        },
+        {
+          "callsign" : "NAX1494",
+          "description" : "4000ft - cap 180 - 220 kts"
+        },
+        {
+          "callsign" : "UAL57",
+          "description" : "4000ft - 250 kts"
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR DEP N",
+          "COOR DEP S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "DEP S",
+          "DEP N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM S",
+          "ITM BA"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI N",
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR INI N",
+          "SEQ",
+          "COOR INI S"
+        ]
+      }
+    ],
+    "configuration" : "EI",
+    "description" : "Vent arrière en finale avec vent de face en courte.\nDépart du Bourget avec mode C erroné, possible intervention de la PO.",
+    "duration" : 60,
+    "name" : "FSAU_APP_2123_EI",
+    "objectives" : "- Gestion en Est inverse\n- Vent arrière en finale (15-20 kts), compression en courte (composante de face 10 kt sous 1500 ft)\n- Gestion information mode C erroné, doute sur l’altitude d’un vol\n- Retour terrain LB\n- Intervention de la PO (optionnel) ",
+    "pressure" : 1012,
+    "start_date" : "2021-02-22T06:45:02Z",
+    "traffic_density" : "Modérée à forte",
+    "update_date" : "2021-02-22T12:50:53Z",
+    "weather" : "15015KT BKN008 10\/02 Q1012"
+  }
+}

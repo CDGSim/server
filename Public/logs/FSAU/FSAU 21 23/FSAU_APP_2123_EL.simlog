@@ -1,0 +1,210 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "FGN9370",
+        "description" : "Mission prioritaire gendarmerie hélico (France Gendarme 9370, transpondeur 7420), intervention sur l’A1 au nord de CDG à moins de 3Nm des axes. Annoncer en tant que CA que le doublet nord va fermer.",
+        "time" : "08:55"
+      },
+      {
+        "callsign" : "???",
+        "description" : "Un appareil dans l’attente s’annonce mini fuel. Après annonce du délai, demande de déroutement.",
+        "time" : "09:10"
+      },
+      {
+        "callsign" : "",
+        "description" : "Fin de la mission de la gendarmerie. Reprise de l’exploitation sur les deux doublets.",
+        "time" : "09:20"
+      },
+      {
+        "callsign" : "",
+        "description" : "Déviation d’un avion dans la NTZ avec une approche parallèle.",
+        "time" : "09:30"
+      }
+    ],
+    "setup_info" : "Configurer AMAN en Est Lié.\n\nCertains avions sont re-routés en début de simu (VLG7VT et LBT510 en 09L)."
+  },
+  "pilot_logs" : [
+    {
+      "events" : [
+        {
+          "callsign" : "EJU69TL",
+          "description" : "Quand l’arrivée appelle Orly pour coordonner EJU69TL : *FL 80, route standard sur 123.875*",
+          "time" : "08:55"
+        },
+        {
+          "callsign" : "RYR53JX",
+          "description" : "Beauvais appelle le COOR INI Nord : *J’ai le décollage du RYR53JX, pour activation et clairance*.",
+          "time" : "09:03"
+        },
+        {
+          "callsign" : "FGN9370",
+          "description" : "Guider FGN9370 vers la destination de sa mission prioritaire : nord des axes 09 de CDG à 1000ft. Le faire passer verticale du seuil 07 au Bourget, puis sous les finales 08R à 1000 ft QNH, et maintenir position à moins de 3Nm au nord des axes 09L.",
+          "time" : "08:52"
+        },
+        {
+          "callsign" : "FGN9370",
+          "description" : "Fin de l’intervention. Guider l’hélicoptère vers le sud ouest sans géner le trafic.",
+          "time" : "09:20"
+        }
+      ],
+      "role" : "Adjacent",
+      "setup" : [
+
+      ]
+    },
+    {
+      "directives" : "En début de simu, modifier la clairance de AFR53FR comme iniqué.\n\nL’ILS 08L est indisponible, collationner des approches RNP 08R.",
+      "events" : [
+
+      ],
+      "frequency" : "118.150 - 136.275",
+      "role" : "ITM Sud + BA",
+      "setup" : [
+        {
+          "callsign" : "BAW4DC",
+          "description" : "5000 ft - 250 kts"
+        },
+        {
+          "callsign" : "AFR53FR",
+          "description" : "FL80 - 250 kts"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu, descendre VLG7VT au FL60.\n\nL’ILS 08R est indisponible, prévoir des approches RNP 08R.",
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "VLG7VT",
+          "description" : "FL60 - 250 kts"
+        },
+        {
+          "callsign" : "AFR459",
+          "description" : "FL110 - 250 kts"
+        },
+        {
+          "callsign" : "EJU98EB",
+          "description" : "FL150 - 280 kts"
+        },
+        {
+          "callsign" : "AFR29YK",
+          "description" : "FL150 - 280 kts"
+        },
+        {
+          "callsign" : "LBT510",
+          "description" : "FL150 - 280 kts"
+        },
+        {
+          "callsign" : "AFR21BR",
+          "description" : "FL150 - 300 kts"
+        }
+      ]
+    },
+    {
+      "directives" : "En début de simu, descendre AAL754 au FL60. Descendre VLG582G, AFR138E, et ABR1256 au FL110.",
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "AAL754",
+          "description" : "FL60 - 250 kts"
+        },
+        {
+          "callsign" : "AFR083",
+          "description" : "FL80 - 250 kts"
+        },
+        {
+          "callsign" : "VLG582G",
+          "description" : "FL110 - 280 kts"
+        },
+        {
+          "callsign" : "AFR138E",
+          "description" : "FL110 - 280 kts"
+        },
+        {
+          "callsign" : "ABR1256",
+          "description" : "FL110 - 300 kts"
+        }
+      ]
+    },
+    {
+      "events" : [
+        {
+          "callsign" : "SDM6635",
+          "description" : "Simuler une déviation entre les deux doublets après l’interception du glide. Choisir un appareil qui soit vraiment en parallèle avec une finale 08R. Ca peut être SDM6635 ou un autre.",
+          "time" : "09:25"
+        }
+      ],
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "NAX1494",
+          "description" : "Avec la tour"
+        },
+        {
+          "callsign" : "AFR1423",
+          "description" : "4000ft - ILS 09L"
+        },
+        {
+          "callsign" : "AFR355",
+          "description" : "4000 ft - ILS 09L - 220 kts"
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM S",
+          "ITM BA"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "SEQ",
+          "COOR INI N"
+        ]
+      }
+    ],
+    "configuration" : "EL",
+    "description" : "- Mission gendarmerie impactant un doublet\n- ILS 08R indisponible : RNP 08R en vigueur",
+    "duration" : 60,
+    "name" : "FSAU_APP_2123_EL",
+    "objectives" : "- Gestion de fermeture imprévue d’un doublet\n- Gestion de l’attente à l’INI et éventuellement à l’ITM (attente sans aire de protection, 360°)\n- Minimum fuel : annonce de délai\n- Régulation par vent calme avec mauvaise réduction en finale\n- Gestion d’un vol prioritaire VFR hors conditions VMC (séparation radar)\n- Déviation NTZ",
+    "pressure" : 1035,
+    "start_date" : "2021-02-22T07:50:02Z",
+    "traffic_density" : "Modérée à forte",
+    "update_date" : "2021-02-22T13:27:51Z",
+    "weather" : "07002KT BKN011 10\/02 Q1035"
+  }
+}

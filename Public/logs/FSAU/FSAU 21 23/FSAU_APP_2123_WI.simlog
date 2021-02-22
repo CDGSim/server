@@ -1,0 +1,155 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "",
+        "description" : "Report de drone au Bourget, evitement stratégique 30 min puis info 20 min",
+        "time" : "14:35"
+      },
+      {
+        "callsign" : "",
+        "description" : "Gestion des RMG 27B, attente pour LFPB",
+        "time" : "14:40"
+      },
+      {
+        "callsign" : "KDJ008",
+        "description" : "Arrivée B772 pour LFPB.",
+        "time" : "14:50"
+      },
+      {
+        "callsign" : "",
+        "description" : "Annonce de la réouverture du Bourget dans 10 min.",
+        "time" : "14:55"
+      },
+      {
+        "callsign" : "",
+        "description" : "Quelques évitements en 26R : quelques CB en bout de VPE26R.",
+        "time" : "15:00"
+      },
+      {
+        "callsign" : "",
+        "description" : "Déviation dans la NOZ 26R.",
+        "time" : "15:10"
+      },
+      {
+        "callsign" : "",
+        "description" : "RMG cause cisaillement. Pas de virage possible, montée vers FL90.",
+        "time" : "15:15"
+      }
+    ]
+  },
+  "pilot_logs" : [
+    {
+      "events" : [
+
+      ],
+      "role" : "Adjacent Nord",
+      "setup" : [
+
+      ]
+    },
+    {
+      "events" : [
+
+      ],
+      "role" : "Adjacent Sud",
+      "setup" : [
+
+      ]
+    },
+    {
+      "frequency" : "118.150 - 136.275",
+      "role" : "ITM Sud + BA",
+      "setup" : [
+
+      ]
+    },
+    {
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+
+      ]
+    },
+    {
+      "events" : [
+
+      ],
+      "frequency" : "124.355 - 133.380",
+      "role" : "DEP Nord + Sud",
+      "setup" : [
+
+      ]
+    },
+    {
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+
+      ]
+    },
+    {
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR DEP S",
+          "COOR DEP N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "DEP N",
+          "DEP S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM BA",
+          "ITM S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI N",
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "SEQ",
+          "COOR INI N",
+          "COOR INI S"
+        ]
+      }
+    ],
+    "configuration" : "WI",
+    "description" : "Temps orageux.\nDrone reporté au Bourget : 30 min de fermeture.",
+    "duration" : 60,
+    "name" : "FSAU_APP_2123_WI",
+    "objectives" : "- Report de drone puis confirmation au Bourget\n- Gestion attente (LB fermé 30 min)\n- Déviation dans la NOZ\n- Remise des gaz cause wind shear\n- Evitements au DEP (CB en bout de VPE)",
+    "pressure" : 1012,
+    "start_date" : "2019-08-12T12:30:02Z",
+    "traffic_density" : "Modérée à forte",
+    "update_date" : "2021-02-22T13:43:04Z",
+    "weather" : "240015KT SCT015CB TS 32\/12 Q986"
+  }
+}
