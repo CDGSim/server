@@ -549,8 +549,8 @@ struct SimulationProperties: Encodable {
     let configuration: String
     let start_date:Date
     let duration:Int
-    let weather:String
     let traffic_density_description: String
+    let weather:String
     let qnh: Int
     
     init(from properties:Log.Properties) {
@@ -560,7 +560,6 @@ struct SimulationProperties: Encodable {
         configuration = properties.configuration
         start_date = properties.startDate
         duration = properties.duration
-        weather = properties.weather
         
         switch properties.trafficDensity {
             case 1: traffic_density_description = "Faible"
@@ -572,5 +571,12 @@ struct SimulationProperties: Encodable {
         
         let weather = Weather(from: properties.weather)
         qnh = weather.qnh
+        let windDirection:String
+        if weather.windDirection >= 100 {
+            windDirection = "\(weather.windDirection)"
+        } else {
+            windDirection = "0\(weather.windDirection)"
+        }
+        self.weather = "\(weather.readable) - \(windDirection)° \(weather.windSpeed) KT"
     }
 }
