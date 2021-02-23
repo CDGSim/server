@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>#(log.properties.name)</title>
+        <title>#(properties.name)</title>
         <link rel="stylesheet" media="all" href="/stylesheets/main.css" />
     </head>
 
@@ -12,8 +12,8 @@
         
             <div class="page-top">
                 <div><h4>ELECTRA</h4></div>
-                <div><h4>#(log.properties.name)</h4></div>
-                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+                <div><h4>#(properties.name)</h4></div>
+                <div>Version du #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
             
             <div class="content">
@@ -23,15 +23,15 @@
                 </div>
                                     
                     <div>
-                        <h2>#(log.properties.name)</h2>
+                        <h2>#(properties.name)</h2>
                         #extend("simulationProperties")
                     </div>
                     <div>
                         
                         <h3>Objectifs</h3>
-                        <p>#markdown(log.properties.objectives)</p>
+                        <p>#markdown(properties.objectives)</p>
                         <h3>Description</h3>
-                        <p>#markdown(log.properties.description)</p>
+                        <p>#markdown(properties.description)</p>
                     </div>
                                     
                 #if(log.instructor_log.events):
@@ -92,8 +92,8 @@
         
             <div class="page-top">
                 <div><h4>ELECTRA</h4></div>
-                <div><h4>#(log.properties.name)</h4></div>
-                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+                <div><h4>#(properties.name)</h4></div>
+                <div>Version du #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
             
             <div class="content">
@@ -105,8 +105,8 @@
                 
                 <div class="header">
                     <div>
-                        <h3>#(log.properties.name)</h3>
-                        <p>#markdown(log.properties.description)</p>
+                        <h3>#(properties.name)</h3>
+                        <p>#markdown(properties.description)</p>
                     </div>
                     <div>
                         #extend("simulationProperties")

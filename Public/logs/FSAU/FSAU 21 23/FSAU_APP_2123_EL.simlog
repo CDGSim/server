@@ -210,7 +210,7 @@
     "objectives" : "- Gestion de fermeture imprévue d’un doublet\n- Gestion de l’attente à l’INI et éventuellement à l’ITM (attente sans aire de protection, 360°)\n- Minimum fuel : annonce de délai\n- Régulation par vent calme avec mauvaise réduction en finale\n- Gestion d’un vol prioritaire VFR hors conditions VMC (séparation radar)\n- Déviation NTZ",
     "pressure" : 1035,
     "start_date" : "2021-02-22T07:50:02Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-23T12:05:03Z",
     "weather" : "07002KT BKN011 10\/02 Q1035"
   }

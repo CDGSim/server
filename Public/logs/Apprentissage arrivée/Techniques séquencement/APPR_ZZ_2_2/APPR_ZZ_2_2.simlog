@@ -169,7 +169,7 @@
     "objectives" : "Gestion d'un trafic fort avec croisements.",
     "pressure" : 998,
     "start_date" : "2021-01-14T14:30:00Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-08T14:01:03Z",
     "weather" : "15014KT CAVOK 02/M06"
   }

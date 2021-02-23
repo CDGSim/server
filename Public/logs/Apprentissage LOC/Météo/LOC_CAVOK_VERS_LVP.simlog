@@ -117,7 +117,7 @@
     "objectives" : "",
     "pressure" : 1019,
     "start_date" : "2021-02-08T07:08:08Z",
-    "traffic_density" : "Modérée",
+    "traffic_density" : 2,
     "update_date" : "2021-02-08T17:26:56Z",
     "weather" : "CAVOK vers LVP"
   }

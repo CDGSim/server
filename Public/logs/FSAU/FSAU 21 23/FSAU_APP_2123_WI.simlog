@@ -330,7 +330,7 @@
     "objectives" : "- Gestion présence drone au Bourget (évitement stratégique 30 min puis info 20 min)\n- Gestion attentes (LB fermé 30 min)\n- Déviation dans la NOZ\n- Remise des gaz cause cisaillement\n- Evitements au DEP (CB en bout de VPE)",
     "pressure" : 986,
     "start_date" : "2019-08-12T12:30:02Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-23T11:56:24Z",
     "weather" : "240015KT SCT015CB TS 32\/12 Q986"
   }

@@ -227,7 +227,7 @@
     "objectives" : "- trafic avec croisements\n- approches RNP\n- arrivées Le Plessis\n- arrivées Pontoise",
     "pressure" : 1015,
     "start_date" : "2021-01-14T10:45:00Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-12T13:35:19Z",
     "weather" : "Q1015 24005KT BKN004 M01/M05 R27L/700 R26R/500"
   }

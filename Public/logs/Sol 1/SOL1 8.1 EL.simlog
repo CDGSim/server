@@ -399,7 +399,7 @@
     "objectives" : " - Gestion du point d'arrêt + CTOT\n - Gestion des traversées de piste\n - Gestion attente parking",
     "pressure" : 1013,
     "start_date" : "2021-02-08T09:00:42Z",
-    "traffic_density" : "Modérée",
+    "traffic_density" : 2,
     "update_date" : "2021-02-08T10:00:22Z",
     "weather" : "CAVOK"
   }

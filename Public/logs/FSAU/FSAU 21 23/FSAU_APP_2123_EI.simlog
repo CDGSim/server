@@ -297,7 +297,7 @@
     "objectives" : "- Gestion en Est inverse\n- Vent arrière en finale (15-20 kts), compression en courte (composante de face 10 kt sous 1500 ft)\n- Gestion information mode C erroné, doute sur l’altitude d’un vol\n- Retour terrain LB\n- Intervention de la PO (optionnel) ",
     "pressure" : 1012,
     "start_date" : "2021-02-22T06:45:02Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-23T07:22:51Z",
     "weather" : "15015KT BKN008 10\/02 Q1012"
   }

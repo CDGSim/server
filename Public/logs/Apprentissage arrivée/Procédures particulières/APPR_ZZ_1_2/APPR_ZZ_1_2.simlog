@@ -263,7 +263,7 @@
     "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, approches RNP et trafics BA.",
     "pressure" : 997,
     "start_date" : "2021-01-14T06:30:17Z",
-    "traffic_density" : "Modérée à forte",
+    "traffic_density" : 3,
     "update_date" : "2021-02-12T12:21:13Z",
     "weather" : "13014KT CAVOK M02/M12 Q997"
   }

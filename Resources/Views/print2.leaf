@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>#(log.properties.name)</title>
+        <title>#(properties.name)</title>
         <link rel="stylesheet" media="all" href="/stylesheets/print.css" />
     </head>
 
@@ -12,8 +12,8 @@
         
             <div class="page-top">
                 <div><h4>ELECTRA</h4></div>
-                <div><h4>#(log.properties.name)</h4></div>
-                <div>MAJ : #date(log.properties.update_date, "dd/MM/YYYY")</div>
+                <div><h4>#(properties.name)</h4></div>
+                <div>MAJ : #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
             
             <div class="content">
@@ -26,10 +26,10 @@
             <td>DUREE</td>
             </tr>
             <tr>
-            <td style="color:red">#(log.properties.name)</td>
-            <td>#(log.properties.configuration)</td>
-            <td>#(log.properties.traffic_density)</td>
-            <td>#(log.properties.duration) min</td>
+            <td style="color:red">#(properties.name)</td>
+            <td>#(properties.configuration)</td>
+            <td>#(properties.traffic_density_description)</td>
+            <td>#(properties.duration) min</td>
             </tr>
             </table>
             <table class="properties properties2">
@@ -38,12 +38,12 @@
             <td>METEO</td>
             </tr>
             <tr>
-            <td>#(log.properties.pressure)</td>
-            <td>#(log.properties.weather)</td>
+            <td>#(properties.qnh)</td>
+            <td>#(properties.weather)</td>
             </tr>
             </table>
             
-             #if(log.properties.assignments):
+             #if(properties.assignments):
                 <table class="assignments">
                     <thead>
                         <tr>
@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tr>
-                        #for(assignment in log.properties.assignments):
+                        #for(assignment in properties.assignments):
                         <td>#(assignment.controller)</td>
                         #endfor
                     </tr>
@@ -63,9 +63,9 @@
                     <div>
                         
                         <h3>OBJECTIFS :</h3>
-                        <p>#markdown(log.properties.objectives)</p>
+                        <p>#markdown(properties.objectives)</p>
                         <h3>DEROULEMENT :</h3>
-                        <p>#markdown(log.properties.description)</p>
+                        <p>#markdown(properties.description)</p>
                     </div>
                                     
                 #if(log.instructor_log.events):
@@ -95,8 +95,8 @@
         
             <div class="page-top">
                 <div><h4>ELECTRA</h4></div>
-                <div><h4>#(log.properties.name)</h4></div>
-                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+                <div><h4>#(properties.name)</h4></div>
+                <div>Version du #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
             <div class="content">
                 
@@ -140,8 +140,8 @@
         
             <div class="page-top">
                 <div><h4>ELECTRA</h4></div>
-                <div><h4>#(log.properties.name)</h4></div>
-                <div>Version du #date(log.properties.update_date, "dd/MM/YYYY")</div>
+                <div><h4>#(properties.name)</h4></div>
+                <div>Version du #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
             
             <div class="content">
@@ -154,10 +154,10 @@
             <td>DUREE</td>
             </tr>
             <tr>
-            <td style="color:red">#(log.properties.name)</td>
-            <td>#(log.properties.configuration)</td>
-            <td>#(log.properties.traffic_density)</td>
-            <td>#(log.properties.duration) min</td>
+            <td style="color:red">#(properties.name)</td>
+            <td>#(properties.configuration)</td>
+            <td>#(properties.traffic_density_description)</td>
+            <td>#(properties.duration) min</td>
             </tr>
             </table>
             <table class="properties properties2">
@@ -166,8 +166,8 @@
             <td>METEO</td>
             </tr>
             <tr>
-            <td>#(log.properties.pressure)</td>
-            <td>#(log.properties.weather)</td>
+            <td>#(properties.qnh)</td>
+            <td>#(properties.weather)</td>
             </tr>
             </table>
                 
@@ -188,7 +188,7 @@
                 </div>
                 
                 <h2>Scénario / Déroulement :</h2>
-                <p>#markdown(log.properties.description)</p>
+                <p>#markdown(properties.description)</p>
             
                 #if(pilot_log.directives):
                 <h2>Consignes</h2>

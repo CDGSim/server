@@ -211,7 +211,7 @@
     "objectives" : "- Travailler les stratégies d'interception au Bourget\n - Gestion d'une arrivée et d'un départ Le Plessis",
     "pressure" : 1015,
     "start_date" : "2021-01-14T08:28:00Z",
-    "traffic_density" : "Forte",
+    "traffic_density" : 4,
     "update_date" : "2021-02-12T12:20:34Z",
     "weather" : "32017G28KT FEW140 10/02"
   }

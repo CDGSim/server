@@ -1,15 +1,15 @@
             <div class="note">
                 <div>
                     <ul>
-                        <li><strong>Configuration :</strong> #(log.properties.configuration)</li>
-                        <li><strong>Charge :</strong> #(log.properties.traffic_density)</li>
-                        <li><strong>Durée :</strong> #(log.properties.duration) min</li>
+                        <li><strong>Configuration :</strong> #(properties.configuration)</li>
+                        <li><strong>Charge :</strong> #(properties.traffic_density_description)</li>
+                        <li><strong>Durée :</strong> #(properties.duration) min</li>
                     </ul>
                 </div>
                 <div>
                     <ul>
-                        <li><strong>QNH :</strong> #(log.properties.pressure)</li>
-                        <li><strong>Météo :</strong> #(log.properties.weather)</li>
+                        <li><strong>QNH :</strong> #(properties.qnh)</li>
+                        <li><strong>Météo :</strong> #(properties.weather)</li>
                     </ul>
                 </div>
             </div>

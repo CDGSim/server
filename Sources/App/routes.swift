@@ -156,58 +156,66 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let positionsDescription: String
             }
             let path:String
-            let simulation_properties: Log.Properties
+            let simulation_properties: SimulationProperties
             let log: Log
             let assignments: [ControlPositionAssignment]?
             let attachments: [Attachment]?
             let displayEventsLocation: Bool
+            
+            init(from log: Log, path:String) {
+                self.path = path
+                self.simulation_properties = .init(from: log.properties)
+                
+                self.log = log
+                
+                // Build up assignments
+                // We need to make the positionDescriptions string from the set of positions
+                self.assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
+                    let positionDescriptions = Array(assignment.positions).map { controlPosition in
+                        controlPosition.rawValue
+                    }.sorted().joined(separator: "<br />")
+                    return .init(controller: .instructor, positionsDescription: positionDescriptions)
+                }
+                    
+                // Check if we should display the events locations
+                // Location is optional, if at least one event has a location, we should display the corresponding column
+                let atLeastOneEventContainsALocation: Bool
+                if let eventsWithLocation = log.instructorLog.events?.filter({ event in
+                    if let location = event.location {
+                        return location != "-" && location.count > 0
+                    } else { return false }
+                }) {
+                    atLeastOneEventContainsALocation = eventsWithLocation.count > 0
+                } else {
+                    atLeastOneEventContainsALocation = false
+                }
+                self.displayEventsLocation = atLeastOneEventContainsALocation
+                
+                // Check if there is an Attachments subfolder
+                var attachments: [Context.Attachment]? = nil
+                var url = URL(fileURLWithPath: "Public/logs")
+                url.appendPathComponent(path)
+                url.deleteLastPathComponent()
+                url.appendPathComponent("Attachments", isDirectory: true)
+                let enumerator = FileManager.default.enumerator(atPath: url.path)
+                if let subpaths = enumerator?.allObjects as? [String] {
+                    let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
+                    attachments = subpaths.map{ path in
+                        Context.Attachment(url:attachmentsFolderPath + path, name:path)
+                    }
+                }
+                self.attachments = attachments
+            }
         }
         
         let path = req.parameters.getCatchall().joined(separator: "/")
-        
-        // Check if there is an Attachments subfolder
-        var attachments: [Context.Attachment]? = nil
-        var url = URL(fileURLWithPath: "Public/logs")
-        url.appendPathComponent(path)
-        url.deleteLastPathComponent()
-        url.appendPathComponent("Attachments", isDirectory: true)
-        let enumerator = FileManager.default.enumerator(atPath: url.path)
-        if let subpaths = enumerator?.allObjects as? [String] {
-            let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
-            attachments = subpaths.map{ path in
-                Context.Attachment(url:attachmentsFolderPath + path, name:path)
-            }
-        }
         
         // Read the log file
         switch log(atPath: path) {
         case .failure(let error) :
             return renderLogErrorView(from: error, req: req)
         case .success(let log):
-            // Build up assignments
-            // We need to make the positionDescriptions string from the set of positions
-            let assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
-                let positionDescriptions = Array(assignment.positions).map { controlPosition in
-                    controlPosition.rawValue
-                }.sorted().joined(separator: "<br />")
-                return .init(controller: .instructor, positionsDescription: positionDescriptions)
-            }
-            
-            // Check if we should display the events locations
-            // Location is optional, if at least one event has a location, we should display the corresponding column
-            let atLeastOneEventContainsALocation: Bool
-            if let eventsWithLocation = log.instructorLog.events?.filter({ event in
-                if let location = event.location {
-                    return location != "-" && location.count > 0
-                } else { return false }
-            }) {
-                atLeastOneEventContainsALocation = eventsWithLocation.count > 0
-            } else {
-                atLeastOneEventContainsALocation = false
-            }
-            
-            let context = Context(path: path, simulation_properties:log.properties, log: log, assignments: assignments, attachments:attachments, displayEventsLocation: atLeastOneEventContainsALocation)
-            return req.view.render("log_instructor", context)
+            return req.view.render("log_instructor", Context(from: log, path: path))
         }
     }
     
@@ -226,7 +234,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         struct Context: Encodable {
             let path:String
             let pilot_log: Log.PilotLog
-            let simulation_properties: Log.Properties
+            let simulation_properties: SimulationProperties
             let roles: [String]
             let displayEventsLocation: Bool
         }
@@ -259,7 +267,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             }
             
             
-            let context = Context(path: path, pilot_log: pilotLog, simulation_properties:log.properties, roles:log.pilot_logs.map{ pilotLog in
+            let context = Context(path: path, pilot_log: pilotLog, simulation_properties:.init(from: log.properties), roles:log.pilot_logs.map{ pilotLog in
                 pilotLog.role
             }, displayEventsLocation: atLeastOneEventContainsALocation)
             return req.view.render("log_pilot", context)
@@ -279,6 +287,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             }
             let path:String
             let log: Log
+            let properties: SimulationProperties
             let assignments: [ControlPositionAssignment]?
             
             init(path:String, log:Log) {
@@ -300,6 +309,8 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     return log
                 })
                 self.log = editedLog
+                
+                self.properties = .init(from: log.properties)
                 
                 // Build up assignments
                 // We need to make the positionDescriptions string from the set of positions
@@ -331,6 +342,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         struct Context: Encodable {
             let path:String
             let log: Log
+            let properties:SimulationProperties
             
             init(path:String, log:Log) {
                 self.path = path
@@ -351,6 +363,8 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     return log
                 })
                 self.log = editedLog
+                
+                self.properties = .init(from: log.properties)
             }
         }
         
@@ -526,4 +540,37 @@ fileprivate func renderLogErrorView(from error:LogError, req:Request) -> EventLo
         reason = "Impossible de lire le log"
     }
     return req.view.render("error", reason)
+}
+
+struct SimulationProperties: Encodable {
+    let name: String
+    let update_date: Date
+    let description: String
+    let configuration: String
+    let start_date:Date
+    let duration:Int
+    let weather:String
+    let traffic_density_description: String
+    let qnh: Int
+    
+    init(from properties:Log.Properties) {
+        name = properties.name
+        update_date = properties.updateDate
+        description = properties.description
+        configuration = properties.configuration
+        start_date = properties.startDate
+        duration = properties.duration
+        weather = properties.weather
+        
+        switch properties.trafficDensity {
+            case 1: traffic_density_description = "Faible"
+            case 2: traffic_density_description = "Modérée"
+            case 3: traffic_density_description = "Modérée à forte"
+            case 4: traffic_density_description = "Forte"
+            default: traffic_density_description = ""
+        }
+        
+        let weather = Weather(from: properties.weather)
+        qnh = weather.qnh
+    }
 }
