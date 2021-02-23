@@ -22,14 +22,14 @@
         "time" : "09:30"
       }
     ],
-    "setup_info" : "Configurer AMAN en Est Lié.\n\nCertains avions sont re-routés en début de simu (VLG7VT et LBT510 en 09L)."
+    "setup_info" : "Configurer AMAN en Est Lié.\\\nCertains avions sont re-routés en début de simu (VLG7VT et LBT510 en 09L)."
   },
   "pilot_logs" : [
     {
       "events" : [
         {
           "callsign" : "EJU69TL",
-          "description" : "Quand l’arrivée appelle Orly pour coordonner EJU69TL : *FL 80, route standard sur 123.875*",
+          "description" : "Quand l’arrivée appelle Orly pour coordonner EJU69TL : *FL 70, route standard sur 123.875*",
           "time" : "08:55"
         },
         {
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "directives" : "En début de simu, modifier la clairance de AFR53FR comme iniqué.\n\nL’ILS 08L est indisponible, collationner des approches RNP 08R.",
+      "directives" : "En début de simu, modifier la clairance de AFR53FR comme iniqué.\n\nL’ILS 08R est indisponible, collationner des approches RNP 08R.",
       "events" : [
 
       ],
@@ -104,6 +104,13 @@
     },
     {
       "directives" : "En début de simu, descendre AAL754 au FL60. Descendre VLG582G, AFR138E, et ABR1256 au FL110.",
+      "events" : [
+        {
+          "callsign" : "Au choix",
+          "description" : "Choisir un appareil en attente et le faire annoncer mini fuel. Après annonce du délai, demander un déroutement.",
+          "time" : "9:10"
+        }
+      ],
       "frequency" : "121.155",
       "role" : "INI Nord",
       "setup" : [
@@ -158,38 +165,38 @@
   "properties" : {
     "assignments" : [
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "COOR INI S"
         ]
       },
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "INI S"
         ]
       },
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "ITM S",
           "ITM BA"
         ]
       },
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "ITM N"
         ]
       },
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "INI S"
         ]
       },
       {
-        "controller" : "ST",
+        "controller" : "PC",
         "positions" : [
           "SEQ",
           "COOR INI N"
@@ -197,14 +204,14 @@
       }
     ],
     "configuration" : "EL",
-    "description" : "- Mission gendarmerie impactant un doublet\n- ILS 08R indisponible : RNP 08R en vigueur",
+    "description" : "ILS 08R indisponible : RNP 08R en vigueur\\\nMission gendarmerie entrainant la fermetue d’un doublet",
     "duration" : 60,
     "name" : "FSAU_APP_2123_EL",
     "objectives" : "- Gestion de fermeture imprévue d’un doublet\n- Gestion de l’attente à l’INI et éventuellement à l’ITM (attente sans aire de protection, 360°)\n- Minimum fuel : annonce de délai\n- Régulation par vent calme avec mauvaise réduction en finale\n- Gestion d’un vol prioritaire VFR hors conditions VMC (séparation radar)\n- Déviation NTZ",
     "pressure" : 1035,
     "start_date" : "2021-02-22T07:50:02Z",
     "traffic_density" : "Modérée à forte",
-    "update_date" : "2021-02-22T13:27:51Z",
+    "update_date" : "2021-02-23T12:05:03Z",
     "weather" : "07002KT BKN011 10\/02 Q1035"
   }
 }

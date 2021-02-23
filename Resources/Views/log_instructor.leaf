@@ -64,7 +64,7 @@
                 #endif
                                             
                 <h2>Situation initiale</h2>
-                #(log.instructor_log.setup_info)
+                #markdown(log.instructor_log.setup_info)
                 
                 <table>
                     <thead>
