@@ -12,9 +12,11 @@
                 <div class="dropdown">
                       <h2 class="dropbutton" onclick="">#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
                       <div class="dropdown-content">
-                        #for(role in roles):
-                        <a href="/pilote/#(role)/#(path)">#(role)</a>
-                        #endfor
+                          <ul>
+                            #for(role in roles):
+                            <li><a href="/pilote/#(role)/#(path)">#(role)</a></li>
+                            #endfor
+                          </ul>
                       </div>
                 </div>
             </div>

@@ -9,12 +9,40 @@
                     <div class="dropdown">
                           <h2 class="dropbutton" onclick="">Rôles PER</h2>
                           <div class="dropdown-content">
-                            #for(pilotLog in log.pilot_logs):
-                            <a href="/pilote/#(pilotLog.role)/#(path)">#(pilotLog.role)</a>
-                            #endfor
+                              <ul>
+                                #for(pilotLog in log.pilot_logs):
+                                <li><a href="/pilote/#(pilotLog.role)/#(path)">#(pilotLog.role)</a><li>
+                                #endfor
+                                </ul>
                           </div>
                     </div>
                 </div>
+                
+                <script>
+                function displayTab(evt, tabName) {
+                  var i;
+                  var x = document.getElementsByClassName("tab");
+                  for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                  }
+                  document.getElementById(tabName).style.display = "block";
+                  
+                  var tablinks = document.getElementsByClassName("tablink");
+                  for (i = 0; i < x.length; i++) {
+                     tablinks[i].className = tablinks[i].className.replace(" current", "");
+                  }
+                  evt.currentTarget.className += " current";
+                }
+                </script>
+                
+                <ul class="tabButton">
+                <li><a href="#" onclick="displayTab(event, 'overview')" class="tablink current">Général</a></li>
+                <li><a href="#" onclick="displayTab(event, 'setup')" class="tablink">Mise en place</a></li>
+                #if(courseNotes != ""):<li><a href="#" onclick="displayTab(event, 'notes')" class="tablink">Notes</a></li>#endif
+                #if(attachments): #if(count(attachments) > 0):<li><a href="#" onclick="displayTab(event, 'attachments')" class="tablink">Pièces jointes</a></li>#endif#endif
+                </ul>
+                
+                <div id="overview" class="tab">
                 
                 #if(log.properties.assignments):
                     <h2>Positions de contrôle</h2>
@@ -62,7 +90,9 @@
                 #else:
                 Aucun évènement particulier
                 #endif
-                                            
+                
+                </div>
+                <div id="setup" class="tab" style="display:none">
                 <h2>Situation initiale</h2>
                 #markdown(log.instructor_log.setup_info)
                 
@@ -91,24 +121,27 @@
                     #endfor
                 </table>
 
+            </div>
                 #if(attachments):
                     #if(count(attachments) > 0):
-                    <h3>Pièces jointes</h3>
+            <div id="attachments" class="tab" style="display:none">
+                    <h2>Pièces jointes</h2>
                     <ul>
                     #for(attachment in attachments):
                         <li><a href="/attachment/#(attachment.url)">#(attachment.name)</a></li>
                     #endfor
                     </ul>
+            </div>
                     #endif
                 #endif
-            
-                
         #if(courseNotes != ""):
-        <h2>Notes importantes du stage</h2>
+                <div id="notes" class="tab" style="display:none">
+        <h2>Notes importantes</h2>
 <div class="course_notes">
 #markdown(courseNotes)
 </div>
         #endif
+        </div>
         </div>
             
 #endexport
