@@ -33,7 +33,6 @@ body {
 
 p {
     color:#484848;
-    margin:0px;
 }
 
 a {
@@ -86,8 +85,8 @@ table:not(.simulation-index) tr td {
     vertical-align:top
 }
 
-.simulation-index tr td:first-child {
-    width:75%
+.simulation-index tr td:last-child {
+    width:250px
 }
 
 table p {
@@ -143,10 +142,6 @@ table em {
     justify-content: space-between;
 }
 
-#title h1, h2 {
-    margin-bottom:0px
-}
-
 .content {
     margin:0px 2em 0px 2em
 }
@@ -170,9 +165,6 @@ table em {
     font-size:12px;
     z-index: 9999;
     height: 44px;
-    display: grid;
-    grid-template-columns: 3fr auto auto;
-    align-items: baseline;
     background: rgba(240,240,240,0.8);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
@@ -180,21 +172,32 @@ table em {
     padding-right: env(safe-area-inset-right);
 }
 
-#globalnav h1 {
-    margin:0px;
-    padding:8px 18px;
-    color:#555;
+#globalnav li:first-child {
+    font-size: 13pt;
+    margin-right:80px
 }
 
-#globalnav h3 {
-    margin:0px;
-    padding:8px 18px;
-    color:#555;
+#globalnav ul {
+    list-style-type: none;
+    margin:0;
+    padding:9px 12px;
 }
 
-#globalnav a {
-    color:#555;
-    text-decoration:none
+#globalnav li {
+    display: inline;
+    font-weight:bold;
+    padding:8px 12px;
+    font-size: 10pt
+}
+
+#globalnav li a {
+  color:#555;
+  text-align: center;
+  text-decoration: none;
+}
+
+#globalnav li a:hover {
+    color:#333;
 }
 
 #simulation-properties {
@@ -211,7 +214,7 @@ table em {
 
 #simulation-properties h1 {
     margin:0px;
-    padding:8px 0px;
+    padding:0px;
 }
 
 #simulation-properties p {
@@ -296,3 +299,26 @@ table em {
 .dropdown-content a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
+
+/* Index page */
+.reader-button {
+    background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
+    width:200px;
+    height:100px;
+    font-weight:bold;
+    text-align:center;
+    border-radius:18px;
+    font-size:18pt;
+    padding:30px;
+    margin-top:100px
+}
+
+.reader-button a {
+    color:white;
+    text-decoration:none
+}
+
+/* Course page */
+.course_notes strong {
+    color:red
+}

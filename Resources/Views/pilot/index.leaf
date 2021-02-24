@@ -1,0 +1,22 @@
+#extend("master"):
+    #export("title"): Simulations #endexport
+    #export("main"):
+            
+        <div id="content">
+            <h2>Catalogue de simulations</h2>
+            <table class="simulation-index">
+                #for(course in courses):
+                <tbody>
+                    <tr class="grouplabel"><th>#(course.name)</th></tr>
+                    #for(simulation in course.simulations):
+                    <tr>
+                        <td><a href="/pilote/#(simulation.defaultRole)/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption">#(simulation.group)</span></td>
+                    </tr>
+                    #endfor
+                #endfor
+                </tbody>
+            </table>
+        </div>
+            
+    #endexport
+#endextend

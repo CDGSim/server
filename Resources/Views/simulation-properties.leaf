@@ -1,6 +1,7 @@
             <div id="simulation-properties">
                 <div>
                     <h1>#(simulation_properties.name)</h1>
+                    #if(simulation_properties.update_date):<strong>Mis à jour le #date(simulation_properties.update_date, "dd/MM/YYYY")</strong>#endif
                     <p>#markdown(simulation_properties.description)</p>
                 </div>
                 <div>

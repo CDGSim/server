@@ -9,8 +9,11 @@
 
     <body>
         <nav id="globalnav"">
-            <h1><a href="/">Simulations</a></h1>
-            #if(simulation_properties.update_date):<h3>Mis à jour le #date(simulation_properties.update_date, "dd/MM/YYYY")</h3>#endif
+            <ul>
+                <li><a href="/">Logs Simulateurs</a></li>
+                <li><a href="/instructeur/">Instructeur</a></li>
+                <li><a href="/pilote/">Pilote</a></li>
+            </ul>
         </nav>
         
         <main>

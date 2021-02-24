@@ -1,0 +1,19 @@
+#extend("master"):
+    #export("title"): Simulations #endexport
+    #export("main"):
+            
+        <div id="content">
+            <h2>Stages</h2>
+            <table class="simulation-index" style="margin-top:2em">
+                <tbody>
+                #for(course in courses):
+                    <tr>
+                        <td><a href="/stage/#(course.name)">#(course.name)</a></td>
+                    </tr>
+                #endfor
+                </tbody>
+            </table>
+        </div>
+            
+    #endexport
+#endextend

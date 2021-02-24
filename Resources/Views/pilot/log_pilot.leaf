@@ -12,9 +12,8 @@
                 <div class="dropdown">
                       <h2 class="dropbutton" onclick="">#(pilot_log.role) #if(pilot_log.frequency): - #(pilot_log.frequency) #endif</h2>
                       <div class="dropdown-content">
-                        <a href="/instructor/#(path)">Instructeur</a>
                         #for(role in roles):
-                        <a href="/pilot/#(role)/#(path)">#(role)</a>
+                        <a href="/pilote/#(role)/#(path)">#(role)</a>
                         #endfor
                       </div>
                 </div>
@@ -27,6 +26,7 @@
                 #endif
                             
                 #if(pilot_log.setup):
+                #if(count(pilot_log.setup) > 0):
                 <h2>Situation initiale</h2>
                 <table>
                     <thead>
@@ -45,8 +45,10 @@
                     </tbody>
                 </table>
                 #endif
+                #endif
                      
                 #if(pilot_log.events):
+                #if(count(pilot_log.events) > 0):
                 <h2>Déroulement</h2>
                 <table>
                     <thead>
@@ -68,6 +70,7 @@
                         #endfor
                     </tbody>
                 </table>
+                #endif
                 #endif
             </div>
             

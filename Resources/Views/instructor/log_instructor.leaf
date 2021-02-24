@@ -10,7 +10,7 @@
                           <h2 class="dropbutton" onclick="">Rôles PER</h2>
                           <div class="dropdown-content">
                             #for(pilotLog in log.pilot_logs):
-                            <a href="/pilot/#(pilotLog.role)/#(path)">#(pilotLog.role)</a>
+                            <a href="/pilote/#(pilotLog.role)/#(path)">#(pilotLog.role)</a>
                             #endfor
                           </div>
                     </div>
@@ -102,7 +102,13 @@
                     #endif
                 #endif
             
-                        
+                
+        #if(courseNotes != ""):
+        <h2>Notes importantes du stage</h2>
+<div class="course_notes">
+#markdown(courseNotes)
+</div>
+        #endif
         </div>
             
 #endexport

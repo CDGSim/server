@@ -21,7 +21,7 @@
   },
   "pilot_logs" : [
     {
-      "directives" : "Le doublet nord est fermé dans cette simu. Sur les deux PER ITM N doivent utiliser la fréquence 118.150 et recevront tous les avions en provenance du PER INI N.\n\nLorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL70, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.",
+      "directives" : "Le doublet nord est fermé dans cette simu. Les deux PER ITM N doivent utiliser la fréquence 118.150 et recevront tous les avions en provenance du PER INI N.\n\nLorsque le COOR INI appelle Orly pour coordonner les **arrivées LFPO**, les demander en standard, FL70, sur 123.875. S'il demande quelle vitesse, donner soit 250 kts, soit 220 kts au transfert.",
       "events" : [
         {
           "callsign" : "RYR349",
@@ -73,6 +73,9 @@
       ]
     },
     {
+      "events" : [
+
+      ],
       "frequency" : "125.830",
       "role" : "INI Sud",
       "setup" : [
@@ -132,8 +135,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM N",
-          "ITM S"
+          "ITM S",
+          "ITM N"
         ]
       },
       {
@@ -146,9 +149,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI N",
           "SEQ",
-          "COOR INI S",
-          "COOR INI N"
+          "COOR INI S"
         ]
       }
     ],
@@ -157,10 +160,9 @@
     "duration" : 50,
     "name" : "APPR_ZZ_2_4",
     "objectives" : "Gestion d'un trafic modéré à fort sur un seul doublet.",
-    "pressure" : 998,
     "start_date" : "2021-01-28T14:00:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-02-08T13:52:54Z",
-    "weather" : "15014KT 9999 NCD 02/M06"
+    "update_date" : "2021-02-24T15:55:42Z",
+    "weather" : "15014KT 9999 NCD 02\/M06"
   }
 }
