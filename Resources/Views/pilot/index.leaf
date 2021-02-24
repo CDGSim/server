@@ -10,7 +10,7 @@
                     <tr class="grouplabel"><th>#(course.name)</th></tr>
                     #for(simulation in course.simulations):
                     <tr>
-                        <td><a href="/pilote/#(simulation.defaultRole)/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption">#(simulation.group)</span></td>
+                        <td><a href="/pilote/#(simulation.defaultRole)/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption"><p>#(simulation.group)</p></span></td>
                     </tr>
                     #endfor
                 #endfor

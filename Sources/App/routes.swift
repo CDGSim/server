@@ -190,13 +190,20 @@ func registerFrontEndRoutes(_ app: Application) throws {
         // Context type that will be passed to the view
         struct Context: Encodable {
             let name: String
-            let simulations: [Simulation]
             let notes: String
+            
+            var rootSimulations: [Simulation]
+            let groups: [SimulationGroup]
             
             struct Simulation: Encodable {
                 let name: String
-                let group: String?
+                let abstract: String
                 let path: String
+            }
+            
+            struct SimulationGroup: Encodable {
+                let name: String
+                var simulations: [Simulation]
             }
         }
         
@@ -218,16 +225,33 @@ func registerFrontEndRoutes(_ app: Application) throws {
             switch log(atPath: courseName + "/" + path) {
             case .failure : return nil // If the log file cannot be read, just ignore it
             case .success(let log):
-                let pathComponents = path.components(separatedBy: "/")
                 let name = log.properties.name
-                let group:String?
-                if pathComponents.count > 1 { group = pathComponents.first } else { group = nil }
-                return .init(name: name, group: group, path: courseName + "/" + path)
+                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path)
             }
         }.sorted { (lhs, rhs) -> Bool in
             lhs.name < rhs.name
         }
         
+        var rootSimulations: [Context.Simulation] = []
+        var groups: [Context.SimulationGroup] = []
+        
+        for simulation in simulations {
+            let groupName:String?
+            let pathComponents = simulation.path.components(separatedBy: "/")
+            if pathComponents.count > 3 { groupName = pathComponents[1] } else { groupName = nil }
+            if let groupName = groupName {
+                let filter: (Context.SimulationGroup) -> Bool = { $0.name == groupName }
+                if var group = groups.first(where: filter) {
+                    groups.removeAll(where: filter)
+                    group.simulations.append(simulation)
+                    groups.append(group)
+                } else {
+                    groups.append(.init(name: groupName, simulations: [simulation]))
+                }
+            } else {
+                rootSimulations.append(simulation)
+            }
+        }
         
         let notesPath = "Public/logs/" + courseName + "/Notes.md"
         let notesContent:String
@@ -239,7 +263,10 @@ func registerFrontEndRoutes(_ app: Application) throws {
         }
         
         // Render the view index, with the context we've made
-        let context:Context = .init(name:courseName, simulations: simulations, notes: notesContent)
+        let context:Context = .init(name: courseName,
+                                    notes: notesContent,
+                                    rootSimulations: rootSimulations,
+                                    groups: groups)
         return req.view.render("instructor/course", context)
     }
     

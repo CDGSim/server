@@ -6,28 +6,41 @@
         <h1>#(name)</h1>
 
         <div style="display: grid;grid-template-columns: auto auto;column-gap:40px">
-<div>
+            <div>
 
-<h2>Contenu du stage</h2>
+                <h2>Contenu du stage</h2>
 
-<table class="simulation-index">
-#for(simulation in simulations):
-    <tr>
-        <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <span class="caption">#(simulation.group)</span></td>
-        <td>Version imprimable<br /><a href="/print/#(simulation.path)">Alternative</a> - <a href="/print2/#(simulation.path)">Classique</a></td>
-    </tr>
-    #endfor
-</table>
-</div>
-<div>
-
-#if(notes != ""):
-<h2>Notes importantes</h2>
-<div class="course_notes">
-#markdown(notes)
-</div>
-#endif
-</div>
+                <table class="simulation-index">
+                    #for(simulation in rootSimulations):
+                    <tbody>
+                        <tr>
+                            <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
+                            <td>Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
+                        </tr>
+                    </tbody>
+                    #endfor
+                    #for(group in groups):
+                    <tbody>
+                        <tr class="grouplabel"><th>#(group.name)</th></tr>
+                        #for(simulation in group.simulations):
+                        <tr>
+                            <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
+                            <td>Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
+                        </tr>
+                        #endfor
+                    </tbody>
+                    #endfor
+                </table>
+            </div>
+                        
+            #if(notes != ""):
+            <div>
+                <h2>Notes importantes</h2>
+                <div class="course_notes">
+                #markdown(notes)
+                </div>
+            </div>
+            #endif
         </div>
     </div>
             

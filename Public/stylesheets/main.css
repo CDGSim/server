@@ -265,7 +265,7 @@ table em {
     color:#484848;
 }
 
-.caption {
+.caption p, .caption li {
     font-size:13px;
     color:#999
 }
