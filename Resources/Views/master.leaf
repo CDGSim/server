@@ -9,8 +9,8 @@
 
     <body>
         <nav id="globalnav"">
+            <h1><a href="/">Logs Simulateurs</a></h1>
             <ul>
-                <li><a href="/">Logs Simulateurs</a></li>
                 <li><a href="/instructeur/">Instructeur</a></li>
                 <li><a href="/pilote/">Pilote</a></li>
             </ul>

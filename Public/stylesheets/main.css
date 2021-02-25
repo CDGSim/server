@@ -157,6 +157,8 @@ table em {
     flex:1
 }
 
+/* Global navigation */
+
 #globalnav {
     position: sticky;
     top: 0;
@@ -164,23 +166,30 @@ table em {
     left: 0;
     font-size:12px;
     z-index: 9999;
-    height: 44px;
+    height: auto;
     background: rgba(240,240,240,0.8);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+    
+    display: flex;
+    flex-flow: row wrap;
+    align-items:baseline
 }
 
-#globalnav li:first-child {
+#globalnav > h1 {
     font-size: 13pt;
-    margin-right:80px
+    margin:14px 80px 0px 20px
 }
 
 #globalnav ul {
     list-style-type: none;
     margin:0;
     padding:9px 12px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items:baseline
 }
 
 #globalnav li {
@@ -190,7 +199,7 @@ table em {
     font-size: 10pt
 }
 
-#globalnav li a {
+#globalnav a {
   color:#555;
   text-align: center;
   text-decoration: none;
@@ -200,20 +209,31 @@ table em {
     color:#333;
 }
 
+/* Simulation properties */
+
 #simulation-properties {
     padding:20px;
     height:auto;
     background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
     color:white;
-    display: grid;
-    width: 100%;
-    grid-template-columns: auto minmax(auto, 400px) ;
-    column-gap: 20px;
+    
+    display: flex;
+    flex-flow: row wrap;
+    
     padding-left: max(20px, env(safe-area-inset-left));
     padding-right: max(20px, env(safe-area-inset-right));
 }
 
-#simulation-properties div:last-child {
+#simulation-properties > div {
+    margin:8px
+}
+
+#simulation-properties > div:first-child {
+    flex: 2 200px;
+}
+
+#simulation-properties > div:last-child {
+    flex: 1 280px;
     border-radius:8px;
     background-color:rgba(255,255,255,0.1)
 }
