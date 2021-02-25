@@ -5,8 +5,8 @@
     <div id="content">
         <h1>#(name)</h1>
 
-        <div style="display: grid;grid-template-columns: auto auto;column-gap:40px">
-            <div>
+        <div style="display: flex;flex-flow: row wrap;">
+            <div style="flex:1 1 450px">
 
                 <h2>Contenu du stage</h2>
 
@@ -34,7 +34,7 @@
             </div>
                         
             #if(notes != ""):
-            <div>
+            <div style="flex:1 350px">
                 <h2>Notes importantes</h2>
                 <div class="course_notes">
                 #markdown(notes)
