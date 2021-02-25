@@ -711,7 +711,7 @@ func registerDecorRoutes(_ app: Application) throws {
         let content = try req.content.decode(Post.self)
         DecorData.decor1 = content.metar
         DecorData.configuration1 = content.configuration
-        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: Date())
+        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)"])
     }
     
     // MARK: GET /decor/log_path
