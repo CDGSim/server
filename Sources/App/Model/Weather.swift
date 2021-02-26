@@ -89,7 +89,7 @@ struct Weather {
             }
             
             // Decode ceiling
-            if component.count == 6 && ["OVC", "BKN", "FEW", "SCT"].contains(component.prefix(3)) {
+            if ["OVC", "BKN", "FEW", "SCT"].contains(component.prefix(3)) {
                 cloudLayers.append(component)
                 if ["OVC", "BKN"].contains(component.prefix(3)){
                     let value = component.suffix(from: component.firstIndex(where: { "0"..."9" ~= $0 })!)
@@ -131,9 +131,12 @@ struct Weather {
             guard let valueIndex = layer.firstIndex(where: { "0"..."9" ~= $0 }) else {
                 return layer
             }
-            let value = layer.suffix(from: valueIndex)
+            let value = layer[valueIndex..<layer.index(valueIndex, offsetBy: 3)]
             guard let height = Int(value) else {
                 return nil
+            }
+            if layer.count > 6 {
+                return "\(layer.prefix(3)) \(height*100)ft \(layer.suffix(from: layer.index(valueIndex, offsetBy: 3)))"
             }
             return "\(layer.prefix(3)) \(height*100)ft"
         }.joined(separator: " ")

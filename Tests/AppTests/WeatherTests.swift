@@ -33,7 +33,7 @@ final class WeatherTests: XCTestCase {
     
     func testVisibilityCAVOK() throws {
         let weather = Weather(from:"CAVOK")
-        XCTAssertEqual(weather.visibility, 9999)
+        XCTAssertEqual(weather.visibility, 10000)
     }
     
     func testVisibility2000() throws {
@@ -82,5 +82,15 @@ final class WeatherTests: XCTestCase {
         XCTAssertEqual(weather.northRunway2RVR, 900)
         XCTAssertEqual(weather.southRunway1RVR, 1000)
         XCTAssertEqual(weather.southRunway2RVR, 750)
+    }
+    
+    func testClouds() throws {
+        let weather = Weather(from:"BKN025")
+        XCTAssertEqual(weather.readable, "  BKN 2500ft")
+    }
+    
+    func testCloudsTCU() throws {
+        let weather = Weather(from:"BKN025TCU")
+        XCTAssertEqual(weather.readable, "  BKN 2500ft TCU")
     }
 }
