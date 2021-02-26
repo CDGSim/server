@@ -13,25 +13,6 @@
                         <li><strong>QNH :</strong> #(simulation_properties.qnh)</li>
                         <li><strong>Météo :</strong> <a href="/decor/#(path)">#(simulation_properties.weather)</a></li>
                     </ul>
-                    <button onclick="sendParametersToDecor()" />Envoyer vers DECOR</button>
+                    #import("tools")
                 </div>
             </div>
-            <script>
-            const sendParametersToDecor = async () => {
-                    const date = new Date('#date(simulation_properties.start_date)')
-                    let data = {
-                    metar: "#(simulation_properties.metar)",
-                    configuration: "#(simulation_properties.configuration)",
-                    date: date.toISOString().split('.')[0]+"Z",
-                    }
-                    console.log(date.toISOString())
-                  const response = await fetch('/api/setup-decor', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                      'Content-Type': 'application/json'
-                    }
-                  });
-                  const json = await response.json();
-                }
-            </script>

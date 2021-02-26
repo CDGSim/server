@@ -4,6 +4,7 @@
     #export("main"):
                             
         #extend("simulation-properties"):
+            #export("tools"): #endexport
         #endextend
         
         <div id="content">
