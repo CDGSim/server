@@ -139,6 +139,24 @@
                         </div>
                         <div class="runway-name">26L</div>
                     </div>
+                    <div id="sun">
+                        <div>
+                            <div class="sun-label">
+                                LS
+                            </div>
+                            <div class="sun-value">
+                                #(sunrise)
+                            </div>
+                        </div>
+                        <div>
+                            <div class="sun-label">
+                                CS
+                            </div>
+                            <div class="sun-value">
+                                #(sunset)
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="weathertext">
                     <p>Obs : #(startTime) #(weather)</p>
