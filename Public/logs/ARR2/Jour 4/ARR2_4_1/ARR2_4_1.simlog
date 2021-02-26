@@ -1,0 +1,219 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "",
+        "description" : "Une cellule orageuse à MOPAR (arrivées MOPAR en route sur CRL), et une autre sur l’axe 27R (interception au plus court au chevron à 5000ft).",
+        "time" : "10:00"
+      },
+      {
+        "callsign" : "WZZ279",
+        "description" : "Arrivée IPNOB",
+        "time" : "10:06"
+      },
+      {
+        "callsign" : "RYR5E",
+        "description" : "Arrivée IPNOB",
+        "time" : "10:10"
+      },
+      {
+        "callsign" : "",
+        "description" : "Déplacer la cellule de MOPAR vers DOMUS (arrivées BANOX en route vers PG516), et la cellule de l’axe 27R vers CLM (arrivées OKIPA prises en guidage dès OKIPA)",
+        "time" : "10:15"
+      },
+      {
+        "callsign" : "NAX337G",
+        "description" : "Arrivée PO par VEBEK",
+        "time" : "10:17"
+      },
+      {
+        "callsign" : "RYR2346",
+        "description" : "Arrivée par BAVOL",
+        "time" : "10:33"
+      }
+    ],
+    "setup_info" : "Coordonner avec les pilotes l’évolution des cellules à l’aide des post-its ou avec la carte qui leur est fournie.\n\nRYR2344 arrivée BAVOL (déjà en contact)"
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "Gestion d’un trafic chargé avec orages (et donc évitements).\\\nPas de trafic au Bourget, **1 PER INI N utilisé pour le DEP**.\\\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».\n\nSi appel du Coor INI pour une arrivée pour Beauvais, donner « 5000ft sur MTD ». Après transfert, guider l’avion sur Beauvais et le faire se poser en piste 30.\n\nSi appel du Coor INI pour une arrivée pour Orly, donner : \"standard, FL080, 250Kts, 123.875\"",
+      "events" : [
+        {
+          "callsign" : "WZZ279",
+          "description" : "Appeler (LORNI) pour l’arrivée du WZZ279 par IPNOB : *proposer le FL090 sur IPNOB*.",
+          "time" : "10:04"
+        },
+        {
+          "callsign" : "RYR5E",
+          "description" : "Appeler (LORNI) pour l’arrivée du RYR5E par IPNOB : *proposer le FL090 sur IPNOB*.",
+          "time" : "10:08"
+        },
+        {
+          "callsign" : "RYR2346",
+          "description" : "Appeler (SEINE) pour l’arrivée du RYR2346 par BAVOL : *proposer le FL070 sur BAVOL*.",
+          "time" : "10:18"
+        }
+      ],
+      "role" : "Adjacent",
+      "setup" : [
+
+      ]
+    },
+    {
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».",
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "ACA880",
+          "description" : "FL120 - 250 kts"
+        },
+        {
+          "callsign" : "RYR2344",
+          "description" : "FL70 LORNI"
+        }
+      ]
+    },
+    {
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nLe contrôleur chargé de la gestion du départ n’est pas un élève. Il pourra diriger le trafic sans utiliser la phraséologie pour être plus efficace et rendre la structure de trafic intéressante pour les stagiaires.",
+      "frequency" : "124.355 - 133.380",
+      "role" : "DEP",
+      "setup" : [
+        {
+          "callsign" : "AFR38HF",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "AFR1380",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "KLM16P",
+          "description" : "FL100"
+        },
+        {
+          "callsign" : "Autres",
+          "description" : "Avec Paris"
+        }
+      ]
+    },
+    {
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR007",
+          "description" : "CAP110 FL100 250kts"
+        },
+        {
+          "callsign" : "AFR1263",
+          "description" : "CAP210 FL080 250kts"
+        },
+        {
+          "callsign" : "CSA2DZ",
+          "description" : "ILS27R 180kts"
+        },
+        {
+          "callsign" : "AFR1535",
+          "description" : "ILS27R 180kts"
+        }
+      ]
+    },
+    {
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».",
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "AFR1001",
+          "description" : "CAP090 FL080 250kts "
+        },
+        {
+          "callsign" : "AEA1005",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "MNB751",
+          "description" : "CAP330 FL070 250kts"
+        }
+      ]
+    },
+    {
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "frequency" : "118.150",
+      "role" : "ITM Sud",
+      "setup" : [
+        {
+          "callsign" : "EJU150J",
+          "description" : "ILS 26L avec la TWR"
+        },
+        {
+          "callsign" : "AFR1085",
+          "description" : "ILS26L  220kts "
+        },
+        {
+          "callsign" : "AFR87PX",
+          "description" : "CAP090 4000ft 220kts"
+        },
+        {
+          "callsign" : "AZA300",
+          "description" : "CAP330 5000ft 250kts "
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "PC",
+        "positions" : [
+          "DEP N",
+          "DEP S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM BA",
+          "ITM S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR INI S",
+          "SEQ",
+          "COOR INI N"
+        ]
+      }
+    ],
+    "configuration" : "WL",
+    "description" : "Trafic OB (4) \/ PO (1)\\\nRégulations 27PG+ 26PG + OB\\\nPas de trafic au Bourget\\\nUn renfort supplémentaire pour jouer le DEP\\\nAnticroisement\\\nHBN à 3800ft sur l’axe. Les PER pourront demander à descendre sous les nuages",
+    "duration" : 45,
+    "name" : "ARR2_4_1",
+    "objectives" : "Gestion d’un trafic relativement chargé  avec évitements",
+    "start_date" : "2021-02-26T11:02:22Z",
+    "traffic_density" : 4,
+    "update_date" : "2021-02-26T11:21:37Z",
+    "weather" : "340020KT 25\/17 SCT025 TCU Q1000"
+  }
+}
