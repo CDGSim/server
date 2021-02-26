@@ -702,7 +702,7 @@ func registerAPIRoutes(_ app: Application) throws {
 extension Log: Content { }
 
 private struct DecorData {
-    static var decor1: String = "??"
+    static var decor1: String = "13014KT CAVOK M01/M11 Q1033"
     static var configuration1: String = "??"
     static var date1: Date = Date()
 }
@@ -715,11 +715,11 @@ func registerDecorRoutes(_ app: Application) throws {
     
     // MARK: GET /decor1/setup
     app.get("decor1", "setup") { req -> EventLoopFuture<View> in
-        return req.view.render("decor1")
+        return req.view.render("decor1", ["metar":DecorData.decor1])
     }
     
-    // MARK: POST /decor1/
-    app.post("decor1") { req -> EventLoopFuture<View> in
+    // MARK: POST /decor1/setup
+    app.post("decor1", "setup") { req -> EventLoopFuture<View> in
         struct Post: Content {
             var metar: String
             var configuration: String
@@ -727,7 +727,7 @@ func registerDecorRoutes(_ app: Application) throws {
         let content = try req.content.decode(Post.self)
         DecorData.decor1 = content.metar
         DecorData.configuration1 = content.configuration
-        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)"])
+        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)", "metar":DecorData.decor1])
     }
     
     // MARK: GET /decor/log_path

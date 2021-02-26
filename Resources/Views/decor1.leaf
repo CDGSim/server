@@ -3,7 +3,7 @@
     #export("main"):
             <div id="content">
             #if(message):<p>#(message)</p><p><a href="/decor1/">Afficher</a></p>#endif
-            <form method="POST" action="/decor1/">
+            <form method="POST" action="/decor1/setup">
                 <p><label for="configuration">Configuration :</label>
                 <select name="configuration">
                     <option value="wl">WL</option>
@@ -12,7 +12,7 @@
                     <option value="ei">EI</option>
                 </select></p>
                 <label for="weather">Météo :</label><br />
-                <textarea rows="5" cols="20" name="metar">13014KT CAVOK M01/M11 Q1033</textarea><br />
+                <textarea rows="5" cols="20" name="metar">#(metar)</textarea><br />
                 <p>Insérer du texte au format METAR.</p>
                 <input type="submit" value="Envoyer">
             </form>
