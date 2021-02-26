@@ -255,6 +255,23 @@ table em {
     color:white;
 }
 
+#simulation-properties button {
+    border-radius:3px;
+    background-color: rgba(240, 240, 240, .3);
+    border: none;
+    color: white;
+    margin:0px 24px 16px;
+    padding: 4px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+#simulation-properties button:active {
+    background-color: rgba(240, 240, 240, .2);
+}
+
 .title {
     display: flex;
     flex-flow: row wrap;

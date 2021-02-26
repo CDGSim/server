@@ -681,6 +681,21 @@ func registerAPIRoutes(_ app: Application) throws {
             return log
         }
     }
+    
+    // MARK: POST /api/setup-decor
+    // Configures DECOR screen with provided parameters
+    api.post("setup-decor") { req -> EventLoopFuture<Response>  in
+        struct DecorSetupParameters: Content {
+            let metar:String
+            let configuration: String
+            let date: Date
+        }
+        let parameters = try req.content.decode(DecorSetupParameters.self)
+        DecorData.decor1 = parameters.metar
+        DecorData.configuration1 = parameters.configuration
+        DecorData.date1 = parameters.date
+        return req.eventLoop.makeSucceededFuture(.init())
+    }
 }
 
 // Make Log conform to Content protocol so that when can return a Log as a response
@@ -689,12 +704,13 @@ extension Log: Content { }
 private struct DecorData {
     static var decor1: String = "??"
     static var configuration1: String = "??"
+    static var date1: Date = Date()
 }
 
 func registerDecorRoutes(_ app: Application) throws {
     // MARK: GET /decor1/
     app.get("decor1") { req -> EventLoopFuture<View> in
-        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: Date())
+        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: DecorData.date1)
     }
     
     // MARK: GET /decor1/setup
@@ -776,6 +792,7 @@ struct SimulationProperties: Encodable {
     let duration:Int
     let traffic_density_description: String
     let weather:String
+    let metar:String
     let qnh: Int
     
     init(from properties:Log.Properties) {
@@ -803,5 +820,7 @@ struct SimulationProperties: Encodable {
             windDirection = "0\(weather.windDirection)"
         }
         self.weather = "\(weather.readable) - \(windDirection)° \(weather.windSpeed) KT"
+        
+        self.metar = properties.weather
     }
 }
