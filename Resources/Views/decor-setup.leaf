@@ -1,0 +1,72 @@
+#extend("master"):
+    #export("title"): Générateur écran DECOR #endexport
+    #export("main"):
+            <div id="content">
+                <h2>Configuration des écrans DECOR</h2>
+            #if(message):<p>#(message)</p><p><a href="/decor/1">Afficher</a></p>#endif
+            <form method="POST" action="/decor/setup">
+            <div style="display:flex">
+                <label for="configuration" style="width:120px;text-align:right;padding-right:5px">Configuration :</label>
+                <select name="configuration">
+                    <option value="wl"#if(configuration == "wl"): selected#endif>WL</option>
+                    <option value="wi"#if(configuration == "wi"): selected#endif>WI</option>
+                    <option value="el"#if(configuration == "el"): selected#endif>EL</option>
+                    <option value="ei"#if(configuration == "ei"): selected#endif>EI</option>
+                </select>
+            </div>
+            <div style="display:flex">
+                <label for="weather" style="width:120px;text-align:right;padding-right:5px">Météo :</label>
+                <div>
+                <textarea rows="5" cols="20" name="metar">#(metar)</textarea>
+                <div class="caption"><p>Insérer du texte au format METAR.</p></div>
+                </div>
+            </div>
+            <div>
+                <p>Sélectionner les écrans vers lesquels envoyer les paramètres :</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" id = "d1" name="decor1" value="true"#if(decor1 == true): checked#endif class="decor-checkbox">
+                    <span>1</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor2" value="true"#if(decor2 == true): checked#endif class="decor-checkbox">
+                    <span>2</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor3" value="true"#if(decor3 == true): checked#endif class="decor-checkbox">
+                    <span>3</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor4" value="true"#if(decor4 == true): checked#endif class="decor-checkbox">
+                    <span>4</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor5" value="true"#if(decor5 == true): checked#endif class="decor-checkbox">
+                    <span>5</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor6" value="true"#if(decor6 == true): checked#endif class="decor-checkbox">
+                    <span>6</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor7" value="true"#if(decor7 == true): checked#endif class="decor-checkbox">
+                    <span>7</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor8" value="true"#if(decor8 == true): checked#endif class="decor-checkbox">
+                    <span>8</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor9" value="true"#if(decor9 == true): checked#endif class="decor-checkbox">
+                    <span>9</span>
+                </label>
+                <label class="checkbox-label">
+                <input type="checkbox" name="decor10" value="true"#if(decor10 == true): checked#endif class="decor-checkbox">
+                    <span>10</span>
+                </label>
+            </div>
+            <input type="submit" value="Envoyer" style="margin-top:18px">
+            </form>
+            </div>
+            
+#endexport
+#endextend

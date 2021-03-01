@@ -691,9 +691,11 @@ func registerAPIRoutes(_ app: Application) throws {
             let date: Date
         }
         let parameters = try req.content.decode(DecorSetupParameters.self)
-        DecorData.decor1 = parameters.metar
-        DecorData.configuration1 = parameters.configuration
-        DecorData.date1 = parameters.date
+        for index in 1...10 {
+            DecorData.metars[index] = parameters.metar
+            DecorData.configurations[index] = parameters.configuration
+            DecorData.dates[index] = parameters.date
+        }
         return req.eventLoop.makeSucceededFuture(.init())
     }
 }
@@ -702,32 +704,95 @@ func registerAPIRoutes(_ app: Application) throws {
 extension Log: Content { }
 
 private struct DecorData {
-    static var decor1: String = "13014KT CAVOK M01/M11 Q1033"
-    static var configuration1: String = "??"
-    static var date1: Date = Date()
+    static var metars: [Int:String] = [1:"13014KT CAVOK M01/M11 Q1033"]
+    static var configurations: [Int:String] = [1:"WL"]
+    static var dates: [Int:Date] = [1:Date()]
 }
 
 func registerDecorRoutes(_ app: Application) throws {
-    // MARK: GET /decor1/
-    app.get("decor1") { req -> EventLoopFuture<View> in
-        return DecorController.view(req: req, metar: DecorData.decor1, configuration: DecorData.configuration1, startDate: DecorData.date1)
+    struct SetupContext: Encodable {
+        let message:String
+        let configuration:String
+        let metar: String
+        let decor1: Bool
+        let decor2: Bool
+        let decor3: Bool
+        let decor4: Bool
+        let decor5: Bool
+        let decor6: Bool
+        let decor7: Bool
+        let decor8: Bool
+        let decor9: Bool
+        let decor10: Bool
     }
     
-    // MARK: GET /decor1/setup
-    app.get("decor1", "setup") { req -> EventLoopFuture<View> in
-        return req.view.render("decor1", ["metar":DecorData.decor1, "configuration":DecorData.configuration1])
+    // MARK: GET /decor/ID/
+    app.get("decor", ":id") { req -> EventLoopFuture<View> in
+        if let idString = req.parameters.get("id"), let id = Int(idString), let metar = DecorData.metars[id], let configuration = DecorData.configurations[id], let date = DecorData.dates[id] {
+            return DecorController.view(req: req, metar: metar, configuration: configuration, startDate: date)
+        } else {
+            return req.view.render("error", ["reason":"Cet écran DECOR n'est pas configuré"])
+        }
+    }
+    
+    // MARK: GET /decor/setup
+    app.get("decor", "setup") { req -> EventLoopFuture<View> in
+        return req.view.render("decor-setup", SetupContext(message: "",
+                                                           configuration: DecorData.configurations[1]!,
+                                                           metar: DecorData.metars[1]!,
+                                                           decor1: true,
+                                                           decor2: true,
+                                                           decor3: true,
+                                                           decor4: true,
+                                                           decor5: true,
+                                                           decor6: true,
+                                                           decor7: true,
+                                                           decor8: true,
+                                                           decor9: true,
+                                                           decor10: true))
     }
     
     // MARK: POST /decor1/setup
-    app.post("decor1", "setup") { req -> EventLoopFuture<View> in
+    app.post("decor", "setup") { req -> EventLoopFuture<View> in
         struct Post: Content {
             var metar: String
             var configuration: String
+            var decor1: Bool
+            var decor2: Bool
+            var decor3: Bool
+            var decor4: Bool
+            var decor5: Bool
+            var decor6: Bool
+            var decor7: Bool
+            var decor8: Bool
+            var decor9: Bool
+            var decor10: Bool
         }
         let content = try req.content.decode(Post.self)
-        DecorData.decor1 = content.metar
-        DecorData.configuration1 = content.configuration
-        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)", "metar":DecorData.decor1, "configuration":DecorData.configuration1])
+        
+        let decorSettings = [content.decor1, content.decor2, content.decor3, content.decor4, content.decor5, content.decor6, content.decor7, content.decor8, content.decor9, content.decor10]
+        for index in 1...10 {
+            let setting = decorSettings[index - 1]
+            if setting == true {
+                DecorData.metars[index] = content.metar
+                DecorData.configurations[index] = content.configuration
+                DecorData.dates[index] = Date()
+            }
+        }
+        
+        return req.view.render("decor-setup", SetupContext(message: "Données transmises : \(content.metar) - Configuration \(content.configuration.uppercased())",
+                                                           configuration: content.configuration,
+                                                           metar: content.metar,
+                                                           decor1: content.decor1,
+                                                           decor2: content.decor2,
+                                                           decor3: content.decor3,
+                                                           decor4: content.decor4,
+                                                           decor5: content.decor5,
+                                                           decor6: content.decor6,
+                                                           decor7: content.decor7,
+                                                           decor8: content.decor8,
+                                                           decor9: content.decor9,
+                                                           decor10: content.decor10))
     }
     
     // MARK: GET /decor/log_path
@@ -780,7 +845,7 @@ fileprivate func renderLogErrorView(from error:LogError, req:Request) -> EventLo
     case .couldNotDecode:
         reason = "Impossible de lire le log"
     }
-    return req.view.render("error", reason)
+    return req.view.render("error",  ["reason":reason])
 }
 
 struct SimulationProperties: Encodable {

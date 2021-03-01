@@ -31,7 +31,7 @@ body {
     padding-right: max(12px, env(safe-area-inset-right));
 }
 
-p {
+p, label {
     color:#484848;
 }
 
@@ -423,4 +423,26 @@ table em {
     background-color:#eee;
 }
 
+.checkbox-label {
+}
 
+.checkbox-label > span  {
+    width:60px;
+    height:40px;
+    text-align:center;
+    display:inline-block;
+    color:white;
+    border: 1px solid black;
+    padding: 9px;
+    background-color: #aaa;
+    cursor: pointer
+}
+
+
+.checkbox-label input:checked ~ span {
+    background-color: #06c;
+}
+
+.decor-checkbox {
+    display:none
+}
