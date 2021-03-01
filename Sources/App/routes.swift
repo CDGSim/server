@@ -715,7 +715,7 @@ func registerDecorRoutes(_ app: Application) throws {
     
     // MARK: GET /decor1/setup
     app.get("decor1", "setup") { req -> EventLoopFuture<View> in
-        return req.view.render("decor1", ["metar":DecorData.decor1])
+        return req.view.render("decor1", ["metar":DecorData.decor1, "configuration":DecorData.configuration1])
     }
     
     // MARK: POST /decor1/setup
@@ -727,7 +727,7 @@ func registerDecorRoutes(_ app: Application) throws {
         let content = try req.content.decode(Post.self)
         DecorData.decor1 = content.metar
         DecorData.configuration1 = content.configuration
-        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)", "metar":DecorData.decor1])
+        return req.view.render("decor1", ["message":"Données transmises : \(content.metar) - Configuration \(content.configuration)", "metar":DecorData.decor1, "configuration":DecorData.configuration1])
     }
     
     // MARK: GET /decor/log_path

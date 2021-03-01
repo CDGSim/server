@@ -6,10 +6,10 @@
             <form method="POST" action="/decor1/setup">
                 <p><label for="configuration">Configuration :</label>
                 <select name="configuration">
-                    <option value="wl">WL</option>
-                    <option value="wi">WI</option>
-                    <option value="el">EL</option>
-                    <option value="ei">EI</option>
+                    <option value="wl"#if(configuration == "wl"): selected#endif>WL</option>
+                    <option value="wi"#if(configuration == "wi"): selected#endif>WI</option>
+                    <option value="el"#if(configuration == "el"): selected#endif>EL</option>
+                    <option value="ei"#if(configuration == "ei"): selected#endif>EI</option>
                 </select></p>
                 <label for="weather">Météo :</label><br />
                 <textarea rows="5" cols="20" name="metar">#(metar)</textarea><br />
