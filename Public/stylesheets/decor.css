@@ -24,21 +24,21 @@ body {
 }
 
 #content {
-    height:906px;
+    height:930px;
     width:1128px;
     background-color:#C0C0C0
 }
 
 #rightbar {
     float:right;
-    height:906px;
+    height:930px;
     width:152px;
     background-color:black
 }
 
 #rightbar > * {
     width:148px;
-    height:46px;
+    height:48px;
     text-align:center;
     font-size:22px;
     margin:1px;
@@ -74,7 +74,7 @@ body {
 }
 
 #rightbar > *:last-child {
-    height:57px;
+    height:59px;
 }
 
 #bottombar {
@@ -320,9 +320,9 @@ body {
 }
 
 #weathertext {
-    height:180px;
+    height:188px;
     border: 2px solid black;
-    margin:0px 25px;
+    margin:15px 25px;
     background-color:white;
     font-weight:bold;
     font-size:24px;
