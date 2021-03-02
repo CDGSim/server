@@ -24,44 +24,44 @@
             <div>
                 <p>Sélectionner les écrans vers lesquels envoyer les paramètres :</p>
                 <label class="checkbox-label">
-                    <input type="checkbox" id = "d1" name="decor1" value="true"#if(decor1 == true): checked#endif class="decor-checkbox">
-                    <span>1</span>
+                    <input type="checkbox" name="decor10" value="true"#if(decor10 == true): checked#endif class="decor-checkbox">
+                    <span>10</span>
                 </label>
                 <label class="checkbox-label">
-                <input type="checkbox" name="decor2" value="true"#if(decor2 == true): checked#endif class="decor-checkbox">
-                    <span>2</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor3" value="true"#if(decor3 == true): checked#endif class="decor-checkbox">
-                    <span>3</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor4" value="true"#if(decor4 == true): checked#endif class="decor-checkbox">
-                    <span>4</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor5" value="true"#if(decor5 == true): checked#endif class="decor-checkbox">
-                    <span>5</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor6" value="true"#if(decor6 == true): checked#endif class="decor-checkbox">
-                    <span>6</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor7" value="true"#if(decor7 == true): checked#endif class="decor-checkbox">
-                    <span>7</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor8" value="true"#if(decor8 == true): checked#endif class="decor-checkbox">
-                    <span>8</span>
-                </label>
-                <label class="checkbox-label">
-                <input type="checkbox" name="decor9" value="true"#if(decor9 == true): checked#endif class="decor-checkbox">
+                    <input type="checkbox" name="decor9" value="true"#if(decor9 == true): checked#endif class="decor-checkbox">
                     <span>9</span>
                 </label>
                 <label class="checkbox-label">
-                <input type="checkbox" name="decor10" value="true"#if(decor10 == true): checked#endif class="decor-checkbox">
-                    <span>10</span>
+                    <input type="checkbox" name="decor8" value="true"#if(decor8 == true): checked#endif class="decor-checkbox">
+                    <span>8</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor7" value="true"#if(decor7 == true): checked#endif class="decor-checkbox">
+                    <span>7</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor6" value="true"#if(decor6 == true): checked#endif class="decor-checkbox">
+                    <span>6</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor5" value="true"#if(decor5 == true): checked#endif class="decor-checkbox">
+                    <span>5</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor4" value="true"#if(decor4 == true): checked#endif class="decor-checkbox">
+                    <span>4</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor3" value="true"#if(decor3 == true): checked#endif class="decor-checkbox">
+                    <span>3</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor2" value="true"#if(decor2 == true): checked#endif class="decor-checkbox">
+                    <span>2</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="decor1" value="true"#if(decor1 == true): checked#endif class="decor-checkbox">
+                    <span>1</span>
                 </label>
             </div>
             <input type="submit" value="Envoyer" style="margin-top:18px">
