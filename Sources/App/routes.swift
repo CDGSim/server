@@ -731,7 +731,7 @@ func registerDecorRoutes(_ app: Application) throws {
         if let idString = req.parameters.get("id"), let id = Int(idString), let metar = DecorData.metars[id], let configuration = DecorData.configurations[id], let date = DecorData.dates[id] {
             return DecorController.view(req: req, metar: metar, configuration: configuration, startDate: date)
         } else {
-            return req.view.render("error", ["reason":"Cet écran DECOR n'est pas configuré"])
+            return req.view.render("decor-error", ["reason":"Cet écran DECOR n'est pas configuré"])
         }
     }
     
