@@ -103,7 +103,7 @@
       ]
     },
     {
-      "directives" : "En début de simu, descendre AAL754 au FL60. Descendre VLG582G, AFR138E, et ABR1256 au FL110.",
+      "directives" : "En début de simu, descendre VLG582G, AFR138E, et ABR1256 au FL110.",
       "events" : [
         {
           "callsign" : "Au choix",
@@ -114,10 +114,6 @@
       "frequency" : "121.155",
       "role" : "INI Nord",
       "setup" : [
-        {
-          "callsign" : "AAL754",
-          "description" : "FL60 - 250 kts"
-        },
         {
           "callsign" : "AFR083",
           "description" : "FL80 - 250 kts"
@@ -133,10 +129,15 @@
         {
           "callsign" : "ABR1256",
           "description" : "FL110 - 300 kts"
+        },
+        {
+          "callsign" : "EJU69TL",
+          "description" : "FL110"
         }
       ]
     },
     {
+      "directives" : "En début de simu, descendre AAL754 au FL60.",
       "events" : [
         {
           "callsign" : "SDM6635",
@@ -158,6 +159,10 @@
         {
           "callsign" : "AFR355",
           "description" : "4000 ft - ILS 09L - 220 kts"
+        },
+        {
+          "callsign" : "AAL754",
+          "description" : "FL60 - 250 kts"
         }
       ]
     }
@@ -179,8 +184,8 @@
       {
         "controller" : "PC",
         "positions" : [
-          "ITM S",
-          "ITM BA"
+          "ITM BA",
+          "ITM S"
         ]
       },
       {
@@ -198,20 +203,19 @@
       {
         "controller" : "PC",
         "positions" : [
-          "SEQ",
-          "COOR INI N"
+          "COOR INI N",
+          "SEQ"
         ]
       }
     ],
     "configuration" : "EL",
-    "description" : "ILS 08R indisponible : RNP 08R en vigueur\\\nMission gendarmerie entrainant la fermetue d’un doublet",
+    "description" : "ILS 08R indisponible : RNP 08R en vigueur\\\nMission gendarmerie entrainant la fermeture d’un doublet",
     "duration" : 60,
     "name" : "FSAU_APP_2123_EL",
-    "objectives" : "- Gestion de fermeture imprévue d’un doublet\n- Gestion de l’attente à l’INI et éventuellement à l’ITM (attente sans aire de protection, 360°)\n- Minimum fuel : annonce de délai\n- Régulation par vent calme avec mauvaise réduction en finale\n- Gestion d’un vol prioritaire VFR hors conditions VMC (séparation radar)\n- Déviation NTZ",
-    "pressure" : 1035,
+    "objectives" : "- Gestion de la fermeture imprévue d’un doublet\n- Gestion de l’attente à l’INI et éventuellement à l’ITM (attente sans aire de protection, 360°)\n- Minimum fuel : annonce de délai\n- Régulation par vent calme avec mauvaise réduction en finale\n- Gestion d’un vol prioritaire VFR hors conditions VMC (séparation radar)\n- Déviation NTZ",
     "start_date" : "2021-02-22T07:50:02Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-23T12:05:03Z",
+    "update_date" : "2021-03-03T12:10:32Z",
     "weather" : "07002KT BKN011 10\/02 Q1035"
   }
 }

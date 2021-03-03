@@ -199,7 +199,7 @@
       ]
     },
     {
-      "directives" : "En début de simu :\n- transférer EJU69TL au PER DEP Nord + Sud\n- descendre AFR355 au FL 60\n- verrouiller le niveau de AAL44\n- descendre AFR138E et AFR1423 au FL110",
+      "directives" : "En début de simu :\n- transférer EJU69TL au PER DEP Nord + Sud\n- verrouiller le niveau de AAL44\n- descendre AFR138E et AFR1423 au FL110",
       "frequency" : "121.155",
       "role" : "INI Nord",
       "setup" : [
@@ -212,10 +212,6 @@
           "description" : "FL70 - 250kts"
         },
         {
-          "callsign" : "AFR355",
-          "description" : "FL100 - 250kts"
-        },
-        {
           "callsign" : "AAL44",
           "description" : "FL110 - 250kts"
         },
@@ -226,7 +222,7 @@
       ]
     },
     {
-      "directives" : "Le vent est arrière à l’interception, puis a une composante de face en courte finale.\n\nEn début de simu, réduire NAX1494 à 180 kts pour éviter une trop forte compression.\n\n",
+      "directives" : "Le vent est arrière à l’interception, puis a une composante de face en courte finale.\n\nEn début de simu, réduire NAX1494 à 180 kts pour éviter une trop forte compression, descendre AFR355 au FL60.\n\n",
       "frequency" : "126.430",
       "role" : "ITM Nord",
       "setup" : [
@@ -241,6 +237,10 @@
         {
           "callsign" : "UAL57",
           "description" : "4000ft - 250 kts"
+        },
+        {
+          "callsign" : "AFR355",
+          "description" : "FL60 - 250kts"
         }
       ]
     }
@@ -250,15 +250,15 @@
       {
         "controller" : "PC",
         "positions" : [
-          "COOR DEP N",
-          "COOR DEP S"
+          "COOR DEP S",
+          "COOR DEP N"
         ]
       },
       {
         "controller" : "PC",
         "positions" : [
-          "DEP N",
-          "DEP S"
+          "DEP S",
+          "DEP N"
         ]
       },
       {
@@ -295,10 +295,9 @@
     "duration" : 60,
     "name" : "FSAU_APP_2123_EI",
     "objectives" : "- Gestion en Est inverse\n- Vent arrière en finale (15-20 kts), compression en courte (composante de face 10 kt sous 1500 ft)\n- Gestion information mode C erroné, doute sur l’altitude d’un vol\n- Retour terrain LB\n- Intervention de la PO (optionnel) ",
-    "pressure" : 1012,
     "start_date" : "2021-02-22T06:45:02Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-23T07:22:51Z",
+    "update_date" : "2021-03-03T12:46:00Z",
     "weather" : "15015KT BKN008 10\/02 Q1012"
   }
 }
