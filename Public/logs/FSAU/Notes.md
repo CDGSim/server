@@ -1,6 +1,6 @@
-Partition à sélectionner pour l’ensemble des exercices : **FSAU_1**
-
-Des **captures d’écran** DECOR sont disponibles pour toutes les simulations. Penser à les aimanter au bon moment en face de chaque contrôleur.
+Partition à sélectionner :
+- FSAU_APP_2123_EI & FSAU_APP_2123_WI : **FSAU_1**
+- FSAU_APP_2123_EL : **FSAU_23**
 
 Pour chaque simulation, une distribution PC est proposée dans un tableau en haut de page. 
 
