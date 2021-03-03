@@ -499,7 +499,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         }
     }
     
-    // MARK: GET /print/log_path
+    // MARK: GET /print2/log_path
     // Renders a view to print the complete log all at once
     // Can be used to generate PDF via a web browser
     app.get("print2", "**") { req -> EventLoopFuture<View> in
@@ -859,6 +859,7 @@ struct SimulationProperties: Encodable {
     let weather:String
     let metar:String
     let qnh: Int
+    let objectives:String
     
     init(from properties:Log.Properties) {
         name = properties.name
@@ -887,5 +888,7 @@ struct SimulationProperties: Encodable {
         self.weather = "\(weather.readable) - \(windDirection)° \(weather.windSpeed) KT"
         
         self.metar = properties.weather
+        
+        self.objectives = properties.objectives
     }
 }
