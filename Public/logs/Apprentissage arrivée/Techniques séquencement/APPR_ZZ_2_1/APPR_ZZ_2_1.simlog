@@ -144,9 +144,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI S",
           "COOR INI N",
-          "SEQ",
-          "COOR INI S"
+          "SEQ"
         ]
       }
     ],
@@ -155,10 +155,9 @@
     "duration" : 50,
     "name" : "APPR_ZZ_2_1",
     "objectives" : "Gestion d'un trafic modéré à fort avec quelques croisements.",
-    "pressure" : 1015,
     "start_date" : "2021-01-14T05:15:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-08T14:03:21Z",
-    "weather" : "26003KT SKC 25/19"
+    "update_date" : "2021-03-09T09:21:59Z",
+    "weather" : "26003KT SKC 25\/19 Q1015"
   }
 }

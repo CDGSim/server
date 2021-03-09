@@ -191,16 +191,16 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI N",
-          "INI S"
+          "INI S",
+          "INI N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI N",
+          "SEQ",
           "COOR INI S",
-          "SEQ"
+          "COOR INI N"
         ]
       }
     ],
@@ -209,10 +209,9 @@
     "duration" : 60,
     "name" : "APPR_ZZ_1_3",
     "objectives" : "- Travailler les stratégies d'interception au Bourget\n - Gestion d'une arrivée et d'un départ Le Plessis",
-    "pressure" : 1015,
     "start_date" : "2021-01-14T08:28:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-02-12T12:20:34Z",
-    "weather" : "32017G28KT FEW140 10/02"
+    "update_date" : "2021-03-09T09:24:48Z",
+    "weather" : "32007KT FEW140 10\/02 Q1015"
   }
 }

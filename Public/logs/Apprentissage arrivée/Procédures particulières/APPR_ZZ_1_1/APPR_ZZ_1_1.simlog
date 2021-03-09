@@ -194,8 +194,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM BA",
-          "ITM S"
+          "ITM S",
+          "ITM BA"
         ]
       },
       {
@@ -214,9 +214,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "SEQ",
           "COOR INI S",
-          "COOR INI N",
-          "SEQ"
+          "COOR INI N"
         ]
       }
     ],
@@ -225,10 +225,9 @@
     "duration" : 70,
     "name" : "APPR_ZZ_1_1",
     "objectives" : "- trafic avec croisements\n- approches RNP\n- arrivées Le Plessis\n- arrivées Pontoise",
-    "pressure" : 1015,
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-12T13:35:19Z",
-    "weather" : "Q1015 24005KT BKN004 M01/M05 R27L/700 R26R/500"
+    "update_date" : "2021-03-09T09:24:10Z",
+    "weather" : "Q1015 24005KT CAVOK M01\/M05"
   }
 }

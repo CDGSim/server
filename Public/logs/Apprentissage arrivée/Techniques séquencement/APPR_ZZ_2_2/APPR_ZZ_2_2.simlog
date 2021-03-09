@@ -156,9 +156,9 @@
       {
         "controller" : "INS",
         "positions" : [
-          "SEQ",
           "COOR INI N",
-          "COOR INI S"
+          "COOR INI S",
+          "SEQ"
         ]
       }
     ],
@@ -167,10 +167,9 @@
     "duration" : 60,
     "name" : "APPR_ZZ_2_2",
     "objectives" : "Gestion d'un trafic fort avec croisements.",
-    "pressure" : 998,
     "start_date" : "2021-01-14T14:30:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-08T14:01:03Z",
-    "weather" : "15014KT CAVOK 02/M06"
+    "update_date" : "2021-03-09T09:23:01Z",
+    "weather" : "15014KT CAVOK 02\/M06 Q998"
   }
 }

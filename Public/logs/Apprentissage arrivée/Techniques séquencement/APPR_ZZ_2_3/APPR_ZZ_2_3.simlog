@@ -12,7 +12,7 @@
         "time" : "15:25"
       }
     ],
-    "setup_info" : "En cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
+    "setup_info" : "Changer la configuration sur AMAN en début de simu : PG27R\/L.\n\nEn cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
   },
   "pilot_logs" : [
     {
@@ -101,8 +101,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM BA",
-          "ITM S"
+          "ITM S",
+          "ITM BA"
         ]
       },
       {
@@ -114,28 +114,27 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI S",
-          "INI N"
+          "INI N",
+          "INI S"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI N",
           "SEQ",
+          "COOR INI N",
           "COOR INI S"
         ]
       }
     ],
     "configuration" : "WL",
-    "description" : "Régulations ILS 27R et ILS 27 PB, le doublet sud est fermé.\n\nITM BA dégroupé de l’ITM N + S.",
+    "description" : "Régulations ILS 27R et ILS 27 PB, le doublet sud est fermé.\\\nITM BA dégroupé de l’ITM N + S.",
     "duration" : 50,
     "name" : "APPR_ZZ_2_3",
     "objectives" : "Gestion d'un trafic modéré à fort sur un seul doublet, l’autre étant fermé.",
-    "pressure" : 1015,
     "start_date" : "2021-01-28T14:00:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-02-08T13:53:10Z",
-    "weather" : "32003KT 3500 HZ NSC 06/00"
+    "update_date" : "2021-03-09T09:30:37Z",
+    "weather" : "32003KT CAVOK 06\/00 Q1015"
   }
 }
