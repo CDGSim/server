@@ -31,7 +31,7 @@ body {
     padding-right: max(12px, env(safe-area-inset-right));
 }
 
-p, label {
+p, label, #content li {
     color:#484848;
 }
 
@@ -142,8 +142,8 @@ table em {
     justify-content: space-between;
 }
 
-.content {
-    margin:0px 2em 0px 2em
+#content p > strong {
+    color:#BD130B
 }
 
 .header {
@@ -385,7 +385,7 @@ table em {
 
 /* Course page */
 .course_notes strong {
-    color:red
+    color:#BD130B
 }
 
 /* Tabs */
