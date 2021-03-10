@@ -73,14 +73,14 @@ table:not(.simulation-index) tr:nth-child(even) {
 }
 
 table:not(.simulation-index) tr td {
-    border-bottom: .5px solid #e6e6e6;
+    border-bottom: 1px solid #cbcbcb;
     color: #666;
     padding: .25em 1em .25em 1em;
     vertical-align:top
 }
 
 .simulation-index tr td {
-    border-top: .5px solid #e6e6e6;
+    border-top: 1px solid #cbcbcb;
     padding: .25em 1em .25em 1.5em;
     vertical-align:top
 }
