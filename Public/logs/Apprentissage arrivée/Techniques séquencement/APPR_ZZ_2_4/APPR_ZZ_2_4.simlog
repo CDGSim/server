@@ -17,7 +17,7 @@
         "time" : "15:28"
       }
     ],
-    "setup_info" : "En début de simulation, changer la configuration sur AMAN : PG09L\/R.\n\nEn cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
+    "setup_info" : "En début de simulation, changer la configuration sur AMAN : PG_E09L\/R.\n\nEn cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
   },
   "pilot_logs" : [
     {
@@ -142,16 +142,16 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI N",
-          "INI S"
+          "INI S",
+          "INI N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
           "COOR INI N",
-          "SEQ",
-          "COOR INI S"
+          "COOR INI S",
+          "SEQ"
         ]
       }
     ],
@@ -162,7 +162,7 @@
     "objectives" : "Gestion d'un trafic modéré à fort sur un seul doublet.",
     "start_date" : "2021-01-28T14:00:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-03-09T09:32:03Z",
+    "update_date" : "2021-03-10T07:05:04Z",
     "weather" : "15014KT 9999 NCD 02\/M06 Q998"
   }
 }

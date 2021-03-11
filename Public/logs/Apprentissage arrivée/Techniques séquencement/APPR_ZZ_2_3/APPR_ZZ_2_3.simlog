@@ -12,7 +12,7 @@
         "time" : "15:25"
       }
     ],
-    "setup_info" : "Changer la configuration sur AMAN en début de simu : PG27R\/L.\n\nEn cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
+    "setup_info" : "Changer la configuration sur AMAN en début de simu : PG_W27L\/R.\n\nEn cas de dégroupement de l’INI, l’instructeur prend le COOR INI et le stagiaire au COOR INI prend l’INI Sud."
   },
   "pilot_logs" : [
     {
@@ -101,8 +101,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
-          "ITM BA"
+          "ITM BA",
+          "ITM S"
         ]
       },
       {
@@ -121,9 +121,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI S",
           "SEQ",
-          "COOR INI N",
-          "COOR INI S"
+          "COOR INI N"
         ]
       }
     ],
@@ -134,7 +134,7 @@
     "objectives" : "Gestion d'un trafic modéré à fort sur un seul doublet, l’autre étant fermé.",
     "start_date" : "2021-01-28T14:00:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-03-09T09:30:37Z",
+    "update_date" : "2021-03-10T07:05:24Z",
     "weather" : "32003KT CAVOK 06\/00 Q1015"
   }
 }

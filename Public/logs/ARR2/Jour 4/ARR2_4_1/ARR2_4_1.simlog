@@ -36,7 +36,7 @@
   },
   "pilot_logs" : [
     {
-      "directives" : "Gestion d’un trafic chargé avec orages (et donc évitements).\\\nPas de trafic au Bourget, **1 PER INI N utilisé pour le DEP**.\\\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».\n\nSi appel du Coor INI pour une arrivée pour Beauvais, donner « 5000ft sur MTD ». Après transfert, guider l’avion sur Beauvais et le faire se poser en piste 30.\n\nSi appel du Coor INI pour une arrivée pour Orly, donner : \"standard, FL080, 250Kts, 123.875\"",
+      "directives" : "Gestion d’un trafic chargé avec orages (et donc évitements).\\\nPas de trafic au Bourget, **1 PER INI N utilisé pour le DEP**.\\\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.\n\nSi appel du Coor INI pour une arrivée pour Beauvais, donner *« 5000ft sur MTD »*. Après transfert, guider l’avion sur Beauvais et le faire se poser en piste 30.\n\nSi appel du Coor INI pour une arrivée pour Orly, donner : \"standard, FL080, 250Kts, 123.875\"",
       "events" : [
         {
           "callsign" : "WZZ279",
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».",
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.",
       "frequency" : "121.155",
       "role" : "INI Nord",
       "setup" : [
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
       "frequency" : "126.430",
       "role" : "ITM Nord",
       "setup" : [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».",
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.",
       "frequency" : "125.830",
       "role" : "INI Sud",
       "setup" : [
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  « on veut descendre ET tourner en même temps ». On préfèrera par exemple : « si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende ».\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "directives" : "Le message de premier contact n’est pas nécessaire pour les avions en compte avant le dégel\nde la simu.\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
       "frequency" : "118.150",
       "role" : "ITM Sud",
       "setup" : [

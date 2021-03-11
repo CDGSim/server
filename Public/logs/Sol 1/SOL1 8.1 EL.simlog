@@ -63,7 +63,7 @@
   },
   "pilot_logs" : [
     {
-      "directives" : "- Au début de la simu, les avions roulent en automatique (REU977, EZY3943, SVA126 et AAL48).\n- Faire les messages quand une bulle « Bonjour » ou « Good morning » apparait.\n\nCertains appareils ont des créneaux : AFR3830, AEA1036, ASL315, AFR454, AEA1008 et AMC479. Il est possible que l'élève donne un roulage particulier à ces vols.",
+      "directives" : "- Au début de la simu, les avions roulent en automatique (REU977, EZY3943, SVA126 et AAL48).\n- Faire les messages quand une bulle *« Bonjour » ou *« Good morning » apparait.\n\nCertains appareils ont des créneaux : AFR3830, AEA1036, ASL315, AFR454, AEA1008 et AMC479. Il est possible que l'élève donne un roulage particulier à ces vols.",
       "events" : [
         {
           "callsign" : "BEE743F",
