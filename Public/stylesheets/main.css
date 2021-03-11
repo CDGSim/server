@@ -146,6 +146,10 @@ table em {
     color:#BD130B
 }
 
+#content p > em {
+    color: #2573F7;
+}
+
 .header {
     border-bottom:1px solid #e6e6e6;
     display: flex;
