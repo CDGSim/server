@@ -97,6 +97,11 @@ struct Weather {
                 }
             }
             
+            // If RVR is low, ceiling must be low as well
+            if ceiling > 5000 && (northRunway1RVR < 1000 || northRunway2RVR < 1000 || southRunway2RVR < 1000 || southRunway1RVR < 1000) {
+                ceiling = 0
+            }
+            
             // Weather events
             let weatherEventComponents = ["VC", "MI", "PR", "DR", "BL", "FZ", "RE", "BC", "SH", "XX",
                                           "RA", "SN", "GR", "DZ", "PL", "GS", "SG", "IC", "UP",
