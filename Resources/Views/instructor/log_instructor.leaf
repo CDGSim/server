@@ -8,7 +8,7 @@
                     const date = new Date('#date(simulation_properties.start_date)')
                     let data = {
                     metar: "#(simulation_properties.metar)",
-                    configuration: "#(simulation_properties.configuration)",
+                    configuration: "#lowercased(simulation_properties.configuration)",
                     date: date.toISOString().split('.')[0]+"Z",
                     }
                     console.log(date.toISOString())
