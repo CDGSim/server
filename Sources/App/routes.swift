@@ -752,6 +752,29 @@ func registerDecorRoutes(_ app: Application) throws {
                                                            decor10: true))
     }
     
+    // MARK: GET /decor/setup/METAR
+    app.get("decor", "setup", ":metar") { req -> EventLoopFuture<View> in
+        let metar: String
+        if let metarParameter = req.parameters.get("metar") {
+            metar = metarParameter
+        } else {
+            metar = DecorData.metars[1]!
+        }
+        return req.view.render("decor-setup", SetupContext(message: "",
+                                                           configuration: DecorData.configurations[1]!,
+                                                           metar: metar,
+                                                           decor1: true,
+                                                           decor2: true,
+                                                           decor3: true,
+                                                           decor4: true,
+                                                           decor5: true,
+                                                           decor6: true,
+                                                           decor7: true,
+                                                           decor8: true,
+                                                           decor9: true,
+                                                           decor10: true))
+    }
+    
     // MARK: POST /decor1/setup
     app.post("decor", "setup") { req -> EventLoopFuture<View> in
         struct Post: Content {
