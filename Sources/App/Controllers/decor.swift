@@ -135,6 +135,11 @@ struct DecorController {
         let pressureFormatter = NumberFormatter()
         pressureFormatter.minimumIntegerDigits = 4
         
+        let hbn27 = (weather.ceiling > 200 && (northRunway1RVR <= 600 || northRunway2RVR <= 600)) ? 0 : weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 2)*50
+        let hbn26 = (weather.ceiling > 200 && (southRunway1RVR <= 600 || southRunway2RVR <= 600)) ? 0 : weather.ceiling + Int.pseudoRandom(in: -3...1, changeEvery: 3)*50
+        let hbn09 = (weather.ceiling > 200 && (northRunway1RVR <= 600 || northRunway2RVR <= 600)) ? 0 : weather.ceiling + Int.pseudoRandom(in: -3...2, changeEvery: 2)*50
+        let hbn08 = (weather.ceiling > 200 && (southRunway1RVR <= 600 || southRunway2RVR <= 600)) ? 0 : weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 4)*50
+        
         return req.view.render("decor", DecorContext(qnh: pressureFormatter.string(from: NSNumber(value: qnh)) ?? "",
                                                      transitionLevel: transitionLevel,
                                                      temperature: weather.temperature,
@@ -159,10 +164,10 @@ struct DecorController {
                                                      southRunway2RVR:.init(start: southRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
                                                                            mid: southRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
                                                                            end: southRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
-                                                     hbn27:weather.ceiling + Int.pseudoRandom(in: -1...2, changeEvery: 2)*50,
-                                                     hbn26:weather.ceiling + Int.pseudoRandom(in: -3...1, changeEvery: 3)*50,
-                                                     hbn09:weather.ceiling + Int.pseudoRandom(in: -3...2, changeEvery: 2)*50,
-                                                     hbn08:weather.ceiling + Int.pseudoRandom(in: -2...1, changeEvery: 4)*50,
+                                                     hbn27:hbn27,
+                                                     hbn26:hbn26,
+                                                     hbn09:hbn09,
+                                                     hbn08:hbn08,
                                                      preLVPNorth: preLVPNorth,
                                                      LVPNorth: LVPNorth,
                                                      preLVPSouth: preLVPSouth,
