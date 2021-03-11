@@ -98,7 +98,7 @@ struct Weather {
             }
             
             // If RVR is low, ceiling must be low as well
-            if ceiling > 5000 && (northRunway1RVR < 1000 || northRunway2RVR < 1000 || southRunway2RVR < 1000 || southRunway1RVR < 1000) {
+            if ceiling > 5000 && (northRunway1RVR < 600 || northRunway2RVR < 600 || southRunway2RVR < 600 || southRunway1RVR < 600) {
                 ceiling = 0
             }
             
