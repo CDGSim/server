@@ -120,6 +120,10 @@ struct DecorController {
             let northRunway2RVR:RunwayRVR
             let southRunway1RVR:RunwayRVR
             let southRunway2RVR:RunwayRVR
+            let northRunway1Closed:Bool
+            let northRunway2Closed:Bool
+            let southRunway1Closed:Bool
+            let southRunway2Closed:Bool
             let hbn27:Int
             let hbn26:Int
             let hbn09:Int
@@ -164,6 +168,10 @@ struct DecorController {
                                                      southRunway2RVR:.init(start: southRunway2RVR + Int.pseudoRandom(in: -2...1, changeEvery: 3)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
                                                                            mid: southRunway2RVR + (1 - Int.pseudoRandom(in: -1...1, changeEvery: 4))*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25,
                                                                            end: southRunway2RVR + Int.pseudoRandom(in: -1...2, changeEvery: 2)*Int.pseudoRandom(in: 0...2, changeEvery: 2)*25),
+                                                     northRunway1Closed: weather.northRunway1Closed,
+                                                     northRunway2Closed: weather.northRunway2Closed,
+                                                     southRunway1Closed: weather.southRunway1Closed,
+                                                     southRunway2Closed: weather.southRunway2Closed,
                                                      hbn27:hbn27,
                                                      hbn26:hbn26,
                                                      hbn09:hbn09,

@@ -20,6 +20,10 @@ struct Weather {
     var northRunway2RVR: Int = 9999
     var southRunway1RVR: Int = 9999
     var southRunway2RVR: Int = 9999
+    var northRunway1Closed: Bool = false
+    var northRunway2Closed: Bool = false
+    var southRunway1Closed: Bool = false
+    var southRunway2Closed: Bool = false
     var ceiling: Int = 10000
     var cloudLayers: [String] = []
     var weatherEvents: [String] = []
@@ -73,18 +77,32 @@ struct Weather {
                 }
             }
             
-            // Decode RVRs
+            // Decode RVRs & runway closure
             if let separatorIndex = component.firstIndex(of: "/"), component.first == "R" {
                 let runway = component[component.index(after: component.startIndex)..<separatorIndex]
-                let rvr = Int(component.suffix(from: component.index(after: separatorIndex))) ?? 0
-                if runway == "27R" || runway == "09L" {
-                    northRunway1RVR = rvr
-                } else if runway == "27L" || runway == "09R" {
-                    northRunway2RVR = rvr
-                } else if runway == "26R" || runway == "08L" {
-                    southRunway1RVR = rvr
-                } else if runway == "26L" || runway == "08R" {
-                    southRunway2RVR = rvr
+                if let rvr = Int(component.suffix(from: component.index(after: separatorIndex))) {
+                    if runway == "27R" || runway == "09L" {
+                        northRunway1RVR = rvr
+                    } else if runway == "27L" || runway == "09R" {
+                        northRunway2RVR = rvr
+                    } else if runway == "26R" || runway == "08L" {
+                        southRunway1RVR = rvr
+                    } else if runway == "26L" || runway == "08R" {
+                        southRunway2RVR = rvr
+                    }
+                } else {
+                    let closure = String(component.suffix(from: component.index(after: separatorIndex)))
+                    if closure == "CLOSED" {
+                        if runway == "27R" || runway == "09L" {
+                            northRunway1Closed = true
+                        } else if runway == "27L" || runway == "09R" {
+                            northRunway2Closed = true
+                        } else if runway == "26R" || runway == "08L" {
+                            southRunway1Closed = true
+                        } else if runway == "26L" || runway == "08R" {
+                            southRunway2Closed = true
+                        }
+                    }
                 }
             }
             

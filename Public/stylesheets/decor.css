@@ -175,6 +175,10 @@ body {
     border:2.5px solid black;
 }
 
+.runway-closed {
+    background-color:#EA1200;
+}
+
 .runwaycontent {
     display: flex;
     align-items:center;

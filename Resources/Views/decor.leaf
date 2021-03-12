@@ -52,7 +52,7 @@
                         <div id="hbn09" class="hbn">#if(hbn09 > 5000):>>>>#else:#if(hbn09 < 50):---#else:#(hbn09)#endif#endif</div>
                         <div id="hbn27" class="hbn">#if(hbn27 > 5000):>>>>#else:#if(hbn27 < 50):---#else:#(hbn27)#endif#endif</div>
                         <div class="runway-name">09L</div>
-                        <div class="runway">
+                        <div class="runway#if(northRunway1Closed == true): runway-closed#endif">
                             <div class="runwaycontent rvrs">
                                 <div>#if(northRunway1RVR.start > 1500):>>>>#else:#(northRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
@@ -72,7 +72,7 @@
                         <div id="hbn08" class="hbn">#if(hbn08 > 5000):>>>>#else:#if(hbn08 < 50):---#else:#(hbn08)#endif#endif</div>
                         <div id="hbn26" class="hbn">#if(hbn26 > 5000):>>>>#else:#if(hbn26 < 50):---#else:#(hbn26)#endif#endif</div>
                         <div class="runway-name">09R</div>
-                        <div class="runway">
+                        <div class="runway#if(northRunway2Closed == true): runway-closed#endif">
                             <div class="runwaycontent rvrs">
                                 <div>#if(northRunway2RVR.start > 1500):>>>>#else:#(northRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
@@ -105,7 +105,7 @@
                     <div id="r08L26R" class="runway-container">
                         <div class="#if(preLVPSouth):#if(LVPSouth):LVP#else:PRELVP#endif#else:LVPOFF#endif">LVP</div>
                         <div class="runway-name">08L</div>
-                        <div class="runway">
+                        <div class="runway#if(southRunway1Closed == true): runway-closed#endif">
                             <div class="runwaycontent rvrs">
                                 <div>#if(southRunway1RVR.start > 1500):>>>>#else:#(southRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
@@ -123,7 +123,7 @@
                     </div>
                     <div id="r08R26L" class="runway-container">
                         <div class="runway-name">08R</div>
-                        <div class="runway">
+                        <div class="runway#if(southRunway2Closed == true): runway-closed#endif">
                             <div class="runwaycontent rvrs">
                                 <div>#if(southRunway2RVR.start > 1500):>>>>#else:#(southRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
