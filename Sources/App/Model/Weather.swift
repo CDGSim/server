@@ -138,7 +138,7 @@ struct Weather {
             visibilityString = ""
         } else if visibility >= 9999 {
             visibilityString = "10km"
-        } else if visibility >= 1000 {
+        } else if visibility >= 2000 {
             visibilityString = "\(visibility/1000)km"
         } else if visibility > 0 {
             visibilityString = "\(visibility)m"
