@@ -53,16 +53,22 @@
                         <div id="hbn27" class="hbn">#if(hbn27 > 5000):>>>>#else:#if(hbn27 < 50):---#else:#(hbn27)#endif#endif</div>
                         <div class="runway-name">09L</div>
                         <div class="runway#if(northRunway1Closed == true): runway-closed#endif">
-                            #if(northRunway1Closed == false):<div class="runwaycontent rvrs">
+                            <div class="runwaycontent rvrs">
                                 <div>#if(northRunway1RVR.start > 1500):>>>>#else:#(northRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(northRunway1RVR.mid > 1500):>>>>#else:#(northRunway1RVR.mid)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(northRunway1RVR.end > 1500):>>>>#else:#(northRunway1RVR.end)#endif</div>
                             </div>
+                            #if(northRunway1Closed == false):
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
                                 <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)#if(northWind.gust > 0): - #(northWind.gust)#endif</div>
+                                <div class="spacer"></div>
+                            </div>#else:
+                            <div class="runwaycontent rwyweather">
+                                <div class="spacer"></div>
+                                <div>PISTE FERMEE</div>
                                 <div class="spacer"></div>
                             </div>#endif
                         </div>
@@ -73,16 +79,22 @@
                         <div id="hbn26" class="hbn">#if(hbn26 > 5000):>>>>#else:#if(hbn26 < 50):---#else:#(hbn26)#endif#endif</div>
                         <div class="runway-name">09R</div>
                         <div class="runway#if(northRunway2Closed == true): runway-closed#endif">
-                                                        #if(northRunway2Closed == false):<div class="runwaycontent rvrs">
+                            <div class="runwaycontent rvrs">
                                 <div>#if(northRunway2RVR.start > 1500):>>>>#else:#(northRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(northRunway2RVR.mid > 1500):>>>>#else:#(northRunway2RVR.mid)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(northRunway2RVR.end > 1500):>>>>#else:#(northRunway2RVR.end)#endif</div>
                             </div>
+                            #if(northRunway2Closed == false):
                             <div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
                                 <div>#if(northWind.direction < 100):0#endif#if(northWind.direction < 10):0#endif#(northWind.direction) #if(northWind.speed < 10):0#endif#(northWind.speed)#if(northWind.gust > 0): - #(northWind.gust)#endif</div>
+                                <div class="spacer"></div>
+                            </div>#else:
+                            <div class="runwaycontent rwyweather">
+                                <div class="spacer"></div>
+                                <div>PISTE FERMEE</div>
                                 <div class="spacer"></div>
                             </div>#endif
                         </div>
@@ -106,16 +118,21 @@
                         <div class="#if(preLVPSouth):#if(LVPSouth):LVP#else:PRELVP#endif#else:LVPOFF#endif">LVP</div>
                         <div class="runway-name">08L</div>
                         <div class="runway#if(southRunway1Closed == true): runway-closed#endif">
-                                                        #if(southRunway1Closed == false):<div class="runwaycontent rvrs">
+                            <div class="runwaycontent rvrs">
                                 <div>#if(southRunway1RVR.start > 1500):>>>>#else:#(southRunway1RVR.start)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(southRunway1RVR.mid > 1500):>>>>#else:#(southRunway1RVR.mid)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(southRunway1RVR.end > 1500):>>>>#else:#(southRunway1RVR.end)#endif</div>
                             </div>
-                            <div class="runwaycontent rwyweather">
+                            #if(southRunway1Closed == false):<div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
                                 <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)#if(southWind.gust > 0): - #(southWind.gust)#endif</div>
+                                <div class="spacer"></div>
+                            </div>#else:
+                            <div class="runwaycontent rwyweather">
+                                <div class="spacer"></div>
+                                <div>PISTE FERMEE</div>
                                 <div class="spacer"></div>
                             </div>#endif
                         </div>
@@ -124,16 +141,21 @@
                     <div id="r08R26L" class="runway-container">
                         <div class="runway-name">08R</div>
                         <div class="runway#if(southRunway2Closed == true): runway-closed#endif">
-                                                        #if(southRunway2Closed == false):<div class="runwaycontent rvrs">
+                            <div class="runwaycontent rvrs">
                                 <div>#if(southRunway2RVR.start > 1500):>>>>#else:#(southRunway2RVR.start)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(southRunway2RVR.mid > 1500):>>>>#else:#(southRunway2RVR.mid)#endif</div>
                                 <div class="spacer"></div>
                                 <div>#if(southRunway2RVR.end > 1500):>>>>#else:#(southRunway2RVR.end)#endif</div>
                             </div>
-                            <div class="runwaycontent rwyweather">
+                            #if(southRunway2Closed == false):<div class="runwaycontent rwyweather">
                                 <div class="spacer"></div>
                                 <div>#if(southWind.direction < 100):0#endif#if(southWind.direction < 10):0#endif#(southWind.direction) #if(southWind.speed < 10):0#endif#(southWind.speed)#if(southWind.gust > 0): - #(southWind.gust)#endif</div>
+                                <div class="spacer"></div>
+                            </div>#else:
+                            <div class="runwaycontent rwyweather">
+                                <div class="spacer"></div>
+                                <div>PISTE FERMEE</div>
                                 <div class="spacer"></div>
                             </div>#endif
                         </div>

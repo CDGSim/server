@@ -208,7 +208,9 @@ body {
 .rwyweather > * {
     background-color:white;
     width:140px;
-    text-align:left
+    text-align:left;
+    overflow:visible;
+    white-space:nowrap
 }
 
 .LVPOFF {
