@@ -52,7 +52,7 @@ struct Weather {
             }
             
             // Decode visibility
-            if component.count == 4 || component == "CAVOK" {
+            if component.count == 4 || component.count == 3 || component == "CAVOK" {
                 if component == "CAVOK" {
                     visibility = 10000
                     cloudLayers = ["CAVOK"]
