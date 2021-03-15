@@ -118,6 +118,11 @@ table em {
     border: .5px solid #e6e6e6;
 }
 
+.rerouting {
+    display:flex;
+    justify-content:space-around;
+}
+
 @media print {
     .unit {
         page-break-after: always;

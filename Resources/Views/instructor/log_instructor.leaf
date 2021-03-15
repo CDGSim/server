@@ -58,108 +58,119 @@
                 <ul class="tabButton">
                     <li onclick="displayTab(event, 'overview')" class="tablink current">Général</li>
                     <li onclick="displayTab(event, 'setup')" class="tablink">Mise en place</li>
+                    <li onclick="displayTab(event, 'progress')" class="tablink">Déroulement</li>
                     #if(courseNotes != ""):<li onclick="displayTab(event, 'notes')" class="tablink">Notes</li>#endif
                     #if(attachments): #if(count(attachments) > 0):<li onclick="displayTab(event, 'attachments')" class="tablink">Pièces jointes</li>#endif#endif
                 </ul>
                 
                 <div id="overview" class="tab">
                 
-                #if(log.properties.assignments):
-                    <h2>Positions de contrôle</h2>
-                <table class="assignments">
-                    <thead>
+                    #if(log.properties.assignments):
+                        <h2>Positions de contrôle</h2>
+                    <table class="assignments">
+                        <thead>
+                            <tr>
+                                #for(assignment in assignments):
+                                <th><strong>#(assignment.positionsDescription)</strong></th>
+                                #endfor
+                            </tr>
+                        </thead>
                         <tr>
-                            #for(assignment in assignments):
-                            <th><strong>#(assignment.positionsDescription)</strong></th>
+                            #for(assignment in log.properties.assignments):
+                            <td>#(assignment.controller)</td>
                             #endfor
                         </tr>
-                    </thead>
-                    <tr>
-                        #for(assignment in log.properties.assignments):
-                        <td>#(assignment.controller)</td>
-                        #endfor
-                    </tr>
-                </table>
-                #endif
-                                            
-                <h2>Objectifs</h2>
-                #markdown(log.properties.objectives)
-                
-                <h2>Déroulement</h2>
-                
-                #if(count(reroutedFlightsToNorthRunways) > 0):
-                <h3>Rerouting</h3>
-                <p>Plusieurs croisements : faire les modifications suivantes sur AMAN (après avoir pris les droits et vérifié la conf)</p>
-                <p>Vols à rerouter au Nord :</p>
-                <ul>
-                    #for(reroutedFlight in reroutedFlightsToNorthRunways):
-                    <li>#(reroutedFlight.callsign)</li>
-                    #endfor
-                </ul>
-                <p>Vols à rerouter au Sud :</p>
-                <ul>
-                    #for(reroutedFlight in reroutedFlightsToSouthRunways):
-                    <li>#(reroutedFlight.callsign)</li>
-                    #endfor
-                </ul>
-                #endif
-                
-                #if(log.instructor_log.events):
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Heure</th>
-                            <th>Indicatif</th>
-                            #if(displayEventsLocation):<th>Position</th>#endif
-                            <th>Evènement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        #for(event in log.instructor_log.events):
-                        <tr>
-                            <td>#(event.time)</td>
-                            <td>#(event.callsign)</td>
-                            #if(displayEventsLocation):<td>#if(event.location):#markdown(event.location)#endif</td>#endif
-                            <td>#markdown(event.description)</td>
-                        </tr>
-                        #endfor
-                    </tbody>
-                </table>
-                #else:
-                Aucun évènement particulier
-                #endif
+                    </table>
+                    #endif
+                                                
+                    <h2>Objectifs</h2>
+                    #markdown(log.properties.objectives)
                 
                 </div>
-                <div id="setup" class="tab" style="display:none">
-                <h2>Situation initiale</h2>
-                #markdown(log.instructor_log.setup_info)
                 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Position</th>
-                            <th>Indicatif</th>
-                            <th>Consignes</th>
-                        </tr>
-                    </thead>
-                    #for(pilot_log in log.pilot_logs):
-                        #if(pilot_log.setup):
-                            #if(pilot_log.role != "Adjacent"):
-                            <tbody>
-                                #for(setup in pilot_log.setup):
-                                <tr>
-                                    #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
-                                    <td>#(setup.callsign)</td>
-                                    <td>#markdown(setup.description)</td>
-                                </tr>
-                                #endfor
-                            </tbody>
+                <div id="setup" class="tab" style="display:none">
+                    <h2>Situation initiale</h2>
+                    #markdown(log.instructor_log.setup_info)
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Indicatif</th>
+                                <th>Consignes</th>
+                            </tr>
+                        </thead>
+                        #for(pilot_log in log.pilot_logs):
+                            #if(pilot_log.setup):
+                                #if(pilot_log.role != "Adjacent"):
+                                <tbody>
+                                    #for(setup in pilot_log.setup):
+                                    <tr>
+                                        #if(isFirst):<td rowspan="#count(pilot_log.setup)" style="vertical-align:middle">#(pilot_log.role)</td>#endif
+                                        <td>#(setup.callsign)</td>
+                                        <td>#markdown(setup.description)</td>
+                                    </tr>
+                                    #endfor
+                                </tbody>
+                                #endif
                             #endif
-                        #endif
-                    #endfor
-                </table>
+                        #endfor
+                    </table>
 
-            </div>
+                </div>
+                      
+                <div id="progress" class="tab" style="display:none">
+                    
+                    #if(count(reroutedFlightsToNorthRunways) + count(reroutedFlightsToSouthRunways) > 0):
+                    <h2>Rerouting</h2>
+                    <p>Plusieurs croisements : faire les modifications suivantes sur AMAN (après avoir pris les droits et vérifié la conf)</p>
+                    <div class="rerouting">
+                        <div>
+                            <p>Vols à rerouter au Nord :</p>
+                            <ul>
+                                #for(reroutedFlight in reroutedFlightsToNorthRunways):
+                                <li>#(reroutedFlight.callsign)</li>
+                                #endfor
+                            </ul>
+                        </div>
+                        <div>
+                            <p>Vols à rerouter au Sud :</p>
+                            <ul>
+                                #for(reroutedFlight in reroutedFlightsToSouthRunways):
+                                <li>#(reroutedFlight.callsign)</li>
+                                #endfor
+                            </ul>
+                        </div>
+                    </div>
+                    #endif
+                                        
+                    <h2>Déroulement</h2>
+                    #if(log.instructor_log.events):
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Heure</th>
+                                <th>Indicatif</th>
+                                #if(displayEventsLocation):<th>Position</th>#endif
+                                <th>Evènement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            #for(event in log.instructor_log.events):
+                            <tr>
+                                <td>#(event.time)</td>
+                                <td>#(event.callsign)</td>
+                                #if(displayEventsLocation):<td>#if(event.location):#markdown(event.location)#endif</td>#endif
+                                <td>#markdown(event.description)</td>
+                            </tr>
+                            #endfor
+                        </tbody>
+                    </table>
+                    #else:
+                    Aucun évènement particulier
+                    #endif
+                </div>
+            
                 #if(attachments):
                     #if(count(attachments) > 0):
             <div id="attachments" class="tab" style="display:none">
