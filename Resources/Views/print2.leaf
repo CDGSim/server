@@ -61,6 +61,23 @@
             #endif
                     
                     <div>
+                    
+                        #if(log.properties.assignments):
+                        <table class="assignments">
+                            <thead>
+                                <tr>
+                                    #for(assignment in assignments):
+                                    <th><strong>#(assignment.positionsDescription)</strong></th>
+                                    #endfor
+                                </tr>
+                            </thead>
+                            <tr>
+                                #for(assignment in log.properties.assignments):
+                                <td>#(assignment.controller)</td>
+                                #endfor
+                            </tr>
+                        </table>
+                        #endif
                         
                         <h3>OBJECTIFS :</h3>
                         <p>#markdown(properties.objectives)</p>
