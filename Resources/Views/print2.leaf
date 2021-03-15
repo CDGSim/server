@@ -81,7 +81,36 @@
                         
                         <h3>OBJECTIFS :</h3>
                         <p>#markdown(properties.objectives)</p>
+                                                
                         <h3>DEROULEMENT :</h3>
+                        
+                        #if(count(reroutedFlightsToNorthRunways) + count(reroutedFlightsToSouthRunways) > 0):
+                        <div id="rerouting">
+                            <div>
+                                <table>
+                                    #for(reroutedFlight in reroutedFlightsToNorthRunways):
+                                    <tr>
+                                        #if(isFirst): <td rowspan="#count(reroutedFlightsToNorthRunways)">Avions à rerouter au Nord
+                                        </td>#endif
+                                        <td>#(reroutedFlight.callsign)</td>
+                                    </tr>
+                                    #endfor
+                                </table>
+                            </div>
+                            <div>
+                                <table>
+                                    #for(reroutedFlight in reroutedFlightsToSouthRunways):
+                                    <tr>
+                                        #if(isFirst): <td rowspan="#count(reroutedFlightsToSouthRunways)">Avions à rerouter au Sud
+                                        </td>#endif
+                                        <td>#(reroutedFlight.callsign)</td>
+                                    </tr>
+                                    #endfor
+                                </table>
+                            </div>
+                        </div>
+                        #endif
+                        
                         <p>#markdown(properties.description)</p>
                     </div>
                                     

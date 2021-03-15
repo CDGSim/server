@@ -553,6 +553,10 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let properties: SimulationProperties
             let assignments: [ControlPositionAssignment]?
             
+            // Rerouted flights
+            let reroutedFlightsToNorthRunways:[Flight]?
+            let reroutedFlightsToSouthRunways:[Flight]?
+            
             init(path:String, log:Log) {
                 self.path = path
                 
@@ -583,6 +587,10 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     }.sorted().joined(separator: "<br />")
                     return .init(controller: .instructor, positionsDescription: positionDescriptions)
                 }
+                
+                let flights = reroutedFlights(logPath: path)
+                self.reroutedFlightsToNorthRunways = flights.0
+                self.reroutedFlightsToSouthRunways = flights.1
             }
         }
         

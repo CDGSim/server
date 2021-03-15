@@ -182,3 +182,20 @@ table em {
     font-weight:bold;
     border:1px solid black
 }
+
+#rerouting {
+    display:flex;
+    justify-content:space-around;
+}
+
+#rerouting table td:first-child {
+    width:50px
+}
+
+#rerouting div:first-child table td:last-child {
+    color:#7030A0
+}
+
+#rerouting div:last-child table td:last-child {
+    color:#00B0F0
+}
