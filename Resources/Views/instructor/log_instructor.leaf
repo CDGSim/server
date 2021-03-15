@@ -86,6 +86,24 @@
                 #markdown(log.properties.objectives)
                 
                 <h2>Déroulement</h2>
+                
+                #if(count(reroutedFlightsToNorthRunways) > 0):
+                <h3>Rerouting</h3>
+                <p>Plusieurs croisements : faire les modifications suivantes sur AMAN (après avoir pris les droits et vérifié la conf)</p>
+                <p>Vols à rerouter au Nord :</p>
+                <ul>
+                    #for(reroutedFlight in reroutedFlightsToNorthRunways):
+                    <li>#(reroutedFlight.callsign)</li>
+                    #endfor
+                </ul>
+                <p>Vols à rerouter au Sud :</p>
+                <ul>
+                    #for(reroutedFlight in reroutedFlightsToSouthRunways):
+                    <li>#(reroutedFlight.callsign)</li>
+                    #endfor
+                </ul>
+                #endif
+                
                 #if(log.instructor_log.events):
                 <table>
                     <thead>
