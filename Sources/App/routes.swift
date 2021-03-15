@@ -372,6 +372,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 notesURL.appendPathComponent(path)
                 notesURL.deleteLastPathComponent()
                 notesURL.deleteLastPathComponent()
+                notesURL.deleteLastPathComponent()
                 notesURL.appendPathComponent("Notes.md", isDirectory: false)
                 let notes:String
                 do {
