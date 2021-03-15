@@ -495,11 +495,16 @@ func registerFrontEndRoutes(_ app: Application) throws {
     // Renders a view for a pilot with the specified role
     app.get("pilote", ":role", "**") { req -> EventLoopFuture<View> in
         struct Context: Encodable {
+            struct Attachment: Encodable {
+                let url:String
+                let name:String
+            }
             let path:String
             let pilot_log: Log.PilotLog
             let simulation_properties: SimulationProperties
             let roles: [String]
             let displayEventsLocation: Bool
+            let attachments: [Attachment]?
         }
         
         let path = req.parameters.getCatchall().joined(separator: "/")
@@ -529,10 +534,20 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 atLeastOneEventContainsALocation = false
             }
             
+            // Check if there is an Attachments subfolder
+            var url = URL(fileURLWithPath: "Public/logs")
+            url.appendPathComponent(path)
+            url.deleteLastPathComponent()
+            url.appendPathComponent("Attachments", isDirectory: true)
+            let urls = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+            let attachments = urls?.map { url -> Context.Attachment in
+                let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
+                return Context.Attachment(url:attachmentsFolderPath + url.lastPathComponent, name:url.lastPathComponent)
+            }
             
             let context = Context(path: path, pilot_log: pilotLog, simulation_properties:.init(from: log.properties), roles:log.pilot_logs.map{ pilotLog in
                 pilotLog.role
-            }, displayEventsLocation: atLeastOneEventContainsALocation)
+            }, displayEventsLocation: atLeastOneEventContainsALocation, attachments: attachments)
             return req.view.render("pilot/log_pilot", context)
         }
     }

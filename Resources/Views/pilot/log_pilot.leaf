@@ -75,6 +75,17 @@
                 </table>
                 #endif
                 #endif
+                
+                #if(attachments):
+                    #if(count(attachments) > 0):
+                    <h2>Pièces jointes</h2>
+                    <ul>
+                    #for(attachment in attachments):
+                        <li><a href="/attachment/#(attachment.url)">#(attachment.name)</a></li>
+                    #endfor
+                    </ul>
+                    #endif
+                #endif
             </div>
             
     #endexport
