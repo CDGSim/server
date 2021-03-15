@@ -31,7 +31,7 @@ body {
     padding-right: max(12px, env(safe-area-inset-right));
 }
 
-p, label, #content li {
+p, label, #content li:not(.current) {
     color:#484848;
 }
 
