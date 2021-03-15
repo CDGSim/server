@@ -400,7 +400,7 @@ table em {
 /* Tabs */
 
 .tab {
-    padding:0px 20px
+    padding:0px
 }
 
 .tabButton {
@@ -454,4 +454,59 @@ table em {
 
 .decor-checkbox {
     display:none
+}
+
+.event-row {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom: 1px solid #cbcbcb;
+}
+
+.events .event-row:nth-child(even) {
+    background-color: #f5f5f7;
+}
+
+.event-header {
+    font-weight:bold;
+    border-bottom: 1px solid #333;
+}
+
+@media all and (max-width: 503px) {
+    .event-header {
+        display:none
+    }
+}
+
+.event-row > div {
+    text-align:center;
+    vertical-align:top;
+    padding:8px;
+    width:80px
+}
+
+.event-row > div > p {
+    margin:0
+}
+
+@media all and (max-width: 503px) {
+    .event-time {
+        font-weight:bold;
+        text-align:left !important
+    }
+    
+    .event-callsign {
+        font-weight:bold;
+        text-align:right !important
+    }
+    
+    .event-location {
+        font-weight:bold;
+    }
+}
+
+.event-row div:last-child {
+    flex:6 4 280px;
+    text-align:left
 }

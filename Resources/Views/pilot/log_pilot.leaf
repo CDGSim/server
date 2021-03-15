@@ -53,26 +53,22 @@
                 #if(pilot_log.events):
                 #if(count(pilot_log.events) > 0):
                 <h2>Déroulement</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Heure</th>
-                            <th>Indicatif</th>
-                            #if(displayEventsLocation):<th>Position</th>#endif
-                            <th>Évènement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        #for(event in pilot_log.events):
-                        <tr>
-                            <td>#(event.time)</td>
-                            <td>#(event.callsign)</td>
-                            #if(displayEventsLocation):<td>#if(event.location):#markdown(event.location)#endif</td>#endif
-                            <td>#markdown(event.description)</td>
-                        </tr>
-                        #endfor
-                    </tbody>
-                </table>
+                <div class="event-row event-header">
+                    <div class="event-time">Heure</div>
+                    #if(displayEventsLocation):<div>Position</div>#endif
+                    <div class="event-callsign">Indicatif</div>
+                    <div>Évènement</div>
+                </div>
+                <div class="events">
+                    #for(event in pilot_log.events):
+                    <div class="event-row">
+                        <div class="event-time">#(event.time)</div>
+                        #if(displayEventsLocation):<div class="event-location">#if(event.location):#markdown(event.location)#endif</div>#endif
+                        <div class="event-callsign">#(event.callsign)</div>
+                        <div>#markdown(event.description)</div>
+                    </div>
+                    #endfor
+                </div>
                 #endif
                 #endif
                 
