@@ -125,6 +125,7 @@
                     <h2>Rerouting</h2>
                     <p>Plusieurs croisements : faire les modifications suivantes sur AMAN (après avoir pris les droits et vérifié la conf)</p>
                     <div class="rerouting">
+                        #if(count(reroutedFlightsToNorthRunways) > 0):
                         <div>
                             <p>Vols à rerouter au Nord :</p>
                             <ul>
@@ -133,6 +134,8 @@
                                 #endfor
                             </ul>
                         </div>
+                        #endif
+                        #if(count(reroutedFlightsToSouthRunways) > 0):
                         <div>
                             <p>Vols à rerouter au Sud :</p>
                             <ul>
@@ -141,6 +144,7 @@
                                 #endfor
                             </ul>
                         </div>
+                        #endif
                     </div>
                     #endif
                                         
