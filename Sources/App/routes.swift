@@ -356,17 +356,14 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 self.displayEventsLocation = atLeastOneEventContainsALocation
                 
                 // Check if there is an Attachments subfolder
-                var attachments: [Context.Attachment]? = nil
                 var url = URL(fileURLWithPath: "Public/logs")
                 url.appendPathComponent(path)
                 url.deleteLastPathComponent()
                 url.appendPathComponent("Attachments", isDirectory: true)
-                let enumerator = FileManager.default.enumerator(atPath: url.path)
-                if let subpaths = enumerator?.allObjects as? [String] {
+                let urls = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+                let attachments = urls?.map { url -> Context.Attachment in
                     let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
-                    attachments = subpaths.map{ path in
-                        Context.Attachment(url:attachmentsFolderPath + path, name:path)
-                    }
+                    return Context.Attachment(url:attachmentsFolderPath + url.lastPathComponent, name:url.lastPathComponent)
                 }
                 self.attachments = attachments
                 
