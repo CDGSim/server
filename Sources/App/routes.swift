@@ -1,98 +1,15 @@
 import Vapor
 import SimlogCore
 
-typealias Flight = SimlogCore.Flight
-
-// MARK: Log file reading
-
-// Possible errors when trying to read a log file
-fileprivate enum LogError: Error {
-    case notFound, couldNotDecode
-}
-
-/// Reads a log file located at path
-private func log(atPath path: String) -> Result<Log, LogError> {
-    guard let logData = FileManager.default.contents(atPath: "Public/logs/\(path)") else {
-        return .failure(.notFound)
-    }
-    let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-    guard let log = try? decoder.decode(Log.self, from: logData) else {
-        return .failure(.couldNotDecode)
-    }
-    
-    
-    // Sort events
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "HH:mm:ss"
-    let alternateDateFormatter = DateFormatter()
-    alternateDateFormatter.dateFormat = "HH:mm"
-    
-    let sort: (Log.Event, Log.Event) -> Bool = { (lhs, rhs) -> Bool in
-        if let lDate = dateFormatter.date(from: lhs.time) {
-            if let rDate = dateFormatter.date(from: rhs.time) {
-                return lDate < rDate
-            } else if let rDate = alternateDateFormatter.date(from: rhs.time) {
-                return lDate < rDate
-            }
-        } else if let lDate = alternateDateFormatter.date(from: lhs.time) {
-            if let rDate = dateFormatter.date(from: rhs.time) {
-                return lDate < rDate
-            } else if let rDate = alternateDateFormatter.date(from: rhs.time) {
-                return lDate < rDate
-            }
-        }
-        return true
-    }
-    
-    let instructorSortedEvents = log.instructorLog.events?.sorted(by: sort)
-    
-    let sortedPilotLogs = log.pilot_logs.map { pilotLog -> Log.PilotLog in
-        var sortedLog = pilotLog
-        sortedLog.events = pilotLog.events?.sorted(by: sort)
-        return sortedLog
-    }
-    
-    let sortedLog = Log(properties: log.properties,
-                        instructorLog: .init(setupInfo: log.instructorLog.setupInfo, events: instructorSortedEvents),
-                        pilotLogs: sortedPilotLogs)
-    
-    return .success(sortedLog)
-}
-
-// Possible errors when trying to read a log file
-fileprivate enum SimulationImporterError: Error {
-    case notFound, couldNotRead
-}
-
-/// Reads a simulation file located at path
-/// - Parameter url: The complete url to the simulation file
-private func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, SimulationImporterError> {
-    guard FileManager.default.fileExists(atPath: url.path) else {
-        return .failure(.notFound)
-    }
-    
-    let fileContent: String?
-    do {
-        fileContent = try String(contentsOf: url, encoding: .utf8)
-    } catch {
-        fileContent = try? String(contentsOf: url, encoding: .ascii)
-    }
-    
-    guard let simulationContent = fileContent else {
-        return .failure(.couldNotRead)
-    }
-    
-    var electraImporter = SimlogCore.ElectraImporter(content: simulationContent)
-    
-    return .success(electraImporter.simulation())
-}
-
 // MARK: -
 // MARK: Front End Routes
 
 /// Registers the routes for the web front end
 func registerFrontEndRoutes(_ app: Application) throws {
+    
+    // MARK: GET /instructeur/log_path
+    // Renders a view for the instructor
+    InstructorLogRoute.register(with: app)
     
     // MARK: GET /
     // Renders a view containing all logs listed in alphabetical order
@@ -317,105 +234,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         return req.view.render("instructor/course", context)
     }
     
-    // MARK: GET /instructeur/log_path
-    // Renders a view for the instructor
-    app.get("instructeur", "**") { req -> EventLoopFuture<View> in
-        struct Context: Encodable {
-            struct Attachment: Encodable {
-                let url:String
-                let name:String
-            }
-            // Type to replace Log.Properties.ControlPositionAssignment
-            // This type has a positionsDescription string instead of a set of positions
-            struct ControlPositionAssignment: Encodable {
-                let controller: Log.Properties.Controller
-                let positionsDescription: String
-            }
-            let path:String
-            let simulation_properties: SimulationProperties
-            let log: Log
-            let assignments: [ControlPositionAssignment]?
-            let attachments: [Attachment]?
-            let displayEventsLocation: Bool
-            let courseNotes:String
-            
-            // Rerouted flights
-            let reroutedFlightsToNorthRunways:[Flight]?
-            let reroutedFlightsToSouthRunways:[Flight]?
-            
-            init(from log: Log, path:String) {
-                self.path = path
-                self.simulation_properties = .init(from: log.properties)
-                
-                self.log = log
-                
-                // Build up assignments
-                // We need to make the positionDescriptions string from the set of positions
-                self.assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
-                    let positionDescriptions = Array(assignment.positions).map { controlPosition in
-                        controlPosition.rawValue
-                    }.sorted().joined(separator: "<br />")
-                    return .init(controller: .instructor, positionsDescription: positionDescriptions)
-                }
-                    
-                // Check if we should display the events locations
-                // Location is optional, if at least one event has a location, we should display the corresponding column
-                let atLeastOneEventContainsALocation: Bool
-                if let eventsWithLocation = log.instructorLog.events?.filter({ event in
-                    if let location = event.location {
-                        return location != "-" && location.count > 0
-                    } else { return false }
-                }) {
-                    atLeastOneEventContainsALocation = eventsWithLocation.count > 0
-                } else {
-                    atLeastOneEventContainsALocation = false
-                }
-                self.displayEventsLocation = atLeastOneEventContainsALocation
-                
-                // Check if there is an Attachments subfolder
-                var url = URL(fileURLWithPath: "Public/logs")
-                url.appendPathComponent(path)
-                url.deleteLastPathComponent()
-                url.appendPathComponent("Attachments", isDirectory: true)
-                let urls = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-                let attachments = urls?.map { url -> Context.Attachment in
-                    let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
-                    return Context.Attachment(url:attachmentsFolderPath + url.lastPathComponent, name:url.lastPathComponent)
-                }
-                self.attachments = attachments
-                
-                // Read notes.md
-                var notesURL = URL(fileURLWithPath: "Public/logs")
-                notesURL.appendPathComponent(path)
-                notesURL.deleteLastPathComponent()
-                notesURL.deleteLastPathComponent()
-                notesURL.deleteLastPathComponent()
-                notesURL.appendPathComponent("Notes.md", isDirectory: false)
-                let notes:String
-                do {
-                    notes = try String(contentsOf:notesURL, encoding:.utf8)
-                }
-                catch {
-                    notes = ""
-                }
-                self.courseNotes = notes
-                
-                let flights = reroutedFlights(logPath: path)
-                self.reroutedFlightsToNorthRunways = flights.0
-                self.reroutedFlightsToSouthRunways = flights.1
-            }
-        }
-        
-        let path = req.parameters.getCatchall().joined(separator: "/")
-        
-        // Read the log file
-        switch log(atPath: path) {
-        case .failure(let error) :
-            return renderLogErrorView(from: error, req: req)
-        case .success(let log):
-            return req.view.render("instructor/log_instructor", Context(from: log, path: path))
-        }
-    }
+    
     
     // MARK: GET /attachment/attachment_path
     // Returns the file at the specified path
@@ -682,41 +501,6 @@ func registerFrontEndRoutes(_ app: Application) throws {
     }
 }
 
-/// Reads an ELECTRA simulation file located in the same directory as the log file, finds flights that have been rerouted
-/// - Parameter path: The path to the log file
-/// - Returns: A tuple containing flights rerouted to runway 27 or 09, and flights rerouted to runway 08 or 26
-private func reroutedFlights(logPath path:String) -> ([Flight], [Flight]) {
-    // Read electra simulation file if it exists
-    var electraSimulationURL = URL(fileURLWithPath: "Public/logs")
-    electraSimulationURL.appendPathComponent(path)
-    electraSimulationURL.deletePathExtension()
-    electraSimulationURL.appendPathExtension("EXP")
-    
-    var reroutedFlightsToNorthRunways = [Flight]()
-    var reroutedFlightsToSouthRunways = [Flight]()
-    
-    // Find rerouted flights
-    if let simulation = try? electraSimulation(at:electraSimulationURL).get() {
-        let lfpgArrivals = simulation.flights.filter { $0.destination == "LFPG" }
-        let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "27" || $0.destinationRunway?.prefix(2) == "09"}
-        reroutedFlightsToNorthRunways = northRunwayArrivals.compactMap { flight -> Flight? in
-            guard let iaf = flight.route.last?.fix else {
-                return nil
-            }
-            return ["OKIPA", "BANOX"].contains(iaf) ? flight : nil
-        }
-        let southRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "26" || $0.destinationRunway?.prefix(2) == "08"}
-        reroutedFlightsToSouthRunways = southRunwayArrivals.compactMap { flight -> Flight? in
-            guard let iaf = flight.route.last?.fix else {
-                return nil
-            }
-            return ["MOPAR", "LORNI", "MOBRO"].contains(iaf) ? flight : nil
-        }
-    }
-    
-    return (reroutedFlightsToNorthRunways, reroutedFlightsToSouthRunways)
-}
-
 
 // MARK: -
 // MARK: API Routes
@@ -963,23 +747,6 @@ func registerDecorRoutes(_ app: Application) throws {
         let date = dateFormatter.date(from: content.date) ?? Date()
         return DecorController.view(req: req, metar: content.weather, configuration: content.configuration, startDate: date)
     }
-}
-
-
-// Renders the error view, passing a reason string as the context
-fileprivate func renderLogErrorView(from error:LogError, req:Request) -> EventLoopFuture<View> {
-    struct ErrorContext: Encodable {
-        let reason: String
-    }
-    
-    let reason: String
-    switch error {
-    case .notFound:
-        reason = "Log introuvable"
-    case .couldNotDecode:
-        reason = "Impossible de lire le log"
-    }
-    return req.view.render("error",  ["reason":reason])
 }
 
 struct SimulationProperties: Encodable {
