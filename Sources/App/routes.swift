@@ -181,10 +181,12 @@ func registerFrontEndRoutes(_ app: Application) throws {
             
             struct Course: Encodable {
                 let name: String
+                let groupNames: [String]
             }
         }
         
         // Enumerate files in the logs folder
+        let compareFunction: (String, String) -> Bool = {$0.localizedCompare($1) == .orderedAscending }
         let enumerator = FileManager.default.enumerator(atPath: "Public/logs")
         guard let subpaths = enumerator?.allObjects as? [String]  else {
             // If we cannot get the subpaths, render the error view
@@ -200,9 +202,24 @@ func registerFrontEndRoutes(_ app: Application) throws {
             
             return path
         }
-        .sorted(by: <)
+        .sorted(by: compareFunction)
         .map { path -> Context.Course in
-            .init(name: path)
+            let url = URL(fileURLWithPath: "Public/logs/" + path)
+            let groupNames: [String]
+            do {
+                groupNames = try FileManager.default
+                    .contentsOfDirectory(at: url, includingPropertiesForKeys: [URLResourceKey.isDirectoryKey], options: [.skipsHiddenFiles])
+                    .filter { url in
+                        url.hasDirectoryPath
+                    }
+                    .map { url -> String in
+                        return url.lastPathComponent
+                    }
+                    .sorted(by: compareFunction)
+            } catch {
+                groupNames = []
+            }
+            return .init(name: path, groupNames: groupNames)
         }
         
         // Render the view index, with the context we've made

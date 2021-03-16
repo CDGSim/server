@@ -15,17 +15,17 @@
                     <tbody>
                         <tr>
                             <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
-                            <td>Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
+                            <td class="secondary-column">Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
                         </tr>
                     </tbody>
                     #endfor
                     #for(group in groups):
-                    <tbody>
-                        <tr class="grouplabel"><th>#(group.name)</th></tr>
+                    <tbody id="#(index)">
+                        <tr class="grouplabel"><th colspan="2">#(group.name)</th></tr>
                         #for(simulation in group.simulations):
                         <tr>
                             <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
-                            <td>Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
+                            <td class="secondary-column">Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
                         </tr>
                         #endfor
                     </tbody>
