@@ -4,7 +4,7 @@
             
         <div id="content">
             <h1>Stages</h1>
-            <div style="margin:0 30px">
+            <div>
                 <div class="simulations-grid">
                     #for(course in courses):
                     <div class="simulation-course">
