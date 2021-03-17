@@ -136,7 +136,7 @@ private struct Context: Encodable {
         self.reroutedFlightsToSouthRunways = flights.1
         
         do {
-            let simulation =  try electraSimulation(atPath: path)
+            let simulation =  try electraSimulation(associatedWithLogAtPath: path)
             
             // Length of the timeline according to simulation's duration
             if let duration = simulation.duration, let startDate = simulation.date {

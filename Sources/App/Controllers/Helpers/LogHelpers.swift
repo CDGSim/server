@@ -18,7 +18,8 @@ internal enum LogError: Error {
 
 /// Reads a log file located at path
 internal func log(atPath path: String) -> Result<Log, LogError> {
-    guard let logData = FileManager.default.contents(atPath: "Public/logs/\(path)") else {
+    let logURL = URL(fileURLWithPath: "Public/logs/\(path)")
+    guard let logData = try? Data(contentsOf: logURL) else {
         return .failure(.notFound)
     }
     let decoder = JSONDecoder()

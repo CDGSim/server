@@ -20,18 +20,11 @@ internal enum SimulationImporterError: Error {
 /// Reads a simulation file located at path
 /// - Parameter url: The complete url to the simulation file
 internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, SimulationImporterError> {
-    guard FileManager.default.fileExists(atPath: url.path) else {
+    guard let data = try? Data(contentsOf: url) else {
         return .failure(.notFound)
     }
     
-    let fileContent: String?
-    do {
-        fileContent = try String(contentsOf: url, encoding: .utf8)
-    } catch {
-        fileContent = try? String(contentsOf: url, encoding: .ascii)
-    }
-    
-    guard let simulationContent = fileContent else {
+    guard let simulationContent = String(data: data, encoding: .utf8) else {
         return .failure(.couldNotRead)
     }
     
@@ -40,12 +33,11 @@ internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, Si
     return .success(electraImporter.simulation())
 }
 
-internal func electraSimulation(atPath path:String) throws -> SimlogCore.Simulation {
-    // Read electra simulation file if it exists
-    var electraSimulationURL = URL(fileURLWithPath: "Public/logs")
-    electraSimulationURL.appendPathComponent(path)
+internal func electraSimulation(associatedWithLogAtPath logPath:String) throws -> SimlogCore.Simulation {
+    // Get complete electra simulation file URL from log path
+    var electraSimulationURL = URL(fileURLWithPath: "Public/logs/\(logPath)")
     electraSimulationURL.deletePathExtension()
-    electraSimulationURL.appendPathExtension("EXP")
+    electraSimulationURL.appendPathExtension("exp")
     
     return try electraSimulation(at: electraSimulationURL).get()
 }
@@ -59,7 +51,7 @@ internal func reroutedFlights(logPath path:String) -> ([Flight], [Flight]) {
     var reroutedFlightsToSouthRunways = [Flight]()
     
     // Find rerouted flights
-    if let simulation = try? electraSimulation(atPath: path) {
+    if let simulation = try? electraSimulation(associatedWithLogAtPath: path) {
         let lfpgArrivals = simulation.flights.filter { $0.destination == "LFPG" }
         let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "27" || $0.destinationRunway?.prefix(2) == "09"}
         reroutedFlightsToNorthRunways = northRunwayArrivals.compactMap { flight -> Flight? in
