@@ -131,12 +131,13 @@ private struct Context: Encodable {
         }
         self.courseNotes = notes
         
-        let flights = reroutedFlights(logPath: path)
-        self.reroutedFlightsToNorthRunways = flights.0
-        self.reroutedFlightsToSouthRunways = flights.1
-        
         do {
             let simulation =  try electraSimulation(associatedWithLogAtPath: path)
+            
+            // Get rerouted flights
+            let flights = reroutedFlights(in:simulation)
+            self.reroutedFlightsToNorthRunways = flights.0
+            self.reroutedFlightsToSouthRunways = flights.1
             
             // Length of the timeline according to simulation's duration
             if let duration = simulation.duration, let startDate = simulation.date {
@@ -242,6 +243,8 @@ private struct Context: Encodable {
             }
         } catch {
             self.timelinesGroups = []
+            self.reroutedFlightsToNorthRunways = []
+            self.reroutedFlightsToSouthRunways = []
         }
     }
 }

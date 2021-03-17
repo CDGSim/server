@@ -45,28 +45,26 @@ internal func electraSimulation(associatedWithLogAtPath logPath:String) throws -
 /// Reads an ELECTRA simulation file located in the same directory as the log file, finds flights that have been rerouted
 /// - Parameter path: The path to the log file
 /// - Returns: A tuple containing flights rerouted to runway 27 or 09, and flights rerouted to runway 08 or 26
-internal func reroutedFlights(logPath path:String) -> ([Flight], [Flight]) {
+internal func reroutedFlights(in simulation:SimlogCore.Simulation) -> ([Flight], [Flight]) {
     
     var reroutedFlightsToNorthRunways = [Flight]()
     var reroutedFlightsToSouthRunways = [Flight]()
     
     // Find rerouted flights
-    if let simulation = try? electraSimulation(associatedWithLogAtPath: path) {
-        let lfpgArrivals = simulation.flights.filter { $0.destination == "LFPG" }
-        let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "27" || $0.destinationRunway?.prefix(2) == "09"}
-        reroutedFlightsToNorthRunways = northRunwayArrivals.compactMap { flight -> Flight? in
-            guard let iaf = flight.route.last?.fix else {
-                return nil
-            }
-            return ["OKIPA", "BANOX"].contains(iaf) ? flight : nil
+    let lfpgArrivals = simulation.flights.filter { $0.destination == "LFPG" }
+    let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "27" || $0.destinationRunway?.prefix(2) == "09"}
+    reroutedFlightsToNorthRunways = northRunwayArrivals.compactMap { flight -> Flight? in
+        guard let iaf = flight.route.last?.fix else {
+            return nil
         }
-        let southRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "26" || $0.destinationRunway?.prefix(2) == "08"}
-        reroutedFlightsToSouthRunways = southRunwayArrivals.compactMap { flight -> Flight? in
-            guard let iaf = flight.route.last?.fix else {
-                return nil
-            }
-            return ["MOPAR", "LORNI", "MOBRO"].contains(iaf) ? flight : nil
+        return ["OKIPA", "BANOX"].contains(iaf) ? flight : nil
+    }
+    let southRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "26" || $0.destinationRunway?.prefix(2) == "08"}
+    reroutedFlightsToSouthRunways = southRunwayArrivals.compactMap { flight -> Flight? in
+        guard let iaf = flight.route.last?.fix else {
+            return nil
         }
+        return ["MOPAR", "LORNI", "MOBRO"].contains(iaf) ? flight : nil
     }
     
     return (reroutedFlightsToNorthRunways, reroutedFlightsToSouthRunways)

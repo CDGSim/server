@@ -437,9 +437,15 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     return .init(controller: .instructor, positionsDescription: positionDescriptions)
                 }
                 
-                let flights = reroutedFlights(logPath: path)
-                self.reroutedFlightsToNorthRunways = flights.0
-                self.reroutedFlightsToSouthRunways = flights.1
+                do {
+                    let simulation =  try electraSimulation(associatedWithLogAtPath: path)
+                    let flights = reroutedFlights(in: simulation)
+                    self.reroutedFlightsToNorthRunways = flights.0
+                    self.reroutedFlightsToSouthRunways = flights.1
+                } catch {
+                    self.reroutedFlightsToNorthRunways = []
+                    self.reroutedFlightsToSouthRunways = []
+                }
             }
         }
         
