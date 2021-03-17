@@ -24,7 +24,13 @@ internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, Si
         return .failure(.notFound)
     }
     
-    guard let simulationContent = String(data: data, encoding: .utf8) else {
+    let simulationContent: String
+    
+    if let content = String(data: data, encoding: .utf8) {
+        simulationContent = content
+    } else if let content = String(data: data, encoding: .ascii) {
+        simulationContent = content
+    } else {
         return .failure(.couldNotRead)
     }
     
