@@ -572,7 +572,8 @@ table em {
 
 .timelines {
     background-color:#4F545F;
-    display:flex
+    display:flex;
+    justify-content:space-evenly
 }
 
 .timeline-container {
@@ -649,6 +650,14 @@ table em {
     width:40px;
 }
 
-.timeline-color-pink {
+.timeline-color-salmon {
     color:#FDCFE4
+}
+
+.timeline-color-pink {
+    color:#F6ADAF
+}
+
+.timeline-color-purple {
+    color:#E9A6FC
 }

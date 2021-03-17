@@ -90,7 +90,7 @@
                     <div class="timelines">
                         #for(timeline in timelines):
                         <div class="timeline-container">
-                            <div style="position:relative;height:#(timeline.length)px;left:20px;">
+                            <div style="position:relative;height:#(timeline.length)px;left:6px;">
                                 <div class="timeline-runway">#(timeline.runwayName)</div>
                                 #for(label in timeline.labels):
                                 <div class="timeline-label" style="bottom:#(label.y)px;">
@@ -111,10 +111,10 @@
                                     <div class="timeline-flight-callsign">
                                         #(flight.callsign)
                                     </div>
-                                    <div class="timeline-flight-iaf timeline-color-pink">
+                                    <div class="timeline-flight-iaf timeline-color-#(timeline.colorClass)">
                                         #(flight.IAF)
                                     </div>
-                                    <div class="timeline-flight-iaf-estimate timeline-color-pink">
+                                    <div class="timeline-flight-iaf-estimate timeline-color-#(timeline.colorClass)">
                                         #(flight.IAFestimate)
                                     </div>
                                     <div class="timeline-flight-aircratType">

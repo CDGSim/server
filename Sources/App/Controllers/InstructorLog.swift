@@ -65,6 +65,7 @@ private struct Context: Encodable {
         let flights: [Flight]
         let labels: [MinuteLabel]
         let runwayName: String
+        let colorClass: String
         let length: Int
     }
     let timelines: [Timeline]
@@ -189,8 +190,12 @@ private struct Context: Encodable {
                 let southRunwaysArrivals = lfpgArrivals
                     .filter { ["26", "08"].contains($0.destinationRunway?.prefix(2)) }
                     .compactMap(timelineFlight)
-                self.timelines = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: "27R", length: length),
-                                  .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: "26L", length: length)]
+                let leBourgetArrivals = simulation.flights
+                    .filter { $0.destination == "LFPB" }
+                    .compactMap(timelineFlight)
+                self.timelines = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: "27R", colorClass: "salmon", length: length),
+                                  .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: "26L", colorClass: "pink", length: length),
+                                  .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: "27", colorClass: "purple", length: length)]
             } else {
                 self.timelines = []
             }
