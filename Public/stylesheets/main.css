@@ -571,6 +571,7 @@ table em {
 /* Timelines */
 
 .timelines {
+    border-radius:8px;
     background-color:#4F545F;
     display:flex;
     justify-content:space-evenly
