@@ -61,7 +61,7 @@
                     <li onclick="displayTab(event, 'progress')" class="tablink">Déroulement</li>
                     #if(courseNotes != ""):<li onclick="displayTab(event, 'notes')" class="tablink">Notes</li>#endif
                     #if(attachments): #if(count(attachments) > 0):<li onclick="displayTab(event, 'attachments')" class="tablink">Pièces jointes</li>#endif#endif
-                    #if(count(timelines) > 0):<li onclick="displayTab(event, 'timelines')" class="tablink">Timelines</li>#endif
+                    #if(count(timelinesGroups) > 0):<li onclick="displayTab(event, 'timelines')" class="tablink">Timelines</li>#endif
                 </ul>
                 
                 <div id="overview" class="tab">
@@ -89,9 +89,10 @@
                 </div>
                 
                 <div id="timelines" class="tab" style="display:none">
-                    <h2>Timelines</h2>
+                    #for(timelineGroup in timelinesGroups):
+                    <h2>#(timelineGroup.name)</h2>
                     <div class="timelines">
-                        #for(timeline in timelines):
+                        #for(timeline in timelineGroup.timelines):
                         <div class="timeline-container">
                             <div style="position:relative;height:#(timeline.length)px;left:6px;">
                                 <div class="timeline-runway">#(timeline.runwayName)</div>
@@ -129,6 +130,7 @@
                         </div>
                         #endfor
                     </div>
+                    #endfor
                 </div>
                 
                 <div id="setup" class="tab" style="display:none">

@@ -68,7 +68,11 @@ private struct Context: Encodable {
         let colorClass: String
         let length: Int
     }
-    let timelines: [Timeline]
+    struct TimelineGroup: Encodable {
+        let name: String
+        let timelines: [Timeline]
+    }
+    let timelinesGroups: [TimelineGroup]
     
     init(from log: Log, path:String) {
         self.path = path
@@ -165,7 +169,7 @@ private struct Context: Encodable {
                         flight.destination == "LFPG"
                     }
                 
-                let timelineFlight: (Flight) -> Timeline.Flight? = { flight in
+                let timelineArrival: (Flight) -> Timeline.Flight? = { flight in
                     guard let estimatedMovementTime = flight.estimatedMovementTime() else {
                         return nil
                     }
@@ -183,25 +187,61 @@ private struct Context: Encodable {
                     return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedIAF(from:flight.route.last?.fix ?? ""), IAFestimate: estimatedIAFTime, aircraftType: flight.aircraftType, y: coordinate)
                 }
                 
-                // Analyze north runway arrivals
+                // LFPG arrivals
                 let northRunwaysArrivals = lfpgArrivals
                     .filter { ["27", "09"].contains($0.destinationRunway?.prefix(2)) }
-                    .compactMap(timelineFlight)
+                    .compactMap(timelineArrival)
                 let southRunwaysArrivals = lfpgArrivals
                     .filter { ["26", "08"].contains($0.destinationRunway?.prefix(2)) }
-                    .compactMap(timelineFlight)
+                    .compactMap(timelineArrival)
                 let leBourgetArrivals = simulation.flights
                     .filter { $0.destination == "LFPB" }
-                    .compactMap(timelineFlight)
+                    .compactMap(timelineArrival)
                 let facingWest = log.properties.configuration.prefix(1) == "W"
-                self.timelines = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "27R":"09L", colorClass: "salmon", length: length),
+                let lfpgArrivalsTimelines:[Timeline] = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "27R":"09L", colorClass: "salmon", length: length),
                                   .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "26L":"08R", colorClass: "pink", length: length),
                                   .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: facingWest ? "27":"07", colorClass: "purple", length: length)]
+                
+                
+            
+                let timelineDeparture: (Flight) -> Timeline.Flight? = { flight in
+                    guard let estimatedMovementTime = flight.estimatedMovementTime() else {
+                        return nil
+                    }
+                    let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
+                    if coordinate > length {
+                        return nil
+                    }
+                    let estimate = movementDateFormatter.string(from: estimatedMovementTime)
+                    return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedDeparture(from: flight.route.first?.fix ?? ""), IAFestimate: "", aircraftType: flight.aircraftType, y: coordinate)
+                }
+                    
+                // LFPG departures
+                let lfpgDepartures = simulation.flights
+                    .filter { flight -> Bool in
+                        flight.origin == "LFPG"
+                    }
+                let northRunwaysDepartures = lfpgDepartures
+                    .filter { ["27", "09"].contains($0.departureRunway?.prefix(2)) }
+                    .compactMap(timelineDeparture)
+                let southRunwaysDepartures = lfpgDepartures
+                    .filter { ["26", "08"].contains($0.departureRunway?.prefix(2)) }
+                    .compactMap(timelineDeparture)
+                let leBourgetDepartures = simulation.flights
+                    .filter { $0.origin == "LFPB" }
+                    .compactMap(timelineDeparture)
+                
+                let lfpgDeparturesTimelines: [Timeline] = [.init(flights: northRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "27L":"09R", colorClass: "cyan", length: length),
+                                                           .init(flights: southRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "26R":"08L", colorClass: "cyan", length: length),
+                                                           .init(flights: leBourgetDepartures, labels: minuteLabels, runwayName: facingWest ? "25":"09", colorClass: "cyan", length: length)]
+                
+                self.timelinesGroups = [.init(name: "Arrivées LFPG", timelines: lfpgArrivalsTimelines),
+                                        .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines)]
             } else {
-                self.timelines = []
+                self.timelinesGroups = []
             }
         } catch {
-            self.timelines = []
+            self.timelinesGroups = []
         }
     }
 }
@@ -219,4 +259,22 @@ func abreviatedIAF(from IAFName:String) -> String {
     if(IAFName == "ODILO") { return "O" }
     if(IAFName == "MOLBA") { return "M" }
     return IAFName
+}
+
+func abreviatedDeparture(from departureName:String) -> String {
+    if(departureName == "OPALE") { return "NO" }
+    if(departureName == "ATREX") { return "NA" }
+    if(departureName == "NURMO") { return "NN" }
+    if(departureName == "RANUX") { return "ER" }
+    if(departureName == "DIKOL") { return "ED" }
+    if(departureName == "LANVI") { return "EL" }
+    if(departureName == "BUBLI") { return "EB" }
+    if(departureName == "AGOPA") { return "SA" }
+    if(departureName == "ERIXU") { return "SE" }
+    if(departureName == "LATRA") { return "SL" }
+    if(departureName == "OKASI") { return "SO" }
+    if(departureName == "PILUL") { return "SP" }
+    if(departureName == "EVX") { return "WE" }
+    if(departureName == "LGL") { return "WL" }
+    return departureName
 }
