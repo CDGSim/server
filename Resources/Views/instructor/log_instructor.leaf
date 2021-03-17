@@ -87,10 +87,11 @@
                     #markdown(log.properties.objectives)
                 
                     <h2>Timelines</h2>
-                    <div class="timeline-container">
+                    <div class="timelines">
                         #for(timeline in timelines):
-                        <div style="background-color:yellow">
+                        <div class="timeline-container">
                             <div style="position:relative;height:#(timeline.length)px;left:20px;">
+                                <div class="timeline-runway">#(timeline.runwayName)</div>
                                 #for(label in timeline.labels):
                                 <div class="timeline-label" style="bottom:#(label.y)px;">
                                     <div style="width:4px">-</div>

@@ -570,9 +570,30 @@ table em {
 
 /* Timelines */
 
-.timeline-container {
+.timelines {
     background-color:#4F545F;
     display:flex
+}
+
+.timeline-container {
+    width:400px;
+    display:flex;
+    overflow:hidden
+}
+
+.timeline-runway {
+    position:absolute;
+    bottom:15px;
+    left:-5px;
+    padding:4px;
+    text-align:center;
+    width:78px;
+    color:white;
+    font-weight:bold;
+    border: 1px solid #B5C0C8;
+    background-color:#4F545F;
+    border-radius:4px;
+    z-index:1
 }
 
 .timeline-label {
