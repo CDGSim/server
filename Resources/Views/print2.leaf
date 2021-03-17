@@ -299,7 +299,7 @@
                                 <div class="timeline-label" style="bottom:#(label.y)px;">
                                     <div style="width:4px">-</div>
                                     <div style="flex-grow:1">
-                                        <p>#if(label.minutes % 5 == 0):<span class="timeline-hour">#(label.hours)</span> <span class="timeline-minute">#if(label.minutes < 10):0#endif#(label.minutes)</span>#else:&nbsp;#endif</p>
+                                        <p>#if(label.minutes % 5 == 0):<span class="timeline-hour">#if(label.hours < 10):0#endif#(label.hours)</span> <span class="timeline-minute">#if(label.minutes < 10):0#endif#(label.minutes)</span>#else:&nbsp;#endif</p>
                                     </div>
                                     <div style="width:4px">-</div>
                                 </div>
