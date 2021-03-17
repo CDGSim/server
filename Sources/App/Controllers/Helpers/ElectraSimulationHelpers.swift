@@ -40,21 +40,26 @@ internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, Si
     return .success(electraImporter.simulation())
 }
 
-/// Reads an ELECTRA simulation file located in the same directory as the log file, finds flights that have been rerouted
-/// - Parameter path: The path to the log file
-/// - Returns: A tuple containing flights rerouted to runway 27 or 09, and flights rerouted to runway 08 or 26
-internal func reroutedFlights(logPath path:String) -> ([Flight], [Flight]) {
+internal func electraSimulation(atPath path:String) throws -> SimlogCore.Simulation {
     // Read electra simulation file if it exists
     var electraSimulationURL = URL(fileURLWithPath: "Public/logs")
     electraSimulationURL.appendPathComponent(path)
     electraSimulationURL.deletePathExtension()
     electraSimulationURL.appendPathExtension("EXP")
     
+    return try electraSimulation(at: electraSimulationURL).get()
+}
+
+/// Reads an ELECTRA simulation file located in the same directory as the log file, finds flights that have been rerouted
+/// - Parameter path: The path to the log file
+/// - Returns: A tuple containing flights rerouted to runway 27 or 09, and flights rerouted to runway 08 or 26
+internal func reroutedFlights(logPath path:String) -> ([Flight], [Flight]) {
+    
     var reroutedFlightsToNorthRunways = [Flight]()
     var reroutedFlightsToSouthRunways = [Flight]()
     
     // Find rerouted flights
-    if let simulation = try? electraSimulation(at:electraSimulationURL).get() {
+    if let simulation = try? electraSimulation(atPath: path) {
         let lfpgArrivals = simulation.flights.filter { $0.destination == "LFPG" }
         let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway?.prefix(2) == "27" || $0.destinationRunway?.prefix(2) == "09"}
         reroutedFlightsToNorthRunways = northRunwayArrivals.compactMap { flight -> Flight? in

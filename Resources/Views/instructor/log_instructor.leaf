@@ -86,6 +86,45 @@
                     <h2>Objectifs</h2>
                     #markdown(log.properties.objectives)
                 
+                    <h2>Timelines</h2>
+                    <div class="timeline-container">
+                        #for(timeline in timelines):
+                        <div style="background-color:yellow">
+                            <div style="position:relative;height:#(timeline.length)px;left:20px;">
+                                #for(label in timeline.labels):
+                                <div class="timeline-label" style="bottom:#(label.y)px;">
+                                    <div style="width:4px">-</div>
+                                    <div style="flex-grow:1">
+                                        <p>#if(label.minutes % 5 == 0):<span class="timeline-hour">#(label.hours)</span> <span class="timeline-minute">#if(label.minutes < 10):0#endif#(label.minutes)</span>#else:&nbsp;#endif</p>
+                                    </div>
+                                    <div style="width:4px">-</div>
+                                </div>
+                            #endfor
+                            </div>
+                            <div style="position:relative;height:#(timeline.length)px;left:110px;">
+                                #for(flight in timeline.flights):
+                                <div class="timeline-flight" style="bottom:#(flight.y)px;color:white">
+                                    <div class="timeline-flight-time">
+                                        #(flight.estimate)
+                                    </div>
+                                    <div class="timeline-flight-callsign">
+                                        #(flight.callsign)
+                                    </div>
+                                    <div class="timeline-flight-iaf timeline-color-pink">
+                                        #(flight.IAF)
+                                    </div>
+                                    <div class="timeline-flight-iaf-estimate timeline-color-pink">
+                                        #(flight.IAFestimate)
+                                    </div>
+                                    <div class="timeline-flight-aircratType">
+                                        #(flight.aircraftType)
+                                    </div>
+                                </div>
+                                #endfor
+                            </div>
+                        </div>
+                        #endfor
+                    </div>
                 </div>
                 
                 <div id="setup" class="tab" style="display:none">
