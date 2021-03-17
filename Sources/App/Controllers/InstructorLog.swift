@@ -193,9 +193,10 @@ private struct Context: Encodable {
                 let leBourgetArrivals = simulation.flights
                     .filter { $0.destination == "LFPB" }
                     .compactMap(timelineFlight)
-                self.timelines = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: "27R", colorClass: "salmon", length: length),
-                                  .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: "26L", colorClass: "pink", length: length),
-                                  .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: "27", colorClass: "purple", length: length)]
+                let facingWest = log.properties.configuration.prefix(1) == "W"
+                self.timelines = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "27R":"09L", colorClass: "salmon", length: length),
+                                  .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "26L":"08R", colorClass: "pink", length: length),
+                                  .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: facingWest ? "27":"07", colorClass: "purple", length: length)]
             } else {
                 self.timelines = []
             }
