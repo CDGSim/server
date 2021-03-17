@@ -106,7 +106,7 @@
                                 </div>
                             #endfor
                             </div>
-                            <div style="position:relative;height:#(timeline.length)px;left:110px;">
+                            <div style="position:relative;height:#(timeline.length)px;left:70px;">
                                 #for(flight in timeline.flights):
                                 <div class="timeline-flight" style="bottom:#(flight.y)px;color:white">
                                     <div class="timeline-flight-time">
