@@ -192,9 +192,11 @@
                         #endif
                     </div>
                     #endif
+                                                       
                                         
                     <h2>Déroulement</h2>
                     #if(log.instructor_log.events):
+                    #if(count(log.instructor_log.events) > 0):
                                     
                     <div class="event-row event-header">
                         <div class="event-time">Heure</div>
@@ -212,6 +214,9 @@
                         </div>
                         #endfor
                     </div>
+                    #else:
+                    Aucun évènement particulier
+                    #endif
                     #else:
                     Aucun évènement particulier
                     #endif
