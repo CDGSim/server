@@ -30,6 +30,7 @@ WORKDIR /staging
 
 # Copy main executable to staging area
 RUN cp "$(swift build --package-path /build -c release --show-bin-path)/Run" ./
+# Copy resources to staging area
 RUN cp -r "$(swift build --package-path /build -c release --show-bin-path)"/*.resources ./
 
 # Copy any resouces from the public directory and views directory if the directories exist
