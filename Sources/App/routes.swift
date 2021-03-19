@@ -103,7 +103,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         }
         
         // Enumerate files in the logs folder
-        let compareFunction: (String, String) -> Bool = {$0.localizedCompare($1) == .orderedAscending }
+        let compareFunction: (String, String) -> Bool = {$0.localizedStandardCompare($1) == .orderedAscending }
         let enumerator = FileManager.default.enumerator(atPath: "Public/logs")
         guard let subpaths = enumerator?.allObjects as? [String]  else {
             // If we cannot get the subpaths, render the error view
