@@ -230,7 +230,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         let context:Context = .init(name: courseName,
                                     notes: notesContent,
                                     rootSimulations: rootSimulations,
-                                    groups: groups.sorted(by: { $0.name.compare($1.name) == .orderedAscending }))
+                                    groups: groups.sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending }))
         return req.view.render("instructor/course", context)
     }
     
