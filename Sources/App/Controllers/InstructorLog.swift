@@ -235,9 +235,38 @@ private struct Context: Encodable {
                 let lfpgDeparturesTimelines: [Timeline] = [.init(flights: northRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "27L":"09R", colorClass: "cyan", length: length),
                                                            .init(flights: southRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "26R":"08L", colorClass: "cyan", length: length),
                                                            .init(flights: leBourgetDepartures, labels: minuteLabels, runwayName: facingWest ? "25":"09", colorClass: "cyan", length: length)]
+                // LFOB
+                let lfobDepartures = simulation.flights
+                    .filter { flight -> Bool in
+                        flight.origin == "LFOB"
+                    }
+                    .compactMap(timelineDeparture)
+                let lfobArrivals = simulation.flights
+                    .filter { flight -> Bool in
+                        flight.destination == "LFOB"
+                    }
+                    .compactMap(timelineArrival)
+                let lfobTimelines: [Timeline] = [.init(flights: lfobDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
+                                                           .init(flights: lfobArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
+                
+                // LFPO
+                let lfpoDepartures = simulation.flights
+                    .filter { flight -> Bool in
+                        flight.origin == "LFPO"
+                    }
+                    .compactMap(timelineDeparture)
+                let lfpoArrivals = simulation.flights
+                    .filter { flight -> Bool in
+                        flight.destination == "LFPO"
+                    }
+                    .compactMap(timelineArrival)
+                let lfpoTimelines: [Timeline] = [.init(flights: lfpoDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
+                                                           .init(flights: lfpoArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
                 
                 self.timelinesGroups = [.init(name: "Arrivées LFPG", timelines: lfpgArrivalsTimelines),
-                                        .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines)]
+                                        .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines),
+                                        .init(name: "Beauvais", timelines: lfobTimelines),
+                                        .init(name: "Orly", timelines: lfpoTimelines)]
             } else {
                 self.timelinesGroups = []
             }
