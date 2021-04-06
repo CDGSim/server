@@ -278,7 +278,7 @@
         </div>
         #endfor
         
-                
+        #for(timelineGroup in timelinesGroups):
         <div class="unit">
         
             <div class="page-top">
@@ -286,50 +286,47 @@
                 <div><h4>#(properties.name)</h4></div>
                 <div>Version du #date(properties.update_date, "dd/MM/YYYY")</div>
             </div>
-        
-        
-                    #for(timelineGroup in timelinesGroups):
-                    <h2>#(timelineGroup.name)</h2>
-                    <div class="timelines">
-                        #for(timeline in timelineGroup.timelines):
-                        <div class="timeline-container">
-                            <div style="position:relative;height:#(timeline.length)px;left:6px;">
-                                <div class="timeline-runway">#(timeline.runwayName)</div>
-                                #for(label in timeline.labels):
-                                <div class="timeline-label" style="bottom:#(label.y)px;">
-                                    <div style="width:4px">-</div>
-                                    <div style="flex-grow:1">
-                                        <p>#if(label.minutes % 5 == 0):<span class="timeline-hour">#if(label.hours < 10):0#endif#(label.hours)</span> <span class="timeline-minute">#if(label.minutes < 10):0#endif#(label.minutes)</span>#else:&nbsp;#endif</p>
-                                    </div>
-                                    <div style="width:4px">-</div>
-                                </div>
-                            #endfor
+            <h2>#(timelineGroup.name)</h2>
+            <div class="timelines">
+                #for(timeline in timelineGroup.timelines):
+                <div class="timeline-container">
+                    <div style="position:relative;height:#(timeline.length)px;left:6px;">
+                        <div class="timeline-runway">#(timeline.runwayName)</div>
+                        #for(label in timeline.labels):
+                        <div class="timeline-label" style="bottom:#(label.y)px;">
+                            <div style="width:4px">-</div>
+                            <div style="flex-grow:1">
+                                <p>#if(label.minutes % 5 == 0):<span class="timeline-hour">#if(label.hours < 10):0#endif#(label.hours)</span> <span class="timeline-minute">#if(label.minutes < 10):0#endif#(label.minutes)</span>#else:&nbsp;#endif</p>
                             </div>
-                            <div style="position:relative;height:#(timeline.length)px;left:55px;">
-                                #for(flight in timeline.flights):
-                                <div class="timeline-flight" style="bottom:#(flight.y)px;color:white">
-                                    <div class="timeline-flight-time">
-                                        #(flight.estimate)
-                                    </div>
-                                    <div class="timeline-flight-callsign">
-                                        #(flight.callsign)
-                                    </div>
-                                    <div class="timeline-flight-iaf timeline-color-#(timeline.colorClass)">
-                                        #(flight.IAF)
-                                    </div>
-                                    <div class="timeline-flight-iaf-estimate timeline-color-#(timeline.colorClass)">
-                                        #(flight.IAFestimate)
-                                    </div>
-                                    <div class="timeline-flight-aircratType">
-                                        #(flight.aircraftType)
-                                    </div>
-                                </div>
-                                #endfor
+                            <div style="width:4px">-</div>
+                        </div>
+                    #endfor
+                    </div>
+                    <div style="position:relative;height:#(timeline.length)px;left:55px;">
+                        #for(flight in timeline.flights):
+                        <div class="timeline-flight" style="bottom:#(flight.y)px;color:white">
+                            <div class="timeline-flight-time">
+                                #(flight.estimate)
+                            </div>
+                            <div class="timeline-flight-callsign">
+                                #(flight.callsign)
+                            </div>
+                            <div class="timeline-flight-iaf timeline-color-#(timeline.colorClass)">
+                                #(flight.IAF)
+                            </div>
+                            <div class="timeline-flight-iaf-estimate timeline-color-#(timeline.colorClass)">
+                                #(flight.IAFestimate)
+                            </div>
+                            <div class="timeline-flight-aircratType">
+                                #(flight.aircraftType)
                             </div>
                         </div>
                         #endfor
                     </div>
-                    #endfor
+                </div>
+                #endfor
+            </div>
         </div>
+        #endfor
     </body>
 </html>

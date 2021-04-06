@@ -1,29 +1,25 @@
 /* Timelines */
 
-@media print {
-    .timelines {
-        border-radius:0px !important;
-    }
-    
+@media print {    
     .timeline-container {
         width:230px !important;
     }
     
     .timeline-hour {
-        font-size:8px !important;
+        font-size:7px !important;
     }
 
     .timeline-minute {
-        font-size:10px !important;
+        font-size:9px !important;
     }
 
     .timeline-flight {
-        font-size:11px !important;
+        font-size:10px !important;
     }
     
     .timeline-flight-time {
         width:30px !important;
-        font-size:11px !important;
+        font-size:10px !important;
     }
     
     .timeline-label {
@@ -40,6 +36,10 @@
 
     .timeline-flight-iaf-estimate {
         width:15px !important;
+    }
+    
+    .timeline-runway {
+        width:50px !important;
     }
 }
 

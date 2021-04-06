@@ -474,7 +474,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     
                     // Length of the timeline according to simulation's duration
                     if let duration = simulation.duration, let startDate = simulation.date {
-                        let length = duration * 20
+                        let length = duration * 14
                         
                         // Build minute labels
                         var calendar = Calendar(identifier: .gregorian)
@@ -485,7 +485,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                         while currentDate.timeIntervalSince(startDate) < TimeInterval(duration * 60) {
                             let components = calendar.dateComponents([.hour, .minute], from: currentDate)
                             if let hours = components.hour, let minutes = components.minute {
-                                minuteLabels.append(.init(hours: hours, minutes: minutes, y: Int(currentDate.timeIntervalSince(startDate) / 60 * 20)))
+                                minuteLabels.append(.init(hours: hours, minutes: minutes, y: Int(currentDate.timeIntervalSince(startDate) / 60 * 14)))
                             }
                             currentDate.addTimeInterval(60)
                         }
@@ -507,7 +507,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                             guard let estimatedMovementTime = flight.estimatedMovementTime() else {
                                 return nil
                             }
-                            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
+                            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 14)
                             if coordinate > length {
                                 return nil
                             }
@@ -542,7 +542,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                             guard let estimatedMovementTime = flight.estimatedMovementTime() else {
                                 return nil
                             }
-                            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
+                            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 14)
                             if coordinate > length {
                                 return nil
                             }
