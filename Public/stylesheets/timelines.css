@@ -2,7 +2,7 @@
 
 @media print {    
     .timeline-container {
-        width:230px !important;
+        width:214px !important;
     }
     
     .timeline-hour {
@@ -18,16 +18,16 @@
     }
     
     .timeline-flight-time {
-        width:30px !important;
+        width:27px !important;
         font-size:10px !important;
     }
     
     .timeline-label {
-        width:38px !important;
+        width:36px !important;
     }
     
     .timeline-flight-callsign {
-        width:60px !important;
+        width:56px !important;
     }
 
     .timeline-flight-iaf {

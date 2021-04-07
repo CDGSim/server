@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/vapor/leaf-kit.git",
         "state": {
           "branch": null,
-          "revision": "a9b2f07574568e459496e4d3069ca59828e8e7e5",
-          "version": "1.1.0"
+          "revision": "e8d4f8894bf36889fda9c5b2a9d42bc5021b30c8",
+          "version": "1.2.0"
         }
       },
       {
@@ -96,7 +96,7 @@
         "repositoryURL": "https://github.com/CDGSim/simlog-core.git",
         "state": {
           "branch": "main",
-          "revision": "0ece74a7b7e0e19db10a12125fbbed29f5572bab",
+          "revision": "762ed3f50fa6a1b5704f3d8eb1c8d0ea1fc6147d",
           "version": null
         }
       },
@@ -168,8 +168,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
         "state": {
           "branch": null,
-          "revision": "6b6c0582d626f1999c52217458cb99dc03fa2721",
-          "version": "2.10.5"
+          "revision": "07c160b8724ee53a4b776328122be6338ff12bf2",
+          "version": "2.11.0"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "062a4088a26ff9e41daacb8aa311f0289232d814",
-          "version": "4.41.4"
+          "revision": "73d57959a96ceca719558e70c320b2f729d2b25b",
+          "version": "4.41.10"
         }
       },
       {
