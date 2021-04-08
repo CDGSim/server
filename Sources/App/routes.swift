@@ -816,9 +816,11 @@ func registerDecorRoutes(_ app: Application) throws {
     
     // MARK: GET /decor/setup
     app.get("decor", "setup") { req -> EventLoopFuture<View> in
+        let configuration:String = DecorData.configurations[1] ?? "WL"
+        let metar = DecorData.metars[1] ?? "CAVOK"
         return req.view.render("decor-setup", SetupContext(message: "",
-                                                           configuration: DecorData.configurations[1]!,
-                                                           metar: DecorData.metars[1]!,
+                                                           configuration: configuration,
+                                                           metar: metar,
                                                            decor1: true,
                                                            decor2: true,
                                                            decor3: true,
@@ -833,14 +835,15 @@ func registerDecorRoutes(_ app: Application) throws {
     
     // MARK: GET /decor/setup/METAR
     app.get("decor", "setup", ":metar") { req -> EventLoopFuture<View> in
-        let metar: String
+        let metar:String
         if let metarParameter = req.parameters.get("metar") {
             metar = metarParameter
         } else {
-            metar = DecorData.metars[1]!
+            metar = DecorData.metars[1] ?? "CAVOK"
         }
+        let configuration:String = DecorData.configurations[1] ?? "WL"
         return req.view.render("decor-setup", SetupContext(message: "",
-                                                           configuration: DecorData.configurations[1]!,
+                                                           configuration: configuration,
                                                            metar: metar,
                                                            decor1: true,
                                                            decor2: true,
