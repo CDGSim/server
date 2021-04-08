@@ -385,7 +385,7 @@ table em {
 
 .caption p, .caption li {
     font-size:13px;
-    color:#999
+    color:#999 !important
 }
 
 /* Index page */

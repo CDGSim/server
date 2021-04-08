@@ -18,7 +18,14 @@
                 <label for="weather" style="width:120px;text-align:right;padding-right:5px">Météo :</label>
                 <div>
                 <textarea rows="5" cols="20" name="metar">#(metar)</textarea>
-                <div class="caption"><p>Insérer du texte au format METAR.</p></div>
+                <div class="caption">
+                    <p>Insérez du texte au format METAR.</p>
+                    <p>Par exemple :</p>
+                    <ul>
+                    <li>Piste fermée : CAVOK 12/04 R27R/CLOSED</li>
+                    <li>LVP : 01003KT 04/04 300 FG Q1017 BKN001 R09L/450 R09R/325 R08L/425 R08R/450</li>
+                    </ul>
+                </div>
                 </div>
             </div>
             <div>
