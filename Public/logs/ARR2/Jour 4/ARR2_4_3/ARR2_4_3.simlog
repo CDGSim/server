@@ -1,0 +1,186 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "",
+        "description" : "Une cellule orageuse sur MOPAR (attente impossible), une autre à CLM (forcer les arrivées OKIPA à droite vers LORNI), et une troisième à SUBOX (forcer les arrivées BANOX à droite vers Paris). ",
+        "time" : "10:00"
+      },
+      {
+        "callsign" : "",
+        "description" : "NAX76P arrivée PO VEBEK",
+        "time" : "10:11"
+      },
+      {
+        "callsign" : "",
+        "description" : "**Coordonner avec les pilotes l’évolution des cellules à l’aide des post-its\nou avec la carte qui leur est fournie.**",
+        "time" : "10:00"
+      }
+    ]
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "Gestion d’un trafic chargé avec orages (et donc évitements).\\\nPas de trafic au Bourget, **1 PER INI N utilisé pour le DEP**.\\\nCoordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.\n\nSi appel du Coor INI pour une arrivée pour Beauvais, donner *« 5000ft sur MTD »*. Après transfert, guider l’avion sur Beauvais et le faire se poser en piste 30.\n\nSi appel du Coor INI pour une arrivée pour Orly, donner : \"standard, FL080, 250Kts, 123.875\"",
+      "events" : [
+
+      ],
+      "role" : "Adjacent",
+      "setup" : [
+
+      ]
+    },
+    {
+      "directives" : "Coordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.",
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "SAS559",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "AFR1835",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "CES553",
+          "description" : "FL110  250Kts"
+        },
+        {
+          "callsign" : "KLM26P",
+          "description" : "CAP 270  FL70  250kts"
+        },
+        {
+          "callsign" : "DAL98",
+          "description" : "CAP 140  FL080  250kts"
+        }
+      ]
+    },
+    {
+      "directives" : "Coordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nLe contrôleur chargé de la gestion du départ n’est pas un élève. Il pourra diriger le trafic sans utiliser la phraséologie pour être plus efficace et rendre la structure de trafic intéressante pour les stagiaires.",
+      "frequency" : "124.355 - 133.380",
+      "role" : "DEP",
+      "setup" : [
+
+      ]
+    },
+    {
+      "directives" : "Coordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR1383",
+          "description" : "CAP 250  4000ft  250kts"
+        },
+        {
+          "callsign" : "BEE715J",
+          "description" : "CAP 120  4000ft  ILS  220kts"
+        },
+        {
+          "callsign" : "SAS579",
+          "description" : "ILS09L 180kts "
+        }
+      ]
+    },
+    {
+      "directives" : "Coordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.",
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "SVA143",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "EJU78FX",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "SWR60W",
+          "description" : "FL080  220Kts"
+        },
+        {
+          "callsign" : "FPO748",
+          "description" : "FL150"
+        }
+      ]
+    },
+    {
+      "directives" : "Coordonner avec l’instructeur la position initiale et le déplacement des cellules orageuses (post-its).\n\nOn évitera d’imposer à l’élève une contrainte double du type :  *« on veut descendre ET tourner en même temps »*. On préfèrera par exemple : *« si on n’a pas tourné d’ici X nautiques, il faudra qu’on descende »*.\n\nLa base des nuages est à 3800ft sur l’axe, il est possible de passer dessous à 3000ft ou 2000ft. Si interception à 2000ft, s'attendre à des RMG et donc poursuivre à 500ft puis couper le transpondeur.\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t",
+      "frequency" : "118.150",
+      "role" : "ITM Sud",
+      "setup" : [
+        {
+          "callsign" : "AFR1417",
+          "description" : "ILS08R  avec la TWR"
+        },
+        {
+          "callsign" : "EJU47MC",
+          "description" : "ILS08R  180kts "
+        },
+        {
+          "callsign" : "AFR611M",
+          "description" : "CAP 060  5000ft  ILS  220kts"
+        },
+        {
+          "callsign" : "ENT4757",
+          "description" : "CAP 050  FL070   LLZ08R  250kts"
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "PC",
+        "positions" : [
+          "DEP N",
+          "DEP S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM BA",
+          "ITM S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "COOR INI N",
+          "SEQ",
+          "COOR INI S"
+        ]
+      }
+    ],
+    "configuration" : "EL",
+    "description" : "Orages, DEP joué par renfort supplémentaire, EL\n\nTrafic PO (1)\\\nRégulations 27PG+ 26PG\\\nPas de trafic au Bourget\\\nUn renfort supplémentaire pour jouer le DEP\\\nAnticroisement + beaucoup de départs vers l'Est et l'Ouest\\\nHBN à 3800ft sur l’axe. Les PER pourront demander à descendre sous les nuages",
+    "duration" : 45,
+    "name" : "ARR2_4_3",
+    "objectives" : "Gestion d’un trafic relativement chargé  avec évitements",
+    "start_date" : "2021-02-26T09:00:22Z",
+    "traffic_density" : 4,
+    "update_date" : "2021-03-17T08:22:24Z",
+    "weather" : "09010KT 25\/17 9999 SCT025 CB Q986"
+  }
+}
