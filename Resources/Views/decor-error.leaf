@@ -7,16 +7,12 @@
         <meta http-equiv="refresh" content="10" >
     </head>
 
-    <body>
-        
-        <main>
-                                    
-            <div id="content">
-              <h1>Erreur</h1>
-              <h1>#(reason)</h1>
-            </div>
-
-        </main>
+    <body style="margin:0px;background-color:#(color);color:white;text-align:center">
+    
+        <div style="position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);">
+          <h1 style="font-size:24em">#(id)</h1>
+          <h3 style="color:#ffffff80">#(reason)</h3>
+        </div>
 
     </body>
 </html>

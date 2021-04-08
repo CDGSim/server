@@ -768,9 +768,9 @@ func registerAPIRoutes(_ app: Application) throws {
 extension Log: Content { }
 
 private struct DecorData {
-    static var metars: [Int:String] = [1:"13014KT CAVOK M01/M11 Q1033"]
-    static var configurations: [Int:String] = [1:"WL"]
-    static var dates: [Int:Date] = [1:Date()]
+    static var metars: [Int:String] = [:]
+    static var configurations: [Int:String] = [:]
+    static var dates: [Int:Date] = [:]
 }
 
 func registerDecorRoutes(_ app: Application) throws {
@@ -792,11 +792,26 @@ func registerDecorRoutes(_ app: Application) throws {
     
     // MARK: GET /decor/ID/
     app.get("decor", ":id") { req -> EventLoopFuture<View> in
-        if let idString = req.parameters.get("id"), let id = Int(idString), let metar = DecorData.metars[id], let configuration = DecorData.configurations[id], let date = DecorData.dates[id] {
+        let idString = req.parameters.get("id")!
+        if let id = Int(idString), let metar = DecorData.metars[id], let configuration = DecorData.configurations[id], let date = DecorData.dates[id] {
             return DecorController.view(req: req, metar: metar, configuration: configuration, startDate: date)
-        } else {
-            return req.view.render("decor-error", ["reason":"Cet écran DECOR n'est pas configuré"])
         }
+        // Return a page containing the id in big letters
+        // and a background color depending on the id
+        let colors = ["3D4766", "2E354C", "1F2433", "0F1219", "000"]
+        let color:String
+        if let id = Int(idString) {
+            var index = 5 - id
+            if index < 0 { index = abs(index + 1) }
+            color = "#" + colors[index]
+        } else {
+            // Id is not and integer
+            color = "red"
+        }
+        let params = ["reason":"Cet écran DECOR n'est pas configuré",
+                      "id":idString,
+                      "color":color]
+        return req.view.render("decor-error", params)
     }
     
     // MARK: GET /decor/setup
