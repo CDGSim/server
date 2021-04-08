@@ -22,13 +22,14 @@ html {
 }
 
 body {
+    font-size:15px;
     margin: 0;
     padding: 0;
     color:#1d1d1f;
 }
 
 p, label, #content li:not(.current) {
-    color:#484848;
+    color:#383838;
 }
 
 a {
@@ -155,22 +156,24 @@ table em {
     background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
     color:white;
     
-    display: flex;
-    flex-flow: row wrap;
-    
     padding-left: max(20px, env(safe-area-inset-left));
     padding-right: max(20px, env(safe-area-inset-right));
 }
 
 #simulation-properties > div {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#simulation-properties > div > div {
     margin:8px
 }
 
-#simulation-properties > div:first-child {
+#simulation-properties > div > div:first-child {
     flex: 2 200px;
 }
 
-#simulation-properties > div:last-child {
+#simulation-properties > div > div:last-child {
     flex: 1 280px;
     border-radius:8px;
     background-color:rgba(255,255,255,0.1)
@@ -217,6 +220,11 @@ table em {
     padding-bottom: 120px;
     padding-left: max(12px, env(safe-area-inset-left));
     padding-right: max(12px, env(safe-area-inset-right));
+}
+
+.container {
+    margin:auto;
+    max-width:1040px;
 }
 
 .assignments {
@@ -493,7 +501,7 @@ table em {
 .event-row > div {
     text-align:center;
     vertical-align:top;
-    padding:8px;
+    padding:8px 16px;
     width:80px
 }
 

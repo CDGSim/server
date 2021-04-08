@@ -1,18 +1,20 @@
             <div id="simulation-properties">
-                <div>
-                    <h1>#(simulation_properties.name)</h1>
-                    #if(simulation_properties.update_date):<strong>Mis à jour le #date(simulation_properties.update_date, "dd/MM/YYYY")</strong>#endif
-                    <p>#markdown(simulation_properties.description)</p>
-                </div>
-                <div>
-                    <ul>
-                        <li><strong>Configuration :</strong> #(simulation_properties.configuration)</li>
-                        <li><strong>Charge :</strong> #(simulation_properties.traffic_density_description)</li>
-                        <li><strong>Heure de début :</strong> #gmtTime(simulation_properties.start_date)</li>
-                        <li><strong>Durée :</strong> #(simulation_properties.duration) min</li>
-                        <li><strong>QNH :</strong> #(simulation_properties.qnh)</li>
-                        <li><strong>Météo :</strong> <a href="/decor/#(path)">#(simulation_properties.weather)</a></li>
-                    </ul>
-                    #import("tools")
+                <div class="container">
+                    <div>
+                        <h1>#(simulation_properties.name)</h1>
+                        #if(simulation_properties.update_date):<strong>Mis à jour le #date(simulation_properties.update_date, "dd/MM/YYYY")</strong>#endif
+                        <p>#markdown(simulation_properties.description)</p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Configuration :</strong> #(simulation_properties.configuration)</li>
+                            <li><strong>Charge :</strong> #(simulation_properties.traffic_density_description)</li>
+                            <li><strong>Heure de début :</strong> #gmtTime(simulation_properties.start_date)</li>
+                            <li><strong>Durée :</strong> #(simulation_properties.duration) min</li>
+                            <li><strong>QNH :</strong> #(simulation_properties.qnh)</li>
+                            <li><strong>Météo :</strong> <a href="/decor/#(path)">#(simulation_properties.weather)</a></li>
+                        </ul>
+                        #import("tools")
+                    </div>
                 </div>
             </div>

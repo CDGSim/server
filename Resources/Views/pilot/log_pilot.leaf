@@ -8,6 +8,7 @@
         #endextend
         
         <div id="content">
+            <div class="container">
             <div class="title">
                 <h1>Log PER</h1>
                 <div class="dropdown">
@@ -82,6 +83,7 @@
                     </ul>
                     #endif
                 #endif
+            </div>
             </div>
             
     #endexport
