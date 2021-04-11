@@ -98,6 +98,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             
             struct Course: Encodable {
                 let name: String
+                let abstract: String
                 let groupNames: [String]
             }
         }
@@ -136,7 +137,17 @@ func registerFrontEndRoutes(_ app: Application) throws {
             } catch {
                 groupNames = []
             }
-            return .init(name: path, groupNames: groupNames)
+            
+            let notesPath = "Public/logs/" + path + "/Abstract.md"
+            let notesContent:String
+            do {
+                notesContent = try String(contentsOf:URL(fileURLWithPath: notesPath), encoding:.utf8)
+            }
+            catch {
+                notesContent = ""
+            }
+            
+            return .init(name: path, abstract: notesContent, groupNames: groupNames)
         }
         
         // Render the view index, with the context we've made

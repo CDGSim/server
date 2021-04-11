@@ -2,25 +2,31 @@
     #export("title"): Simulations #endexport
     #export("main"):
             
-        <div id="content">
-            <h1>Stages</h1>
-            <div>
-                <div class="simulations-grid">
-                    #for(course in courses):
-                    <div class="simulation-course">
-                        <h2>#(course.name)</h2>
-                        <div class="simulation-groups-container">
-                        #for(groupName in course.groupNames):
-                            <div>
-                                <a href="/stage/#(course.name)##(index)">#(groupName)</a>
+            <div class="clear-background">
+                <h1>Stages</h1>
+                <div>
+                    <div class="simulations-grid">
+                        #for(course in courses):
+                        <div class="simulation-course">
+                            <div class="course-title">
+                                <div class="simulation-groups-container">
+                                #for(groupName in course.groupNames):
+                                    <div>
+                                        <a href="/stage/#(course.name)##(index)">#(groupName)</a>
+                                    </div>
+                                #endfor
+                                </div>
                             </div>
-                        #endfor
+                            <div class="course-details">
+                                <h3>#(course.name)</h3>
+                                <p>#(course.abstract)</p>
+                                <p><a href="/stage/#(course.name)">Afficher le stage</a></p>
+                            </div>
                         </div>
+                        #endfor
                     </div>
-                    #endfor
                 </div>
             </div>
-        </div>
             
     #endexport
 #endextend

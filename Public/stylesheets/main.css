@@ -5,7 +5,7 @@
 }
 
 html {
-    font-family:SF Pro Text,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif ;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-size:14px;
     line-height:1.5;
     height:100%;
@@ -33,7 +33,7 @@ p, label, #content li:not(.current) {
 }
 
 a {
-    color:#06c;
+    color:#0070C9;
     text-decoration:none
 }
 
@@ -44,7 +44,13 @@ a:hover {
 h2 {
     margin-top: 1em;
     margin-bottom: .3em;
-    font-weight: 700;
+}
+
+h3 {
+    font-size:17px;
+    margin-top: 1em;
+    margin-bottom: .3em;
+    font-weight:600
 }
 
 table {
@@ -539,12 +545,42 @@ table em {
 }
 
 .simulation-course {
-    border-radius:6px;
+    font-size:14px;
+    border-radius:8px;
     margin:10px;
-    padding:40px 10px 10px;
-    background-image: radial-gradient(circle closest-corner at 50% -20%, #8664E4, #1C4FA2);
-    color:white;
     width:330px;
+    transition: transform .16s; /* Animation */
+}
+
+.simulation-course:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .048);
+}
+
+.course-title {
+    border-radius:8px 8px 0px 0px;
+    background-image: radial-gradient(circle closest-corner at 50% -70%, #1A9E8F, #115B9E);
+    color:white;
+    padding:10px;
+    height:150px;
+}
+
+.course-details {
+    padding:16px;
+    border-radius:0 0 6px 6px;
+    background-color:white;
+    height:180px;
+    position: relative;
+}
+
+.course-details * {
+    margin:0 0 0.5em;
+    line-height:1.3em;
+}
+
+.course-details p:last-child {
+    position: absolute;
+    bottom: 10px;
 }
 
 .simulation-groups-container {
@@ -557,12 +593,12 @@ table em {
     padding:6px 10px;
     margin:4px;
     border-radius:8px;
-    background-color:rgba(255,255,255,0.1)
+    background-color:rgba(0,0,0,0.2)
 }
 
 .simulation-groups-container > div > a:hover {
     text-decoration:none;
-    background-color:rgba(255,255,255,0.3)
+    background-color:rgba(0,0,0,0.45)
 }
 
 .simulation-groups-container > div > a, .simulation-group p {
@@ -576,4 +612,9 @@ table em {
 
 :target td {
     background-color: #f5f5f7;
+}
+
+.clear-background {
+    background-color:#F5F5F5;
+    padding:20px;
 }
