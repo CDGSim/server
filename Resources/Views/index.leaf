@@ -1,16 +1,28 @@
 #extend("master"):
     #export("title"): Simulations #endexport
     #export("main"):
-            
-        <div id="content">
-        <div style="display: flex;flex-flow: row wrap; justify-content:center; margin-top:100px">
-            <div class="reader-button instructor-button">
-                            <a href="/instructeur/">Instructeur</a>
+         
+        <div id="home">
+            <div style="max-width:980px;margin:auto">
+                <div style="display:flex; flex-flow: row wrap; justify-content:center;">
+                    <div id="home-logo">
+                    </div>
+                    <div id="home-text">
+                        <h3>Simulateurs CDG</h3>
+                        <h1>Logs de simulation</h1>
+                        <p>Choisissez votre rôle pour commencer.</p>
+                                    
+                        <div style="margin-top:3em;display:flex; flex-flow: row wrap; justify-content:center;">
+                            <div class="reader-button">
+                                            <a href="/instructeur/">Instructeur</a>
+                            </div>
+                            <div class="reader-button">
+                                            <a href="/pilote/">PER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="reader-button pilot-button">
-                            <a href="/pilote/">PER</a>
-            </div>
-        </div>
         </div>
             
     #endexport
