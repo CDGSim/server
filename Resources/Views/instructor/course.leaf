@@ -36,9 +36,11 @@
                             
                 #if(notes != ""):
                 <div style="flex:1 350px">
-                    <h2>Notes importantes</h2>
-                    <div class="course_notes">
-                    #markdown(notes)
+                    <div style="position: sticky;top: 60px;">
+                        <h2>Notes importantes</h2>
+                        <div class="course_notes">
+                        #markdown(notes)
+                        </div>
                     </div>
                 </div>
                 #endif
