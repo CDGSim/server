@@ -679,6 +679,15 @@ func registerFrontEndRoutes(_ app: Application) throws {
             return req.view.render("print", context)
         }
     }
+    
+    // MARK: GET /apple-touch-icon.png
+    // Returns the icon for web app clip
+    app.get("apple-touch-icon.png") { req -> Response in
+        
+        let path = "Resources/apple-touch-icon.png"
+        
+        return req.fileio.streamFile(at: path)
+    }
 }
 
 
