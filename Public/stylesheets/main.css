@@ -627,7 +627,7 @@ table em {
 #home-logo {
     background-image: url("/logo.svg");
     background-repeat: no-repeat;
-    background-size: 381px 200px;
+    background-size: 180px 218px;
     background-position: center center
 }
 
@@ -638,7 +638,7 @@ table em {
     font-weight:normal
 }
 
-#home-text h1, p {
+#home-text h1, #home-text p {
     color:white
 }
 
