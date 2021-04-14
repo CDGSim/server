@@ -188,7 +188,6 @@ func registerFrontEndRoutes(_ app: Application) throws {
     // MARK: GET /pilote
     // Renders a view containing all logs listed in alphabetical order
     app.get("pilote") { req -> EventLoopFuture<View> in
-        
         // Context type that will be passed to the view
         struct Context: Encodable {
             let courses: [Course]
@@ -220,7 +219,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let path:String
             let role:String?
         }
-            
+        
         // Create an array of logs from the content of the .simlog files
         let logs = subpaths.compactMap { path -> String? in
             // Filter files to only include .simlog files
@@ -235,11 +234,10 @@ func registerFrontEndRoutes(_ app: Application) throws {
             switch log(atPath: path) {
             case .failure : return nil // If the log file cannot be read, just ignore it
             case .success(let log):
-                var pathComponents = path.components(separatedBy: "/")
                 let name = log.properties.name
+                var pathComponents = path.components(separatedBy: "/")
                 let course = pathComponents.removeFirst()
-                let group:String?
-                if pathComponents.count > 1 { group = pathComponents.first } else { group = nil }
+                let group = pathComponents.count > 1 ? pathComponents.first : nil
                 let role = log.pilot_logs.first?.role
                 return .init(name: name, course: course, group: group, path: path, role:role)
             }
@@ -285,7 +283,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
         let roleName = req.parameters.get("role")!
         
         // Read the log file
-        switch log(atPath: path) {
+        switch logWithSortedEvents(atPath: path) {
         case .failure(let error) :
             return renderLogErrorView(from: error, req: req)
         case .success(let log):

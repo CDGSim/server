@@ -14,7 +14,7 @@ struct InstructorLogRoute {
             let path = req.parameters.getCatchall().joined(separator: "/")
             
             // Read the log file
-            switch log(atPath: path) {
+            switch logWithSortedEvents(atPath: path) {
             case .failure(let error) :
                 return renderLogErrorView(from: error, req: req)
             case .success(let log):

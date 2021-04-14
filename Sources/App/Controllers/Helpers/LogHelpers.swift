@@ -31,6 +31,25 @@ internal func log(atPath path: String) -> Result<Log, LogError> {
         return .failure(.couldNotDecode)
     }
     
+    return .success(log)
+}
+
+/// Reads a log file located at path and sort its events
+/// This is an expensive task
+internal func logWithSortedEvents(atPath path: String) -> Result<Log, LogError> {
+    let logURL = URL(fileURLWithPath: "Public/logs/").appendingPathComponent(path.removingPercentEncoding ?? path)
+    let logData: Data
+    do {
+        logData = try Data(contentsOf: logURL)
+    } catch {
+        return .failure(.notFound)
+    }
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .iso8601
+    guard let log = try? decoder.decode(Log.self, from: logData) else {
+        return .failure(.couldNotDecode)
+    }
+    
     
     // Sort events
     let dateFormatter = DateFormatter()
