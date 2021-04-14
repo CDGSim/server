@@ -7,86 +7,15 @@ import SimlogCore
 /// Registers the routes for the web front end
 func registerFrontEndRoutes(_ app: Application) throws {
     
-    // MARK: GET /instructeur/log_path
-    // Renders a view for the instructor
-    InstructorLogRoute.register(with: app)
-    
     // MARK: GET /
-    // Renders a view containing all logs listed in alphabetical order
+    // Renders the home page
     app.get { req -> EventLoopFuture<View> in
-        
-        // Context type that will be passed to the view
-        struct Context: Encodable {
-            let courses: [Course]
-            
-            struct Course: Encodable {
-                let name: String
-                var simulations: [Simulation]
-            }
-            
-            struct Simulation: Encodable {
-                let name: String // Simulation name
-                let group: String? // Simulation's group within the course, this is optional
-                let path: String // Path to the log file
-            }
-        }
-        
-        // Enumerate files in the logs folder
-        let enumerator = FileManager.default.enumerator(atPath: "Public/logs")
-        guard let subpaths = enumerator?.allObjects as? [String]  else {
-            // If we cannot get the subpaths, render the error view
-            return req.view.render("error")
-        }
-        
-        struct Log {
-            let name:String
-            let course:String
-            let group:String?
-            let path:String
-        }
-            
-        // Create an array of logs from the content of the .simlog files
-        let logs = subpaths.compactMap { path -> String? in
-            // Filter files to only include .simlog files
-            guard URL(fileURLWithPath: path).pathExtension == "simlog" else { return nil }
-            
-            // Only include files in a subfolder
-            guard path.components(separatedBy: "/").count > 1 else { return nil }
-            
-            return path
-        }.compactMap { path -> Log? in
-            // Read the simulation name from the log file
-            switch log(atPath: path) {
-            case .failure : return nil // If the log file cannot be read, just ignore it
-            case .success(let log):
-                var pathComponents = path.components(separatedBy: "/")
-                let name = log.properties.name
-                let course = pathComponents.removeFirst()
-                let group:String?
-                if pathComponents.count > 1 { group = pathComponents.first } else { group = nil }
-                return .init(name: name, course: course, group: group, path: path)
-            }
-        }.sorted { (lhs, rhs) -> Bool in
-            lhs.name < rhs.name
-        }
-        
-        var courses = [Context.Course]()
-        for log in logs {
-            let simulation = Context.Simulation(name: log.name, group: log.group, path: log.path)
-            if let courseIndex = courses.firstIndex(where: { $0.name == log.course }) {
-                courses[courseIndex].simulations.append(simulation)
-            } else {
-                courses.append(.init(name: log.course, simulations: [simulation]))
-            }
-        }
-        courses.sort { (lhs, rhs) -> Bool in
-            lhs.name < rhs.name
-        }
-        
-        // Render the view index, with the context we've made
-        let context:Context = .init(courses: courses)
-        return req.view.render("index", context)
+        return req.view.render("index")
     }
+    
+    // Register instructor routes
+    // MARK: GET /instructeur/log_path
+    InstructorLogRoute.register(with: app)
     
     // MARK: GET /instructeur
     // Renders a view containing all the courses listed in alphabetical order
