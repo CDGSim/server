@@ -292,7 +292,7 @@ table em {
     color:#BD130B
 }
 
-#content p > em {
+#content p > em, li > em {
     color: #2573F7;
 }
 
