@@ -103,6 +103,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let name: String
                 let abstract: String
                 let path: String
+                let trafficDensity: [Bool]
             }
             
             struct SimulationGroup: Encodable {
@@ -130,7 +131,11 @@ func registerFrontEndRoutes(_ app: Application) throws {
             case .failure : return nil // If the log file cannot be read, just ignore it
             case .success(let log):
                 let name = log.properties.name
-                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path)
+                var trafficDensity = [Bool]()
+                for index in 1...4 {
+                    trafficDensity.append(index <= log.properties.trafficDensity)
+                }
+                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity)
             }
         }.sorted { (lhs, rhs) -> Bool in
             lhs.name < rhs.name

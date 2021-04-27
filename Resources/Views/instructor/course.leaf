@@ -26,6 +26,7 @@
                             #for(simulation in group.simulations):
                             <tr>
                                 <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
+                                <td class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</td>
                                 <td class="secondary-column">Version imprimable<br /> <a href="/print2/#(simulation.path)">Classique</a> - <a href="/print/#(simulation.path)">Alternative</a></td>
                             </tr>
                             #endfor

@@ -682,3 +682,24 @@ table em {
     color:white;
     text-decoration:none;
 }
+
+.trafficDensityIndicator {
+    display:flex;
+    flex-direction: row;
+    padding:0px;
+}
+
+.trafficDensityIndicator > div {
+    height:20px;
+    width:8px;
+    border-radius:4px;
+    margin:4px;
+}
+
+.trafficDensityIndicator .on {
+    background: linear-gradient(#735EF2,#E548DA);
+}
+
+.trafficDensityIndicator .off {
+    background-color:#e5e5e5
+}
