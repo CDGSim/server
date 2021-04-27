@@ -348,7 +348,7 @@ table em {
 
 .dropdown-content ul {
     list-style-type: none;
-    padding:0;
+    padding:4px 0px;
     margin:4px 0px 0px
 }
 
@@ -370,6 +370,11 @@ table em {
 }
 
 .dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-content hr {
+    border-top: 1px solid #aaa;
+    border-bottom: 0px;
+}
 
 .note {
     border: 1px solid rgba(0,0,0,0.08);

@@ -18,6 +18,8 @@
                             #for(role in roles):
                             <li><a href="/pilote/#(role)/#(path)">#(role)</a></li>
                             #endfor
+                            <li><hr /></li>
+                            <li><a href="/instructeur/#(path)">Instructeur</a></li>
                           </ul>
                       </div>
                 </div>
