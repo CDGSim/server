@@ -7,7 +7,7 @@
             <h1>#(name)</h1>
 
             <div style="display: flex;flex-flow: row wrap;">
-                <div style="flex:1 1 450px">
+                <div style="flex:1 1 550px">
 
                     <h2>Contenu du stage</h2>
 
@@ -36,7 +36,7 @@
                 </div>
                             
                 #if(notes != ""):
-                <div style="flex:1 350px">
+                <div style="flex:1 250px">
                     <div style="position: sticky;top: 60px;">
                         <h2>Notes importantes</h2>
                         <div class="course_notes">
