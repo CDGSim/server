@@ -95,7 +95,7 @@ table:not(.simulation-index) tr td {
 }
 
 .secondary-column {
-    width:180px;
+    width:40px;
     font-size:12px
 }
 
@@ -687,6 +687,8 @@ table em {
     display:flex;
     flex-direction: row;
     padding:0px;
+    justify-content:center;
+    width:180px;
 }
 
 .trafficDensityIndicator > div {
