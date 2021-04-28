@@ -2,33 +2,43 @@
     #export("title"): Remarques #endexport
     #export("main"):
             <div id="content">
-                <h2>Remarques utilisateur</h2>
-				#if(message):<p>#(message)</p>#endif
-            <form method="POST" action="/ticket/form">
-			<div style="display:flex">
-                <label for="date" style="width:120px;text-align:right;padding-right:5px">Date :</label>
-                <input type="date" min="2021-01-01" max="2029-12-31" style="width:148px" id="date" name="user_date">
-				<label for="simu" style="width:120px;text-align:right;padding-right:5px">Simulation :</label>
-                <input type="text" style="width:148px" id="simu" name="user_simu">
-            </div>
-			<div style="display:flex;margin-top:2px">
-                <label for="destinataire" style="width:120px;text-align:right;padding-right:5px">Destinataire :</label>
-                <select name="user_dest" style="width:148px">
-                    <option value="SE">Service Exploitation</option>
-					<option value="ST">Service Technique</option>
-					<option value="  ">Je ne sais pas</option>
-                </select>
-				<label for="name" style="width:120px;text-align:right;padding-right:5px">Utilisateur :</label>
-                <input type="text" style="width:148px" id="name" name="user_name">
-            </div>
-            <div style="display:flex;margin-top:2px">
-                <label for="remarque" style="width:120px;text-align:right;padding-right:5px">Remarque :</label>
-                <div>
-                <textarea style="width:416px;length:100px" rows="15" cols="20" name="user_rem"></textarea>
+                <div class="container">
+                    <h2>Remarques utilisateur</h2>
+                    #if(message):<p>#(message)</p>#endif
+                    <form method="POST" action="/ticket/form">
+                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
+                            <div class="input-wrapper">
+                                <label for="date">Date</label>
+                                <input type="date" min="2021-01-01" max="2029-12-31" id="date" name="user_date">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="simu">Simulation</label>
+                                <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée">
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
+                            <div class="input-wrapper">
+                                <label for="destinataire">Destinataire</label>
+                                <div>
+                                <select name="user_dest">
+                                    <option value="SE">Service Exploitation</option>
+                                    <option value="ST">Service Technique</option>
+                                    <option value="  ">Je ne sais pas</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="user_name">Utilisateur</label>
+                                <input type="text" id="name" name="user_name" placeholder="Entrez votre nom">
+                            </div>
+                        </div>
+                        <div style="margin:4px;margin-top:20px">
+                            <label for="remarque">Remarques</label>
+                            <textarea rows="15" cols="20" name="user_rem" placeholder="Entrez vos remarques, suggestions, retours ici"></textarea>
+                            <button type="submit" style="float:right;margin-top:20px">Envoyer la remarque</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <input type="submit" value="Envoyer la remarque" style="width:148px;margin-top:18px;margin-left:390px">
-            </form>
             </div>
             
 	#endexport
