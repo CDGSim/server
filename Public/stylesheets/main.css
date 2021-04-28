@@ -747,3 +747,13 @@ button {
     width:calc(50% - 20px);
     min-width:300px
 }
+
+/* Callout */
+
+.callout {
+    background-color: rgba(0,102,204,.1);
+    border: 1px solid rgba(0,102,204,.2);
+    padding: .9375rem 20px;
+    border-radius: 4px;
+    margin: 32px 0 16px;
+}
