@@ -2,7 +2,10 @@
     #export("title"): #(log.properties.name) #endexport
     #export("main"):
 #extend("simulation-properties"):
-    #export("tools"):   <button onclick="sendParametersToDecor()" />Envoyer vers DECOR</button>
+    #export("tools"):
+        
+    #if(showDECORButton == true):
+    <button onclick="sendParametersToDecor()" />Envoyer vers DECOR</button>
  <script>
             const sendParametersToDecor = async () => {
                     const date = new Date('#date(simulation_properties.start_date)')
@@ -21,7 +24,9 @@
                   });
                   const json = await response.json();
                 }
-            </script> #endexport
+            </script>
+            #endif
+             #endexport
 #endextend
             <div id="content">
             <div class="container">

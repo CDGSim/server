@@ -42,6 +42,7 @@ private struct Context: Encodable {
     let attachments: [Attachment]?
     let displayEventsLocation: Bool
     let courseNotes:String
+    let showDECORButton: Bool
     
     // Rerouted flights
     let reroutedFlightsToNorthRunways:[Flight]?
@@ -75,6 +76,7 @@ private struct Context: Encodable {
     let timelinesGroups: [TimelineGroup]
     
     init(from log: Log, path:String) {
+        showDECORButton = ProcessInfo.processInfo.environment["simulator"] == "electra"
         self.path = path
         self.simulation_properties = .init(from: log.properties)
         

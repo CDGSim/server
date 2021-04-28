@@ -10,6 +10,7 @@ public func configure(_ app: Application) throws {
     app.views.use(.leaf)
     app.leaf.tags["markdown"] = Markdown()
     app.leaf.tags["gmtTime"] = GMTTimeTag()
+    app.leaf.tags["DECORLink"] = DECORLink()
 
     //app.http.server.configuration.hostname = "172.16.151.113"
 
@@ -18,6 +19,15 @@ public func configure(_ app: Application) throws {
     try registerAPIRoutes(app)
     try registerDecorRoutes(app)
 	try registerTicketRoutes(app)
+}
+
+struct DECORLink: LeafTag {
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        guard ProcessInfo.processInfo.environment["simulator"] == "electra" else {
+            return .string("")
+        }
+        return .string("<li><a href=\"/decor/setup\">DECOR</a></li>")
+    }
 }
 
 
