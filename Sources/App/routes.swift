@@ -736,7 +736,7 @@ func registerDecorRoutes(_ app: Application) throws {
         let decor9: Bool
         let decor10: Bool
     }
-    
+	
     // MARK: GET /decor/ID/
     app.get("decor", ":id") { req -> EventLoopFuture<View> in
         let idString = req.parameters.get("id")!
@@ -880,6 +880,42 @@ func registerDecorRoutes(_ app: Application) throws {
         dateFormatter.dateFormat = "HH:mm"
         let date = dateFormatter.date(from: content.date) ?? Date()
         return DecorController.view(req: req, metar: content.weather, configuration: content.configuration, startDate: date)
+    }
+}
+
+	
+func registerTicketRoutes(_ app: Application) throws {
+    struct TicketContext: Encodable {
+        let message:String
+    }	
+	
+	// MARK: GET /ticket/form
+    app.get("ticket", "form") { req -> EventLoopFuture<View> in
+        return req.view.render("ticket-form")
+    }
+	
+	// MARK: POST /ticket/form
+    app.post("ticket", "form") { req -> EventLoopFuture<View> in
+        struct Post: Content {
+            var user_date: String
+            var user_simu: String
+            var user_dest: String
+            var user_name: String
+			var user_rem: String
+        }
+        let content = try req.content.decode(Post.self)
+		do {
+		
+			let deja = try String(contentsOfFile: "Public/tickets/tickets.csv")
+			let input = deja + content.user_date + ", " + content.user_simu + ", " + content.user_dest + ", " + content.user_name + ", " + content.user_rem + "\n"
+			print(input)
+			try input.write(toFile: "Public/tickets/tickets.csv", atomically: false, encoding: String.Encoding.utf8)
+			
+		} catch let error{
+		print(error)
+		return req.view.render("ticket-form",TicketContext(message :"Erreur"))
+		}
+		return req.view.render("ticket-form",TicketContext(message :"Remarque enregistrée"))
     }
 }
 
