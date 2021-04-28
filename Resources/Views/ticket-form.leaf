@@ -24,7 +24,7 @@
             <div style="display:flex;margin-top:2px">
                 <label for="remarque" style="width:120px;text-align:right;padding-right:5px">Remarque :</label>
                 <div>
-                <textarea style="width:416px;length:100px" name="user_rem"></textarea>
+                <textarea style="width:416px;length:100px" rows="15" cols="20" name="user_rem"></textarea>
                 </div>
             </div>
             <input type="submit" value="Envoyer la remarque" style="width:148px;margin-top:18px;margin-left:390px">
