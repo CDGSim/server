@@ -17,6 +17,7 @@ public func configure(_ app: Application) throws {
     try registerFrontEndRoutes(app)
     try registerAPIRoutes(app)
     try registerDecorRoutes(app)
+	try registerTicketRoutes(app)
 }
 
 
@@ -47,4 +48,3 @@ private struct GMTTimeTag: LeafTag {
         return LeafData.string(dateAsString)
     }
 }
-
