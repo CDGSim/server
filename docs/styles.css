@@ -93,7 +93,7 @@ a {
     text-indent: -9999px;
     height: 200px;
     padding:0;
-    background-image: url("/assets/logo.svg");
+    background-image: url("/server/assets/logo.svg");
     background-repeat: no-repeat;
     background-size: 381px 200px;
     background-position: center center
