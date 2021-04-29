@@ -1,0 +1,114 @@
+html {
+    font-size: 106.25%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background-color: #fff;
+    color: #1d1d1f;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color:#1d1d1f
+}
+
+h1, h2 {
+    line-height: 1.1;
+    letter-spacing: 0em;
+}
+
+a {
+    color:#06c;
+    text-decoration:none
+}
+
+.site-name {
+    margin:auto
+}
+
+.content {
+    padding-top: 6em;
+    max-width:980px;
+    margin:auto
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.nav-container {
+    position: sticky;
+    bottom: 0;
+    width:25%;
+    min-width:150px;
+    font-size:14px;
+}
+
+.nav-container ul {
+    list-style: none;
+}
+
+.nav-container ul li ul {
+    list-style: none;
+    padding-left:10px
+}
+
+.nav-container a {
+    display: inline-block;
+    cursor: pointer !important;
+    text-decoration: none;
+    color:#595959;
+    padding: 0.2em 0.5em 0.2em;
+    border-radius: 4px;
+}
+
+.nav-container .selected {
+    color:black;
+    font-weight:bold
+}
+
+
+.nav-container li a:hover {
+    background-color:#f2f2f2;
+}
+
+.nav-content {
+    width:75%
+}
+
+.nav-content img {
+    display: block;
+    margin:auto
+}
+
+#logo {
+    text-indent: -9999px;
+    height: 200px;
+    padding:0;
+    background-image: url("/assets/logo.svg");
+    background-repeat: no-repeat;
+    background-size: 381px 200px;
+    background-position: center center
+}
+
+#home {
+    text-align:center
+}
+
+pre {
+    background-color: #fafafa;
+    color: #000;
+    border-color: #d6d6d6;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding:10px;
+}
