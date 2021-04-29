@@ -90,7 +90,7 @@ table:not(.simulation-index) tr td {
 
 .simulation-index tr td {
     border-top: 1px solid #cbcbcb;
-    padding: .25em 1em .25em 1.5em;
+    padding: .25em 0em .25em 1.5em;
     vertical-align:top
 }
 
@@ -688,7 +688,6 @@ table em {
     flex-direction: row;
     padding:0px;
     justify-content:center;
-    width:180px;
 }
 
 .trafficDensityIndicator > div {
