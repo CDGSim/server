@@ -13,7 +13,7 @@
                             </div>
                             <div class="input-wrapper">
                                 <label for="simu">Simulation</label>
-                                <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée">
+                                <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée" value="#(simulationName)">
                             </div>
                         </div>
                         <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">

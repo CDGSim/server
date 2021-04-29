@@ -896,14 +896,19 @@ func registerTicketRoutes(_ app: Application) throws {
 	
 	// MARK: GET /ticket/form
     app.get("ticket", "form") { req -> EventLoopFuture<View> in
+        // Optional query
+        let simulationName: String? = req.query["simulation-name"]
+        
+        // View context
         struct FormContext: Encodable {
             let today: String
+            let simulationName: String?
         }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        let context = FormContext(today: dateFormatter.string(from: Date()))
+        let context = FormContext(today: dateFormatter.string(from: Date()), simulationName: simulationName)
         
         return req.view.render("ticket-form", context)
     }

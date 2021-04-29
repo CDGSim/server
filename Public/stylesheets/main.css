@@ -756,3 +756,20 @@ button {
     border-radius: 4px;
     margin: 32px 0 16px;
 }
+
+/* Link button */
+
+.link-button {
+    background-color: white;
+    border-radius: 7px;
+    color:#115B9E !important;
+    padding:6px 14px;
+}
+
+.link-button:hover {
+    text-decoration:none
+}
+
+.link-button:active {
+    background-color: #eee;
+}

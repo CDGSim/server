@@ -4,6 +4,7 @@
                         <h1>#(simulation_properties.name)</h1>
                         #if(simulation_properties.update_date):<strong>Mis à jour le #date(simulation_properties.update_date, "dd/MM/YYYY")</strong>#endif
                         <p>#markdown(simulation_properties.description)</p>
+                        <a class="link-button" href="/ticket/form?simulation-name=#(simulation_properties.name)">Envoyer une remarque</a>
                     </div>
                     <div>
                         <ul>
