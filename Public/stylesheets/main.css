@@ -518,11 +518,15 @@ table em {
     .event-location {
         font-weight:bold;
     }
+    
+    .event-command {
+        font-weight:bold;
+    }
 }
 
-.event-row div:last-child {
+.event-description {
     flex:6 4 280px;
-    text-align:left
+    text-align:left !important
 }
 
 /* Simulations index */

@@ -208,7 +208,7 @@
                         <div class="event-time">Heure</div>
                         #if(displayEventsLocation):<div>Position</div>#endif
                         <div class="event-callsign">Indicatif</div>
-                        <div>Évènement</div>
+                        <div class="event-description">Évènement</div>
                     </div>
                     <div class="events">
                         #for(event in log.instructor_log.events):
@@ -216,7 +216,7 @@
                             <div class="event-time"><p>#(event.time)</p></div>
                             #if(displayEventsLocation):<div class="event-location"><p>#if(event.location):#markdown(event.location)#endif</p></div>#endif
                             <div class="event-callsign"><p>#(event.callsign)</p></div>
-                            <div>#markdown(event.description)</div>
+                            <div class="event-description">#markdown(event.description)</div>
                         </div>
                         #endfor
                     </div>

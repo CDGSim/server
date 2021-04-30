@@ -281,6 +281,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             let simulation_properties: SimulationProperties
             let roles: [String]
             let displayEventsLocation: Bool
+            let displayEventsCommand: Bool
             let attachments: [Attachment]?
         }
         
@@ -311,6 +312,19 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 atLeastOneEventContainsALocation = false
             }
             
+            // Check if we should display the events commands
+            // Command is optional, if at least one event has a command, we should display the corresponding column
+            let atLeastOneEventContainsACommand: Bool
+            if let eventsWithCommand = pilotLog.events?.filter({ event in
+                if let command = event.command {
+                    return command != "-" && command.count > 0
+                } else { return false }
+            }) {
+                atLeastOneEventContainsACommand = eventsWithCommand.count > 0
+            } else {
+                atLeastOneEventContainsACommand = false
+            }
+            
             // Check if there is an Attachments subfolder
             var url = URL(fileURLWithPath: "Public/logs")
             url.appendPathComponent(path)
@@ -324,7 +338,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
             
             let context = Context(path: path, pilot_log: pilotLog, simulation_properties:.init(from: log.properties), roles:log.pilot_logs.map{ pilotLog in
                 pilotLog.role
-            }, displayEventsLocation: atLeastOneEventContainsALocation, attachments: attachments)
+            }, displayEventsLocation: atLeastOneEventContainsALocation, displayEventsCommand: atLeastOneEventContainsACommand, attachments: attachments)
             return req.view.render("pilot/log_pilot", context)
         }
     }
