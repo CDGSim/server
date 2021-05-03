@@ -143,6 +143,7 @@
                     <h2>Situation initiale</h2>
                     #markdown(log.instructor_log.setup_info)
                     
+                    #if(displayInitialConditionsTable):
                     <table>
                         <thead>
                             <tr>
@@ -167,6 +168,7 @@
                             #endif
                         #endfor
                     </table>
+                    #endif
 
                 </div>
                       

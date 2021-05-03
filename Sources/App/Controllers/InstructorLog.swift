@@ -41,6 +41,7 @@ private struct Context: Encodable {
     let assignments: [ControlPositionAssignment]?
     let attachments: [Attachment]?
     let displayEventsLocation: Bool
+    let displayInitialConditionsTable:Bool
     let courseNotes:String
     let showDECORButton: Bool
     
@@ -104,6 +105,15 @@ private struct Context: Encodable {
             atLeastOneEventContainsALocation = false
         }
         self.displayEventsLocation = atLeastOneEventContainsALocation
+        
+        // Determine if we should display the initial conditions table
+        self.displayInitialConditionsTable = log.pilot_logs
+            .filter { pilotLog in
+            pilotLog.role.prefix(8) != "Adjacent"
+            }.compactMap { pilotLog -> Log.PilotLog? in
+            guard let setup = pilotLog.setup else { return nil }
+            return setup.count > 0 ? pilotLog : nil
+        }.count > 0
         
         // Check if there is an Attachments subfolder
         var url = URL(fileURLWithPath: "Public/logs")
