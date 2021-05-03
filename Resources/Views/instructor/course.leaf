@@ -16,8 +16,9 @@
                         <tbody>
                                                         <tr>
                                 <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
+                                <td class="weather"><img src = "/svg/#(simulation.weatherIcon).svg" /></td>
                                 <td><div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div></td>
-                                <td class="secondary-column"><a href="/print2/#(simulation.path)">#extend("svg/print")</a></td>
+                                <td class="secondary-column"><a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a></td>
                             </tr>
                         </tbody>
                         #endfor
@@ -27,8 +28,9 @@
                             #for(simulation in group.simulations):
                             <tr>
                                 <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
+                                <td class="weather"><img src = "/svg/#(simulation.weatherIcon).svg" /></td>
                                 <td><div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div></td>
-                                <td class="secondary-column"><a href="/print2/#(simulation.path)">#extend("svg/print")</a></td>
+                                <td class="secondary-column"><a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a></td>
                             </tr>
                             #endfor
                         </tbody>

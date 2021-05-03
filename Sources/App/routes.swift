@@ -104,6 +104,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let abstract: String
                 let path: String
                 let trafficDensity: [Bool]
+                let weatherIcon: String
             }
             
             struct SimulationGroup: Encodable {
@@ -135,7 +136,60 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 for index in 1...4 {
                     trafficDensity.append(index <= log.properties.trafficDensity)
                 }
-                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity)
+                
+                // Determine weather icon
+                let iconName:String
+                if log.properties.startDate.isDuringDaytime() {
+                    if log.properties.weather.contains("SN") {
+                        iconName = "cloud-snow"
+                    } else if log.properties.weather.contains("TS") || log.properties.weather.contains("CB") {
+                        if log.properties.weather.contains("RA") {
+                            iconName = "cloud-bolt-rain"
+                        } else {
+                            iconName = "cloud-bolt"
+                        }
+                    } else if log.properties.weather.contains("FG") {
+                        iconName = "cloud-fog"
+                    } else if log.properties.weather.contains("RA") {
+                        if log.properties.weather.contains("BKN") || log.properties.weather.contains("OVC") {
+                            iconName = "cloud-rain"
+                        } else {
+                            iconName = "cloud-sun-rain"
+                        }
+                    } else if log.properties.weather.contains("BKN") || log.properties.weather.contains("OVC") {
+                        iconName = "cloud"
+                    } else if log.properties.weather.contains("SCT") || log.properties.weather.contains("FEW") {
+                        iconName = "cloud-sun"
+                    } else {
+                        iconName = "sun"
+                    }
+                } else {
+                    if log.properties.weather.contains("SN") {
+                        iconName = "cloud-snow"
+                    } else if log.properties.weather.contains("TS") || log.properties.weather.contains("CB") {
+                        if log.properties.weather.contains("RA") {
+                            iconName = "cloud-bolt-rain"
+                        } else {
+                            iconName = "cloud-moon-bolt"
+                        }
+                    } else if log.properties.weather.contains("FG") {
+                        iconName = "cloud-fog"
+                    } else if log.properties.weather.contains("RA") {
+                        if log.properties.weather.contains("BKN") || log.properties.weather.contains("OVC") {
+                            iconName = "cloud-rain"
+                        } else {
+                            iconName = "cloud-moon-rain"
+                        }
+                    } else if log.properties.weather.contains("BKN") || log.properties.weather.contains("OVC") {
+                        iconName = "cloud"
+                    } else if log.properties.weather.contains("SCT") || log.properties.weather.contains("FEW") {
+                        iconName = "cloud-moon"
+                    } else {
+                        iconName = "moon"
+                    }
+                }
+                
+                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity, weatherIcon: iconName)
             }
         }.sorted { (lhs, rhs) -> Bool in
             lhs.name < rhs.name
