@@ -58,8 +58,8 @@
                 <h2>Déroulement</h2>
                 <div class="event-row event-header">
                     <div class="event-time">Heure</div>
-                    #if(displayEventsLocation):<div>Position</div>#endif
                     <div class="event-callsign">Indicatif</div>
+                    #if(displayEventsLocation):<div>Position</div>#endif
                     <div class="event-description">Évènement</div>
                     #if(displayEventsCommand):<div>Action</div>#endif
                 </div>
@@ -67,8 +67,8 @@
                     #for(event in pilot_log.events):
                     <div class="event-row">
                         <div class="event-time"><p>#(event.time)</p></div>
-                        #if(displayEventsLocation):<div class="event-location"><p>#if(event.location):#markdown(event.location)#endif</p></div>#endif
                         <div class="event-callsign"><p>#(event.callsign)</p></div>
+                        #if(displayEventsLocation):<div class="event-location"><p>#if(event.location):#markdown(event.location)#endif</p></div>#endif
                         <div class="event-description">#markdown(event.description)</div>
                         #if(displayEventsCommand):<div class="event-command"><p>#if(event.command):#markdown(event.command)#endif</p></div>#endif
                     </div>
