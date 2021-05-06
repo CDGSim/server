@@ -8,33 +8,22 @@
                     <form method="POST" action="/ticket/form">
                         <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
                             <div class="input-wrapper">
-                                <label for="date">Date</label>
-                                <input type="date" min="2021-01-01" max="2029-12-31" id="date" name="user_date" value="#(today)">
+                                <label for="user_name">Utilisateur</label>
+                                <input type="text" id="name" name="user_name" placeholder="Entrez votre nom">
                             </div>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
                             <div class="input-wrapper">
                                 <label for="simu">Simulation</label>
                                 <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée" value="#(simulationName)">
                             </div>
                         </div>
-                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
-                            <div class="input-wrapper">
-                                <label for="destinataire">Destinataire</label>
-                                <div>
-                                <select name="user_dest">
-                                    <option value="SE">Service Exploitation</option>
-                                    <option value="ST">Service Technique</option>
-                                    <option value="  ">Je ne sais pas</option>
-                                </select>
-                                </div>
-                            </div>
-                            <div class="input-wrapper">
-                                <label for="user_name">Utilisateur</label>
-                                <input type="text" id="name" name="user_name" placeholder="Entrez votre nom">
-                            </div>
-                        </div>
                         <div style="margin:4px;margin-top:20px">
                             <label for="remarque">Remarques</label>
                             <textarea rows="15" cols="20" name="user_rem" placeholder="Entrez vos remarques, suggestions, retours ici"></textarea>
+                            <div style="display: inline-block;">
+                                <label for="user_requires_update"><input type="checkbox" name="user_requires_update" value="false" style="width:auto;margin-right:6px">Marquer cette simulation comme nécessitant une mise à jour</label>
+                            </div>
                             <button type="submit" style="float:right;margin-top:20px">Envoyer la remarque</button>
                         </div>
                     </form>

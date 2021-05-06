@@ -983,6 +983,9 @@ func registerDecorRoutes(_ app: Application) throws {
     }
 }
 
+
+// MARK: -
+// MARK: Tickets Routes
 	
 func registerTicketRoutes(_ app: Application) throws {
     struct TicketContext: Encodable {
@@ -1011,23 +1014,31 @@ func registerTicketRoutes(_ app: Application) throws {
 	// MARK: POST /ticket/form
     app.post("ticket", "form") { req -> EventLoopFuture<View> in
         struct Post: Content {
-            var user_date: String
-            var user_simu: String
-            var user_dest: String
-            var user_name: String
-			var user_rem: String
+            let user_name: String
+            let user_simu: String
+			let user_rem: String
+            let user_requires_update: Bool
         }
         let content = try req.content.decode(Post.self)
 		do {
-		
-			let deja = try String(contentsOfFile: "Public/tickets/tickets.csv")
-			let input = deja + content.user_date + ", " + content.user_simu + ", " + content.user_dest + ", " + content.user_name + ", " + content.user_rem + "\n"
-			print(input)
-			try input.write(toFile: "Public/tickets/tickets.csv", atomically: false, encoding: String.Encoding.utf8)
-			
-		} catch let error{
-		print(error)
-		return req.view.render("ticket-form",TicketContext(message :"Erreur"))
+            if let deja = try? String(contentsOfFile: "Public/tickets/tickets.csv") {
+                let input = deja
+                    + "\(Date())"
+                    + ", "
+                    + content.user_simu
+                    + ", "
+                    + content.user_name
+                    + ", "
+                    + "\"\(content.user_rem)\""
+                    + ", "
+                    + "\(content.user_requires_update ? 1 : 0)"
+                    + "\n"
+                try input.write(toFile: "Public/tickets/tickets.csv", atomically: false, encoding: String.Encoding.utf8)
+            } else {
+                return req.view.render("ticket-form",TicketContext(message :"Impossible de lire le fichier de tickets existant"))
+            }
+		} catch {
+            return req.view.render("ticket-form",TicketContext(message :"Erreur: \(error)"))
 		}
 		return req.view.render("ticket-form",TicketContext(message :"Remarque enregistrée"))
     }
