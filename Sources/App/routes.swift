@@ -1013,14 +1013,43 @@ func registerTicketRoutes(_ app: Application) throws {
         
         // View context
         struct FormContext: Encodable {
-            let today: String
+            struct FeedbackEntry: Encodable {
+                let date: Date
+                let authorName: String
+                let feedback: String
+                let simulationRequiresAnUpdate: Bool
+            }
+            
             let simulationName: String?
+            let entries:[FeedbackEntry]
+        }
+
+        // Fetch entries for the simulation
+        var existingEntries = [FormContext.FeedbackEntry]()
+        if let simulationName = simulationName {
+            if let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) {
+                let dateFormatter = ISO8601DateFormatter()
+                existingEntries = ticketsContent.components(separatedBy: .newlines)
+                    .filter { line in
+                        let columns = line.components(separatedBy: ",")
+                        if columns.count == 5 {
+                            return columns[1].trimmingCharacters(in: .whitespaces) == simulationName
+                        }
+                        return false
+                    }.compactMap { line -> FormContext.FeedbackEntry? in
+                        let columns = line.components(separatedBy: ",")
+                        guard columns.count == 5 else {
+                            return nil
+                        }
+                        guard let date = dateFormatter.date(from: columns[0]) else {
+                            return nil
+                        }
+                        return .init(date: date, authorName: columns[2], feedback: columns[3].trimmingCharacters(in: CharacterSet(charactersIn:"\"")), simulationRequiresAnUpdate: columns.last == "1")
+                    }
+            }
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let context = FormContext(today: dateFormatter.string(from: Date()), simulationName: simulationName)
+        let context = FormContext(simulationName: simulationName, entries: existingEntries)
         
         return req.view.render("ticket-form", context)
     }
@@ -1037,7 +1066,7 @@ func registerTicketRoutes(_ app: Application) throws {
 		do {
             if let deja = try? String(contentsOfFile: "Public/tickets/tickets.csv") {
                 let input = deja
-                    + "\(Date())"
+                    + "\(ISO8601DateFormatter().string(from:Date()))"
                     + ","
                     + content.user_simu
                     + ","

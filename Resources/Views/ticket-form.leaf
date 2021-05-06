@@ -4,7 +4,24 @@
             <div id="content">
                 <div class="container">
                     <h2>Remarques utilisateur</h2>
-                    #if(message):<div class="callout">#(message)</div>#endif
+                    #if(message):
+                    <div class="callout">#(message)</div>
+                    #else:
+                        #if(count(entries) > 0):
+                        <p>Les remarques suivantes ont déjà été envoyées :</p>
+                        <ul>
+                        #for(entry in entries):
+                        <li>
+                            <strong>Le #date(entry.date, "dd MM yyyy")</strong><br />
+                            #(entry.feedback)
+                            #if(entry.simulationRequiresAnUpdate):
+                            <p>L'auteur a indiqué que la simulation nécessitait une mise à jour.</p>
+                            #endif
+                        </li>
+                        #endfor
+                        </ul>
+                        #endif
+                    #endif
                     <form method="POST" action="/ticket/form">
                         <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
                             <div class="input-wrapper">
