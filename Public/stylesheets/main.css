@@ -99,6 +99,26 @@ table:not(.simulation-index) tr td {
     font-size:12px
 }
 
+.secondary-column > div > div  {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:4px
+}
+
+.secondary-column > div > div > *  {
+    margin:0 10px;
+}
+
+.minimumNumberOf {
+    font-size:11px;
+    color:#999 !important;
+    text-align:center
+}
+
+.minimumNumberOf strong {
+    font-size:14px;
+}
+
 table p {
     margin:0px
 }
@@ -707,6 +727,12 @@ table em {
 
 .trafficDensityIndicator .off {
     background-color:#e5e5e5
+}
+
+.attendeesAndPilots > div {
+    font-size:13px;
+    color:#999 !important;
+    text-align:center
 }
 
 /* Forms */

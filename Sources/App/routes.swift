@@ -105,6 +105,8 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let path: String
                 let trafficDensity: [Bool]
                 let weatherIcon: String
+                let minimumNumberOfAttendees: Int?
+                let minimumNumberOfPilots: Int?
             }
             
             struct SimulationGroup: Encodable {
@@ -189,7 +191,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     }
                 }
                 
-                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity, weatherIcon: iconName)
+                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity, weatherIcon: iconName, minimumNumberOfAttendees: log.properties.minimumNumberOfAttendees, minimumNumberOfPilots: log.properties.minimumNumberOfPilots)
             }
         }.sorted { (lhs, rhs) -> Bool in
             lhs.name < rhs.name

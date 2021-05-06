@@ -96,7 +96,7 @@
         "repositoryURL": "https://github.com/CDGSim/simlog-core.git",
         "state": {
           "branch": "main",
-          "revision": "8faac2c1d84a8131036807426739180a0c8f6aa0",
+          "revision": "1ea5ee7600c404c9c69ec25c4107ea8c534c2f91",
           "version": null
         }
       },
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "611c08d22c880712f0f896788be5fa605037b237",
-          "version": "4.44.3"
+          "revision": "07a105b295a0b191e69761feede58edb2ebeb580",
+          "version": "4.45.0"
         }
       },
       {

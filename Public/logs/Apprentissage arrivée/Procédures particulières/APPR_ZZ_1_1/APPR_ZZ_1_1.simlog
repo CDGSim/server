@@ -214,9 +214,9 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI N",
           "SEQ",
-          "COOR INI S",
-          "COOR INI N"
+          "COOR INI S"
         ]
       }
     ],
@@ -227,7 +227,7 @@
     "objectives" : "- trafic avec croisements\n- approches RNP\n- arrivées Le Plessis\n- arrivées Pontoise",
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-03-09T09:24:10Z",
+    "update_date" : "2021-05-03T11:19:21Z",
     "weather" : "Q1015 24005KT CAVOK M01\/M05"
   }
 }

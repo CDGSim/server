@@ -28,9 +28,28 @@
                             #for(simulation in group.simulations):
                             <tr>
                                 <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
-                                <td class="weather"><img src = "/svg/#(simulation.weatherIcon).svg" /></td>
-                                <td><div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div></td>
-                                <td class="secondary-column"><a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a></td>
+                                <td class="secondary-column">
+                                <div>
+                                    <div>
+                                        <img src = "/svg/#(simulation.weatherIcon).svg" />
+                                        <div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div>
+                                        <a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a>
+                                    </div>
+                                    <div>
+                                        #if(simulation.minimumNumberOfAttendees):
+                                        <div class="minimumNumberOf">
+                                            <strong>#(simulation.minimumNumberOfAttendees)</strong><br />
+                                            participants <br />
+                                            mini
+                                        </div>
+                                        #endif
+                                        #if(simulation.minimumNumberOfPilots):
+                                        <div class="minimumNumberOf">
+                                            <strong>#(simulation.minimumNumberOfPilots)</strong><br />
+                                            PERs</div>
+                                        #endif
+                                    </div>
+                                </td>
                             </tr>
                             #endfor
                         </tbody>
