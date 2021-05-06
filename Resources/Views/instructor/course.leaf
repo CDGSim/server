@@ -14,11 +14,40 @@
                     <table class="simulation-index">
                         #for(simulation in rootSimulations):
                         <tbody>
-                                                        <tr>
-                                <td><a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br /> <div class="caption">#markdown(simulation.abstract)</div></td>
-                                <td class="weather"><img src = "/svg/#(simulation.weatherIcon).svg" /></td>
-                                <td><div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div></td>
-                                <td class="secondary-column"><a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a></td>
+                            <tr>
+                                <td>
+                                    <div style="display: inline-flex;height:30px">
+                                    <a href="/instructeur/#(simulation.path)">#(simulation.name)</a>#if(simulation.requiresUpdate): <img src = "/svg/exclamationmark.triangle.fill.svg" style="margin-left:6px;top: -.35em;position:relative"/> #endif</div> <br />
+                                    <div class="caption">#markdown(simulation.abstract)</div>
+                                </td>
+                                <td class="secondary-column">
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <img src = "/svg/#(simulation.weatherIcon).svg" />
+                                            </div>
+                                            <div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div>
+                                            <div>
+                                                <a href="/print2/#(simulation.path)"><img src = "/svg/print.svg" /></a>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            #if(simulation.minimumNumberOfAttendees):
+                                            <div class="minimumNumberOf">
+                                                PARTICIPANTS<br />
+                                                <strong>#(simulation.minimumNumberOfAttendees)</strong><br />
+                                                minimum
+                                            </div>
+                                            #endif
+                                            #if(simulation.minimumNumberOfPilots):
+                                            <div class="minimumNumberOf">
+                                                PERs<br />
+                                                <strong>#(simulation.minimumNumberOfPilots)</strong>
+                                            </div>
+                                            #endif
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                         #endfor
