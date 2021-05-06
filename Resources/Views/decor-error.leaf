@@ -9,9 +9,9 @@
 
     <body style="margin:0px;background-color:#(color);color:white;text-align:center">
     
-        <div style="position:absolute;top:50%;left:50%;transform: translate(-50%, -50%);">
+        <div style="position:absolute;top:45%;left:50%;transform: translate(-50%, -50%);">
           <h1 style="font-size:24em">#(id)</h1>
-          <h3 style="color:#ffffff80">#(reason)</h3>
+          <h2 style="color:#ffffff80">#(reason)</h2>
         </div>
 
     </body>
