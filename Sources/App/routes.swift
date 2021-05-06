@@ -1038,13 +1038,13 @@ func registerTicketRoutes(_ app: Application) throws {
             if let deja = try? String(contentsOfFile: "Public/tickets/tickets.csv") {
                 let input = deja
                     + "\(Date())"
-                    + ", "
+                    + ","
                     + content.user_simu
-                    + ", "
+                    + ","
                     + content.user_name
-                    + ", "
+                    + ","
                     + "\"\(content.user_rem)\""
-                    + ", "
+                    + ","
                     + "\(content.user_requires_update ? 1 : 0)"
                     + "\n"
                 try input.write(toFile: "Public/tickets/tickets.csv", atomically: false, encoding: String.Encoding.utf8)

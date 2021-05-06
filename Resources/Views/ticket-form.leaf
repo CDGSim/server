@@ -22,7 +22,7 @@
                             <label for="remarque">Remarques</label>
                             <textarea rows="15" cols="20" name="user_rem" placeholder="Entrez vos remarques, suggestions, retours ici"></textarea>
                             <div style="display: inline-block;">
-                                <label for="user_requires_update"><input type="checkbox" name="user_requires_update" value="false" style="width:auto;margin-right:6px">Marquer cette simulation comme nécessitant une mise à jour</label>
+                                <label for="user_requires_update"><input type="checkbox" name="user_requires_update" value="true" style="width:auto;margin-right:6px">Marquer cette simulation comme nécessitant une mise à jour</label>
                             </div>
                             <button type="submit" style="float:right;margin-top:20px">Envoyer la remarque</button>
                         </div>
