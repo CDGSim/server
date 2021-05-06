@@ -115,15 +115,37 @@ private struct Context: Encodable {
             return setup.count > 0 ? pilotLog : nil
         }.count > 0
         
-        // Check if there is an Attachments subfolder
+        // Find attachments for the simulation
+        // Attachments can be located in two directories :
+        //      - /path_to_course/Attachments               --> those are the attachments global to the course
+        //      - /path_to_course/path_to_log/Attachments   --> those will be attachments specific to the simulation
+        
+        func appendAttachments(atURL url: URL, to attachments:inout [Context.Attachment], attachmentsPath:String) {
+            if let logAttachmentsURLs = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+                let logAttachments = logAttachmentsURLs.map { url -> Context.Attachment in
+                    return Context.Attachment(url:attachmentsPath + url.lastPathComponent, name:url.lastPathComponent)
+                }
+                attachments.append(contentsOf:logAttachments)
+            }
+        }
+        var attachments = [Context.Attachment]()
+        
         var url = URL(fileURLWithPath: "Public/logs")
         url.appendPathComponent(path)
         url.deleteLastPathComponent()
-        url.appendPathComponent("Attachments", isDirectory: true)
-        let urls = try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-        let attachments = urls?.map { url -> Context.Attachment in
-            let attachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
-            return Context.Attachment(url:attachmentsFolderPath + url.lastPathComponent, name:url.lastPathComponent)
+        
+        // Attachments specific to the simulation
+        let logAttachmentsContainerURL = url.appendingPathComponent("Attachments", isDirectory: true)
+        let logAttachmentsFolderPath = path.components(separatedBy: "/").dropLast().joined(separator: "/") + "/Attachments/"
+        appendAttachments(atURL: logAttachmentsContainerURL, to: &attachments, attachmentsPath: logAttachmentsFolderPath)
+        
+        // Attachments globally available the course
+        url = URL(fileURLWithPath: "Public/logs")
+        if let courseRelativePath = path.components(separatedBy: "/").first {
+            let courseAttachmentsContainerURL = URL(fileURLWithPath: "Public/logs").appendingPathComponent(courseRelativePath, isDirectory: true)
+                .appendingPathComponent("Attachments", isDirectory: true)
+            let courseAttachmentsFolderPath = courseRelativePath + "/Attachments/"
+            appendAttachments(atURL: courseAttachmentsContainerURL, to: &attachments, attachmentsPath: courseAttachmentsFolderPath)
         }
         self.attachments = attachments
         
