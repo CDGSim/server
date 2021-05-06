@@ -28,7 +28,8 @@
                             #for(simulation in group.simulations):
                             <tr>
                                 <td>
-                                    <a href="/instructeur/#(simulation.path)">#(simulation.name)</a> <br />
+                                    <div style="display: inline-flex;height:30px">
+                                    <a href="/instructeur/#(simulation.path)">#(simulation.name)</a>#if(simulation.requiresUpdate): <img src = "/svg/exclamationmark.triangle.fill.svg" style="margin-left:6px;top: -.35em;position:relative"/> #endif</div> <br />
                                     <div class="caption">#markdown(simulation.abstract)</div>
                                 </td>
                                 <td class="secondary-column">

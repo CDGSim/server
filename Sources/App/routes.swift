@@ -110,6 +110,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 let weatherIcon: String
                 let minimumNumberOfAttendees: Int?
                 let minimumNumberOfPilots: Int?
+                let requiresUpdate: Bool
             }
             
             struct SimulationGroup: Encodable {
@@ -125,6 +126,19 @@ func registerFrontEndRoutes(_ app: Application) throws {
             return req.view.render("error")
         }
         
+        // Fetch tickets and check which simulations require an update
+        var simulationsRequiringAnUpdate = [String]()
+        if let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) {
+            ticketsContent.components(separatedBy: .newlines).forEach { line in
+                let columns = line.components(separatedBy: ",")
+                if columns.count == 5 {
+                    let simulationName = columns[1].trimmingCharacters(in: .whitespaces)
+                    if columns.last?.trimmingCharacters(in: .whitespaces) == "1" {
+                        simulationsRequiringAnUpdate.append(simulationName)
+                    }
+                }
+            }
+        }
         
         let simulations = subpaths.compactMap { path -> String? in
             // Filter files to only include .simlog files
@@ -194,7 +208,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     }
                 }
                 
-                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity, weatherIcon: iconName, minimumNumberOfAttendees: log.properties.minimumNumberOfAttendees, minimumNumberOfPilots: log.properties.minimumNumberOfPilots)
+                return .init(name: name, abstract:log.properties.description, path: courseName + "/" + path, trafficDensity: trafficDensity, weatherIcon: iconName, minimumNumberOfAttendees: log.properties.minimumNumberOfAttendees, minimumNumberOfPilots: log.properties.minimumNumberOfPilots, requiresUpdate: simulationsRequiringAnUpdate.contains(name))
             }
         }.sorted { (lhs, rhs) -> Bool in
             lhs.name < rhs.name
