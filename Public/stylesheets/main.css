@@ -630,6 +630,7 @@ table em {
 .clear-background {
     background-color:#F5F5F5;
     padding:20px;
+    height:100%
 }
 
 #home {
