@@ -1,5 +1,6 @@
 import Vapor
 import SimlogCore
+import CSV
 
 // MARK: -
 // MARK: Front End Routes
@@ -129,8 +130,8 @@ func registerFrontEndRoutes(_ app: Application) throws {
         // Fetch tickets and check which simulations require an update
         var simulationsRequiringAnUpdate = [String]()
         if let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) {
-            ticketsContent.components(separatedBy: .newlines).forEach { line in
-                let columns = line.components(separatedBy: ",")
+            let csv = try! CSVReader(string: ticketsContent)
+            csv.forEach { columns in
                 if columns.count == 5 {
                     let simulationName = columns[1].trimmingCharacters(in: .whitespaces)
                     if columns.last?.trimmingCharacters(in: .whitespaces) == "1" {
@@ -1028,16 +1029,16 @@ func registerTicketRoutes(_ app: Application) throws {
         var existingEntries = [FormContext.FeedbackEntry]()
         if let simulationName = simulationName {
             if let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) {
+                let csv = try! CSVReader(string: ticketsContent)
+                
                 let dateFormatter = ISO8601DateFormatter()
-                existingEntries = ticketsContent.components(separatedBy: .newlines)
-                    .filter { line in
-                        let columns = line.components(separatedBy: ",")
+                existingEntries = csv
+                    .filter { columns in
                         if columns.count == 5 {
                             return columns[1].trimmingCharacters(in: .whitespaces) == simulationName
                         }
                         return false
-                    }.compactMap { line -> FormContext.FeedbackEntry? in
-                        let columns = line.components(separatedBy: ",")
+                    }.compactMap { columns -> FormContext.FeedbackEntry? in
                         guard columns.count == 5 else {
                             return nil
                         }

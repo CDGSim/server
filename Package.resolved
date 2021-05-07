@@ -38,12 +38,21 @@
         }
       },
       {
+        "package": "CSV.swift",
+        "repositoryURL": "https://github.com/yaslab/CSV.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "81d2874c51db364d7e1d71b0d99018a294c87ac1",
+          "version": "2.4.3"
+        }
+      },
+      {
         "package": "leaf",
         "repositoryURL": "https://github.com/vapor/leaf.git",
         "state": {
           "branch": null,
-          "revision": "524aefc4d74b1d03b4d7f25020b22c855754fc45",
-          "version": "4.1.1"
+          "revision": "ee9584483c054ec283ebb2ff8fc0e7a3d42316cc",
+          "version": "4.1.2"
         }
       },
       {
@@ -186,8 +195,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "07a105b295a0b191e69761feede58edb2ebeb580",
-          "version": "4.45.0"
+          "revision": "ea60bf2ee23379d295d3262409cdf7f1a2428ed4",
+          "version": "4.45.1"
         }
       },
       {
