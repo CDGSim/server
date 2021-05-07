@@ -3,11 +3,11 @@
     #export("main"):
             <div id="content">
                 <div class="container">
-                    <h2>Remarques utilisateur</h2>
                     #if(message):
                     <div class="callout">#(message)</div>
                     #else:
                         #if(count(entries) > 0):
+                        <h2>Remarques utilisateur</h2>
                         <p>Les remarques suivantes ont déjà été envoyées :</p>
                         <ul>
                         #for(entry in entries):
@@ -22,6 +22,7 @@
                         </ul>
                         #endif
                     #endif
+                    <h2>Envoyer une remarque</h2>
                     <form method="POST" action="/ticket/form">
                         <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
                             <div class="input-wrapper">
