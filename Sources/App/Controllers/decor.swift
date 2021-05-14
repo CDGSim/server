@@ -17,6 +17,16 @@ struct DecorController {
         return dateFormatter
     }()
     
+    static func transitionLevel(for QNH:Int) -> Int {
+        if QNH <= 976 {
+            return 80
+        } else if QNH <= 1012 {
+            return 70
+        } else {
+            return 60
+        }
+    }
+    
     // MARK:- View
     static func view(req:Request, log:Log) -> EventLoopFuture<View> {
         return self.view(req: req, metar: log.properties.weather, configuration: log.properties.configuration, startDate: log.properties.startDate)
@@ -58,8 +68,7 @@ struct DecorController {
         let atislb = String(letters[letters.index(letters.startIndex, offsetBy: 5 + Int.pseudoRandom(in: 0...20, changeEvery: 50) % 26)])
         
         // Transition level
-        let transitionAltitude = 5000 + 28 * (1013 - qnh)
-        let transitionLevel = Int(ceil(Double(transitionAltitude)/1000))*10 + 10
+        let transitionLevel = Self.transitionLevel(for: qnh)
         
         // Configuration
         let configuration = configuration.uppercased()

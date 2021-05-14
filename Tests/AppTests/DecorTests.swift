@@ -19,4 +19,13 @@ final class DecorTests: XCTestCase {
         XCTAssertEqual(DecorController.sunriseAndSunsetHours(month: 6, day: 4).0, "03:52")
         XCTAssertEqual(DecorController.sunriseAndSunsetHours(month: 12, day: 21).1, "15:54")
     }
+    
+    func testTransitionLevels() throws {
+        XCTAssertEqual(DecorController.transitionLevel(for:1048), 60)
+        XCTAssertEqual(DecorController.transitionLevel(for:1013), 60)
+        XCTAssertEqual(DecorController.transitionLevel(for:1012), 70)
+        XCTAssertEqual(DecorController.transitionLevel(for:977), 70)
+        XCTAssertEqual(DecorController.transitionLevel(for:976), 80)
+        XCTAssertEqual(DecorController.transitionLevel(for:970), 80)
+    }
 }
