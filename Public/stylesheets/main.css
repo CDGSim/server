@@ -804,3 +804,22 @@ button {
 .link-button:active {
     background-color: #eee;
 }
+
+/* Feedback */
+
+.feedback ul {
+    list-style-type: none;
+    padding:0px;
+}
+
+.feedback li {
+    border-bottom: 1px solid #d2d2d7;
+}
+
+.feedback .comment {
+    padding: .3125rem .5625rem;
+    border-radius: .25rem;
+    color: #1d1d1f;
+    background-color: #ecf2f7;
+    margin-left:60px;
+}

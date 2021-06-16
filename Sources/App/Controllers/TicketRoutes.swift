@@ -26,6 +26,7 @@ struct TicketRoutes {
                     let authorName: String
                     let feedback: String
                     let simulationRequiresAnUpdate: Bool
+                    let commentsFromTrainingDept: String?
                 }
                 
                 let simulationName: String?
@@ -41,18 +42,26 @@ struct TicketRoutes {
                     let dateFormatter = ISO8601DateFormatter()
                     existingEntries = csv
                         .filter { columns in
-                            if columns.count == 5 {
+                            if columns.count == 5 || columns.count == 6 {
                                 return columns[1].trimmingCharacters(in: .whitespaces) == simulationName
                             }
                             return false
                         }.compactMap { columns -> FormContext.FeedbackEntry? in
-                            guard columns.count == 5 else {
+                            guard columns.count == 5 || columns.count == 6 else {
                                 return nil
                             }
                             guard let date = dateFormatter.date(from: columns[0]) else {
                                 return nil
                             }
-                            return .init(date: date, authorName: columns[2], feedback: columns[3].trimmingCharacters(in: CharacterSet(charactersIn:"\"")), simulationRequiresAnUpdate: columns.last == "1")
+                            let authorName = columns[2]
+                            let feedback = columns[3].trimmingCharacters(in: CharacterSet(charactersIn:"\""))
+                            let simulationRequiresAnUpdate = columns[4] == "1"
+                            let comments: String? = columns.count == 6 ? columns[5].trimmingCharacters(in: CharacterSet(charactersIn:"\"")) : nil
+                            return .init(date: date,
+                                         authorName: authorName,
+                                         feedback: feedback,
+                                         simulationRequiresAnUpdate: simulationRequiresAnUpdate,
+                                         commentsFromTrainingDept: comments)
                         }
                 }
             }
