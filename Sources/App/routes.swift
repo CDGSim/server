@@ -1080,6 +1080,7 @@ func registerTicketRoutes(_ app: Application) throws {
             + "\"\(content.user_rem)\""
             + ","
             + "\(content.user_requires_update ? 1 : 0)"
+            + ","
             + "\n"
         do {
             try input.write(toFile: "Public/tickets/tickets.csv", atomically: false, encoding: String.Encoding.utf8)
