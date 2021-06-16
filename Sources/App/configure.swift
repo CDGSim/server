@@ -18,7 +18,6 @@ public func configure(_ app: Application) throws {
     try registerFrontEndRoutes(app)
     try registerAPIRoutes(app)
     try registerDecorRoutes(app)
-	try registerTicketRoutes(app)
 }
 
 struct DECORLink: LeafTag {
