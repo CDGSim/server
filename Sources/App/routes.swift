@@ -827,6 +827,111 @@ func registerAPIRoutes(_ app: Application) throws {
         }
         return req.eventLoop.makeSucceededFuture(.init())
     }
+    
+    // MARK: GET /api/tickets/
+    api.get("tickets") { req -> TicketsResponse  in
+        guard let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) else {
+            return TicketsResponse(tickets: [])
+        }
+        let csv = try! CSVReader(string: ticketsContent)
+        
+        let dateFormatter = ISO8601DateFormatter()
+        
+        let tickets = csv.filter { columns in
+            return (columns.count == 5 || columns.count == 6) && dateFormatter.date(from: columns[0]) != nil
+        }
+        
+        let responses = tickets.indices
+        .map { index -> TicketsResponse.Ticket in
+            let columns = tickets[index]
+            let date = dateFormatter.date(from: columns[0])!
+            let simulation = columns[1]
+            let authorName = columns[2]
+            let feedback = columns[3].trimmingCharacters(in: CharacterSet(charactersIn:"\""))
+            let simulationRequiresAnUpdate = columns[4] == "1"
+            let comments: String? = columns.count == 6 ? columns[5].trimmingCharacters(in: CharacterSet(charactersIn:"\"")) : nil
+            return TicketsResponse.Ticket(id: index, simulation: simulation, date: date, authorName: authorName, feedback: feedback, simulationRequiresAnUpdate: simulationRequiresAnUpdate, commentsFromTrainingDept: comments)
+        }
+        return TicketsResponse(tickets: responses)
+    }
+    
+    // Response type sent when calling GET /api/tickets
+    struct TicketsResponse: Content {
+        struct Ticket: Codable {
+            let id: Int
+            let simulation: String
+            let date: Date
+            let authorName: String
+            let feedback: String
+            let simulationRequiresAnUpdate: Bool
+            let commentsFromTrainingDept: String?
+        }
+        let tickets: [Ticket]
+    }
+    
+    // MARK: POST /api/ticket/X
+    // Configures DECOR screen with provided parameters
+    api.post("ticket", ":id") { req -> EventLoopFuture<Response>  in
+        
+        enum UpdateTicketError: Error {
+            case noCSVFileFound, couldNotUpdateCSVFile, couldNotDecodePayload
+        }
+        
+        let ticketID = req.parameters.get("id")!
+        guard let id = Int(ticketID) else {
+            return req.eventLoop.makeSucceededFuture(.init())
+        }
+        
+        struct TicketContent:Codable {
+            let id: Int
+            let simulation: String
+            let date: Date
+            let authorName: String
+            let feedback: String
+            let simulationRequiresAnUpdate: Bool
+            let commentsFromTrainingDept: String?
+        }
+        let content:TicketContent
+        do {
+            content = try req.content.decode(TicketContent.self)
+        } catch {
+            return req.eventLoop.makeFailedFuture(UpdateTicketError.couldNotDecodePayload)
+        }
+        
+        guard let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) else {
+            return req.eventLoop.makeFailedFuture(UpdateTicketError.noCSVFileFound)
+        }
+        let csv = try! CSVReader(string: ticketsContent)
+        
+        // Writer
+        guard let outpoutStream = OutputStream(toFileAtPath: "Public/tickets/tickets.csv", append: false) else {
+            return req.eventLoop.makeFailedFuture(UpdateTicketError.noCSVFileFound)
+        }
+        do {
+            let writer = try CSVWriter(stream: outpoutStream)
+            
+            for (index, row) in csv.enumerated() {
+                writer.beginNewRow()
+                if index == id + 1 {
+                    // Update row
+                    try writer.write(field: row[0])
+                    try writer.write(field: row[1])
+                    try writer.write(field: row[2])
+                    try writer.write(field: row[3])
+                    try writer.write(field: content.simulationRequiresAnUpdate ? "1": "0")
+                    try writer.write(field: content.commentsFromTrainingDept ?? "")
+                } else {
+                    // Copy row
+                    try writer.write(row: row)
+                }
+            }
+            
+            writer.stream.close()
+        } catch {
+            return req.eventLoop.makeFailedFuture(UpdateTicketError.couldNotUpdateCSVFile)
+        }
+        return req.eventLoop.makeSucceededFuture(.init())
+    }
 }
 
 // Make Log conform to Content protocol so that when can return a Log as a response
