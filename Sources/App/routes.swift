@@ -132,9 +132,9 @@ func registerFrontEndRoutes(_ app: Application) throws {
         if let ticketsContent = try? String(contentsOf: URL(fileURLWithPath: "Public/tickets/tickets.csv")) {
             let csv = try! CSVReader(string: ticketsContent)
             csv.forEach { columns in
-                if columns.count == 5 {
+                if columns.count >= 5 {
                     let simulationName = columns[1].trimmingCharacters(in: .whitespaces)
-                    if columns.last?.trimmingCharacters(in: .whitespaces) == "1" {
+                    if columns[4].trimmingCharacters(in: .whitespaces) == "1" {
                         simulationsRequiringAnUpdate.append(simulationName)
                     }
                 }
