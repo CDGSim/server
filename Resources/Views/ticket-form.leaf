@@ -13,14 +13,14 @@
                         <ul>
                         #for(entry in entries):
                         <li>
-                            <p>#(entry.feedback)<p>
+                            <p>#markdown(entry.feedback)<p>
                             <p style="text-align:right">Envoyé le #date(entry.date, "dd/MM/yyyy")</p>
                             #if(entry.simulationRequiresAnUpdate):
                             <p>L'auteur a indiqué que la simulation nécessitait une mise à jour.</p>
                             #endif
                             #if(entry.commentsFromTrainingDept):
                             #if(entry.commentsFromTrainingDept != ""):
-                            <p class="comment"">#(entry.commentsFromTrainingDept)</p>
+                            <div class="comment"">#markdown(entry.commentsFromTrainingDept)</div>
                             #endif
                             #endif
                         </li>
