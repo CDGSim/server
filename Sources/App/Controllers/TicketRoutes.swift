@@ -30,7 +30,8 @@ struct TicketRoutes {
                 }
                 
                 let simulationName: String?
-                let entries:[FeedbackEntry]
+                let pastEntries:[FeedbackEntry]
+                let pendingEntries:[FeedbackEntry]
             }
 
             // Fetch entries for the simulation
@@ -63,10 +64,11 @@ struct TicketRoutes {
                                          simulationRequiresAnUpdate: simulationRequiresAnUpdate,
                                          commentsFromTrainingDept: comments)
                         }
+                        .sorted { $0.date > $1.date }
                 }
             }
             
-            let context = FormContext(simulationName: simulationName, entries: existingEntries)
+            let context = FormContext(simulationName: simulationName, pastEntries: existingEntries.filter({ $0.commentsFromTrainingDept?.count ?? 0 > 0 }), pendingEntries: existingEntries.filter({ $0.commentsFromTrainingDept?.count ?? 0 == 0 }))
             
             return req.view.render("ticket-form", context)
         }

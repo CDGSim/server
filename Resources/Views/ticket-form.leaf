@@ -6,12 +6,63 @@
                     #if(message):
                     <div class="callout">#(message)</div>
                     #else:
-                        #if(count(entries) > 0):
+                                        
+                        #if(count(pendingEntries) > 0):
                         <div class="feedback">
-                        <h2>Remarques utilisateur</h2>
-                        <p>Les remarques suivantes ont déjà été envoyées :</p>
+                        <h2>Remarques transmises</h2>
+                        <p>Les remarques suivantes vont être traitées prochainement :</p>
                         <ul>
-                        #for(entry in entries):
+                        #for(entry in pendingEntries):
+                        <li>
+                            <p>#markdown(entry.feedback)<p>
+                            <p style="text-align:right">Envoyé le #date(entry.date, "dd/MM/yyyy")</p>
+                            #if(entry.simulationRequiresAnUpdate):
+                            <p>L'auteur a indiqué que la simulation nécessitait une mise à jour.</p>
+                            #endif
+                            #if(entry.commentsFromTrainingDept):
+                            #if(entry.commentsFromTrainingDept != ""):
+                            <div class="comment"">#markdown(entry.commentsFromTrainingDept)</div>
+                            #endif
+                            #endif
+                        </li>
+                        #endfor
+                        </ul>
+                        </div>
+                        #endif
+                        
+                    #endif
+                    
+                    <h2>Envoyer une nouvelle remarque</h2>
+                    <form method="POST" action="/ticket/form">
+                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
+                            <div class="input-wrapper">
+                                <label for="user_name">Votre nom</label>
+                                <input type="text" id="name" name="user_name" placeholder="Si vous souhaitez qu'on puisse éventuellement revenir vers vous">
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
+                            <div class="input-wrapper">
+                                <label for="simu">Simulation</label>
+                                <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée" value="#(simulationName)">
+                            </div>
+                        </div>
+                        <div style="margin:4px;margin-top:20px">
+                            <label for="remarque">Remarques</label>
+                            <textarea rows="15" cols="20" name="user_rem" placeholder="Entrez vos remarques, suggestions, retours ici"></textarea>
+                            <div style="display: inline-block;">
+                                <label for="user_requires_update"><input type="checkbox" name="user_requires_update" value="true" style="width:auto;margin-right:6px">Marquer cette simulation comme nécessitant une mise à jour avant de pouvoir être de nouveau jouée</label>
+                            </div>
+                            <button type="submit" style="float:right;margin-top:20px">Envoyer la remarque</button>
+                        </div>
+                    </form>
+                                           
+                    #if(!message):
+                        #if(count(pastEntries) > 0):
+                        <div class="feedback">
+                        <h2>Remarques passées</h2>
+                        <p>Les remarques suivantes ont déjà été traitées. Si les problèmes mentionnés ci dessous se sont de nouveau produits, ne pas hésiter à soumettre une nouvelle remarque.</p>
+                        <ul>
+                        #for(entry in pastEntries):
                         <li>
                             <p>#markdown(entry.feedback)<p>
                             <p style="text-align:right">Envoyé le #date(entry.date, "dd/MM/yyyy")</p>
@@ -29,29 +80,6 @@
                         </div>
                         #endif
                     #endif
-                    <h2>Envoyer une remarque</h2>
-                    <form method="POST" action="/ticket/form">
-                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
-                            <div class="input-wrapper">
-                                <label for="user_name">Utilisateur</label>
-                                <input type="text" id="name" name="user_name" placeholder="Entrez votre nom">
-                            </div>
-                        </div>
-                        <div style="display:flex;flex-wrap:wrap;justify-content: space-between;margin-top:20px">
-                            <div class="input-wrapper">
-                                <label for="simu">Simulation</label>
-                                <input type="text" id="simu" name="user_simu" placeholder="Entrez le nom de la simulation concernée" value="#(simulationName)">
-                            </div>
-                        </div>
-                        <div style="margin:4px;margin-top:20px">
-                            <label for="remarque">Remarques</label>
-                            <textarea rows="15" cols="20" name="user_rem" placeholder="Entrez vos remarques, suggestions, retours ici"></textarea>
-                            <div style="display: inline-block;">
-                                <label for="user_requires_update"><input type="checkbox" name="user_requires_update" value="true" style="width:auto;margin-right:6px">Marquer cette simulation comme nécessitant une mise à jour</label>
-                            </div>
-                            <button type="submit" style="float:right;margin-top:20px">Envoyer la remarque</button>
-                        </div>
-                    </form>
                 </div>
             </div>
             

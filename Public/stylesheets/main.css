@@ -807,6 +807,10 @@ button {
 
 /* Feedback */
 
+.feedback {
+    margin: 80px 0px 
+}
+
 .feedback ul {
     list-style-type: none;
     padding:0px;
