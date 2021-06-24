@@ -20,8 +20,17 @@ internal enum SimulationImporterError: Error {
 /// Reads a simulation file located at path
 /// - Parameter url: The complete url to the simulation file
 internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, SimulationImporterError> {
-    guard let data = try? Data(contentsOf: url) else {
-        return .failure(.notFound)
+    let data: Data
+    do {
+        data = try Data(contentsOf: url)
+    } catch {
+        do {
+            // Try again, changing the extension to uppercase
+            let uppercaseURL = url.deletingPathExtension().appendingPathExtension(url.pathExtension.uppercased())
+            data = try Data(contentsOf: uppercaseURL)
+        } catch {
+            return .failure(.notFound)
+        }
     }
     
     let simulationContent: String
