@@ -19,7 +19,9 @@
                             <p>L'auteur a indiqué que la simulation nécessitait une mise à jour.</p>
                             #endif
                             #if(entry.commentsFromTrainingDept):
+                            #if(entry.commentsFromTrainingDept != ""):
                             <p class="comment"">#(entry.commentsFromTrainingDept)</p>
+                            #endif
                             #endif
                         </li>
                         #endfor
