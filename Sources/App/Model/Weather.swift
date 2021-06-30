@@ -149,7 +149,7 @@ struct Weather {
             guard let valueIndex = layer.firstIndex(where: { "0"..."9" ~= $0 }) else {
                 return layer
             }
-            let value = layer[valueIndex..<layer.index(valueIndex, offsetBy: 3)]
+            let value = layer[valueIndex..<layer.endIndex]
             guard let height = Int(value) else {
                 return nil
             }
