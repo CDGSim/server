@@ -20,7 +20,7 @@ public func configure(_ app: Application) throws {
     try registerDecorRoutes(app)
 }
 
-struct DECORLink: LeafTag {
+struct DECORLink: LeafTag, UnsafeUnescapedLeafTag {
     func render(_ ctx: LeafContext) throws -> LeafData {
         guard ProcessInfo.processInfo.environment["simulator"] == "electra" else {
             return .string("")
