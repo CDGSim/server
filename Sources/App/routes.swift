@@ -513,7 +513,7 @@ func registerFrontEndRoutes(_ app: Application) throws {
                 self.assignments = editedLog.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
                     let positionDescriptions = Array(assignment.positions).map { controlPosition in
                         controlPosition.rawValue
-                    }.sorted().joined(separator: "<br />")
+                    }.sorted().joined(separator: " - ")
                     return .init(controller: .instructor, positionsDescription: positionDescriptions)
                 }
                 

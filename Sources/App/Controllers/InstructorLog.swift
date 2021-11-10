@@ -88,7 +88,7 @@ private struct Context: Encodable {
         self.assignments = log.properties.assignments?.map { assignment -> Context.ControlPositionAssignment in
             let positionDescriptions = Array(assignment.positions).map { controlPosition in
                 controlPosition.rawValue
-            }.sorted().joined(separator: "<br />")
+            }.sorted().joined(separator: " - ")
             return .init(controller: .instructor, positionsDescription: positionDescriptions)
         }
             
