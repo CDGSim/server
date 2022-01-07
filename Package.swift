@@ -12,7 +12,8 @@ let package = Package(
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
         .package(name: "LeafMarkdown", url: "https://github.com/vapor-community/leaf-markdown.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/CDGSim/simlog-core.git", .branch("main")),
-        .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3"))
+        .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3")),
+        .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.13.1")
         
     ],
     targets: [
@@ -23,7 +24,8 @@ let package = Package(
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "LeafMarkdown", package: "LeafMarkdown"),
                 .product(name: "SimlogCore", package: "simlog-core"),
-                .product(name: "CSV", package: "CSV.swift")
+                .product(name: "CSV", package: "CSV.swift"),
+                .product(name: "XMLCoder", package: "XMLCoder")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of

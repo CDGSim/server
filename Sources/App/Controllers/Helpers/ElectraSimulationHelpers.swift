@@ -19,7 +19,7 @@ internal enum SimulationImporterError: Error {
 
 /// Reads a simulation file located at path
 /// - Parameter url: The complete url to the simulation file
-internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, SimulationImporterError> {
+internal func electraSimulation(at url: URL) throws -> SimlogCore.Simulation {
     let data: Data
     do {
         data = try Data(contentsOf: url)
@@ -29,7 +29,7 @@ internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, Si
             let uppercaseURL = url.deletingPathExtension().appendingPathExtension(url.pathExtension.uppercased())
             data = try Data(contentsOf: uppercaseURL)
         } catch {
-            return .failure(.notFound)
+            throw SimulationImporterError.notFound
         }
     }
     
@@ -40,12 +40,12 @@ internal func electraSimulation(at url: URL) -> Result<SimlogCore.Simulation, Si
     } else if let content = String(data: data, encoding: .ascii) {
         simulationContent = content
     } else {
-        return .failure(.couldNotRead)
+        throw SimulationImporterError.notFound
     }
     
     var electraImporter = SimlogCore.ElectraImporter(content: simulationContent)
     
-    return .success(electraImporter.simulation())
+    return electraImporter.simulation()
 }
 
 internal func electraSimulation(associatedWithLogAtPath logPath:String) throws -> SimlogCore.Simulation {
@@ -54,7 +54,7 @@ internal func electraSimulation(associatedWithLogAtPath logPath:String) throws -
     electraSimulationURL.deletePathExtension()
     electraSimulationURL.appendPathExtension("exp")
     
-    return try electraSimulation(at: electraSimulationURL).get()
+    return try electraSimulation(at: electraSimulationURL)
 }
 
 /// Reads an ELECTRA simulation file located in the same directory as the log file, finds flights that have been rerouted
