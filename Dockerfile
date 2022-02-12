@@ -1,7 +1,7 @@
 # ================================
 # Build image
 # ================================
-FROM swift:5.4.0 as build
+FROM swift:5.5.3-focal as build
 
 # Install OS updates and, if needed, sqlite3
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
@@ -23,7 +23,7 @@ RUN swift package resolve
 COPY . .
 
 # Build everything, with optimizations and test discovery
-RUN swift build --enable-test-discovery -c release
+RUN swift build -c release
 
 # Switch to the staging area
 WORKDIR /staging
@@ -41,7 +41,7 @@ RUN [ -d /build/Resources ] && { mv /build/Resources ./Resources && chmod -R a-w
 # ================================
 # Run image
 # ================================
-FROM swift:5.4.0-slim
+FROM swift:5.5.3-focal-slim
 
 # Make sure all system packages are up to date.
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \

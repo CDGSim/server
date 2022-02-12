@@ -1,0 +1,270 @@
+{
+  "instructor_log" : {
+    "events" : [
+      {
+        "callsign" : "",
+        "description" : "RYR4303 arrivée BAVOL",
+        "time" : "10:01"
+      },
+      {
+        "callsign" : "",
+        "description" : "**2 hélicos SURT** traversent les axes au niveau de la balise à 1500ft (sans contact, prioritaires) -> RMG des trafics conflictuels. Ne prévenir les stagiaires des intentions des hélicoptères qu’à 10h09",
+        "time" : "10:09"
+      },
+      {
+        "callsign" : "",
+        "description" : "WZZ279 arrivée IPNOB",
+        "time" : "10:13"
+      },
+      {
+        "callsign" : "",
+        "description" : "Décision de **fermer le doublet** nord cause intervention GIGN : tous les trafics reroutés au sud. **ATTENTION !** dès que l’ITM N n’a plus d’avions en fréquence, il faut **geler immédiatement** la simu pour le basculement côté PER (30s de gel). Ce délai leur permettra de passer les PER ITM N en PER ITM BA. En profiter pour dégrouper l’INI, et l’ITM Nord pourra récupérer le trafic BA…",
+        "time" : "10:15"
+      },
+      {
+        "callsign" : "",
+        "description" : "RYR2344 arrivée BAVOL",
+        "time" : "10:18"
+      },
+      {
+        "callsign" : "",
+        "description" : "Axe 27R retiré, activation de la zone militaire 195",
+        "time" : "10:20"
+      },
+      {
+        "callsign" : "",
+        "description" : "**2 hélicos SURT** traversent les axes au niveau de la balise à 900ft (sans contact, prioritaires)            -> infos de trafic",
+        "time" : "10:23"
+      },
+      {
+        "callsign" : "",
+        "description" : "Au choix, réouverture (ou non) du doublet nord\n-> Pour réafficher l’axe, taper : `XZONE AXE27R ACT`  sur l’écran de contrôle",
+        "time" : "10:40"
+      }
+    ],
+    "setup_info" : "Répartition des stagiaires : \n- Au début de la simu : 1 INI N+S, 3 ITM\n- Après fermeture du doublet nord : 2 INI, 1 ITM S et 1 ITM BA"
+  },
+  "pilot_logs" : [
+    {
+      "directives" : "Simulation inspirée de l’intervention du GIGN à Dammartin en janvier 2015. Cette intervention avait\nnécessité la fermeture du doublet nord, sans préavis.\n\nL’ITM BA est ouvert dès le début de la simu.\n\nLors de la fermeture du doublet nord, les PER ITM N devront gérer le trafic du BA qui leur sera\nenvoyé sur 126.430 (transparent pour eux). L’INI dégroupera au même moment.\n\nLes PER ITM S n’auront plus à gérer le trafic du BA (repris par les PER ITM N)\n\nSi appel du Coor INI pour une arrivée pour Beauvais, donner *« 5000ft sur MTD »*. Après transfert, guider l’avion sur Beauvais et le faire se poser en piste 30.",
+      "events" : [
+        {
+          "callsign" : "RYR4303",
+          "description" : "Appeler (SEINE) pour l’arrivée du RYR4303 par BAVOL : *proposer le FL070 sur BAVOL*.",
+          "time" : "10:01"
+        },
+        {
+          "callsign" : "7000",
+          "description" : "Changer le transpondeur des deux hélicoptères qui approchent des axes de 7000 à **7400** (SURT)",
+          "time" : "10:09"
+        },
+        {
+          "callsign" : "WZZ279",
+          "description" : "Appeler (LORNI) pour l’arrivée du WZZ279 par IPNOB : *proposer le FL090 sur IPNOB*.",
+          "time" : "10:13"
+        },
+        {
+          "callsign" : "RYR2344",
+          "description" : "Appeler (SEINE) pour l’arrivée du RYR2344 par BAVOL : *proposer le FL070 sur BAVOL*.",
+          "time" : "10:18"
+        },
+        {
+          "callsign" : "",
+          "description" : "Transformation des PER ITM N en PER ITM BA :\\\nDès que l’ITM N n’a plus d’avions en fréquence, on gèle la simu. Les 2 PER ITM N gardent leur rôle, mais passent sur 136.275. Le PER ITM BA devient PER ITM S, il bascule donc tous ses vols BA encore en compte sur les PER ITM N et passe sur 118.150.\n",
+          "time" : "10:15"
+        }
+      ],
+      "role" : "Adjacent",
+      "setup" : [
+
+      ]
+    },
+    {
+      "events" : [
+        {
+          "callsign" : "",
+          "description" : "Fermeture du doublet nord, l’INI dégroupe.",
+          "time" : "10:15"
+        }
+      ],
+      "frequency" : "121.155",
+      "role" : "INI Nord",
+      "setup" : [
+        {
+          "callsign" : "AFR681",
+          "description" : "FL120  250Kts"
+        },
+        {
+          "callsign" : "AFR1449",
+          "description" : "CAP 090 FL080  220Kts (à chercher à l'INI Sud)"
+        }
+      ]
+    },
+    {
+      "events" : [
+        {
+          "callsign" : "7400",
+          "description" : "2 hélicos SURT traversent les axes au niveau de la balise à 1500ft (sans contact, prioritaires). Si info de trafic de la part du contrôle, annoncer que vous préférez remettre les gaz",
+          "time" : "10:09"
+        },
+        {
+          "callsign" : "",
+          "description" : "Fermeture du doublet nord, le trafic pour le doublet nord est redirigé vers le doublet sud. ",
+          "time" : "10:15"
+        },
+        {
+          "callsign" : "",
+          "description" : "Transformation des PER ITM N en PER ITM BA :\\\nDès que l’ITM N n’a plus d’avions en fréquence, on gèle la simu. Les 2 PER ITM N gardent leur rôle, mais passent sur 136.275. Le PER ITM BA devient PER ITM S, il bascule donc tous ses vols BA encore en compte sur les PER ITM N et passe sur 118.150.",
+          "time" : "10:15"
+        }
+      ],
+      "frequency" : "126.430",
+      "role" : "ITM Nord",
+      "setup" : [
+        {
+          "callsign" : "BAW306",
+          "description" : "ILS27R 180kts"
+        },
+        {
+          "callsign" : "RJA117",
+          "description" : "CAP 230  5000ft  ILS 220Kts"
+        },
+        {
+          "callsign" : "AFR1887",
+          "description" : "CAP 100  FL080  250Kts"
+        },
+        {
+          "callsign" : "UAL990",
+          "description" : "CAP 100  FL080  250Kts"
+        }
+      ]
+    },
+    {
+      "frequency" : "125.830",
+      "role" : "INI Sud",
+      "setup" : [
+        {
+          "callsign" : "FPO632",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "DAH1084",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "AFR1843",
+          "description" : "FL150"
+        },
+        {
+          "callsign" : "LXJFN",
+          "description" : "FL070"
+        }
+      ]
+    },
+    {
+      "directives" : "L’ITM BA est ouvert dès le début de la simu.",
+      "events" : [
+        {
+          "callsign" : "7400",
+          "description" : "2 hélicos SURT traversent les axes au niveau de la balise à 1500ft (sans contact, prioritaires). Si info de trafic de la part du contrôle, annoncer que vous préférez remettre les gaz",
+          "time" : "10:09"
+        },
+        {
+          "callsign" : "",
+          "description" : "Le trafic BA est envoyé sur 126.430, les 2 PER ITM S ne gèrent plus que le trafic pour le doublet sud.",
+          "time" : "10:15"
+        },
+        {
+          "callsign" : "",
+          "description" : "Transformation des PER ITM N en PER ITM BA :\\\nDès que l’ITM N n’a plus d’avions en fréquence, on gèle la simu. Les 2 PER ITM N gardent leur rôle, mais passent sur 136.275. Le PER ITM BA devient PER ITM S, il bascule donc tous ses vols BA encore en compte sur les PER ITM N et passe sur 118.150.",
+          "time" : "10:15"
+        }
+      ],
+      "frequency" : "118.150",
+      "role" : "ITM Sud",
+      "setup" : [
+        {
+          "callsign" : "AFR75RT",
+          "description" : "ILS 26L 180Kts"
+        },
+        {
+          "callsign" : "AFR1513",
+          "description" : "CAP 300  220kts  ILS "
+        },
+        {
+          "callsign" : "AF663KB",
+          "description" : "CAP 310  4000ft 220kts  ILS"
+        },
+        {
+          "callsign" : "AFR180G",
+          "description" : "CAP 090  4000ft  220kts "
+        },
+        {
+          "callsign" : "EJU47MC",
+          "description" : "CAP 090  4000ft  220kts "
+        },
+        {
+          "callsign" : "N550PM",
+          "description" : "5000ft  ILS 27"
+        },
+        {
+          "callsign" : "FHANN",
+          "description" : "FL070"
+        }
+      ]
+    }
+  ],
+  "properties" : {
+    "assignments" : [
+      {
+        "controller" : "PC",
+        "positions" : [
+          "INI S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM BA"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM S"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "ITM N"
+        ]
+      },
+      {
+        "controller" : "ST",
+        "positions" : [
+          "INI N"
+        ]
+      },
+      {
+        "controller" : "PC",
+        "positions" : [
+          "COOR INI N",
+          "COOR INI S",
+          "SEQ"
+        ]
+      }
+    ],
+    "configuration" : "WL",
+    "description" : "Intervention des forces de l’ordre sous les axes 27 entrainant la fermeture du doublet nord.",
+    "duration" : 45,
+    "minimumNumberOfAttendees" : 6,
+    "minimumNumberOfPilots" : 9,
+    "name" : "ARR2_5_1",
+    "objectives" : "Gestion d’un trafic relativement chargé  avec fermeture du doublet nord en urgence",
+    "start_date" : "2021-02-26T09:00:22Z",
+    "traffic_density" : 4,
+    "update_date" : "2021-05-07T06:30:16Z",
+    "weather" : "24007KT 25\/17 CAVOK Q1021"
+  }
+}
