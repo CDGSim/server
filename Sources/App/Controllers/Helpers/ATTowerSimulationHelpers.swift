@@ -90,7 +90,7 @@ internal func atTowerExercise(fromFileAt url: URL) throws -> ATTowerExercise {
             .first { actionLine in
             actionLine.command == "SID"
             }.map { actionLine in
-                actionLine.name?.components(separatedBy: "_").first ?? ""
+                actionLine.name?.dropLast(2) ?? ""
             }
         departureName = String(firstSIDName ?? "D")
         
