@@ -74,7 +74,7 @@ internal func atTowerExercise(fromFileAt url: URL) throws -> ATTowerExercise {
         let iaf: String
         let firstApproachName = flightPlan.actionLines.actionLines
             .filter { actionLine in
-                actionLine.name?.count == 7 && actionLine.name?.prefix(5).trimmingCharacters(in: .letters).count == 0
+                actionLine.name?.components(separatedBy: "_").first?.count == 7 && actionLine.name?.prefix(5).trimmingCharacters(in: .letters).count == 0
             }
             .reversed()
             .first { actionLine in

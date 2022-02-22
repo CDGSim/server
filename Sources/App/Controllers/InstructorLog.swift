@@ -165,290 +165,176 @@ private struct Context: Encodable {
         }
         self.courseNotes = notes
         
+        let flightList: [TimelineableFlight]
+        let startDate: Date
+        let duration: Int
+        
         do {
+            // ELECTRA
             let simulation =  try electraSimulation(associatedWithLogAtPath: path)
+            
+            // Length of the timeline according to simulation's duration
+            guard let simulationDuration = simulation.duration, let simulationStartDate = simulation.date else {
+                self.timelinesGroups = []
+                self.reroutedFlightsToNorthRunways = []
+                self.reroutedFlightsToSouthRunways = []
+                return
+            }
+            flightList = simulation.flights
+            startDate = simulationStartDate
+            duration = simulationDuration
             
             // Get rerouted flights
             let flights = reroutedFlights(in:simulation)
             self.reroutedFlightsToNorthRunways = flights.0
             self.reroutedFlightsToSouthRunways = flights.1
             
-            // Length of the timeline according to simulation's duration
-            if let duration = simulation.duration, let startDate = simulation.date {
-                let length = duration * 20
-                
-                // Build minute labels
-                var calendar = Calendar(identifier: .gregorian)
-                calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-                
-                var minuteLabels = [Timeline.MinuteLabel]()
-                var currentDate = startDate
-                while currentDate.timeIntervalSince(startDate) < TimeInterval(duration * 60) {
-                    let components = calendar.dateComponents([.hour, .minute], from: currentDate)
-                    if let hours = components.hour, let minutes = components.minute {
-                        minuteLabels.append(.init(hours: hours, minutes: minutes, y: Int(currentDate.timeIntervalSince(startDate) / 60 * 20)))
-                    }
-                    currentDate.addTimeInterval(60)
-                }
-                
-                let movementDateFormatter = DateFormatter()
-                movementDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                movementDateFormatter.dateFormat = "HH:mm"
-                let IAFDateFormatter = DateFormatter()
-                IAFDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                IAFDateFormatter.dateFormat = "mm"
-                
-                // Filter arrivals
-                let lfpgArrivals = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.destination == "LFPG"
-                    }
-                
-                let timelineArrival: (Flight) -> Timeline.Flight? = { flight in
-                    guard let estimatedMovementTime = flight.estimatedMovementTime() else {
-                        return nil
-                    }
-                    let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
-                    if coordinate > length {
-                        return nil
-                    }
-                    let estimate = movementDateFormatter.string(from: estimatedMovementTime)
-                    let estimatedIAFTime: String
-                    if let IAFtime = flight.estimatedIAFTime() {
-                        estimatedIAFTime = IAFDateFormatter.string(from: IAFtime)
-                    } else {
-                        estimatedIAFTime = ""
-                    }
-                    return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedIAF(from:flight.route.last?.fix ?? ""), IAFestimate: estimatedIAFTime, aircraftType: flight.aircraftType, y: coordinate)
-                }
-                
-                // LFPG arrivals
-                let northRunwaysArrivals = lfpgArrivals
-                    .filter { ["27", "09"].contains($0.destinationRunway?.prefix(2)) }
-                    .compactMap(timelineArrival)
-                let southRunwaysArrivals = lfpgArrivals
-                    .filter { ["26", "08"].contains($0.destinationRunway?.prefix(2)) }
-                    .compactMap(timelineArrival)
-                let leBourgetArrivals = simulation.flights
-                    .filter { $0.destination == "LFPB" }
-                    .compactMap(timelineArrival)
-                let facingWest = log.properties.configuration.prefix(1) == "W"
-                let lfpgArrivalsTimelines:[Timeline] = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "27R":"09L", colorClass: "salmon", length: length),
-                                                        .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "26L":"08R", colorClass: "pink", length: length),
-                                                        .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: facingWest ? "27":"07", colorClass: "purple", length: length)]
-                
-                
-                
-                let timelineDeparture: (Flight) -> Timeline.Flight? = { flight in
-                    guard let estimatedMovementTime = flight.estimatedMovementTime() else {
-                        return nil
-                    }
-                    let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
-                    if coordinate > length {
-                        return nil
-                    }
-                    let estimate = movementDateFormatter.string(from: estimatedMovementTime)
-                    return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedDeparture(from: flight.route.first?.fix ?? ""), IAFestimate: "", aircraftType: flight.aircraftType, y: coordinate)
-                }
-                
-                // LFPG departures
-                let lfpgDepartures = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.origin == "LFPG"
-                    }
-                let northRunwaysDepartures = lfpgDepartures
-                    .filter { ["27", "09"].contains($0.departureRunway?.prefix(2)) }
-                    .compactMap(timelineDeparture)
-                let southRunwaysDepartures = lfpgDepartures
-                    .filter { ["26", "08"].contains($0.departureRunway?.prefix(2)) }
-                    .compactMap(timelineDeparture)
-                let leBourgetDepartures = simulation.flights
-                    .filter { $0.origin == "LFPB" }
-                    .compactMap(timelineDeparture)
-                
-                let lfpgDeparturesTimelines: [Timeline] = [.init(flights: northRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "27L":"09R", colorClass: "cyan", length: length),
-                                                           .init(flights: southRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "26R":"08L", colorClass: "cyan", length: length),
-                                                           .init(flights: leBourgetDepartures, labels: minuteLabels, runwayName: facingWest ? "25":"09", colorClass: "cyan", length: length)]
-                // LFOB
-                let lfobDepartures = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.origin == "LFOB"
-                    }
-                    .compactMap(timelineDeparture)
-                let lfobArrivals = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.destination == "LFOB"
-                    }
-                    .compactMap(timelineArrival)
-                let lfobTimelines: [Timeline] = [.init(flights: lfobDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
-                                                 .init(flights: lfobArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
-                
-                // LFPO
-                let lfpoDepartures = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.origin == "LFPO"
-                    }
-                    .compactMap(timelineDeparture)
-                let lfpoArrivals = simulation.flights
-                    .filter { flight -> Bool in
-                        flight.destination == "LFPO"
-                    }
-                    .compactMap(timelineArrival)
-                let lfpoTimelines: [Timeline] = [.init(flights: lfpoDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
-                                                 .init(flights: lfpoArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
-                
-                self.timelinesGroups = [.init(name: "Arrivées LFPG", timelines: lfpgArrivalsTimelines),
-                                        .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines),
-                                        .init(name: "Beauvais", timelines: lfobTimelines),
-                                        .init(name: "Orly", timelines: lfpoTimelines)]
-            } else {
+        } catch SimulationImporterError.notFound {
+            // ATTower
+            self.reroutedFlightsToNorthRunways = []
+            self.reroutedFlightsToSouthRunways = []
+            
+            guard let exercise = try? atTowerExercise(associatedWithLogAtPath: path) else {
                 self.timelinesGroups = []
+                return
             }
-        }
-        catch SimulationImporterError.notFound {
-            do {
-                // Try and read ATTower simulation
-                let exercise = try atTowerExercise(associatedWithLogAtPath: path)
-                let flightList = exercise.flights
-                let startDate = exercise.startDate
-                let length = exercise.duration * 20
-                
-                // Build minute labels
-                var calendar = Calendar(identifier: .gregorian)
-                calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-                var minuteLabels = [Timeline.MinuteLabel]()
-                var currentDate = startDate
-                while currentDate.timeIntervalSince(startDate) < TimeInterval(exercise.duration * 60) {
-                    let components = calendar.dateComponents([.hour, .minute], from: currentDate)
-                    if let hours = components.hour, let minutes = components.minute {
-                        minuteLabels.append(.init(hours: hours, minutes: minutes, y: Int(currentDate.timeIntervalSince(startDate) / 60 * 20)))
-                    }
-                    currentDate.addTimeInterval(60)
-                }
-                
-                // Date formatters
-                let movementDateFormatter = DateFormatter()
-                movementDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                movementDateFormatter.dateFormat = "HH:mm"
-                let IAFDateFormatter = DateFormatter()
-                IAFDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                IAFDateFormatter.dateFormat = "mm"
-                
-                // Filter arrivals
-                let lfpgArrivals = flightList.filter { flight -> Bool in
-                    flight.destination == "LFPG"
-                }
-                
-                let timelineArrival: (ATTowerFlight) -> Timeline.Flight? = { flight in
-                    guard let estimatedMovementTime = flight.estimatedMovementDate else {
-                        return nil
-                    }
-                    let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
-                    if coordinate > length {
-                        return nil
-                    }
-                    
-                    let estimate = movementDateFormatter.string(from: estimatedMovementTime)
-                    let estimatedIAFTime: String
-                    if let IAFtime = flight.estimatedIAFDate {
-                        estimatedIAFTime = IAFDateFormatter.string(from: IAFtime)
-                    } else {
-                        estimatedIAFTime = ""
-                    }
-                    
-                    return .init(estimate: estimate,
-                                 callsign: flight.callsign,
-                                 IAF: abreviatedIAF(from: flight.iaf ?? "X"),
-                                 IAFestimate: estimatedIAFTime,
-                                 aircraftType: flight.aircraftType,
-                                 y: coordinate)
-                }
-                
-                // LFPG arrivals
-                let northRunwaysArrivals = lfpgArrivals
-                    .filter { ["27", "09"].contains($0.destinationRunway?.prefix(2)) }
-                let southRunwaysArrivals = lfpgArrivals
-                    .filter { ["26", "08"].contains($0.destinationRunway?.prefix(2)) }
-                let leBourgetArrivals = flightList
-                    .filter { $0.destination == "LFPB" }
-                let lfpgArrivalsTimelines:[Timeline] = [.init(flights: northRunwaysArrivals.compactMap(timelineArrival),
-                                                              labels: minuteLabels,
-                                                              runwayName: northRunwaysArrivals.first?.destinationRunway ?? "09L",
-                                                              colorClass: "salmon",
-                                                              length: length),
-                                                        .init(flights: southRunwaysArrivals.compactMap(timelineArrival),
-                                                              labels: minuteLabels,
-                                                              runwayName: southRunwaysArrivals.first?.destinationRunway ?? "08R",
-                                                              colorClass: "pink",
-                                                              length: length),
-                                                        .init(flights: leBourgetArrivals.compactMap(timelineArrival),
-                                                              labels: minuteLabels,
-                                                              runwayName: leBourgetArrivals.first?.destinationRunway ?? "07",
-                                                              colorClass: "purple",
-                                                              length: length)]
-                
-                
-                
-                // LFPG departures
-                let timelineDeparture: (ATTowerFlight) -> Timeline.Flight? = { flight in
-                    guard let estimatedMovementTime = flight.estimatedMovementDate else {
-                        return nil
-                    }
-                    let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
-                    if coordinate > length {
-                        return nil
-                    }
-                    let estimate = movementDateFormatter.string(from: estimatedMovementTime)
-                    return .init(estimate: estimate,
-                                 callsign: flight.callsign,
-                                 IAF: abreviatedDeparture(from: flight.departure ?? "D"),
-                                 IAFestimate: "",
-                                 aircraftType: flight.aircraftType,
-                                 y: coordinate)
-                }
-                
-                let lfpgDepartures = flightList
-                    .filter { flight -> Bool in
-                        flight.origin == "LFPG"
-                    }
-                let northRunwaysDepartures = lfpgDepartures
-                    .filter { ["27", "09"].contains($0.departureRunway?.prefix(2)) }
-                let southRunwaysDepartures = lfpgDepartures
-                    .filter { ["26", "08"].contains($0.departureRunway?.prefix(2)) }
-                let leBourgetDepartures = flightList
-                    .filter { $0.origin == "LFPB" }
-                
-                let lfpgDeparturesTimelines: [Timeline] = [.init(flights: northRunwaysDepartures.compactMap(timelineDeparture),
-                                                                 labels: minuteLabels,
-                                                                 runwayName: northRunwaysDepartures.first?.departureRunway ?? "09R",
-                                                                 colorClass: "cyan",
-                                                                 length: length),
-                                                           .init(flights: southRunwaysDepartures.compactMap(timelineDeparture),
-                                                                 labels: minuteLabels,
-                                                                 runwayName: southRunwaysDepartures.first?.departureRunway ?? "08L",
-                                                                 colorClass: "cyan",
-                                                                 length: length),
-                                                           .init(flights: leBourgetDepartures.compactMap(timelineDeparture),
-                                                                 labels: minuteLabels,
-                                                                 runwayName: leBourgetDepartures.first?.departureRunway ?? "09",
-                                                                 colorClass: "cyan",
-                                                                 length: length)]
-                
-                self.timelinesGroups = [.init(name: "Arrivées LFPG", timelines: lfpgArrivalsTimelines),
-                                            .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines)]
-                self.reroutedFlightsToNorthRunways = []
-                self.reroutedFlightsToSouthRunways = []
-            } catch {
-                self.timelinesGroups = []
-                self.reroutedFlightsToNorthRunways = []
-                self.reroutedFlightsToSouthRunways = []
-            }
-        }
-        catch {
+            flightList = exercise.flights
+            startDate = exercise.startDate
+            duration = exercise.duration
+        } catch {
             self.timelinesGroups = []
             self.reroutedFlightsToNorthRunways = []
             self.reroutedFlightsToSouthRunways = []
+            return
         }
+        
+        let length: Int
+        length = duration * 20
+        
+        // Build minute labels
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        var minuteLabels = [Timeline.MinuteLabel]()
+        var currentDate = startDate
+        while currentDate.timeIntervalSince(startDate) < TimeInterval(duration * 60) {
+            let components = calendar.dateComponents([.hour, .minute], from: currentDate)
+            if let hours = components.hour, let minutes = components.minute {
+                minuteLabels.append(.init(hours: hours, minutes: minutes, y: Int(currentDate.timeIntervalSince(startDate) / 60 * 20)))
+            }
+            currentDate.addTimeInterval(60)
+        }
+        
+        // Date formatters
+        let movementDateFormatter = DateFormatter()
+        movementDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        movementDateFormatter.dateFormat = "HH:mm"
+        let IAFDateFormatter = DateFormatter()
+        IAFDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        IAFDateFormatter.dateFormat = "mm"
+        
+        // Filter arrivals
+        let lfpgArrivals = flightList
+            .filter { flight -> Bool in
+                flight.destination == "LFPG"
+            }
+        
+        let timelineArrival: (TimelineableFlight) -> Timeline.Flight? = { flight in
+            guard let estimatedMovementTime = flight.estimatedMovementTime() else {
+                return nil
+            }
+            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
+            if coordinate > length {
+                return nil
+            }
+            let estimate = movementDateFormatter.string(from: estimatedMovementTime)
+            let estimatedIAFTime: String
+            if let IAFtime = flight.estimatedIAFTime() {
+                estimatedIAFTime = IAFDateFormatter.string(from: IAFtime)
+            } else {
+                estimatedIAFTime = ""
+            }
+            return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedIAF(from:flight.initialApproachFix), IAFestimate: estimatedIAFTime, aircraftType: flight.aircraftType, y: coordinate)
+        }
+        
+        // LFPG arrivals
+        let northRunwaysArrivals = lfpgArrivals
+            .filter { ["27", "09"].contains($0.destinationRunway?.prefix(2)) }
+            .compactMap(timelineArrival)
+        let southRunwaysArrivals = lfpgArrivals
+            .filter { ["26", "08"].contains($0.destinationRunway?.prefix(2)) }
+            .compactMap(timelineArrival)
+        let leBourgetArrivals = flightList
+            .filter { $0.destination == "LFPB" }
+            .compactMap(timelineArrival)
+        let facingWest = log.properties.configuration.prefix(1) == "W"
+        let lfpgArrivalsTimelines:[Timeline] = [.init(flights: northRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "27R":"09L", colorClass: "salmon", length: length),
+                                                .init(flights: southRunwaysArrivals, labels: minuteLabels, runwayName: facingWest ? "26L":"08R", colorClass: "pink", length: length),
+                                                .init(flights: leBourgetArrivals, labels: minuteLabels, runwayName: facingWest ? "27":"07", colorClass: "purple", length: length)]
+        
+        
+        
+        let timelineDeparture: (TimelineableFlight) -> Timeline.Flight? = { flight in
+            guard let estimatedMovementTime = flight.estimatedMovementTime() else {
+                return nil
+            }
+            let coordinate: Int = Int(estimatedMovementTime.timeIntervalSince(startDate) / 60 * 20)
+            if coordinate > length {
+                return nil
+            }
+            let estimate = movementDateFormatter.string(from: estimatedMovementTime)
+            return .init(estimate: estimate, callsign: flight.callsign, IAF: abreviatedDeparture(from: flight.departureFix), IAFestimate: "", aircraftType: flight.aircraftType, y: coordinate)
+        }
+        
+        // LFPG departures
+        let lfpgDepartures = flightList
+            .filter { flight -> Bool in
+                flight.origin == "LFPG"
+            }
+        let northRunwaysDepartures = lfpgDepartures
+            .filter { ["27", "09"].contains($0.departureRunway?.prefix(2)) }
+            .compactMap(timelineDeparture)
+        let southRunwaysDepartures = lfpgDepartures
+            .filter { ["26", "08"].contains($0.departureRunway?.prefix(2)) }
+            .compactMap(timelineDeparture)
+        let leBourgetDepartures = flightList
+            .filter { $0.origin == "LFPB" }
+            .compactMap(timelineDeparture)
+        
+        let lfpgDeparturesTimelines: [Timeline] = [.init(flights: northRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "27L":"09R", colorClass: "cyan", length: length),
+                                                   .init(flights: southRunwaysDepartures, labels: minuteLabels, runwayName: facingWest ? "26R":"08L", colorClass: "cyan", length: length),
+                                                   .init(flights: leBourgetDepartures, labels: minuteLabels, runwayName: facingWest ? "25":"09", colorClass: "cyan", length: length)]
+        // LFOB
+        let lfobDepartures = flightList
+            .filter { flight -> Bool in
+                flight.origin == "LFOB"
+            }
+            .compactMap(timelineDeparture)
+        let lfobArrivals = flightList
+            .filter { flight -> Bool in
+                flight.destination == "LFOB"
+            }
+            .compactMap(timelineArrival)
+        let lfobTimelines: [Timeline] = [.init(flights: lfobDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
+                                         .init(flights: lfobArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
+        
+        // LFPO
+        let lfpoDepartures = flightList
+            .filter { flight -> Bool in
+                flight.origin == "LFPO"
+            }
+            .compactMap(timelineDeparture)
+        let lfpoArrivals = flightList
+            .filter { flight -> Bool in
+                flight.destination == "LFPO"
+            }
+            .compactMap(timelineArrival)
+        let lfpoTimelines: [Timeline] = [.init(flights: lfpoDepartures, labels: minuteLabels, runwayName: "Départs", colorClass: "blue", length: length),
+                                         .init(flights: lfpoArrivals, labels: minuteLabels, runwayName: "Arrivées", colorClass: "orange", length: length)]
+        
+        self.timelinesGroups = [.init(name: "Arrivées LFPG", timelines: lfpgArrivalsTimelines),
+                                .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines),
+                                .init(name: "Beauvais", timelines: lfobTimelines),
+                                .init(name: "Orly", timelines: lfpoTimelines)]
     }
 }
 
@@ -483,4 +369,48 @@ func abreviatedDeparture(from departureName:String) -> String {
     if(departureName == "EVX") { return "WE" }
     if(departureName == "LGL") { return "WL" }
     return departureName
+}
+
+protocol TimelineableFlight {
+    func estimatedMovementTime() -> Date?
+    
+    func estimatedIAFTime() -> Date?
+    
+    var callsign:String { get }
+    var aircraftType:String { get }
+    var initialApproachFix:String { get }
+    var departureFix:String { get }
+    var origin:String { get }
+    var departureRunway:String? { get }
+    var destination:String { get }
+    var destinationRunway:String? { get }
+}
+
+extension ATTowerFlight: TimelineableFlight {
+    func estimatedMovementTime() -> Date? {
+        self.estimatedMovementDate
+    }
+    
+    func estimatedIAFTime() -> Date? {
+        self.estimatedIAFDate
+    }
+    
+    var initialApproachFix: String {
+        self.iaf ?? ""
+    }
+    
+    var departureFix: String {
+        self.departure ?? ""
+    }
+    
+}
+
+extension Flight: TimelineableFlight {
+    var initialApproachFix: String {
+        self.route.last?.fix ?? ""
+    }
+    
+    var departureFix: String {
+        self.route.first?.fix ?? ""
+    }
 }
