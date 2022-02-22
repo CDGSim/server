@@ -73,6 +73,10 @@ internal func atTowerExercise(fromFileAt url: URL) throws -> ATTowerExercise {
         // IAF
         let iaf: String
         let firstApproachName = flightPlan.actionLines.actionLines
+            .filter { actionLine in
+                actionLine.name?.count == 7 && actionLine.name?.prefix(5).trimmingCharacters(in: .letters).count == 0
+            }
+            .reversed()
             .first { actionLine in
             actionLine.command == "APP"
             }.map { actionLine in
