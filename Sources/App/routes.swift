@@ -733,6 +733,88 @@ func registerFrontEndRoutes(_ app: Application) throws {
         
         return req.fileio.streamFile(at: path)
     }
+    
+    // MARK: GET /inventaire
+    // Renders a view containing all logs listed in alphabetical order
+    app.get("inventaire") { req -> EventLoopFuture<View> in
+        // Context type that will be passed to the view
+        struct Context: Encodable {
+            let courses: [Course]
+            
+            struct Course: Encodable {
+                let name: String
+                var simulations: [Simulation]
+            }
+            
+            struct Simulation: Encodable {
+                let name: String // Simulation name
+                let group: String? // Simulation's group within the course, this is optional
+                let description: String
+                let trafficDensity: [Bool]
+                let minimumNumberOfAttendees: Int?
+                let minimumNumberOfPilots: Int?
+            }
+        }
+        
+        // Enumerate files in the logs folder
+        let enumerator = FileManager.default.enumerator(atPath: "Public/logs")
+        guard let subpaths = enumerator?.allObjects as? [String]  else {
+            // If we cannot get the subpaths, render the error view
+            return req.view.render("error")
+        }
+        
+        // Create an array of logs from the content of the .simlog files
+        let logs = subpaths.compactMap { path -> String? in
+            // Filter files to only include .simlog files
+            guard URL(fileURLWithPath: path).pathExtension == "simlog" else { return nil }
+            
+            // Only include files in a subfolder
+            guard path.components(separatedBy: "/").count > 1 else { return nil }
+            
+            return path
+        }.compactMap { path -> (Log, String, String?)? in
+            // Read the simulation name from the log file
+            switch log(atPath: path) {
+            case .failure : return nil // If the log file cannot be read, just ignore it
+            case .success(let log):
+                var pathComponents = path.components(separatedBy: "/")
+                let course = pathComponents.removeFirst()
+                let group = pathComponents.count > 1 ? pathComponents.first : nil
+                return (log, course, group)
+            }
+        }.sorted { (lhs, rhs) -> Bool in
+            lhs.0.properties.name < rhs.0.properties.name
+        }
+        
+        var courses = [Context.Course]()
+        for (log, course, group) in logs {
+            
+            var trafficDensity = [Bool]()
+            for index in 1...4 {
+                trafficDensity.append(index <= log.properties.trafficDensity)
+            }
+            
+            let simulation = Context.Simulation(name: log.properties.name,
+                                                group: group,
+                                                description: log.properties.description,
+                                                trafficDensity: trafficDensity,
+                                                minimumNumberOfAttendees: log.properties.minimumNumberOfAttendees,
+                                                minimumNumberOfPilots: log.properties.minimumNumberOfPilots
+            )
+            if let courseIndex = courses.firstIndex(where: { $0.name == course }) {
+                courses[courseIndex].simulations.append(simulation)
+            } else {
+                courses.append(.init(name: course, simulations: [simulation]))
+            }
+        }
+        courses.sort { (lhs, rhs) -> Bool in
+            lhs.name < rhs.name
+        }
+        
+        // Render the view index, with the context we've made
+        let context:Context = .init(courses: courses)
+        return req.view.render("inventaire/index", context)
+    }
 }
 
 

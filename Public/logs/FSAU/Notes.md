@@ -1,6 +1,7 @@
 Partition à sélectionner :
-- FSAU_APP_2123_EI & FSAU_APP_2123_WI : **FSAU_1**
-- FSAU_APP_2123_EL : **FSAU_23**
+- FSAU_APP_2124_1_EL : **FSAU1_XXX**
+- FSAU_APP_2124_2_WI : **FSAU2_XXX**
+- FSAU_APP_2124_3_EI : **FSAU3_XXX**
 
 Pour chaque simulation, une distribution PC est proposée dans un tableau en haut de page. 
 

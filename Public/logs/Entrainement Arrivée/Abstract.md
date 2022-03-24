@@ -1,1 +1,1 @@
-Simulations comportant du trafic sans évènement particulier.
+Simulations d'entrainement, aux choix sans évènements, avec du vent fort, ou LVP.

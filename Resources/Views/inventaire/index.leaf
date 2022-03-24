@@ -1,0 +1,32 @@
+#extend("master"):
+    #export("title"): Simulations #endexport
+    #export("main"):
+            
+        <div id="content">
+            <div class="container">
+                <h2>Inventaire des simulations</h2>
+                <table class="simulation-index">
+                    #for(course in courses):
+                    <tbody>
+                        <tr class="grouplabel"><th>#(course.name)</th></tr>
+                        #for(simulation in course.simulations):
+                        <tr>
+                            <td>
+                                #(simulation.name)
+                            </td>
+                            <td>
+                                #markdown(simulation.description)
+                            </td>
+                            <td>
+                                <div class="trafficDensityIndicator">#for(density in simulation.trafficDensity):<div class="#if(density):on#else:off#endif"></div>#endfor</div>
+                            </td>
+                        </tr>
+                        #endfor
+                    #endfor
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            
+    #endexport
+#endextend

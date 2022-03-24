@@ -14,6 +14,7 @@
             <ul>
                 <li><a href="/instructeur/">Instructeur</a></li>
                 <li><a href="/pilote/">Pilote</a></li>
+                <li><a href="/inventaire/">Inventaire</a></li>
                 #DECORLink()
 				<li><a href="/ticket/form">Remarques</a></li>
             </ul>

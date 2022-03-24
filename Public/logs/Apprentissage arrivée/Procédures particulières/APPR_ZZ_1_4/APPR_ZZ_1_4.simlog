@@ -233,15 +233,15 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI S",
-          "INI N"
+          "INI N",
+          "INI S"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI N",
           "COOR INI S",
+          "COOR INI N",
           "SEQ"
         ]
       }
@@ -249,12 +249,13 @@
     "configuration" : "EL",
     "description" : "Régulations 09L & 08R PG, 07 PB.\nPontoise est sans ATS.\nITM sud et BA dégroupés.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
     "duration" : 60,
+    "minimumNumberOfAttendees" : 4,
+    "minimumNumberOfPilots" : 9,
     "name" : "APPR_ZZ_1_4",
     "objectives" : "Gestion d'un trafic arrivée modéré à fort, avec quelques croisements, trafics BA, LFPT sans ATS.",
-    "pressure" : 998,
     "start_date" : "2020-07-14T12:30:20Z",
     "traffic_density" : 3,
-    "update_date" : "2021-02-12T12:20:25Z",
-    "weather" : "06010KT CAVOK M02/M12 Q998"
+    "update_date" : "2021-06-01T06:44:29Z",
+    "weather" : "06010KT CAVOK M02\/M12 Q998"
   }
 }

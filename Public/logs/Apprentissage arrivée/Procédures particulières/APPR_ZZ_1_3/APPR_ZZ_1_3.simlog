@@ -199,19 +199,21 @@
         "controller" : "ST",
         "positions" : [
           "SEQ",
-          "COOR INI S",
-          "COOR INI N"
+          "COOR INI N",
+          "COOR INI S"
         ]
       }
     ],
     "configuration" : "WL",
     "description" : "Régulations 27R, 26L et 27 PB.\nPossibilité de rajouter quelques remises de gaz, à coordonner avec les PERs.",
     "duration" : 60,
+    "minimumNumberOfAttendees" : 4,
+    "minimumNumberOfPilots" : 9,
     "name" : "APPR_ZZ_1_3",
     "objectives" : "- Travailler les stratégies d'interception au Bourget\n - Gestion d'une arrivée et d'un départ Le Plessis",
     "start_date" : "2021-01-14T08:28:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-03-09T09:24:48Z",
+    "update_date" : "2021-06-01T06:44:19Z",
     "weather" : "32007KT FEW140 10\/02 Q1015"
   }
 }

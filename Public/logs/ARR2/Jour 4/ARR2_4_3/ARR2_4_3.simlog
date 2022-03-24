@@ -148,8 +148,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM BA",
-          "ITM S"
+          "ITM S",
+          "ITM BA"
         ]
       },
       {
@@ -167,20 +167,22 @@
       {
         "controller" : "ST",
         "positions" : [
+          "COOR INI S",
           "COOR INI N",
-          "SEQ",
-          "COOR INI S"
+          "SEQ"
         ]
       }
     ],
     "configuration" : "EL",
     "description" : "Orages, DEP joué par renfort supplémentaire, EL\n\nTrafic PO (1)\\\nRégulations 27PG+ 26PG\\\nPas de trafic au Bourget\\\nUn renfort supplémentaire pour jouer le DEP\\\nAnticroisement + beaucoup de départs vers l'Est et l'Ouest\\\nHBN à 3800ft sur l’axe. Les PER pourront demander à descendre sous les nuages",
     "duration" : 45,
+    "minimumNumberOfAttendees" : 6,
+    "minimumNumberOfPilots" : 9,
     "name" : "ARR2_4_3",
     "objectives" : "Gestion d’un trafic relativement chargé  avec évitements",
     "start_date" : "2021-02-26T09:00:22Z",
     "traffic_density" : 4,
-    "update_date" : "2021-03-17T08:22:24Z",
+    "update_date" : "2021-05-07T06:30:26Z",
     "weather" : "09010KT 25\/17 9999 SCT025 CB Q986"
   }
 }

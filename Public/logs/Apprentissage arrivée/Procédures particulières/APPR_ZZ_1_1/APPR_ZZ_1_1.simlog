@@ -194,8 +194,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
-          "ITM BA"
+          "ITM BA",
+          "ITM S"
         ]
       },
       {
@@ -207,27 +207,29 @@
       {
         "controller" : "ST",
         "positions" : [
-          "INI N",
-          "INI S"
+          "INI S",
+          "INI N"
         ]
       },
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI N",
           "SEQ",
-          "COOR INI S"
+          "COOR INI S",
+          "COOR INI N"
         ]
       }
     ],
     "configuration" : "WL",
     "description" : "Régulations RNP 27R, ILS 26L et ILS 27 PB.\nQuelques arrivées pour Le Plessis et Pontoise.",
     "duration" : 70,
+    "minimumNumberOfAttendees" : 4,
+    "minimumNumberOfPilots" : 9,
     "name" : "APPR_ZZ_1_1",
     "objectives" : "- trafic avec croisements\n- approches RNP\n- arrivées Le Plessis\n- arrivées Pontoise",
     "start_date" : "2021-01-14T10:45:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-05-03T11:19:21Z",
+    "update_date" : "2021-06-01T06:43:52Z",
     "weather" : "Q1015 24005KT CAVOK M01\/M05"
   }
 }

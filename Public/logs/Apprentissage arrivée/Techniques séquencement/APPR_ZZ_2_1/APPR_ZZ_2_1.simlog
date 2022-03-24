@@ -144,20 +144,22 @@
       {
         "controller" : "ST",
         "positions" : [
-          "COOR INI S",
           "COOR INI N",
-          "SEQ"
+          "SEQ",
+          "COOR INI S"
         ]
       }
     ],
     "configuration" : "WL",
     "description" : "Régulations ILS 27R, ILS 26L et ILS 27 PB.\nITM Sud et BA regroupés.",
     "duration" : 50,
+    "minimumNumberOfAttendees" : 5,
+    "minimumNumberOfPilots" : 9,
     "name" : "APPR_ZZ_2_1",
     "objectives" : "Gestion d'un trafic modéré à fort avec quelques croisements.",
     "start_date" : "2021-01-14T05:15:00Z",
     "traffic_density" : 3,
-    "update_date" : "2021-03-09T09:21:59Z",
+    "update_date" : "2021-06-01T06:50:37Z",
     "weather" : "26003KT SKC 25\/19 Q1015"
   }
 }

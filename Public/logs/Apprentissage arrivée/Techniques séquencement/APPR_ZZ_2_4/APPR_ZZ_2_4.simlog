@@ -135,8 +135,8 @@
       {
         "controller" : "ST",
         "positions" : [
-          "ITM S",
-          "ITM N"
+          "ITM N",
+          "ITM S"
         ]
       },
       {
@@ -150,19 +150,21 @@
         "controller" : "ST",
         "positions" : [
           "COOR INI N",
-          "COOR INI S",
-          "SEQ"
+          "SEQ",
+          "COOR INI S"
         ]
       }
     ],
     "configuration" : "EL",
     "description" : "Régulations ILS 08R et ILS 07 PB. Le doublet nord est fermé.\nITM N et Sud regroupés, ITM BA dégroupé.",
     "duration" : 50,
+    "minimumNumberOfAttendees" : 4,
+    "minimumNumberOfPilots" : 9,
     "name" : "APPR_ZZ_2_4",
     "objectives" : "Gestion d'un trafic modéré à fort sur un seul doublet.",
     "start_date" : "2021-01-28T14:00:00Z",
     "traffic_density" : 4,
-    "update_date" : "2021-03-10T07:05:04Z",
+    "update_date" : "2021-06-01T06:51:23Z",
     "weather" : "15014KT 9999 NCD 02\/M06 Q998"
   }
 }
