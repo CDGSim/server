@@ -74,15 +74,27 @@ internal func atTowerExercise(fromFileAt url: URL) throws -> ATTowerExercise {
         let iaf: String
         let firstApproachName = flightPlan.actionLines.actionLines
             .filter { actionLine in
-                actionLine.name?.components(separatedBy: "_").first?.count == 7 && actionLine.name?.prefix(5).trimmingCharacters(in: .letters).count == 0
+                actionLine.command == "APP"
             }
-            .reversed()
-            .first { actionLine in
-            actionLine.command == "APP"
-            }.map { actionLine in
-                actionLine.name?.prefix(5) ?? ""
+            .filter { actionLine in
+                guard let name = actionLine.name else {
+                    return false
+                }
+                return !name.starts(with: "FIN") && !name.contains("BASE") && !name.starts(with: "RNP")
             }
-        iaf = String(firstApproachName ?? "X")
+            .last
+            .map { actionLine in
+                actionLine.name?.replacingOccurrences(of: "/!\\ ", with: "").prefix(5) ?? ""
+            }
+        if let name = firstApproachName {
+            iaf = String(name)
+        } else {
+            let finalFix = flightPlan.actionLines.actionLines
+                .filter { $0.command == "FBX" }
+                .last
+                .map { $0.name ?? "" }
+            iaf = String(finalFix ?? "X")
+        }
         
         // Departure name according to SID
         let departureName: String
@@ -90,7 +102,7 @@ internal func atTowerExercise(fromFileAt url: URL) throws -> ATTowerExercise {
             .first { actionLine in
             actionLine.command == "SID"
             }.map { actionLine in
-                actionLine.name?.dropLast(2) ?? ""
+                actionLine.name?.dropLast(2).trimmingCharacters(in: .whitespaces) ?? ""
             }
         departureName = String(firstSIDName ?? "D")
         
