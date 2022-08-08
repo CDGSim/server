@@ -84,3 +84,25 @@ internal func reroutedFlights(in simulation:SimlogCore.Simulation) -> ([Flight],
     
     return (reroutedFlightsToNorthRunways, reroutedFlightsToSouthRunways)
 }
+
+protocol Arrival {
+    var callsign: String { get }
+    var iaf: String { get }
+    var destination: String { get }
+    var destinationRunway: String { get }
+}
+
+internal func reroutedFlights(_ flights:[Arrival]) -> ([Arrival], [Arrival]) {
+    
+    var reroutedFlightsToNorthRunways = [Arrival]()
+    var reroutedFlightsToSouthRunways = [Arrival]()
+    
+    // Find rerouted flights
+    let lfpgArrivals = flights.filter { $0.destination == "LFPG" }
+    let northRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway.prefix(2) == "27" || $0.destinationRunway.prefix(2) == "09"}
+    reroutedFlightsToNorthRunways = northRunwayArrivals.filter { ["OKIPA", "BANOX"].contains($0.iaf) }
+    let southRunwayArrivals = lfpgArrivals.filter { $0.destinationRunway.prefix(2) == "26" || $0.destinationRunway.prefix(2) == "08"}
+    reroutedFlightsToSouthRunways = southRunwayArrivals.filter { ["MOPAR", "LORNI", "MOBRO"].contains($0.iaf) }
+    
+    return (reroutedFlightsToNorthRunways, reroutedFlightsToSouthRunways)
+}

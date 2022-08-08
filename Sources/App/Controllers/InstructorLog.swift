@@ -169,44 +169,33 @@ private struct Context: Encodable {
         let startDate: Date
         let duration: Int
         
+        let simulation: SimlogCore.Simulation
+        
         do {
-            // ELECTRA
-            let simulation =  try electraSimulation(associatedWithLogAtPath: path)
-            
-            // Length of the timeline according to simulation's duration
-            guard let simulationDuration = simulation.duration, let simulationStartDate = simulation.date else {
+            // Try reading ELECTRA simulation
+            simulation = try electraSimulation(associatedWithLogAtPath: path)
+        } catch {
+            // Try reading ATTower simulation
+            do {
+                simulation = try atTowerSimulation(associatedWithLogAtPath: path)
+            } catch {
                 self.timelinesGroups = []
                 self.reroutedFlightsToNorthRunways = []
                 self.reroutedFlightsToSouthRunways = []
                 return
             }
-            flightList = simulation.flights
-            startDate = simulationStartDate
-            duration = simulationDuration
-            
-            // Get rerouted flights
-            let flights = reroutedFlights(in:simulation)
-            self.reroutedFlightsToNorthRunways = flights.0
-            self.reroutedFlightsToSouthRunways = flights.1
-            
-        } catch SimulationImporterError.notFound {
-            // ATTower
-            self.reroutedFlightsToNorthRunways = []
-            self.reroutedFlightsToSouthRunways = []
-            
-            guard let exercise = try? atTowerExercise(associatedWithLogAtPath: path) else {
-                self.timelinesGroups = []
-                return
-            }
-            flightList = exercise.flights
-            startDate = exercise.startDate
-            duration = exercise.duration
-        } catch {
-            self.timelinesGroups = []
-            self.reroutedFlightsToNorthRunways = []
-            self.reroutedFlightsToSouthRunways = []
-            return
         }
+            
+        // Length of the timeline according to simulation's duration
+        flightList = simulation.flights
+        startDate = simulation.date
+        duration = simulation.duration
+        
+        // Get rerouted flights
+        let flights = reroutedFlights(in:simulation)
+        self.reroutedFlightsToNorthRunways = flights.0
+        self.reroutedFlightsToSouthRunways = flights.1
+       
         
         let length: Int
         length = duration * 20

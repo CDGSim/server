@@ -526,7 +526,8 @@ func registerFrontEndRoutes(_ app: Application) throws {
                     self.reroutedFlightsToSouthRunways = flights.1
                     
                     // Length of the timeline according to simulation's duration
-                    if let duration = simulation.duration, let startDate = simulation.date {
+                    let duration = simulation.duration
+                    let startDate = simulation.date
                         let length = duration * 13
                         
                         // Build minute labels
@@ -654,9 +655,6 @@ func registerFrontEndRoutes(_ app: Application) throws {
                                                 .init(name: "Départs LFPG", timelines: lfpgDeparturesTimelines),
                                                 .init(name: "Beauvais", timelines: lfobTimelines),
                                                 .init(name: "Orly", timelines: lfpoTimelines)]
-                    } else {
-                        self.timelinesGroups = []
-                    }
                 } catch {
                     self.timelinesGroups = []
                     self.reroutedFlightsToNorthRunways = []

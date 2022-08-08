@@ -7,6 +7,7 @@
 
 import Foundation
 import XMLCoder
+import SimlogCore
 
 struct ATTowerExercise {
     let startDate: Date
@@ -27,13 +28,22 @@ struct ATTowerFlight {
     let departure: String?
 }
 
-internal func atTowerExercise(associatedWithLogAtPath logPath:String) throws -> ATTowerExercise {
+internal func atTowerSimulation(associatedWithLogAtPath logPath:String) throws -> SimlogCore.Simulation {
     // Get complete ATTower simulation file URL from log path
     var atTowerSimulationURL = URL(fileURLWithPath: "Public/logs/\(logPath)")
     atTowerSimulationURL.deletePathExtension()
     atTowerSimulationURL.appendPathExtension("exercise")
     
-    return try atTowerExercise(fromFileAt: atTowerSimulationURL)
+    let data: Data
+    do {
+        data = try Data(contentsOf: atTowerSimulationURL)
+    } catch {
+        throw SimulationImporterError.notFound
+    }
+    
+    var atTowerImporter = SimlogCore.ATTowerImporter(content: data)
+    
+    return atTowerImporter.simulation()
 }
 
 enum ATTowerExerciseReaderError: Error {
