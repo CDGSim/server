@@ -172,12 +172,12 @@ private struct Context: Encodable {
         let simulation: SimlogCore.Simulation
         
         do {
-            // Try reading ELECTRA simulation
-            simulation = try electraSimulation(associatedWithLogAtPath: path)
-        } catch {
             // Try reading ATTower simulation
+            simulation = try atTowerSimulation(associatedWithLogAtPath: path)
+        } catch {
             do {
-                simulation = try atTowerSimulation(associatedWithLogAtPath: path)
+                // Try reading ELECTRA simulation
+                simulation = try electraSimulation(associatedWithLogAtPath: path)
             } catch {
                 self.timelinesGroups = []
                 self.reroutedFlightsToNorthRunways = []
