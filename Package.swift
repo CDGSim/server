@@ -11,8 +11,8 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
         .package(name: "LeafMarkdown", url: "https://github.com/vapor-community/leaf-markdown.git", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/CDGSim/simlog-core.git", .branch("main")),
-        //.package(path: "../simlog-core"),
+        //.package(url: "https://github.com/CDGSim/simlog-core.git", .branch("main")),
+        .package(path: "../simlog-core"),
         .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.3")),
         .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", from: "0.13.1")
         
